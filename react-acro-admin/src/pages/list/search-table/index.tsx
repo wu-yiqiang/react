@@ -16,7 +16,7 @@ import locale from './locale';
 import styles from './style/index.module.less';
 import './mock';
 import { getColumns } from './constants';
-
+import EditDialog from './edit-dialog'
 const { Title } = Typography;
 export const ContentType = ['图文', '横版短视频', '竖版短视频'];
 export const FilterType = ['规则筛选', '人工'];
@@ -41,7 +41,7 @@ function SearchTable() {
   });
   const [loading, setLoading] = useState(true);
   const [formParams, setFormParams] = useState({});
-
+  const [dialogShow, setDialogShow] = useState(false);
   useEffect(() => {
     fetchData();
   }, [pagination.current, pagination.pageSize, JSON.stringify(formParams)]);
@@ -82,6 +82,10 @@ function SearchTable() {
     setFormParams(params);
   }
 
+  function openDialog() {
+    setDialogShow(true);
+  }
+
   return (
     <Card>
       <Title heading={6}>{t['menu.list.searchTable']}</Title>
@@ -93,7 +97,7 @@ function SearchTable() {
       >
         <div className={styles['button-group']}>
           <Space>
-            <Button type="primary" icon={<IconPlus />}>
+            <Button type="primary" icon={<IconPlus />} onClick={openDialog}>
               {t['searchTable.operations.add']}
             </Button>
             <Button>{t['searchTable.operations.upload']}</Button>
@@ -113,6 +117,7 @@ function SearchTable() {
         columns={columns}
         data={data}
       />
+      <EditDialog show={dialogShow} />
     </Card>
   );
 }

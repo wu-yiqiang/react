@@ -22,6 +22,7 @@ const i18n = {
     'searchForm.id.placeholder': 'Please enter the collection ID',
     'searchForm.name.placeholder': 'Please enter the collection name',
     'searchForm.all.placeholder': 'all',
+    'editDialog.title': 'edit',
   },
   'zh-CN': {
     'menu.list': '列表页',
@@ -46,6 +47,7 @@ const i18n = {
     'searchForm.id.placeholder': '请输入集合编号',
     'searchForm.name.placeholder': '请输入集合名称',
     'searchForm.all.placeholder': '全部',
+    'editDialog.title': '编辑',
   },
 };
 
