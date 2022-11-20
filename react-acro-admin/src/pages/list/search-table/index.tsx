@@ -117,7 +117,7 @@ function SearchTable() {
         columns={columns}
         data={data}
       />
-      <EditDialog show={dialogShow} />
+      <EditDialog visible={dialogShow} />
     </Card>
   );
 }
