@@ -85,6 +85,10 @@ function SearchTable() {
   function openDialog() {
     setDialogShow(true);
   }
+  
+  function closeDialog() {
+    setDialogShow(false);
+  }
 
   return (
     <Card>
@@ -117,7 +121,7 @@ function SearchTable() {
         columns={columns}
         data={data}
       />
-      <EditDialog visible={dialogShow} />
+      <EditDialog visible={dialogShow} visibled={closeDialog } />
     </Card>
   );
 }
