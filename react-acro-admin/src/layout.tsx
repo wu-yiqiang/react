@@ -234,7 +234,8 @@ function PageLayout() {
               style={paddingTop}
             >
               <div className={styles['menu-wrapper']}>
-                <Menu
+                  <Menu
+                  accordion={true}
                   collapse={collapsed}
                   onClickMenuItem={onClickMenuItem}
                   selectedKeys={selectedKeys}
