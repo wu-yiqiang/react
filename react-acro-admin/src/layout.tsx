@@ -208,7 +208,6 @@ function PageLayout() {
     setBreadCrumb(routeConfig || []);
     updateMenuStatus();
   }, [pathname]);
-
   return (
     <Layout className={styles.layout}>
       <div
