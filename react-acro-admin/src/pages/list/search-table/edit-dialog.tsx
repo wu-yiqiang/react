@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import locale from './locale';
-
+import Download from '@/components/Download'
+import FileUpload from '@/components/FileUpload'
 function EditDialog(props) {
   const t = useLocale(locale)
   const close = () =>  {
@@ -17,11 +18,8 @@ function EditDialog(props) {
       autoFocus={false}
       focusLock={true}
     >
-      <p>
-        sdfs11 You can customize modal body text by the current
-        situation. This modal will be closed immediately once you press the OK
-        button.
-      </p>
+      <Download />
+      <FileUpload />
     </Modal>
   );
 }
