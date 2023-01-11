@@ -38,10 +38,12 @@ export default defineConfig({
     host: '0.0.0.0',
     // 本地跨域代理
     proxy: {
-      //            '/api/v1': {
-      //                target: VITE_APP_BASE_API,
-      //                changeOrigin: true
-      //            }
+      '/demo-api/': {
+        target: 'https://zj.v.api.aa1.cn/', // 接口的域名
+        secure: false, // 如果是https接口，需要配置这个参数
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+        rewrite: path => path.replace(/^\/demo-api/, '/')
+      }
     },
   },
 });

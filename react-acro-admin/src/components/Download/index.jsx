@@ -2,22 +2,46 @@ import { useState } from 'react';
 import useLocale from '@/utils/useLocale';
 import { Button } from '@arco-design/web-react';
 import locale from '@/locale';
-// import { IconPlus } from '@arco-design/web-react/icon';
-
-
+import request from '@/utils/request';
+// interface Req {
+// }
+// interface Res { 
+//   area: string 
+//   areaCode: string 
+//   areaid: string 
+//   dayList: any[]
+// }
 
 function Download() {
-    const t = useLocale(locale)
-    const [loading, setLoading] = useState(false);
-    function handleDownload() {
-        setLoading(true);
-    }
-    return  (
-        <Button type='primary' loading={loading}  onClick={handleDownload}>
-          {t['download.title']}
-        </Button>
-    )
+  const t = useLocale(locale)
+  const [loading, setLoading] = useState(false);
+  function handleDownload() {
+    setLoading(true);
   }
+  async function get15DaysWeatherByArea(data) {
+    return await request ({
+      url: '/demo-api/api/xz/?code=654028207203',
+      method: 'GET',
+      data,
+      interceptors: {
+        requestInterceptors(res) {
+          console.log('接口请求拦截')
+          return res
+        },
+        responseInterceptors(result) {
+          console.log('接口响应拦截')
+          return result
+        },
+      },
+    })
+  }
+  const res = get15DaysWeatherByArea()
+  console.log('时代', res)
+  return (
+    <Button type='primary' loading={loading} onClick={handleDownload}>
+      {t['download.title']}
+    </Button>
+  )
+}
 
-
-  export default Download;
+export default Download;
