@@ -25,18 +25,17 @@ function Download() {
       data,
       interceptors: {
         requestInterceptors(res) {
-          console.log('接口请求拦截')
+          console.log('接口请求拦截', res)
           return res
         },
         responseInterceptors(result) {
-          console.log('接口响应拦截')
+          console.log('接口响应拦截', result)
           return result
         },
       },
     })
   }
-  const res = get15DaysWeatherByArea()
-  console.log('时代', res)
+  get15DaysWeatherByArea()
   return (
     <Button type='primary' loading={loading} onClick={handleDownload}>
       {t['download.title']}
