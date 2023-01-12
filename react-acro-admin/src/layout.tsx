@@ -51,6 +51,8 @@ function getIconFromKey(key) {
       return <IconExclamationCircle className={styles.icon} />;
     case 'user':
       return <IconUser className={styles.icon} />;
+    case 'system':
+      return <IconSettings className={styles.icon} />;
     default:
       return <div className={styles['icon-empty']} />;
   }
@@ -233,7 +235,7 @@ function PageLayout() {
               style={paddingTop}
             >
               <div className={styles['menu-wrapper']}>
-                  <Menu
+                <Menu
                   accordion={true}
                   collapse={collapsed}
                   onClickMenuItem={onClickMenuItem}

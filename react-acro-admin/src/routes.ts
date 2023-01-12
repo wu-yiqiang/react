@@ -150,6 +150,24 @@ export const routes: IRoute[] = [
       },
     ],
   },
+  {
+    name: 'menu.system',
+    key: 'system',
+    children: [
+      {
+        name: 'menu.system.permission',
+        key: 'system/permission',
+      },
+      {
+        name: 'menu.system.user',
+        key: 'system/user',
+      },
+      {
+        name: 'menu.system.menu',
+        key: 'system/menu',
+      },
+    ],
+  },
 ];
 
 export const getName = (path: string, routes) => {
