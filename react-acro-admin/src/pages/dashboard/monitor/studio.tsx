@@ -2,7 +2,7 @@ import { Card, Typography, Avatar, Space, Grid } from '@arco-design/web-react';
 import { IconMore } from '@arco-design/web-react/icon';
 import React from 'react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 import styles from './style/index.module.less';
 
 interface StudioProps {

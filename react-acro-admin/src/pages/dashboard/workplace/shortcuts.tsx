@@ -14,7 +14,7 @@ import {
   IconFire,
 } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/workplace';
 import styles from './style/shortcuts.module.less';
 
 function Shortcuts() {

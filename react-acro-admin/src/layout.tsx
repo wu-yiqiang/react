@@ -29,7 +29,7 @@ import styles from './style/layout.module.less';
 
 const MenuItem = Menu.Item;
 const SubMenu = Menu.SubMenu;
-
+console.log('asd', MenuItem)
 const Sider = Layout.Sider;
 const Content = Layout.Content;
 

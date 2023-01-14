@@ -10,7 +10,7 @@ import {
 import { IconDownload, IconFaceSmileFill } from '@arco-design/web-react/icon';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 import MessageList from './message-list';
 import styles from './style/index.module.less';
 

@@ -3,7 +3,7 @@ import { Card, Spin, Typography } from '@arco-design/web-react';
 import { DonutChart } from 'bizcharts';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/workplace';
 
 function PopularContent() {
   const t = useLocale(locale);

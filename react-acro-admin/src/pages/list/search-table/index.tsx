@@ -12,7 +12,7 @@ import { IconDownload, IconPlus } from '@arco-design/web-react/icon';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
 import SearchForm from './form';
-import locale from './locale';
+import locale from '@/locale/search-table';
 import styles from './style/index.module.less';
 import './mock';
 import { getColumns } from './constants';

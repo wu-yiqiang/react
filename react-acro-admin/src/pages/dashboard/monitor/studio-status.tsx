@@ -7,7 +7,7 @@ import {
   Descriptions,
 } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 
 export default function StudioStatus() {
   const t = useLocale(locale);

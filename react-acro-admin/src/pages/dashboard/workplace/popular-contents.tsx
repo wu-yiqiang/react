@@ -3,7 +3,7 @@ import { Link, Card, Radio, Table, Typography } from '@arco-design/web-react';
 import { IconCaretDown, IconCaretUp } from '@arco-design/web-react/icon';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/workplace';
 import styles from './style/popular-contents.module.less';
 
 function PopularContent() {

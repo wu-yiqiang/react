@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Card, Typography } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/workplace';
 import styles from './style/docs.module.less';
 
 const links = {

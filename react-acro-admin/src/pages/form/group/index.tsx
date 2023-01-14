@@ -13,7 +13,7 @@ import {
 import { FormInstance } from '@arco-design/web-react/es/Form';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/group';
 import styles from './style/index.module.less';
 import './mock';
 

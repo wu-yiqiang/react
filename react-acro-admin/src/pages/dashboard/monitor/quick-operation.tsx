@@ -7,7 +7,7 @@ import {
   IconTags,
 } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 
 export default function QuickOperation() {
   const t = useLocale(locale);

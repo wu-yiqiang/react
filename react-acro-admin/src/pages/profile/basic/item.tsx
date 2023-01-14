@@ -1,7 +1,7 @@
 import React, { CSSProperties } from 'react';
 import useLocale from '@/utils/useLocale';
 import { Descriptions, Card, Skeleton } from '@arco-design/web-react';
-import locale from './locale';
+import locale from '@/locale/basic';
 
 interface ProfileItemProps {
   title: string;

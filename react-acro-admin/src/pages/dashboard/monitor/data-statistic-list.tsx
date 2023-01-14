@@ -1,7 +1,7 @@
 import { Table, Tag, Typography } from '@arco-design/web-react';
 import React from 'react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 import styles from './style/index.module.less';
 
 export default function QuickOperation() {

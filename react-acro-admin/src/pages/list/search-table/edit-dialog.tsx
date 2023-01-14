@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/search-table';
 import Download from '@/components/Download'
 import FileUpload from '@/components/FileUpload'
 function EditDialog(props) {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, Card, Skeleton, Tag, Typography } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/workplace';
 import styles from './style/announcement.module.less';
 
 function Announcement() {

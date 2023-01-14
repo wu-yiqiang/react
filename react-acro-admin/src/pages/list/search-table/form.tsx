@@ -9,7 +9,7 @@ import {
   Grid,
 } from '@arco-design/web-react';
 import { GlobalContext } from '@/context';
-import locale from './locale';
+import locale from '@/locale/search-table';
 import useLocale from '@/utils/useLocale';
 import { IconRefresh, IconSearch } from '@arco-design/web-react/icon';
 import { ContentType, FilterType, Status } from './constants';

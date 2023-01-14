@@ -14,7 +14,7 @@ import {
   Result,
 } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/step';
 import styles from './style/index.module.less';
 
 const { Title, Paragraph } = Typography;

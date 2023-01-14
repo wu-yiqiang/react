@@ -5,7 +5,7 @@ import useLocale from '@/utils/useLocale';
 import HorizontalInterval from '@/components/Chart/horizontal-interval';
 import AreaPolar from '@/components/Chart/area-polar';
 import FactMultiPie from '@/components/Chart/fact-multi-pie';
-import locale from './locale';
+import locale from '@/locale/multi-dimension-data-analysis';
 import DataOverview from './data-overview';
 import CardList from './card-list';
 

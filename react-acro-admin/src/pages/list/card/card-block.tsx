@@ -23,7 +23,7 @@ import {
 } from '@arco-design/web-react/icon';
 import PermissionWrapper from '@/components/PermissionWrapper';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/card';
 import { QualityInspection, BasicCard } from './interface';
 import styles from './style/index.module.less';
 

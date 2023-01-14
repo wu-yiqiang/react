@@ -1,7 +1,7 @@
 import { Card, Typography, Form, Input, Button } from '@arco-design/web-react';
 import React from 'react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/monitor';
 
 export default function StudioInformation() {
   const t = useLocale(locale);

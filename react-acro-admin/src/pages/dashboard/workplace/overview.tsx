@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { IconCaretUp } from '@arco-design/web-react/icon';
 import OverviewAreaLine from '@/components/Chart/overview-area-line';
 import axios from 'axios';
-import locale from './locale';
+import locale from '@/locale/workplace';
 import useLocale from '@/utils/useLocale';
 import styles from './style/overview.module.less';
 import IconCalendar from './assets/calendar.svg';

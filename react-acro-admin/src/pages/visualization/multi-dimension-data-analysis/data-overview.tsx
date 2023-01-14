@@ -15,7 +15,7 @@ import {
   IconThumbUp,
 } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/multi-dimension-data-analysis';
 import styles from './style/data-overview.module.less';
 import MultiAreaLine from '@/components/Chart/multi-area-line';
 

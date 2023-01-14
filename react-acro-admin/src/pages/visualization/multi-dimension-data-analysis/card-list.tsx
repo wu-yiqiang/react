@@ -11,7 +11,7 @@ import cs from 'classnames';
 import { Chart, Line, Interval, Tooltip, Interaction } from 'bizcharts';
 import axios from 'axios';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/multi-dimension-data-analysis';
 
 import { IconArrowRise, IconArrowFall } from '@arco-design/web-react/icon';
 import styles from './style/card-block.module.less';
