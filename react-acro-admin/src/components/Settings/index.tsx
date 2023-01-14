@@ -54,7 +54,7 @@ function Setting(props: SettingProps) {
           title={locale['settings.content']}
           options={[
             { name: 'settings.navbar', value: 'navbar' },
-            { name: 'settings.rightNavbar', value: 'rightNavbar' },
+            { name: 'settings.rightMenu', value: 'rightMenu' },
             { name: 'settings.menu', value: 'menu' },
             { name: 'settings.footer', value: 'footer' },
             { name: 'settings.menuWidth', value: 'menuWidth', type: 'number' },
