@@ -1,7 +1,7 @@
 import React from 'react';
 import { Carousel } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/login';
 import styles from './style/index.module.less';
 
 export default function LoginBanner() {

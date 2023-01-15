@@ -9,7 +9,7 @@ import {
   Skeleton,
 } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/info';
 import UserInfoHeader from './header';
 import styles from './style/index.module.less';
 import './mock';

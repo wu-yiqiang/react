@@ -12,7 +12,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import useStorage from '@/utils/useStorage';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/login';
 import styles from './style/index.module.less';
 
 export default function LoginForm() {

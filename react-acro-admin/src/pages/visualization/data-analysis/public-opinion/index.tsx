@@ -3,7 +3,7 @@ import PublicOpinionCard, { PublicOpinionCardProps } from './card';
 import axios from 'axios';
 import { Grid } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from '../locale';
+import locale from '@/locale/data-analysis';
 
 const { Row, Col } = Grid;
 

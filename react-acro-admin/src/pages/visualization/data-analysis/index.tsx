@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Card, Grid, Table, Space, Typography } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
 import axios from 'axios';
-import locale from './locale';
+import locale from '@/locale/data-analysis';
 import PublicOpinion from './public-opinion';
 import MultiInterval from '@/components/Chart/multi-stack-interval';
 import PeriodLine from '@/components/Chart/period-legend-line';

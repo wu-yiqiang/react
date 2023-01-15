@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import cs from 'classnames';
 import { Button } from '@arco-design/web-react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/setting';
 import styles from './style/index.module.less';
 
 function Security() {

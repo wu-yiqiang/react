@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/setting';
 import { GlobalContext } from '@/context';
 import {
   Input,

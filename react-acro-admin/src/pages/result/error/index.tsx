@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Result, Button, Link } from '@arco-design/web-react';
 import { IconLink } from '@arco-design/web-react/icon';
 import useLocale from '@/utils/useLocale';
-import locale from './locale';
+import locale from '@/locale/error';
 import styles from './style/index.module.less';
 
 function Success() {
