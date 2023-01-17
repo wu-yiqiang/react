@@ -18,7 +18,7 @@ function EditDialog(props) {
       autoFocus={false}
       focusLock={true}
     >
-      <Download />
+      <Download url="http://192.168.0.1" />
       <FileUpload />
     </Modal>
   );
