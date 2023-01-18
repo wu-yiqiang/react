@@ -3,6 +3,7 @@ import useLocale from '@/utils/useLocale';
 import { Button } from '@arco-design/web-react';
 import locale from '@/locale';
 import request from '@/utils/request';
+import { IconArrowFall } from '@arco-design/web-react/icon';
 // interface Req {
 // }
 // interface Res {
@@ -58,7 +59,12 @@ function Download(props) {
   // get15DaysWeatherByArea();
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
-    <Button type="primary" loading={loading} onClick={handleDownload}>
+    <Button
+      type="primary"
+      icon={<IconArrowFall />}
+      loading={loading}
+      onClick={handleDownload}
+    >
       {t['download.title']}
     </Button>
   );
