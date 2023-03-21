@@ -37,9 +37,7 @@ const request = new Request({
  */
 const ywzRequest = <D = any, T = any>(config: YWZRequestConfig<D, T>) => {
   const { method = 'GET' } = config
-  if (method === 'get' || method === 'GET') {
-    config.params = config.data
-  }
+  if (['GET', 'get'].includes(method))  config.params = config.data
   return request.request<YWZResponse<T>>(config)
 }
 // 取消请求

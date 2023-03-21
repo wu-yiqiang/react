@@ -11,19 +11,19 @@ function EditDialog(props) {
     props.visibled(false);
   };
   return (
-    // <Modal
-    //   title={t['editDialog.title']}
-    //   visible={props.visible}
-    //   onOk={() => close()}
-    //   onCancel={() => close()}
-    //   autoFocus={false}
-    //   focusLock={true}
-    // >
-    //   <Download url="http://192.168.0.1" />
-    //   <FileUpload />
+    <Modal
+      title={t['editDialog.title']}
+      visible={props.visible}
+      onOk={() => close()}
+      onCancel={() => close()}
+      autoFocus={false}
+      focusLock={true}
+    >
+      <Download url="http://192.168.0.1" size="large" status="danger" />
+      <FileUpload />
       
-    // </Modal>
-    <Dialog />
+    </Modal>
+    // <Dialog />
   );
 }
 export default EditDialog;

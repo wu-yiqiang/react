@@ -4,26 +4,20 @@ import { Button } from '@arco-design/web-react';
 import locale from '@/locale';
 import request from '@/utils/request';
 import { IconArrowFall } from '@arco-design/web-react/icon';
-// interface Req {
-// }
-// interface Res {
-//   area: string
-//   areaCode: string
-//   areaid: string
-//   dayList: any[]
-// }
 
 function Download(props) {
   const t = useLocale(locale);
   const [loading, setLoading] = useState(false);
+  const {type, size, status, shape, method, axiosCnf, url, data, params} = props
   async function handleDownload() {
     setLoading(true);
     // 请求下载
     await request({
-      url: props.url,
-      method: props.method,
+      url: url,
+      method: method,
       data,
-      params: props.params,
+      params: params,
+      config, axiosCnf,
       interceptors: {
         requestInterceptors(res) {
           console.log('接口请求拦截', res);
@@ -38,30 +32,13 @@ function Download(props) {
     });
     setLoading(false);
   }
-  // function beforeDownload() {}
-  // async function get15DaysWeatherByArea(data) {
-  //   return await request({
-  //     url: '/demo-api/api/xz/?code=654028207203',
-  //     method: 'GET',
-  //     data,
-  //     interceptors: {
-  //       requestInterceptors(res) {
-  //         console.log('接口请求拦截', res);
-  //         return res;
-  //       },
-  //       responseInterceptors(result) {
-  //         console.log('接口响应拦截', result);
-  //         return result;
-  //       },
-  //     },
-  //   });
-  // }
-  // get15DaysWeatherByArea();
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <Button
-      type="primary"
+      type={type || 'text'}
+      status={status}
+      shape={shape || 'square'}
       icon={<IconArrowFall />}
+      size={size}
       loading={loading}
       onClick={handleDownload}
     >
