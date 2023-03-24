@@ -10,6 +10,7 @@ function EditDialog(props) {
   const close = () => {
     props.visibled(false);
   };
+
   return (
     <Modal
       title={t['editDialog.title']}
