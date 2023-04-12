@@ -1,0 +1,27 @@
+img {
+  display: block;
+}
+.file-item {
+  padding: 8px;
+  cursor: pointer;
+  background: #e0f2fe;
+}
+.file-item:hover {
+  background: #7dd3fc;
+}
+.mb-2 {
+  margin-bottom: 8px;
+}
+.input-wapper input {
+  margin-bottom: 4px;
+}
+.input-wapper {
+  padding: 8px;
+  background: #e0f2fe;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+.text-right {
+  text-align: right;
+}

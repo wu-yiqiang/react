@@ -1,0 +1,40 @@
+{
+  "name": "kubo-scanner",
+  "displayName": "酷柏扫码",
+  "version": "0.1.0",
+  "description": "移动端扫码插件",
+  "author": "Atlas",
+  "scripts": {
+    "dev": "plasmo dev",
+    "build": "plasmo build",
+    "package": "plasmo package"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.8.0",
+    "@plasmohq/storage": "^0.13.1",
+    "antd": "5.0.3",
+    "crypto-js": "^4.1.1",
+    "nanoid": "^4.0.0",
+    "qiniu-js": "^3.4.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@plasmohq/prettier-plugin-sort-imports": "3.6.0",
+    "@types/chrome": "0.0.202",
+    "@types/node": "18.11.9",
+    "@types/react": "18.0.25",
+    "@types/react-dom": "18.0.9",
+    "plasmo": "0.59.3",
+    "prettier": "2.7.1",
+    "typescript": "4.9.3"
+  },
+  "manifest": {
+    "host_permissions": [
+      "https://*/*"
+    ],
+    "permissions": [
+      "scripting"
+    ]
+  }
+}
