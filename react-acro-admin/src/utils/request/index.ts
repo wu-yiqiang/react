@@ -4,15 +4,14 @@ import { AxiosResponse } from 'axios'
 import type { RequestConfig } from './types'
 
 export interface YWZResponse<T> {
-  code: number
-  ID: string
-  msg: string
-  data: T
+  code: number;
+  content: T;
+  msg: string;
 }
 
 // 重写返回类型
 interface YWZRequestConfig<T, R> extends RequestConfig<YWZResponse<R>> {
-  data?: T
+  content?: T
 }
 
 const request = new Request({
@@ -37,7 +36,7 @@ const request = new Request({
  */
 const ywzRequest = <D = any, T = any>(config: YWZRequestConfig<D, T>) => {
   const { method = 'GET' } = config
-  if (['GET', 'get'].includes(method))  config.params = config.data
+  if (['GET', 'get'].includes(method)) config.params = config.data
   return request.request<YWZResponse<T>>(config)
 }
 // 取消请求

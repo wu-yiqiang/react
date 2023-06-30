@@ -5,11 +5,23 @@ import locale from '@/locale/search-table';
 import Download from '@/components/Download';
 import FileUpload from '@/components/FileUpload';
 import Dialog from '@/components/Dialog';
+import TestButton from '@/pages/list/search-table/demo/TestButton';
 function EditDialog(props) {
   const t = useLocale(locale);
+  const [requestParams, setRequestParams] = useState({
+    params1: 2312,
+    params2: 1672,
+  });
+  const [requestData, setRequestData] = useState({
+    data1: 11112,
+    data2: 13342,
+  });
   const close = () => {
     props.visibled(false);
   };
+  function beforeDown() {
+    setRequestParams({ params1: 90, params2: 45 });
+  }
 
   return (
     <Modal
@@ -20,9 +32,16 @@ function EditDialog(props) {
       autoFocus={false}
       focusLock={true}
     >
-      <Download url="http://192.168.0.1" size="large" status="danger" />
-      <FileUpload />
-      
+      <TestButton />
+      <Download
+        type={'primary'}
+        url={'/api-activity/getTemplate'}
+        method={'post'}
+        params={requestParams}
+        data={requestData}
+        beforeDownload={beforeDown}
+      />
+      <FileUpload method={'post'} />
     </Modal>
     // <Dialog />
   );
