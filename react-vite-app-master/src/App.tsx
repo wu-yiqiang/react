@@ -1,6 +1,7 @@
 import { Switch ,NavLink,withRouter} from 'react-router-dom';
 import RouterView from '@/router/routerConfig'
-import {useState,useEffect,Suspense} from 'react'
+import { useState, useEffect, Suspense } from 'react'
+import SvgIcon from '@/components/SvgIcon'
 import routerMap from './router/router'
 import style from './App.module.less'
 
@@ -25,7 +26,7 @@ function App(props:any) {
       {footerShow ? (
         <div className={style.footer}>
           <NavLink to="/home" className={style.item} activeClassName={style.active}>
-            首页
+            <SvgIcon name="sport" color="#303030" size="40px" />
           </NavLink>
           <NavLink to="/about" className={style.item} activeClassName={style.active}>
             关于
