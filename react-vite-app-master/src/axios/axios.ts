@@ -1,14 +1,14 @@
 import request from './axiosConfig';
 import { sessions } from '@/utils/utils'
-
+import userInfoModel from '@/store/store'
 interface api { 
   url: string
   data?: any
   header?:any
 }
 
-const httpConfig = (method:string,params?:any) => { 
-  let token = sessions.get(`token`)
+const httpConfig = (method: string, params?: any) => { 
+  const { token } = userInfoModel()
   let data: any = null
   if (method !== 'FILE') { // 非文件上传
     if (method === 'POST' || method === 'PUT') {

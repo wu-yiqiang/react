@@ -35,7 +35,7 @@ const routerMap:any[] = [
     path: '/user',
     component: User,
     auth: true,
-    footerShow: false
+    footerShow: true
   },
   {
     path: '/404',

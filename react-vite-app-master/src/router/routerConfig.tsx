@@ -1,10 +1,11 @@
-import { Route,Redirect,withRouter } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
 import routerMap from './router'
-
-const BasicRoute = (props:any) => {
+import userInfoModel from '@/store/store'
+const BasicRoute = (props: any) => {
+  const { token } = userInfoModel()
   const pathname = props.location.pathname
   const targetRouter = routerMap.find((item: any) => item.path === pathname);
-  const isLogin = sessionStorage.getItem('token')
+  const isLogin = token
   if (!targetRouter) { // 页面不存在
     return <Redirect to="/404" />
   }

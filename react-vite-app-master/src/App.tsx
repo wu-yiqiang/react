@@ -30,8 +30,8 @@ function App(props:any) {
           <NavLink to="/about" className={style.item} activeClassName={style.active}>
             关于
           </NavLink>
-          <NavLink to="/about" className={style.item} activeClassName={style.active}>
-            四位
+          <NavLink to="/user" className={style.item} activeClassName={style.active}>
+            用户
           </NavLink>
         </div>
       ) : (

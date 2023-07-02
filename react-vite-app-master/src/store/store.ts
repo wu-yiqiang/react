@@ -1,15 +1,27 @@
 import { useState } from "react";
 import { createModel } from "hox";
 
-function useCounter() {
-  const [count, setCount] = useState(0);
-  const decrement = (num?:number) => setCount(typeof num !== 'number' ? count - 1 : count - num);
-  const increment = (num?:number) => setCount(typeof num !== 'number' ? count + 1 : count + num);
+function useInfo() {
+  const [locale, setLocale] = useState('zh')
+  const [theme, setTheme] = useState('light')
+  const [token, setToken] = useState('')
+  const changeLanguage = (lang: string) => {
+    setLocale(lang)
+  }
+  const changeTheme = (theme: string) => {
+    setTheme(theme)
+  }
+  const changeToken = (token: string) => {
+    setToken(token)
+  }
   return {
-    count,
-    decrement,
-    increment
-  };
+    locale,
+    theme,
+    token,
+    changeLanguage,
+    changeTheme,
+    changeToken
+  }
 }
 
-export default createModel(useCounter);
+export default createModel(useInfo)
