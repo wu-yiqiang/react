@@ -7,18 +7,20 @@
   flex: 1;
   overflow-y: auto;
 }
-.footer{
+.Footer{
   height: 100px;
+  padding: 5px;
   display: flex;
-  line-height: 100px;
   text-align: center;
   justify-content: space-around;
   border-top: 1px solid #eee;
   .item{
     flex: 1;
-    // font-size: 26px;
     color: #666;
     .boxAlign();
+    .title {
+      margin-top: 5px;
+    }
     &.active{
       color: @mainColor;
       font-weight: bold;

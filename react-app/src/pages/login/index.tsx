@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import userInfoModel from '@/store/store'
 import Button from '@material-ui/core/Button'
+import style from './index.module.less'
 function Login(props: any) {
   const { changeToken, token } = userInfoModel()
   const login = () => {
@@ -13,7 +14,7 @@ function Login(props: any) {
     props.history.replace({ pathname: path, ...data })
   }
   return (
-    <div className="login">
+    <div className={style.Login}>
       <Button
         variant="contained"
         color="primary"
