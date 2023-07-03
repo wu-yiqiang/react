@@ -66,11 +66,6 @@ export default defineConfig({
       //   changeOrigin: true,
       //   rewrite: (path) => path.replace(/^\/production/, '')
       // },
-      // '/second': { // 配置第二域名接口地址，实现网站多域名接口地址开发，前往/axios/apiNames查看区别
-      //   target: 'http://10.5.9.31:8080',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/second/, '')
-      // },
     }
   }
 })

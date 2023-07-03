@@ -1,10 +1,10 @@
 import React from 'react'
 // 组件
-const Home = React.lazy(() => import('@/pages/home/home')) // 路由懒加载
-const About = React.lazy(() => import('@/pages/about/about'))
-const Login = React.lazy(() => import('@/pages/login/login'))
-const User = React.lazy(() => import('@/pages/user/user'))
-const Miss = React.lazy(() => import('@/pages/404/404'))
+const Home = React.lazy(() => import('@/pages/home/index')) // 路由懒加载
+const Sport = React.lazy(() => import('@/pages/sport/index'))
+const Login = React.lazy(() => import('@/pages/login/index'))
+const User = React.lazy(() => import('@/pages/user/index'))
+const Miss = React.lazy(() => import('@/pages/404/index'))
 
 const routerMap:any[] = [
   {
@@ -20,8 +20,8 @@ const routerMap:any[] = [
     footerShow: true
   },
   {
-    path: '/about',
-    component: About,
+    path: '/sport',
+    component: Sport,
     auth: false,
     footerShow: true
   },

@@ -26,12 +26,15 @@ function App(props:any) {
       {footerShow ? (
         <div className={style.footer}>
           <NavLink to="/home" className={style.item} activeClassName={style.active}>
-            <SvgIcon name="sport" color="#303030" size="40px" />
+            <SvgIcon name="home" color="#303030" size="20px" />
+            首页
           </NavLink>
-          <NavLink to="/about" className={style.item} activeClassName={style.active}>
-            关于
+          <NavLink to="/sport" className={style.item} activeClassName={style.active}>
+            <SvgIcon name="sport" color="#303030" size="20px" />
+            运动
           </NavLink>
           <NavLink to="/user" className={style.item} activeClassName={style.active}>
+            <SvgIcon name="home" color="#303030" size="20px" />
             用户
           </NavLink>
         </div>

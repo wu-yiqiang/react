@@ -11,7 +11,7 @@ const SvgIcon: FC<SvgIconProps> = (props) => {
   const { name, color, size } = props
   return (
     <svg className={`svg-icon icon-${name}`} style={{ color: color, fontSize: size }}>
-      <use xlinkHref={`#icon-${name}`} />
+      <use href={`#icon-${name}`} />
     </svg>
   )
 }

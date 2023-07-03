@@ -1,6 +1,6 @@
 import { useState,useEffect } from 'react'
 import { withRouter, Prompt, useHistory } from 'react-router-dom'
-import style from './user.module.less'
+import style from './index.module.less'
 
 function User(props: any) {
   return (

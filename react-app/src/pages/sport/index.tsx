@@ -1,5 +1,5 @@
 import { useState,useReducer } from 'react'
-import style from './about.module.less'
+import style from './index.module.less'
 
 
 const reducer = (state: any, action: any) => {
@@ -19,8 +19,8 @@ const reducer = (state: any, action: any) => {
 function About() {
   
   return (
-    <div className={style.About}>
-      关于
+    <div className={style.Sport}>
+      运动展示
     </div>
   )
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { HashRouter,BrowserRouter} from 'react-router-dom';
 import './index.css'
+import 'virtual:svg-icons-register'
 import App from './App'
 // import { cancelRequest } from './axios/axiosConfig'
 

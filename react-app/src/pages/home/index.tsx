@@ -1,9 +1,8 @@
 // import React, { useEffect, useMemo, useCallback } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button'
-import style from './home.module.less'
+import style from './index.module.less'
 function Home(props: any) {
-
   return (
     <div className={style.Home}>
       <Button variant="contained" color="primary">
