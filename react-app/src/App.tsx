@@ -20,7 +20,7 @@ function App(props:any) {
    const FooterList = routerMap.map((v, index) => {
     return v.footerShow ? (
        <NavLink key={index} to={v.path} className={style.item} activeClassName={style.active}>
-         <SvgIcon name={ v.meta.icon } color={currentIndex === index ? '#3f51b5' : '#606060'} size="20px" />
+         <SvgIcon name={ v.meta.icon } color={currentIndex === index ? '#3f51b5' : '#606060'} size="30px" />
          <div className="title">{v.title}</div>
        </NavLink>
      ) : null
