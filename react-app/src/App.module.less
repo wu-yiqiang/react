@@ -2,18 +2,19 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  background-color: #f3f3f3;
 }
 .content{
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .Footer{
-  height: 100px;
+  height: @footerHeight;
   padding: 5px;
   display: flex;
   text-align: center;
   justify-content: space-around;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #c3c1c1;
   .item{
     flex: 1;
     color: #666;
