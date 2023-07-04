@@ -30,9 +30,10 @@
   .list {
     max-height: calc(100vh - 400px - 100px - @footerHeight - 50px);
     .pagePadding();
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: #fff;
     border-radius: @borderRadious;
+    .noScrollBar();
   }
  
 }

@@ -1,6 +1,7 @@
 {
   "name": "react-vite-app",
   "version": "1.0.0",
+  "homepage": ".",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

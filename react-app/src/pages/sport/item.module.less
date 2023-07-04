@@ -1,0 +1,24 @@
+.Item {
+  width: 45%;
+  .boxAlign();
+  margin: 5px 0;
+  padding: @paddingSize;
+  border-radius: @borderRadious;
+  background-color: @pageBackgroundColor;
+  &:nth-child(2n+2) {
+    margin-right: 0;
+  }
+  img {
+    width: 100%;
+  }
+  .introduce{
+    width: 100%;
+    margin-top: 10px;
+    font-size: 30px;
+    color: #706c6c;
+    white-space: nowrap;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}
