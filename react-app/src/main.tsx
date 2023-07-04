@@ -4,6 +4,8 @@ import { HashRouter,BrowserRouter} from 'react-router-dom';
 import './index.css'
 import 'virtual:svg-icons-register'
 import App from './App'
+import { initDb } from '@/db/db'
+initDb()
 // import { cancelRequest } from './axios/axiosConfig'
 
 // window.$cancelRequest = cancelRequest // 取消接口请求

@@ -1,5 +1,6 @@
-// import React, { useEffect, useMemo, useCallback } from 'react'
+import React, { useEffect, useMemo, useCallback } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import AddCircle from '@material-ui/icons/AddCircle'
@@ -28,7 +29,7 @@ function Home(props: any) {
     { total: 50, remainder: 7, title: '举哑铃', time: '2010-12-30 09:34', color: '#4335ab' }
   ]
   const ItemLists = list.map((v, index) => {
-    return <Item key={index} time={v.time} remainder={v.remainder} title={v.title} total={v.total} color={ v.color } />
+    return <Item key={index} time={v.time} remainder={v.remainder} title={v.title} total={v.total} color={v.color} />
   })
   return (
     <div className={style.Home}>
