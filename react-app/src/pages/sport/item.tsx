@@ -1,10 +1,18 @@
+import { useEffect, useState } from 'react'
 import style from './item.module.less'
+import Loading from '@/components/Loading'
 function Item(props: any) {
   const { src, introduce } = props
+  const [loading, setLoading] = useState(true)
+  const loadingDone = () => {
+    setLoading(false)
+  }
   return (
     <div className={style.Item}>
-      <img src={src} />
-      <div className={style.introduce}>{introduce}</div>
+      <Loading loading={loading}>
+        <img src={src} alt="" onLoad={loadingDone} />
+        <div className={style.introduce}>{introduce}</div>
+      </Loading>
     </div>
   )
 }

@@ -5,8 +5,10 @@
  * @param {string} version 数据库的版本
  * @return {object} 该函数会返回一个数据库实例
  */
+let dbInstance = null
 export function openDB(dbName, version = 1) {
-  return new Promise((resolve, reject) => {
+  if (dbInstance) return dbInstance
+  dbInstance = new Promise((resolve, reject) => {
     //  兼容浏览器
     var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB
     let db
@@ -39,6 +41,7 @@ export function openDB(dbName, version = 1) {
       objectStore.createIndex('total', 'total', { unique: false })
     }
   })
+  return dbInstance
 }
 /**
  * 新增数据
@@ -96,6 +99,7 @@ export function cursorGetData(db, storeName) {
   // 游标开启成功，逐行读数据
   request.onsuccess = function (e) {
     var cursor = e.target.result
+    // console.log('kkk', cursor)
     if (cursor) {
       // 必须要检查
       list.push(cursor.value)
@@ -104,6 +108,7 @@ export function cursorGetData(db, storeName) {
       console.log('游标读取的数据：', list)
     }
   }
+  return list
 }
 
 /**
@@ -283,10 +288,28 @@ export function closeDB(db) {
   db.close()
   console.log('数据库已关闭')
 }
+
+
+
 // 初始化数据
 const dbName = 'reactApp'
+const createRandomChinese = (count) => {
+  const start = parseInt('4e00', 16)
+  const end = parseInt('9fa5', 16)
+  let name = ''
+  for (let i = 0; i < count; i++) {
+    const cha = Math.floor(Math.random() * (end - start))
+    name += '\\u' + (start + cha).toString(16)
+  }
+  return eval(`'${name}'`)
+}
 export async function initDb() {
-  console.log('jjj', 1)
+  deleteDBAll(dbName)
   const db = await openDB(dbName, 1)
-  addData(db, 'target', { remainder: 12, title: 13, time: '2021-12-12 12:30', total: 30 })
+  // 添加target数据
+  let count = 20
+  while (count >= 0) {
+    const item = { remainder: Math.floor(Math.random() * 100 + 1), title: createRandomChinese(Math.random() * 6 + 1), time: new Date().getTime(), total: Math.floor(Math.random() * 100 + 1) }
+    addData(db, 'target', item), count--
+  }
 }

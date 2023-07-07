@@ -1,9 +1,17 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Popup } from 'antd-mobile'
 import style from './target.module.less'
-import yogaGif from '@/assets/icons/yoga.gif'
+import { db } from '@/db/db'
 function Target(props: any) {
-  const { state, closeMask } = props
+  const { state, closeMask, sportId } = props
+  const [item, setItem] = useState({ src: '', introduce: '' })
+  console.log('kkkk')
+  useEffect(() => {
+    ;(async () => {
+      const target = await db.sports.get(sportId)
+      //setItem(target)
+    })()
+  }, [state])
   return (
     <Popup
       visible={state}
@@ -14,9 +22,9 @@ function Target(props: any) {
     >
       <div className={style.content}>
         <div className={style.banner}>
-          <img src={yogaGif} alt="" />
+          <img src={item.src} alt="" />
         </div>
-        <div className={style.detail}>瑜伽是一门现实哲学，而不是宗教信仰，不需要练习者对某个特定的信念理论体系忠贞不贰。</div>
+        <div className={style.detail}>{item.introduce}</div>
       </div>
     </Popup>
   )

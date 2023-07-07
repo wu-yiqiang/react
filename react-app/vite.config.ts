@@ -67,5 +67,50 @@ export default defineConfig({
       //   rewrite: (path) => path.replace(/^\/production/, '')
       // },
     }
+  },
+  build: {
+    // 静态资源处理
+    assetsDir: '',
+    // 最终构建的浏览器兼容目标
+    target: 'es2015',
+    // 是否自动注入module preload的polyfill
+    polyfillModulePreload: true,
+    // 指定混淆器
+    minify: 'esbuild',
+    // 启用css代码拆分
+    cssCodeSplit: true,
+    // 允许用户为css的压缩设置一个不同的浏览器target, 与build esbuild一致
+    cssTarget: '',
+    // 清空输入文件夹
+    emptyOutDir: true,
+    // 取消计算文件大小，加快打包速度
+    reportCompressedSize: false,
+    // 启用压缩大小报告,
+    // brotliSize: false,
+    // chunk大小警告的限制
+    chunkSizeWarningLimit: 500,
+    // 取消sourceMap， 加快打包速度,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        format: 'esm',
+        manualChunks: (id) => {
+          // // 对qrcode进行单独打包
+          // if (id.includes('node_modules/html5-qrcode')) return 'html5-qrcode'
+          // // 对vue-router进行单独打包
+          // if (id.includes('node_modules/vue-router')) return 'vue-router'
+          // // 对vue进行单独打包
+          // if (id.includes('node_modules/vue')) return 'vue'
+          // // 对vant进行单独打包
+          // if (id.includes('node_modules/vant')) return 'vant'
+          // 对views目录中的文件进行单独打包
+          if (id.includes('src/views')) return 'views'
+          if (id.includes('node_modules')) return id.toString().split('node_modules')[1].split('/')[0].toString()
+        },
+        entryFileNames: 'js/[name].hash.js',
+        chunkFileNames: 'js/[name].hash.js',
+        assetFileNames: '[ext]/[name].hash.[ext]'
+      }
+    }
   }
 })

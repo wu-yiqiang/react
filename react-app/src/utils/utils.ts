@@ -55,3 +55,26 @@ export const numberFormat = (value:[number,string]) => {
     return  '';
   }
 };
+
+/** 
+ * 随机生成十六进制颜色
+ * @value 颜色值
+*/
+export const randomHex = () =>
+  `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padEnd(6, '0')}`
+/** 
+ * 随机生成最长长度为count的中文
+ * @value 中文
+*/
+export function createRandomChinese(count: number) {
+  const start = parseInt('4e00', 16)
+  const end = parseInt('9fa5', 16)
+  let name = ''
+  for (let i = 0; i < count; i++) {
+    const cha = Math.floor(Math.random() * (end - start))
+    name += '\\u' + (start + cha).toString(16)
+  }
+  return eval(`'${name}'`)
+}
