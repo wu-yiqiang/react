@@ -8,7 +8,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super('myDatabase')
     this.version(1).stores({
-      targets: '++id, title, time, remainder, total, color',
+      targets: '++id, title, time, remainder, total, color, state',
       sports: '++id, sportId,src, introduce',
       banners: '++id, src, introduce'
     })

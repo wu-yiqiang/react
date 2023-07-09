@@ -42,20 +42,22 @@ async function initBanners() {
 async function initTargets() {
   await db.targets.clear()
   const targetLists = [
-    { title: '网球', total: 12, remainder: 4, color: '#748bf0', time: 1688801966971 },
-    { title: '游泳', total: 22, remainder: 11, color: '#445bc7', time: 1685501966971 },
-    { title: '瑜伽', total: 32, remainder: 21, color: '#d2ee82', time: 1684401966971 },
-    { title: '棒球', total: 42, remainder: 35, color: '#e3b270', time: 1681101966971 },
-    { title: '哑铃', total: 10, remainder: 2, color: '#67f2d1', time: 1681149966971 },
-    { title: '排球', total: 5, remainder: 1, color: '#BBDEFB', time: 1681129966971 },
-    { title: '羽毛球', total: 50, remainder: 41, color: '#03A9F4', time: 1681129934971 },
-    { title: '足球', total: 25, remainder: 10, color: '#78f9f6', time: 1681129990971 },
-    { title: '太极', total: 65, remainder: 10, color: '#B2DFDB', time: 1681123466971 },
-    { title: '跑步', total: 63, remainder: 33, color: '#9169f9', time: 1681128986971 },
-    { title: '橄榄球', total: 35, remainder: 0, color: '#ddaa23', time: 1680001966971 }
+    { title: '网球', total: 12, remainder: 4, color: '#748bf0', time: 1688801966971, state: '进行中' },
+    { title: '游泳', total: 22, remainder: 11, color: '#445bc7', time: 1685501966971, state: '进行中' },
+    { title: '瑜伽', total: 32, remainder: 21, color: '#d2ee82', time: 1684401966971, state: '进行中' },
+    { title: '棒球', total: 42, remainder: 35, color: '#e3b270', time: 1681101966971, state: '进行中' },
+    { title: '哑铃', total: 10, remainder: 2, color: '#67f2d1', time: 1681149966971, state: '已完成' },
+    { title: '排球', total: 5, remainder: 1, color: '#BBDEFB', time: 1681329966971, state: '已完成' },
+    { title: '羽毛球', total: 50, remainder: 41, color: '#03A9F4', time: 1681129934971, state: '已完成' },
+    { title: '足球', total: 25, remainder: 10, color: '#78f9f6', time: 1681429990971, state: '已完成' },
+    { title: '太极', total: 65, remainder: 10, color: '#B2DFDB', time: 1681123466971, state: '已完成' },
+    { title: '跑步', total: 63, remainder: 33, color: '#9169f9', time: 1681028986971, state: '未完成' },
+    { title: '橄榄球', total: 35, remainder: 0, color: '#ddaa23', time: 1680001966971, state: '未完成' },
+    { title: '攀岩', total: 5, remainder: 0, color: '#F79F1F', time: 1680731966971, state: '未完成' },
+    { title: '踢毽子', total: 15, remainder: 0, color: '#FDA7DF', time: 1682201966971, state: '未完成' }
   ]
   targetLists.forEach(async (v) => {
-    const target: TargetList = { title: v.title, total: v.total, remainder: v.remainder, color: v.color, time: v.time }
+    const target: TargetList = { title: v.title, total: v.total, remainder: v.remainder, color: v.color, time: v.time, state: v.state }
     await db.targets.add(target)
   })
 }

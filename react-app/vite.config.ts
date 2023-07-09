@@ -40,7 +40,7 @@ export default ({ mode }) => {
       }
     },
     esbuild: {
-      // drop: mode === 'production' ? ['console', 'debugger'] : []
+      drop: mode === 'production' ? ['console', 'debugger'] : []
     },
     plugins: [
       react(),
