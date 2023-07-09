@@ -71,7 +71,7 @@ export default ({ mode }) => {
     },
     build: {
       // 静态资源处理
-      assetsDir: '',
+      assetsDir: 'assets',
       // 最终构建的浏览器兼容目标
       target: 'es2015',
       // 是否自动注入module preload的polyfill
@@ -96,20 +96,19 @@ export default ({ mode }) => {
         output: {
           format: 'esm',
           manualChunks: (id) => {
-            // // 对qrcode进行单独打包
-            // if (id.includes('node_modules/html5-qrcode')) return 'html5-qrcode'
-            // // 对vue-router进行单独打包
-            // if (id.includes('node_modules/vue-router')) return 'vue-router'
-            // // 对vue进行单独打包
-            // if (id.includes('node_modules/vue')) return 'vue'
-            // // 对vant进行单独打包
             // if (id.includes('node_modules/vant')) return 'vant'
             // 对views目录中的文件进行单独打包
             // if (id.includes('src/views')) return 'views'
             if (id.includes('node_modules')) return id.toString().split('node_modules')[1].split('/')[0].toString()
           },
           entryFileNames: 'js/[name].hash.js',
-          chunkFileNames: 'js/[name].hash.js'
+          chunkFileNames: 'js/[name].hash.js',
+          // assetFileNames: 'css/[name]-[hash][extname]'
+          assetFileNames: (assetInfo) => {
+            const fileName = assetInfo.name
+            if (fileName?.endsWith('.svg')) return 'img/svg/[name]-[hash][extname]'
+            return 'css/[name]-[hash][extname]'
+          }
         }
       }
     }
