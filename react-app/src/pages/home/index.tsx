@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useCallback, useState, useRef } from 'react'
 import { withRouter, Link } from 'react-router-dom'
+import dayjs from 'dayjs'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import AddCircle from '@material-ui/icons/AddCircle'
@@ -7,19 +8,21 @@ import Item from './item'
 import style from './index.module.less'
 import SvgIcon from '@/components/SvgIcon'
 import Loading from '@/components/Loading'
+import Indicator from '@/components/Indicator'
 import { Swiper } from 'antd-mobile'
 import { db } from '@/db/db'
-import * as dayjs from 'dayjs'
 function Home(props: any) {
   const [lists, setLists] = useState([{ time: '', title: '', remainder: 0, total: 0, color: '' }])
   const [banners, setBanner] = useState([{ src: '0', introduce: 'sss' }])
   const [loading, setLoading] = useState(true)
+  const [current, setCurrent] = useState(0)
   useEffect(() => {
     ;(async () => {
       const bannerLists = await db.banners.toArray()
       setBanner(bannerLists)
       const lis = await db.targets.toArray()
       setLists(lis)
+      console.log('list', lists)
     })()
   }, [])
   const loadingDone = () => {
@@ -38,11 +41,22 @@ function Home(props: any) {
       {/* 图片 */}
       <div className={style.banner}>
         <Loading loading={loading}>
-          <Swiper loop autoplay>
+          <Swiper
+            loop
+            autoplay
+            onIndexChange={(i) => {
+              setCurrent(i)
+              console.log(i, 'onIndexChange1')
+            }}
+          >
             {items}
           </Swiper>
         </Loading>
       </div>
+      {/* 滑动指示器 */}
+      { loading ? '' : <div className={style.indicator}>
+        <Indicator current={current} lists={banners} />
+      </div>}
       {/* 列表 */}
       <div className={style.filter}>
         <Button size="small" variant="contained" color="primary" endIcon={<SvgIcon name="filter" color={'#fff'} size="20px" />}>

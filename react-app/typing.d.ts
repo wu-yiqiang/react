@@ -9,3 +9,22 @@ interface Window {
 interface Date { // 给Date添加方法
   Format(params: any): void;
 }
+
+interface SportList {
+  sportId: number
+  src: string
+  introduce: string
+}
+
+interface TargetList {
+  title: string
+  time: number
+  remainder: number
+  total: number
+  color: string
+}
+
+interface BannerList {
+  src: string
+  introduce: string
+}

@@ -10,12 +10,12 @@ const routerMap: any[] = [
   {
     path: '/',
     redirect: '/home',
-    auth: false,
+    auth: true,
   },
   {
     path: '/home',
     component: Home,
-    auth: false,
+    auth: true,
     title: '首页',
     footerShow: true,
     meta: {
@@ -25,7 +25,7 @@ const routerMap: any[] = [
   {
     path: '/sport',
     component: Sport,
-    auth: false,
+    auth: true,
     title: '运动',
     footerShow: true,
     meta: {

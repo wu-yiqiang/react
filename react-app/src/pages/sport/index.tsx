@@ -6,7 +6,7 @@ import Target from './target'
 import { db } from '@/db/db'
 function Sport() {
   const [state, setState] = useState(false)
-  const [lists, setLists] = useState([])
+  const [lists, setLists] = useState<Array<SportList>>([{ sportId: 0, src: '', introduce: '' }])
   const [sportId, setSportId] = useState(1)
   useEffect(() => {
     ;(async () => {
@@ -14,10 +14,15 @@ function Sport() {
       setLists(items)
     })()
   }, [])
-  async function handleDetail(event: any) {
-    setSportId(3)
-    console.log('开启pop', event)
-    setState(true)
+  const handleDetail = (event: any) => {
+    const src = event.target.src
+    const target = lists.find((v) => {
+      return v.src === src
+    })
+    if (target?.sportId) {
+      setSportId(target.sportId)
+      setState(true)
+    }
   }
   const closeMask = () => {
     setState(false)
@@ -28,6 +33,7 @@ function Sport() {
         <div className={style.title}>运动</div>
         <SvgIcon name="operate" color={'#606060'} size="40px" />
       </div>
+      <div className={style.whiteBox}></div>
       <div
         className={style.content}
         onClick={(e) => {
@@ -35,7 +41,6 @@ function Sport() {
         }}
       >
         {lists.map((v, index) => {
-          console.log('ooo')
           return <Item key={index} src={v.src} introduce={v.introduce} />
         })}
       </div>

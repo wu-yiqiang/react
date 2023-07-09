@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import userInfoModel from '@/store/store'
 import Button from '@material-ui/core/Button'
+import TextField from '@material-ui/core/TextField'
 import style from './index.module.less'
+import SvgIcon from '@/components/SvgIcon'
 function Login(props: any) {
   const { changeToken, token } = userInfoModel()
   const login = () => {
@@ -15,15 +17,38 @@ function Login(props: any) {
   }
   return (
     <div className={style.Login}>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => {
-          login()
-        }}
-      >
-        登录
-      </Button>
+      {/* Logo */}
+      <div className={style.Logo}>
+        <SvgIcon name="quil" size="150px" />
+      </div>
+      {/* Form */}
+      <form className={style.Form}>
+        <TextField label="账号" variant="outlined" />
+        <TextField label="密码" variant="outlined" />
+      </form>
+      {/* Button */}
+      <div className={style.Operate}>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ width: '100%' }}
+          onClick={() => {
+            login()
+          }}
+        >
+          登录
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ width: '100%' }}
+          onClick={() => {
+            login()
+          }}
+        >
+          注册
+        </Button>
+      </div>
     </div>
   )
 }

@@ -13,8 +13,11 @@
     width: 100%;
     border-radius: @borderRadious;
     overflow: hidden;
-    margin-bottom: 30px;
     .boxAlign();
+  }
+  .indicator {
+    .boxAlign();
+    margin: 10px 0;
   }
 
   .filter {
@@ -22,6 +25,7 @@
     .pagePadding();
     overflow: hidden;
     background-color: #fff;
+    border-radius: @borderRadious @borderRadious 0 0;
   }
 
   .list {
@@ -29,7 +33,8 @@
     .pagePadding();
     overflow-y: scroll;
     background-color: #fff;
-    border-radius: @borderRadious;
+    border-radius:0 0 @borderRadious @borderRadious;
+    content-visibility: auto;
     .noScrollBar();
   }
  

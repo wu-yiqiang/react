@@ -2,6 +2,7 @@ import { Switch ,NavLink,withRouter} from 'react-router-dom';
 import RouterView from '@/router/routerConfig'
 import { useState, useEffect, Suspense } from 'react'
 import SvgIcon from '@/components/SvgIcon'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import routerMap from './router/router'
 import style from './App.module.less'
 
@@ -28,7 +29,8 @@ function App(props:any) {
    return (
      <div className={style.page}>
        <div className={style.content}>
-         <Suspense fallback={<div>Loading...</div>}>
+         {/* fallback={<CircularProgress />} */}
+         <Suspense fallback={''}>
            <Switch>
              <RouterView />
            </Switch>

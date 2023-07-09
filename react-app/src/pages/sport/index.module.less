@@ -9,17 +9,23 @@
       .boxAlign()
     }
   }
+  .whiteBox {
+    border-radius: @borderRadious @borderRadious 0 0;
+    background-color: #fff;
+    height: @paddingSize;
+  }
   .content {
     display: flex;
     flex-wrap:wrap;
     justify-content: space-between;
-    width: 100%;
-    max-height: calc(100vh - 150px - @footerHeight);
+    max-height: calc(100vh - 150px - @footerHeight - @paddingSize);
     .pagePadding();
+    padding-top: 0;
     overflow-y: scroll;
     overflow-x: hidden;
-    border-radius: @borderRadious;
+    border-radius: 0 0 @borderRadious @borderRadious;
     background-color: #fff;
     .noScrollBar();
   }
+ 
 }
