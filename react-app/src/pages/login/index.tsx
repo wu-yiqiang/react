@@ -18,14 +18,14 @@ function Login(props: any) {
   return (
     <div className={style.Login}>
       {/* Logo */}
-      <div className={style.Logo}>
-        <SvgIcon name="quil" size="150px" />
-      </div>
+      <h1 className={style.Title}>Quil</h1>
       {/* Form */}
       <form className={style.Form}>
-        <h1 className={style.title}>Quil</h1>
+        <div className={style.Logo}>
+          <SvgIcon name="quil" size="100px" />
+        </div>
         <TextField label="账号" variant="outlined" />
-        <TextField label="密码" variant="outlined" />
+        <TextField label="密码" type="password" variant="outlined" />
       </form>
       {/* Button */}
       <div className={style.Operate}>
