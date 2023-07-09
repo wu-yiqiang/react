@@ -23,6 +23,7 @@ function Login(props: any) {
       </div>
       {/* Form */}
       <form className={style.Form}>
+        <h1 className={style.title}>Quil</h1>
         <TextField label="账号" variant="outlined" />
         <TextField label="密码" variant="outlined" />
       </form>
