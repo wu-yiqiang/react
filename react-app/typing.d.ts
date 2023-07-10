@@ -22,6 +22,7 @@ interface TargetList {
   remainder: number
   total: number
   color: string
+  state: string
 }
 
 interface BannerList {

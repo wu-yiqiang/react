@@ -1,0 +1,39 @@
+.Add {
+  padding: @paddingSize;
+  background-color: @pageBackgroundColor;
+  .top {
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .Title {
+      font-size: 40px;
+      font-weight: 700;
+    }
+  }
+  .content {
+    overflow: scroll;
+    .days, .colors {
+      margin-top: 30px;
+      .title {
+        font-size: 33px;
+        font-weight: 400;
+      }
+      .select {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        overflow: hidden;
+        border-radius: @borderRadious;
+        background-color: #fff;
+        button {
+          margin: 10px 15px;
+        }
+      }
+    }
+  }
+}

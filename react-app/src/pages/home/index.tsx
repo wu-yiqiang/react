@@ -13,29 +13,36 @@ import style from './index.module.less'
 import SvgIcon from '@/components/SvgIcon'
 import Loading from '@/components/Loading'
 import Indicator from '@/components/Indicator'
+import Add from './add'
 import { Swiper } from 'antd-mobile'
 import { db } from '@/db/db'
 function Home(props: any) {
-  const [lists, setLists] = useState([{ time: '', title: '', remainder: 0, total: 0, color: '' }])
+  const [lists, setLists] = useState([{ time: '', title: '', remainder: 0, total: 0, color: '', state: '' }])
   const [banners, setBanner] = useState([{ src: '0', introduce: 'sss' }])
   const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
   const [filterList, setFilterList] = useState(['全部', '进行中', '已完成', '未完成'])
   const [state, setState] = useState('全部')
-
+  const [open, setOpen] = useState(false)
   useEffect(() => {
     ;(async () => {
       const bannerLists = await db.banners.toArray()
       setBanner(bannerLists)
       const lis = await db.targets.toArray()
-      lis.sort((a, b) => b.time - a.time)
+      lis.sort((a: any, b: any) => b.time - a.time)
       setLists(lis)
     })()
   }, [])
+  const closeMask = () => {
+    setOpen(false)
+  }
+  const openMask = () => {
+    setOpen(true)
+  }
   const loadingDone = () => {
     setLoading(false)
   }
-  const handleChange = async (event: Event) => {
+  const handleChange = async (event: any) => {
     const status = event?.target?.value ?? '全部'
     setState(status)
     let filterLists = []
@@ -44,7 +51,7 @@ function Home(props: any) {
     } else {
       filterLists = await db.targets.where({ state: status }).toArray()
     }
-    filterLists.sort((a, b) => b.time - a.time)
+    filterLists.sort((a: any, b: any) => b.time - a.time)
     setLists(filterLists)
   }
   const items = banners.map((bannerItem, index) => (
@@ -124,13 +131,14 @@ function Home(props: any) {
         {/* 列表页面 */}
         {/* { Item } */}
         {lists.map((v, index) => {
-          return <Item key={index} time={dayjs(v.time).format('YYYY-MM-DD HH:mm')} remainder={v.remainder} title={v.title} total={v.total} color={v.color} state={v.state} />
+          return <Item key={index} time={dayjs(v.time).format('YYYY-MM-DD HH:mm')} remainder={v.remainder} title={v.title} total={v.total} color={v.color} state={v?.state} />
         })}
       </div>
       {/* 新增 */}
-      <IconButton className={style.add}>
+      <IconButton className={style.add} onClick={openMask}>
         <AddCircle style={{ fontSize: 50, color: '#3f51b5' }} />
       </IconButton>
+      <Add open={open} closeMask={closeMask} />
     </div>
   )
 }

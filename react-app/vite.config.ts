@@ -83,7 +83,7 @@ export default ({ mode }) => {
       // 允许用户为css的压缩设置一个不同的浏览器target, 与build esbuild一致
       cssTarget: '',
       // 清空输入文件夹
-      emptyOutDir: true,
+      emptyOutDir: false,
       // 取消计算文件大小，加快打包速度
       reportCompressedSize: false,
       // 启用压缩大小报告,

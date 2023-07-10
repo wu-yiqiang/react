@@ -1,6 +1,6 @@
 // import React, { useEffect, useMemo, useCallback } from 'react'
 import SvgIcon from '@/components/SvgIcon'
-import style from './Item.module.less'
+import style from './item.module.less'
 function Item(props: any) {
   const { time, title, total, remainder, color, state } = props
   return (
