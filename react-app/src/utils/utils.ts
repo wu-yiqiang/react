@@ -78,3 +78,11 @@ export function createRandomChinese(count: number) {
   }
   return eval(`'${name}'`)
 }
+
+// export function px2Vh(px: string) {
+//   if (/%/gi.test(px)) {
+//     return px
+//   } else {
+//     return (parseFloat(px * 100 / 1134) + 'vh')
+//   }
+// }

@@ -17,38 +17,47 @@ function Login(props: any) {
   }
   return (
     <div className={style.Login}>
-      {/* Logo */}
-      <h1 className={style.Title}>Quil</h1>
-      {/* Form */}
-      <form className={style.Form}>
+      <div className={style.pannel}>
+        {/* logo */}
         <div className={style.Logo}>
-          <SvgIcon name="quil" size="100px" />
+          <SvgIcon name="quil" size="28vw" />
         </div>
-        <TextField label="账号" variant="outlined" />
-        <TextField label="密码" type="password" variant="outlined" />
-      </form>
-      {/* Button */}
-      <div className={style.Operate}>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ width: '100%' }}
-          onClick={() => {
-            login()
-          }}
-        >
-          登录
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          style={{ width: '100%' }}
-          onClick={() => {
-            login()
-          }}
-        >
-          注册
-        </Button>
+        {/* Title */}
+        <h1 className={style.Title}>Quil</h1>
+        {/* Form */}
+
+        <div className={style.Form}>
+          <div className={style.FormItem}>
+            <TextField label="账号" variant="outlined" />
+          </div>
+          <div className={style.FormItem}>
+            <TextField label="密码" type="password" variant="outlined" />
+          </div>
+        </div>
+        <div className={style.Operate}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            style={{ width: '40%' }}
+            onClick={() => {
+              login()
+            }}
+          >
+            注册
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            style={{ width: '40%' }}
+            onClick={() => {
+              login()
+            }}
+          >
+            登录
+          </Button>
+        </div>
       </div>
     </div>
   )

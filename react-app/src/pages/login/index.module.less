@@ -1,37 +1,40 @@
 .Login {
+  height: 100%;
   .pagePadding();
   .boxAlign();
-  .Title {
-    display: inline-block;
-    font-size: 110px;
-    height: 20vh;
-    font-weight: 700;
-    text-align: center;
-    .boxAlign();
-  }
-  .Form {
-    .pagePadding();
+  .pannel {
+    position: relative;
+    width: 90%;
     border-radius: @borderRadious;
+    padding: @paddingSize;
+    padding-top: 14vw;
     background-color: #fff;
     box-shadow: 0px 0px 20px 10px rgb(210, 208, 208);
     .Logo {
-      .boxAlign();
+      position: absolute;
+      left: 50%; 
+      top: 0;
+      transform: translate(-50%, -50%);
     }
-    & div {
+    .Title {
+      // margin-top: 50px;
+      font-size: 70px;
+      text-align: center;
+    }
+    .Form {
       width: 100%;
-      margin: 10px 0;
+      .FormItem {
+        width: 100%;
+        margin: 20px 0;
+        div {
+          width: 100%;
+        }
+      }
     }
-    & div:nth-child(2n+2) {
-      margin-bottom: 10px;
+    .Operate {
+      display: flex;
+      justify-content: space-between;
+      margin: 40px 0;
     }
-  }
-  .Operate {
-    margin-top: 50px;
-    width: 100%;
-    button {
-      height: 100px;
-      font-size: 34px;
-      margin-top: 30px;
-    } 
   }
 }

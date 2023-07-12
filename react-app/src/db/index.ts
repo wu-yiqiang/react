@@ -61,8 +61,25 @@ async function initTargets() {
     await db.targets.add(target)
   })
 }
+
+// Targets表
+async function initRings() {
+  await db.rings.clear()
+  const ringtLists = [
+    { name: 'Lollipop', src: 'https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1689171401424/Lollipop.ogg' },
+    { name: 'Daydream', src: 'https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1689171422174/Daydream.ogg' },
+    { name: 'Breeze', src: 'https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1689171440745/Breeze.ogg' },
+    { name: 'Beep', src: 'https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1689171455565/Beep.ogg' },
+    { name: 'AlarmClock', src: 'https://fs-im-kefu.7moor-fs1.com/29397395/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1689171470295/AlarmClock.ogg' }
+  ]
+  ringtLists.forEach(async (v) => {
+    const ring: RingList = { name: v.name, src: v.src }
+    await db.rings.add(ring)
+  })
+}
 export default async function initDb() {
   initTargets()
   initBanners()
   initSports()
+  initRings()
 }

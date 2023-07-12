@@ -29,3 +29,8 @@ interface BannerList {
   src: string
   introduce: string
 }
+
+interface RingList {
+  name: string
+  src: string
+}

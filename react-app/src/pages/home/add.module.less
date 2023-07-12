@@ -30,6 +30,17 @@
         overflow: hidden;
         border-radius: @borderRadious;
         background-color: #fff;
+        .Rings {
+          width: 100%;
+          .boxAlign();
+          padding: @paddingSize;
+          .selectRing {
+            .boxAlign();
+            flex-direction: row;
+            width: 100%;
+            font-size: 60px;
+          }
+        }
         button {
           margin: 10px 15px;
         }
