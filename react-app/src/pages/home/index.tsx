@@ -24,6 +24,7 @@ function Home(props: any) {
   const [filterList, setFilterList] = useState(['全部', '进行中', '已完成', '未完成'])
   const [state, setState] = useState('全部')
   const [open, setOpen] = useState(false)
+  const [showAddIcon, setShowAddIcon] = useState(true)
   useEffect(() => {
     ;(async () => {
       const bannerLists = await db.banners.toArray()
@@ -34,9 +35,11 @@ function Home(props: any) {
     })()
   }, [])
   const closeMask = () => {
+    setShowAddIcon(true)
     setOpen(false)
   }
   const openMask = () => {
+    setShowAddIcon(false)
     setOpen(true)
   }
   const loadingDone = () => {
@@ -135,9 +138,9 @@ function Home(props: any) {
         })}
       </div>
       {/* 新增 */}
-      <IconButton className={style.add} onClick={openMask}>
+      {showAddIcon ? <IconButton className={style.add} onClick={openMask}>
         <AddCircle style={{ fontSize: 50, color: '#3f51b5' }} />
-      </IconButton>
+      </IconButton> : null }
       <Add open={open} closeMask={closeMask} />
     </div>
   )

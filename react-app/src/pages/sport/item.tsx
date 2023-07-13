@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import style from './item.module.less'
 import Loading from '@/components/Loading'
 function Item(props: any) {
-  const { src, introduce } = props
+  const { src, introduce, sportId } = props
   const [loading, setLoading] = useState(true)
   const loadingDone = () => {
     setLoading(false)
@@ -10,7 +10,7 @@ function Item(props: any) {
   return (
     <div className={style.Item}>
       <Loading loading={loading}>
-        <img src={src} alt="" onLoad={loadingDone} />
+        <img src={src} alt="" onLoad={loadingDone} data-id={ sportId } />
         <div className={style.introduce}>{introduce}</div>
       </Loading>
     </div>

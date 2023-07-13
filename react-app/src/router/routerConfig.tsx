@@ -5,7 +5,7 @@ const BasicRoute = (props: any) => {
   const { token } = userInfoModel()
   const pathname = props.location.pathname
   const targetRouter = routerMap.find((item: any) => item.path === pathname);
-  console.log('router', pathname, targetRouter)
+  // console.log('router', pathname, targetRouter)
   const isLogin = token
   if (!targetRouter) { // 页面不存在
     return <Redirect to="/404" />

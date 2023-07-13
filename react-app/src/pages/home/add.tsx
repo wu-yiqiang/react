@@ -31,6 +31,9 @@ function Add(props: any) {
   const closeRingMask = () => {
     setRingOpen(false)
   }
+  function changeRimgName(ring: string) {
+    setRingName(ring)
+  }
   return (
     <Popup
       visible={open}
@@ -43,17 +46,17 @@ function Add(props: any) {
         <div className={style.top}>
           <Button
             variant="contained"
-            color="primary"
             onClick={() => {
               closeMask()
             }}
+            style={{ backgroundColor: currentColor, color: '#fff' }}
           >
             取消
           </Button>
           <span className={style.Title}>asd</span>
           <Button
             variant="contained"
-            color="primary"
+            style={{ backgroundColor: currentColor, color: '#fff' }}
             onClick={() => {
               handleSave()
             }}
@@ -86,12 +89,12 @@ function Add(props: any) {
             <p className={style.title}>提送铃声</p>
             <div className={style.select} onClick={(e) => handleColors(e)}>
               <div className={style.Rings} onClick={handleRing}>
-                <div className={style.selectRing}>
-                  <SvgIcon name="ring" size="40px" />
+                <div className={style.selectRing} style={{ backgroundColor: currentColor }}>
+                  <SvgIcon name="ring" size="35px" color="#fff" />
                   <span>{ringName}</span>
                 </div>
               </div>
-              <Ring open={ringOpen} ring={ringName} closeRingMask={closeRingMask} />
+              <Ring open={ringOpen} ringName={ringName} closeRingMask={closeRingMask} changeRimgName={changeRimgName} currentColor={currentColor} />
             </div>
           </div>
           <div className={style.colors}>

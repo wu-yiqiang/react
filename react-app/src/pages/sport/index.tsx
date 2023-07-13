@@ -15,12 +15,10 @@ function Sport() {
     })()
   }, [])
   const handleDetail = (event: any) => {
-    const src = event.target.src
-    const target = lists.find((v) => {
-      return v.src === src
-    })
-    if (target?.sportId) {
-      setSportId(target.sportId)
+    const sportId = event.target.getAttribute('data-id')
+    console.log('Sport', sportId)
+    if (sportId) {
+      setSportId(sportId)
       setState(true)
     }
   }
@@ -41,7 +39,7 @@ function Sport() {
         }}
       >
         {lists.map((v, index) => {
-          return <Item key={index} src={v.src} introduce={v.introduce} />
+          return <Item key={index} src={v.src} introduce={v.introduce} sportId={v.sportId} />
         })}
       </div>
       <Target state={state} closeMask={closeMask} sportId={sportId} />
