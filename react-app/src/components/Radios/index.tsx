@@ -3,7 +3,7 @@ import style from './index.module.less'
 function Radios(props: any) {
   const { list } = props
   return <div className={style.Radios}>
-    asdsa
+    会根据韩国
   </div>
 }
 

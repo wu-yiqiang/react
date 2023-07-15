@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo, useCallback, useState, useRef } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import dayjs from 'dayjs'
-import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import NativeSelect from '@material-ui/core/NativeSelect'
-import Select from '@material-ui/core/Select'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import InputBase from '@material-ui/core/InputBase'
 import AddCircle from '@material-ui/icons/AddCircle'
+import AddIcon from '@material-ui/icons/Add'
+import Fab from '@material-ui/core/Fab'
 import Item from './item'
 import style from './index.module.less'
 import SvgIcon from '@/components/SvgIcon'
@@ -138,9 +138,11 @@ function Home(props: any) {
         })}
       </div>
       {/* 新增 */}
-      {showAddIcon ? <IconButton className={style.add} onClick={openMask}>
-        <AddCircle style={{ fontSize: 50, color: '#3f51b5' }} />
-      </IconButton> : null }
+      {showAddIcon ? (
+        <Fab color="primary" className={style.add} onClick={openMask}>
+          <AddIcon />
+        </Fab>
+      ) : null}
       <Add open={open} closeMask={closeMask} />
     </div>
   )

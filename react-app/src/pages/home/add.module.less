@@ -1,12 +1,13 @@
 .Add {
   padding: @paddingSize;
   background-color: @pageBackgroundColor;
+  overflow: hidden;
   .top {
     position: sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    overflow: hidden;
     .Title {
       font-size: 40px;
       font-weight: 700;
@@ -24,13 +25,11 @@
         display: flex;
         width: 100%;
         flex-wrap: wrap;
-        justify-content: space-between;
         align-items: center;
         margin-top: 10px;
-        overflow: hidden;
         border-radius: @borderRadious;
-        background-color: #fff;
-        .Rings {
+        background-color: #ffffff;
+        .Days,.Rings {
           width: 100%;
           .boxAlign();
           padding: @paddingSize;
@@ -44,7 +43,8 @@
           }
         }
         button {
-          margin: 10px 15px;
+          width: 22%;
+          margin: 5px calc(12% / 4 / 2);
         }
       }
     }
