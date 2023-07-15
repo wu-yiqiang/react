@@ -6,17 +6,15 @@ import { db } from '@/db/db'
 function Target(props: any) {
   const { state, closeMask, sportId } = props
   const [item, setItem] = useState({ src: '', introduce: '', sportId: 0 })
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoad] = useState(true)
   const loadingDone = () => {
-    console.log('asda')
-    setLoading(false)
+    console.log('渲染完成')
+    setLoad(false)
   }
   useEffect(() => {
     ;(async () => {
       if (state) {
-        console.log('sportId', sportId)
         const target = await db.sports.where({ sportId: sportId }).first()
-        console.log('asdsad Assad·', sportId, target, item)
         setItem(target)
       }
     })()
@@ -26,14 +24,14 @@ function Target(props: any) {
       visible={state}
       onMaskClick={() => {
         closeMask()
-        setLoading(true)
+        // setLoad(true)
       }}
       bodyStyle={{ maxHeight: '90vh', borderTopLeftRadius: '8px', borderTopRightRadius: '8px' }}
     >
       <div className={style.content}>
         <Loading loading={loading}>
           <div className={style.banner}>
-            <img src={item?.src} alt="" onLoad={loadingDone} />
+            <img src={item?.src} alt='' onLoad={loadingDone} />
           </div>
           <div className={style.detail}>{item?.introduce}</div>
         </Loading>

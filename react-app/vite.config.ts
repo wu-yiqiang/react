@@ -110,6 +110,7 @@ export default ({ mode }) => {
           assetFileNames: (assetInfo) => {
             const fileName = assetInfo.name
             if (fileName?.endsWith('.svg')) return 'img/svg/[name]-[hash][extname]'
+            if (fileName?.endsWith('.ogg')) return 'rings/[name]-[hash][extname]'
             return 'css/[name]-[hash][extname]'
           }
         }

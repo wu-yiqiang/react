@@ -2,20 +2,18 @@ import React, { useEffect, useMemo, useCallback, useState } from 'react'
 import SvgIcon from '@/components/SvgIcon'
 import style from './ring-item.module.less'
 import { db } from '@/db/db'
+import { Ring } from '@/utils/audio'
 function RingItem(props: any) {
   const { name, selected, currentColor } = props
   const [src, setSrc] = useState('')
   useEffect(() => {
-    ; (async () => {
-      console.log('asda', name)
-      const target = await db.rings.where({ name: name }).first()
+    ;(async () => {
       if (selected) {
-        console.log('kkkk', selected)
+        const target = await db.rings.where({ name: name }).first()
+        console.log('target', target)
         setSrc(target.src)
-        const audio = new Audio(src)
+        const audio = Ring.getInstance(src)
         audio.play()
-      } else {
-        // setSrc('')
       }
     })()
   }, [selected])

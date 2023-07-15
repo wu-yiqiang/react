@@ -15,8 +15,7 @@ function Sport() {
     })()
   }, [])
   const handleDetail = (event: any) => {
-    const sportId = event.target.getAttribute('data-id')
-    console.log('Sport', sportId)
+    const sportId = +event.target.getAttribute('data-id')
     if (sportId) {
       setSportId(sportId)
       setState(true)

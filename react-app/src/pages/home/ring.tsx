@@ -30,7 +30,7 @@ function Ring(props: any) {
     >
       <div className={style.Ring} onClick={selectRing}>
         <div className={style.title}>选择提示铃声</div>
-        {ringLists.map((v, index) => {
+        {ringLists.map((v: any, index) => {
           return <RingItem key={index} selected={v.name === ringName ? true : false} name={v.name} currentColor={currentColor} />
         })}
       </div>
