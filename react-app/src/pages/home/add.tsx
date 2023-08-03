@@ -82,7 +82,7 @@ function Add(props: any) {
                 <ScrollNumber
                   value={day}
                   numberStyle={{
-                    background: currentColor,
+                    background: currentColor
                   }}
                 />
               </div>
@@ -110,10 +110,15 @@ function Add(props: any) {
           </div>
           <div className={style.colors}>
             <p className={style.title}>推送时间</p>
-            <div className={style.select} onClick={(e) => handleColors(e)}>
-              {colors.map((v: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
-                return <Color className={style.colorsBox} selected={selected === index ? true : false} key={index} color={v} value={v} />
-              })}
+            <div className={style.select}>
+              <div className={style.Days}>
+                <ScrollNumber
+                  value={day}
+                  numberStyle={{
+                    background: currentColor
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>

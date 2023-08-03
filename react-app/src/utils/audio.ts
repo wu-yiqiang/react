@@ -7,11 +7,8 @@ export class Ring {
   constructor(src: string) {
   }
   private static getInstance(src: string) {
-    Ring.src = src
-    if (!Ring.instance) {
-      Ring.instance = new Audio()
-    }
-    Ring.instance.src = Ring.src
+    if (!Ring.instance) Ring.instance = new Audio()
+    Ring.instance.src = src
     return Ring.instance
   }
 }

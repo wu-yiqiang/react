@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useCallback, useState } from 'react'
 import style from './index.module.less'
 let columns: Array<Array<Object>> = []
 function ScrollNumber(props: any) {
-  const { value, numberStyle, maxValue = 100 } = props
+  const { value, numberStyle, maxValue = 999 } = props
   const [bite] = useState(maxValue.toString().length)
   useEffect(() => {
     columns = []

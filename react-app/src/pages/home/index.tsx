@@ -17,7 +17,7 @@ import Add from './add'
 import { Swiper } from 'antd-mobile'
 import { db } from '@/db/db'
 function Home(props: any) {
-  const [lists, setLists] = useState([{ time: '', title: '', remainder: 0, total: 0, color: '', state: '' }])
+  const [lists, setLists] = useState([{ time: '', title: '', remainder: 0, total: 0, color: '', state: '', id: 0,fn: null }])
   const [banners, setBanner] = useState([{ src: '0', introduce: 'sss' }])
   const [loading, setLoading] = useState(true)
   const [current, setCurrent] = useState(0)
@@ -29,11 +29,14 @@ function Home(props: any) {
     ;(async () => {
       const bannerLists = await db.banners.toArray()
       setBanner(bannerLists)
-      const lis = await db.targets.toArray()
-      lis.sort((a: any, b: any) => b.time - a.time)
-      setLists(lis)
+      getList()
     })()
   }, [])
+  const getList = async () => {
+    const lis = await db.targets.toArray()
+    lis.sort((a: any, b: any) => b.time - a.time)
+    setLists(lis)
+  }
   const closeMask = () => {
     setShowAddIcon(true)
     setOpen(false)
@@ -45,6 +48,7 @@ function Home(props: any) {
   const loadingDone = () => {
     setLoading(false)
   }
+  
   const handleChange = async (event: any) => {
     const status = event?.target?.value ?? '全部'
     setState(status)
@@ -134,7 +138,7 @@ function Home(props: any) {
         {/* 列表页面 */}
         {/* { Item } */}
         {lists.map((v, index) => {
-          return <Item key={index} time={dayjs(v.time).format('YYYY-MM-DD HH:mm')} remainder={v.remainder} title={v.title} total={v.total} color={v.color} state={v?.state} />
+          return <Item key={index} time={dayjs(v.time).format('YYYY-MM-DD HH:mm')} remainder={v.remainder} title={v.title} total={v.total} color={v.color} state={v?.state} index={v.id} fn={getList} />
         })}
       </div>
       {/* 新增 */}
