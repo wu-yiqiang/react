@@ -10,7 +10,6 @@ function RingItem(props: any) {
     ;(async () => {
       if (selected) {
         const target = await db.rings.where({ name: name }).first()
-        console.log('target', target)
         setSrc(target.src)
         const audio = await Ring.getInstance(src)
         audio.play()

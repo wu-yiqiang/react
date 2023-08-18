@@ -42,7 +42,7 @@ const routerMap: any[] = [
     path: '/user',
     component: User,
     auth: true,
-    footerShow: true,
+    footerShow: false,
     title: '用户',
     meta: {
       icon: 'user'

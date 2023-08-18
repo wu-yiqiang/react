@@ -1,14 +1,13 @@
-// import React, { useEffect, useMemo, useCallback } from 'react'
+import React, { useEffect, useMemo, useCallback } from 'react'
 import { Key, ReactChild, ReactFragment, ReactPortal, useState } from 'react'
 import { Popup } from 'antd-mobile'
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
 import SvgIcon from '@/components/SvgIcon'
-import ScrollNumber from '@/components/ScrollNumber'
-import Color from './color'
 import Ring from './ring'
+import TimePicker from '@/components/TimePicker'
+import ColorPicker from '@/components/ColorPicker'
+import NumberPicker from '@/components/NumberPicker'
 import style from './add.module.less'
-
 
 function Add(props: any) {
   const { open, closeMask } = props
@@ -43,6 +42,11 @@ function Add(props: any) {
   }
   function changeRimgName(ring: string) {
     setRingName(ring)
+  }
+  const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'))
+
+  const handleDateChange = (date: any) => {
+    setSelectedDate(date)
   }
   return (
     <Popup
@@ -79,7 +83,7 @@ function Add(props: any) {
             <p className={style.title}>坚持天数</p>
             <div className={style.select}>
               <div className={style.Days}>
-                <ScrollNumber
+                <NumberPicker
                   value={day}
                   numberStyle={{
                     background: currentColor
@@ -90,10 +94,8 @@ function Add(props: any) {
           </div>
           <div className={style.colors}>
             <p className={style.title}>选择颜色</p>
-            <div className={style.select} onClick={(e) => handleColors(e)}>
-              {colors.map((v: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined, index: Key | null | undefined) => {
-                return <Color className={style.colorsBox} selected={selected === index ? true : false} key={index} color={v} value={v} />
-              })}
+            <div className={style.select}>
+              <ColorPicker colors={colors} handleColors={handleColors} selected={selected} />
             </div>
           </div>
           <div className={style.colors}>
@@ -111,14 +113,7 @@ function Add(props: any) {
           <div className={style.colors}>
             <p className={style.title}>推送时间</p>
             <div className={style.select}>
-              <div className={style.Days}>
-                <ScrollNumber
-                  value={day}
-                  numberStyle={{
-                    background: currentColor
-                  }}
-                />
-              </div>
+              <div className={style.Days}>asdhdnjs</div>
             </div>
           </div>
         </div>

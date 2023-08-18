@@ -1,4 +1,3 @@
-// import React, { useEffect, useMemo, useCallback } from 'react'
 import style from './color.module.less'
 function Color(props: any) {
   const { color, selected } = props

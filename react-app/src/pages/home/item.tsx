@@ -19,9 +19,14 @@ function Item(props: any) {
     let parentElement = e.currentTarget.parentElement;
     // 记录结束位置
     setEndX(e.changedTouches[0].clientX)
-    if (+endX > 30) {
-      setDel(true);
-    }
+    console.log(endX, startX)
+    const deviation = Number(startX) - Number(endX)
+//    if (deviation > 30) {
+//      setDel(true);
+//    }
+//    if (deviation < 0) {
+//      setDel(false);
+//    }
   }
   const deleteItem = async () => {
     await db.targets.delete(index)
@@ -36,11 +41,9 @@ function Item(props: any) {
          </div>
          <div className={style.target}>{state === '已完成' ? <SvgIcon name="done" color={'#fff'} size="30px" /> : state === '未完成' ? <SvgIcon name="undone" color={'#fff'} size="30px" /> : `${remainder} / ${total} 天`}</div>
        </div>
-       {del ? (
-         <div className={style.delete} onClick={deleteItem}>
-           删除
-         </div>
-       ) : null}
+       <div className={style.delete } onClick={deleteItem}>
+         删除
+       </div>
      </div>
    )
 }

@@ -3,6 +3,7 @@
   margin-bottom: 15px;
   align-items: center;
   overflow-x: scroll;
+  .noScrollBar();
   width: 100%;
   .itemInfo {
     width: 100%;
@@ -29,11 +30,17 @@
     }
   }
   .delete {
-    display: flex;
     font-size: 35px;
-    padding: 10px;
-    border-radius: calc(@borderRadious / 2);
+//    border-radius: calc(@borderRadious / 2);
     background-color: red;
     color: #fff;
+//    max-width: 200px;
+//    transition-timing-function: ease;
+//    transition: 0.5s;
+  }
+  .undelete {
+    max-width: 0;
+//    transition-timing-function: ease;
+//    transition: 0.5s;
   }
 }

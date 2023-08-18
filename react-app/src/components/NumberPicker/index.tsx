@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useCallback, useState } from 'react'
 import style from './index.module.less'
 let columns: Array<Array<Object>> = []
-function ScrollNumber(props: any) {
+function NumberPicker(props: any) {
   const { value, numberStyle, maxValue = 999 } = props
   const [bite] = useState(maxValue.toString().length)
   useEffect(() => {
@@ -15,14 +15,17 @@ function ScrollNumber(props: any) {
     }
     console.log('columns', columns)
   }, [maxValue])
+  function handleScroll() {
+    console.log('scroll')
+  }
   return (
-    <div className={style.ScrollNumber}>
+    <div className={style.NumberPicker}>
       {columns.map((value, index) => {
         return (
           <span key={index} style={numberStyle} className={style.scroll}>
             {value.map((v, i) => {
               return (
-                <label key={i} className={style.numLabel}>
+                <label key={i} className={style.numLabel} onScroll={handleScroll}>
                   {v}
                 </label>
               )
@@ -34,4 +37,4 @@ function ScrollNumber(props: any) {
   )
 }
 
-export default ScrollNumber
+export default NumberPicker
