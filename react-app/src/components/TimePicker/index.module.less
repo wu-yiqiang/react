@@ -1,0 +1,38 @@
+.TimePicker {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 80px;
+  .time {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: center;
+    border-radius: @borderRadious;
+    margin: 0 10px;
+    overflow: scroll;
+    max-height: 80px;
+    .noScrollBar();
+    .timeLabel {
+      color: #fff;
+      height: 80px;
+      font-size: 80px;
+    }
+  }
+  .time:first-child {
+    margin-left: 0;
+  }
+  .time:last-child {
+    margin-right: 0;
+  }
+  .splitBox {
+    padding: 0;
+    .boxAlign();
+    font-size: 90px;
+    .circle {
+      .boxAlign();
+    }
+  }
+}

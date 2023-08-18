@@ -1,56 +1,58 @@
+import React, { useEffect, useMemo, useCallback, useState } from 'react'
 import style from './index.module.less'
-import 'date-fns'
-import React from 'react'
-import Grid from '@material-ui/core/Grid'
-import DateFnsUtils from '@date-io/date-fns'
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers'
+let columns: Array<Array<Object>> = []
 function TimePicker(props: any) {
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState<Date | null>(new Date('2014-08-18T21:11:54'))
-
-  const handleDateChange = (date: Date | null) => {
-    setSelectedDate(date)
+  const { value, styleColor } = props
+  const [time] = useState([0,1,2,3,4,5,6,7,8,9])
+  useEffect(() => {
+  }, [])
+  function handleScroll() {
+    console.log('scroll')
   }
-
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justifyContent="space-around">
-        <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date'
-          }}
-        />
-        <KeyboardDatePicker
-          margin="normal"
-          id="date-picker-dialog"
-          label="Date picker dialog"
-          format="MM/dd/yyyy"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change date'
-          }}
-        />
-        <KeyboardTimePicker
-          margin="normal"
-          id="time-picker"
-          label="Time picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            'aria-label': 'change time'
-          }}
-        />
-      </Grid>
-    </MuiPickersUtilsProvider>
+    <div className={style.TimePicker}>
+      <div className={style.time} style={styleColor}>
+        {time.map((v, i) => {
+          return (
+            <label key={i} className={style.timeLabel} onScroll={handleScroll}>
+              {v}
+            </label>
+          )
+        })}
+      </div>
+      <div className={style.time} style={styleColor}>
+        {time.map((v, i) => {
+          return (
+            <label key={i} className={style.timeLabel} onScroll={handleScroll}>
+              {v}
+            </label>
+          )
+        })}
+      </div>
+      <div className={style.splitBox}>
+        {/* <div className={style.circle}>.</div>
+        <div className={style.circle}>.</div> */}
+        :
+      </div>
+      <div className={style.time} style={styleColor}>
+        {time.map((v, i) => {
+          return (
+            <label key={i} className={style.timeLabel} onScroll={handleScroll}>
+              {v}
+            </label>
+          )
+        })}
+      </div>
+      <div className={style.time} style={styleColor}>
+        {time.map((v, i) => {
+          return (
+            <label key={i} className={style.timeLabel} onScroll={handleScroll}>
+              {v}
+            </label>
+          )
+        })}
+      </div>
+    </div>
   )
 }
 

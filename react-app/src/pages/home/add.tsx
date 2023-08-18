@@ -113,7 +113,13 @@ function Add(props: any) {
           <div className={style.colors}>
             <p className={style.title}>推送时间</p>
             <div className={style.select}>
-              <div className={style.Days}>asdhdnjs</div>
+              <div className={style.Days}>
+                <TimePicker
+                  styleColor={{
+                    background: currentColor
+                  }}
+                />
+              </div>
             </div>
           </div>
         </div>
