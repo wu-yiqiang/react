@@ -1,3 +1,6 @@
+import { promises } from "dns"
+import Module from "module"
+
 export class Ring {
   private static instance: HTMLAudioElement | null = null
   private static src: string = ''
@@ -13,10 +16,15 @@ export class Ring {
   //   Ring.instance.src = src
   //   return Ring.instance
   // }
-  private static getInstance(src: string) {
+  private static async loadModule(src: string) {
+    const module = await import(src)
+    return module.default
+  }
+  private static async getInstance(src: string) {
     if (!Ring.instance) Ring.instance = new Audio()
-    Ring.instance.muted = true
-    Ring.instance.src = src
+    Ring.instance.src = await this.loadModule(src)
+    // Ring.instance.load()
+    Ring.instance.play()
     return Ring.instance
   }
 }

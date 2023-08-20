@@ -28,19 +28,27 @@
       font-weight: 500;
       .boxAlign();
     }
+    .delete {
+      width: 15%;
+      .boxAlign();
+      font-size: 35px;
+      border-radius: calc(@borderRadious / 2);
+      background-color: red;
+      color: #fff;
+      transition-timing-function: ease;
+      transition: 0.5s;
+    }
+    .undelete {
+      visibility: hidden;
+      // transition-timing-function: ease;
+      // transition: 0.5s;
+      animation: sizefade 0.5s ease;
+    }
+    @-webkit-keyframes sizefade{
+      0%{transform: scale(0.5)}
+      50%{transform: scale(0.25);}
+      100%{transform: scale(0);}
+    }
   }
-  .delete {
-    font-size: 35px;
-//    border-radius: calc(@borderRadious / 2);
-    background-color: red;
-    color: #fff;
-//    max-width: 200px;
-//    transition-timing-function: ease;
-//    transition: 0.5s;
-  }
-  .undelete {
-    max-width: 0;
-//    transition-timing-function: ease;
-//    transition: 0.5s;
-  }
+  
 }

@@ -5,14 +5,11 @@ import { db } from '@/db/db'
 import { Ring } from '@/utils/audio'
 function RingItem(props: any) {
   const { name, selected, currentColor } = props
-  const [src, setSrc] = useState('')
   useEffect(() => {
     ;(async () => {
       if (selected) {
         const target = await db.rings.where({ name: name }).first()
-        setSrc(target.src)
-        const audio = await Ring.getInstance(src)
-        audio.play()
+        await Ring.getInstance(target.src)
       }
     })()
   }, [selected])

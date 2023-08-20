@@ -16,7 +16,6 @@ function Ring(props: any) {
   }, [])
   const selectRing = (event: any) => {
     const name = event.target.getAttribute('data-name')
-    console.log('sadfsfsd', name)
     if (!name) return
     changeRimgName(name)
   }

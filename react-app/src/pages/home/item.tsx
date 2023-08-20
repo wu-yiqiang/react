@@ -11,24 +11,24 @@ function Item(props: any) {
   const touchStart = (e: any) => {
     // 记录初始位置
     setStartX(e.touches[0].clientX)
-    console.log('start', startX)
+    console.log('start', e.touches[0])
   }
   //滑动结束
   const touchEnd = (e:any) => {
-    // 当前滑动的父级元素
-    let parentElement = e.currentTarget.parentElement;
-    // 记录结束位置
-    setEndX(e.changedTouches[0].clientX)
-    console.log(endX, startX)
+    // let parentElement = e.currentTarget.parentElement;
+      // 记录结束位置
+      setEndX(e.changedTouches[0].clientX)
+    console.log('end', e.changedTouches[0])
     const deviation = Number(startX) - Number(endX)
-//    if (deviation > 30) {
-//      setDel(true);
-//    }
-//    if (deviation < 0) {
-//      setDel(false);
-//    }
+   if (deviation > 60 && !del) {
+     setDel(true)
+   }
+   if (deviation < 0 && del) {
+     setDel(false);
+   }
   }
   const deleteItem = async () => {
+    setDel(false)
     await db.targets.delete(index)
     fn()
   }
@@ -40,9 +40,9 @@ function Item(props: any) {
            <div className={style.time}>开始于：{time}</div>
          </div>
          <div className={style.target}>{state === '已完成' ? <SvgIcon name="done" color={'#fff'} size="30px" /> : state === '未完成' ? <SvgIcon name="undone" color={'#fff'} size="30px" /> : `${remainder} / ${total} 天`}</div>
-       </div>
-       <div className={style.delete } onClick={deleteItem}>
-         删除
+         <div className={del ? style.delete : style.undelete} onClick={deleteItem}>
+           删除
+         </div>
        </div>
      </div>
    )
