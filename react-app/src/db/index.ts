@@ -1,10 +1,10 @@
 import { db } from './db'
 // rings
-import Lollipop from '@/assets/rings/Lollipop.ogg'
-import Beep from '@/assets/rings/Beep.ogg'
-import Breeze from '@/assets/rings/Breeze.ogg'
-import Daydream from '@/assets/rings/Daydream.ogg'
-import AlarmClock from '@/assets/rings/AlarmClock.ogg'
+import Lollipop from '@/assets/audio/Lollipop.ogg'
+import Beep from '@/assets/audio/Beep.ogg'
+import Breeze from '@/assets/audio/Breeze.ogg'
+import Daydream from '@/assets/audio/Daydream.ogg'
+import AlarmClock from '@/assets/audio/AlarmClock.ogg'
 // banner
 import banner1 from '@/assets/icons/banner1.jpeg'
 import banner2 from '@/assets/icons/banner2.jpeg'

@@ -1,6 +1,3 @@
-import { promises } from "dns"
-import Module from "module"
-
 export class Ring {
   private static instance: HTMLAudioElement | null = null
   private static src: string = ''
