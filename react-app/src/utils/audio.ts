@@ -19,7 +19,7 @@ export class Ring {
   }
   private static async getInstance(src: string) {
     if (!Ring.instance) Ring.instance = new Audio()
-    Ring.instance.src = await this.loadModule(src)
+    Ring.instance.src = src
     // Ring.instance.load()
     Ring.instance.play()
     return Ring.instance
