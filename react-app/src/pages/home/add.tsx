@@ -21,7 +21,6 @@ function Add(props: any) {
   const selectDay = (event: any) => {
     const day = event?.target.innerHTML
     if (!day || isNaN(+day)) return
-    console.log('day', day)
     setCurrentDay(+day)
   }
   const handleColors = (event: any) => {

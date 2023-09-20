@@ -8,7 +8,6 @@ function Target(props: any) {
   const [item, setItem] = useState({ src: '', introduce: '', sportId: 0 })
   const [loading, setLoad] = useState(true)
   const loadingDone = () => {
-    console.log('渲染完成')
     setLoad(false)
   }
   useEffect(() => {

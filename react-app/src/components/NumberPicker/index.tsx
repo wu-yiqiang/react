@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useCallback, useState } from 'react'
+import {handleScroll} from '@/utils/utils'
 import style from './index.module.less'
 let columns: Array<Array<Object>> = []
 function NumberPicker(props: any) {
@@ -13,19 +14,19 @@ function NumberPicker(props: any) {
         columns[index].push(j)
       }
     }
-    console.log('columns', columns)
   }, [maxValue])
-  function handleScroll() {
-    console.log('scroll')
+  const scrollEle = (event:any) => {
+    const value = handleScroll(event)
+    console.log('value', value)
   }
   return (
     <div className={style.NumberPicker}>
       {columns.map((value, index) => {
         return (
-          <span key={index} style={numberStyle} className={style.scroll}>
+          <span key={index} style={numberStyle} className={style.scroll} onScroll={(e) => scrollEle(e)}>
             {value.map((v, i) => {
               return (
-                <label key={i} className={style.numLabel} onScroll={handleScroll}>
+                <label key={i} className={style.numLabel}>
                   {v}
                 </label>
               )

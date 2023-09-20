@@ -8,11 +8,6 @@ export class Ring {
   constructor(src: string) {
     // this.getSrc()
   }
-  // private static getSrc() {
-  //   if (!Ring.instance) Ring.instance = new Audio()
-  //   Ring.instance.src = src
-  //   return Ring.instance
-  // }
   private static async loadModule(src: string) {
     const module = await import(src)
     return module.default

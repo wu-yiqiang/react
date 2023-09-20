@@ -11,14 +11,12 @@ function Item(props: any) {
   const touchStart = (e: any) => {
     // 记录初始位置
     setStartX(e.touches[0].clientX)
-    console.log('start', e.touches[0])
   }
   //滑动结束
   const touchEnd = (e:any) => {
     // let parentElement = e.currentTarget.parentElement;
       // 记录结束位置
       setEndX(e.changedTouches[0].clientX)
-    console.log('end', e.changedTouches[0])
     const deviation = Number(startX) - Number(endX)
    if (deviation > 60 && !del) {
      setDel(true)
