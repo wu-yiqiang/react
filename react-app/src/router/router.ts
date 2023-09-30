@@ -5,12 +5,12 @@ const Sport = React.lazy(() => import('@/pages/sport/index'))
 const Login = React.lazy(() => import('@/pages/login/index'))
 const User = React.lazy(() => import('@/pages/user/index'))
 const Miss = React.lazy(() => import('@/pages/404/index'))
-
+const Demo = React.lazy(() => import('@/pages/demo/index'))
 const routerMap: any[] = [
   {
     path: '/',
     redirect: '/home',
-    auth: true,
+    auth: true
   },
   {
     path: '/home',
@@ -44,6 +44,16 @@ const routerMap: any[] = [
     auth: true,
     footerShow: false,
     title: '用户',
+    meta: {
+      icon: 'user'
+    }
+  },
+  {
+    path: '/demo',
+    component: Demo,
+    auth: false,
+    footerShow: true,
+    title: '演示',
     meta: {
       icon: 'user'
     }
