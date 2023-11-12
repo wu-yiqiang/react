@@ -1,11 +1,10 @@
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons'
 import { Layout } from 'antd'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-// import './laout.css'
 import Menus from './menu'
 import Head from './head'
-import logo from '../static/img/logo.png' 
+import logo from '../assets/react.svg' 
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)

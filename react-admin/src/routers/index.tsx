@@ -10,7 +10,7 @@ import Sensor2 from '../sensor/sensor2'
 import Draw1 from '../draw/draw1'
 import Draw2 from '../draw/draw2'
 import Dashbord from '../dashbord/index'
-import { PartitionOutlined, UnorderedListOutlined, FireOutlined, AreaChartOutlined, ControlOutlined, ThunderboltOutlined, MailOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined } from '@ant-design/icons'
+import {AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined } from '@ant-design/icons'
 export let allRouters: Array<any> = [
   {
     path: '/dashbord',
