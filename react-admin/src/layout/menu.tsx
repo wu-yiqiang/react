@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { allRouters } from '../routers/index'
+import { allRouters } from '@/routers/index'
 
 interface MenuItem {
   key: string

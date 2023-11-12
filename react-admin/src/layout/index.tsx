@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Menus from './menu'
 import Head from './head'
-import logo from '../assets/react.svg' 
+import logo from '@/assets/react.svg' 
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
