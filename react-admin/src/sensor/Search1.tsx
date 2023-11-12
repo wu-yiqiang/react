@@ -1,7 +1,5 @@
 import { Button, Form, Input, Select } from 'antd'
-import type { FormInstance } from 'antd/es/form'
 import React from 'react'
-import { Col, Row } from 'antd'
 const { Option } = Select
 export default function Search1() {
   const [form] = Form.useForm()
