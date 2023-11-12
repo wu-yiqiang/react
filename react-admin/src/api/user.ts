@@ -12,7 +12,7 @@ export const getUserInfo = (): Promise<UserInfo> => {
       resolve({
         name: "dongxiao yuan",
         age: 10,
-        permissionRouters: ['home', ''],
+        permissionRouters: [],
         code: 11
       })
     }, 1000)
