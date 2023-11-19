@@ -6,7 +6,7 @@ import { allRouters } from '@/routers/index'
 
 interface MenuItem {
   key: string
-  $parentKey: string
+  parentkey: string
   icon: React.JSX.Element
   children: Array<MenuItem> | null
   label: string
@@ -16,13 +16,13 @@ interface MenuItem {
 let items: Array<MenuItem> = []
 
 const genItems = () => {
-  // 数据清洗
+  // 清空
   items = []
   let res: Array<MenuItem> = []
-  allRouters.forEach((item) => {
+  allRouters.forEach((item: any) => {
     const template: MenuItem = {
       key: item.key,
-      $parentKey: item.$parentKey,
+      parentkey: item.parentkey,
       icon: item.icon,
       children: null,
       label: item.label,
@@ -32,7 +32,7 @@ const genItems = () => {
   })
 
   res.forEach((item) => {
-    const parent = res.find((node) => node.key === item.$parentKey)
+    const parent = res.find((node) => node.key === item.parentkey)
     if (parent) {
       parent.children = parent.children || []
       parent.children.push(item)

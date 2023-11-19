@@ -1,34 +1,31 @@
 import { Button, Form, Input, Select } from 'antd'
+import { getUserInfo } from '@/api/sensor'
 import React from 'react'
 const { Option } = Select
 export default function Search1() {
   const [form] = Form.useForm()
-  const onGenderChange = () => {}
+  const handleSearch = () => {
+    console.log('sss')
+  }
+  const handleReset = () => {
+    console.log('sss', getUserInfo({}))
+  }
   return (
     <>
       <Form form={form}>
-        <Form.Item label="Field A">
-          <Input placeholder="input placeholder" />
+        <Form.Item label="项目名称">
+          <Input placeholder="项目名称" />
         </Form.Item>
-        <Form.Item label="Field A">
-          <Input placeholder="input placeholder" />
-        </Form.Item>
-        <Form.Item label="Field A">
-          <Input placeholder="input placeholder" />
-        </Form.Item>
-        <Form.Item label="Field A">
-          <Input placeholder="input placeholder" />
-        </Form.Item>
-        <Form.Item label="Form Layout" name="layout">
-          <Select placeholder="Select a option and change input text above" onChange={onGenderChange} allowClear>
-            <Option value="male">male</Option>
-            <Option value="female">female</Option>
-            <Option value="other">other</Option>
-          </Select>
+        <Form.Item label="传感器名">
+          <Input placeholder="传感器名" />
         </Form.Item>
       </Form>
-      <Button type="primary">搜索</Button>
-      <Button type="primary">重置</Button>
+      <Button type="primary" onClick={handleSearch}>
+        搜索
+      </Button>
+      <Button type="primary" onClick={handleReset}>
+        重置
+      </Button>
     </>
   )
 }

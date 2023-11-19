@@ -3,6 +3,7 @@ import type { RouteObject } from 'react-router-dom'
 import Layout from '@/layout/index'
 import { getUserInfo } from '@/api/user'
 import UserManager from '@/setting/user-manager'
+import Login from '@/login/index'
 import RoleManager from '@/setting/role-manager'
 import PermissionManager from '@/setting/permission-manager'
 import Sensor1 from '@/sensor/sensor1'
@@ -17,7 +18,7 @@ export let allRouters: Array<any> = [
     key: 'dashbord',
     label: '看板',
     icon: <AreaChartOutlined />,
-    $parentKey: '',
+    parentkey: '',
     element: <Dashbord />
   },
   {
@@ -25,7 +26,7 @@ export let allRouters: Array<any> = [
     label: '传感器管理',
     icon: <SettingOutlined />,
     key: 'sensor',
-    $parentKey: '',
+    parentkey: '',
     element: null
   },
   {
@@ -33,7 +34,7 @@ export let allRouters: Array<any> = [
     label: '传感器1',
     icon: <SettingOutlined />,
     key: 'sensor1',
-    $parentKey: 'sensor',
+    parentkey: 'sensor',
     element: <Sensor1 />
   },
   {
@@ -41,7 +42,7 @@ export let allRouters: Array<any> = [
     label: '传感器2',
     icon: <SettingOutlined />,
     key: 'sensor2',
-    $parentKey: 'sensor',
+    parentkey: 'sensor',
     element: <Sensor2 />
   },
   {
@@ -49,7 +50,7 @@ export let allRouters: Array<any> = [
     label: '图纸管理',
     icon: <SettingOutlined />,
     key: 'draw',
-    $parentKey: '',
+    parentkey: '',
     element: null
   },
   {
@@ -57,7 +58,7 @@ export let allRouters: Array<any> = [
     label: '图纸1',
     icon: <SettingOutlined />,
     key: 'draw1',
-    $parentKey: 'draw',
+    parentkey: 'draw',
     element: <Draw1 />
   },
   {
@@ -65,7 +66,7 @@ export let allRouters: Array<any> = [
     label: '图纸2',
     icon: <SettingOutlined />,
     key: 'draw2',
-    $parentKey: 'draw',
+    parentkey: 'draw',
     element: <Draw2 />
   },
   {
@@ -73,7 +74,7 @@ export let allRouters: Array<any> = [
     label: '设置',
     icon: <SettingOutlined />,
     key: 'setting',
-    $parentKey: '',
+    parentkey: '',
     element: null
   },
   {
@@ -81,7 +82,7 @@ export let allRouters: Array<any> = [
     label: '用户管理',
     icon: <UserOutlined />,
     key: 'user-manager',
-    $parentKey: 'setting',
+    parentkey: 'setting',
     element: <UserManager />
   },
   {
@@ -89,7 +90,7 @@ export let allRouters: Array<any> = [
     label: '角色管理',
     icon: <TeamOutlined />,
     key: 'role-manager',
-    $parentKey: 'setting',
+    parentkey: 'setting',
     element: <RoleManager />
   },
   {
@@ -97,7 +98,7 @@ export let allRouters: Array<any> = [
     label: '权限管理',
     icon: <UsbOutlined />,
     key: 'permission-manager',
-    $parentKey: 'setting',
+    parentkey: 'setting',
     element: <PermissionManager />
   }
 ]
@@ -131,7 +132,7 @@ const whiteLists: RouteObject[] = [
   },
   {
     path: '/login',
-    element: <div>登录页面</div>
+    element: <Login />
   },
   {
     path: '*',
