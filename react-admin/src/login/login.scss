@@ -6,6 +6,10 @@
   .card {
     background-color: #fff;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
+  }
+  .submit {
+    display: flex;
+    justify-content: space-between;
   }
 }
