@@ -13,9 +13,7 @@ const App: React.FC = () => {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#fff' }}>
           <img src={logo} alt="" style={{ width: 50, height: 50 }} />
-          {!collapsed && (
-          <span style={{ fontSize: '40', fontWeight: 700 }}>React Admin</span>
-        )}
+          {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>React Admin</span>}
         </div>
         <Menus />
       </Sider>
@@ -27,7 +25,7 @@ const App: React.FC = () => {
           })}
           <Head />
         </Header>
-        <Content className="site-layout-background" style={{ margin: 20, minHeight: 280, backgroundColor: '#fff', borderRadius: '10px' }}>
+        <Content className="site-layout-background" style={{ margin: 20, padding: 20,minHeight: 280, backgroundColor: '#fff', borderRadius: '10px' }}>
           <Outlet />
         </Content>
       </Layout>

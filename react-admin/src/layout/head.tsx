@@ -1,6 +1,8 @@
+import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
+import './head.scss'
 export default function Head() {
   return (
-    <span style={{ "display": "flex", "justifyContent": "flex-end"}}>
+    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
       <Search />
       <Translate />
       <Theme />
@@ -11,27 +13,26 @@ export default function Head() {
   )
 }
 
-
 function Search() {
-  return "搜索"
+  return <SearchOutlined className='headeIcon'/>
 }
 
 function Translate() {
-  return '翻译'
+  return <TranslationOutlined className="headeIcon" />
 }
 
 function Theme() {
-  return '主题'
+  return <BgColorsOutlined className="headeIcon" />
 }
 
 function Notion() {
-  return '通知'
+  return <NotificationOutlined className="headeIcon" />
 }
 
 function Setting() {
-  return '设置'
+  return <SettingOutlined className="headeIcon" />
 }
 
 function User() {
-  return '用户'
+  return <UserOutlined className="headeIcon" />
 }

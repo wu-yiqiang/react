@@ -1,0 +1,28 @@
+.Search {
+  margin-bottom: 20px;
+  .form {
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      width: 33.3333%;
+      padding: 10px;
+    }
+    .hidden {
+      display:none;
+    }
+  }
+  .opts {
+    width: 100%;
+    @include hor-align;
+    button {
+      margin: 0 10px;
+    }
+  }
+  .fold {
+    margin-top: 2px;
+    @include hor-align;
+    .foldIcon {
+      cursor: pointer;
+    }
+  }
+}
