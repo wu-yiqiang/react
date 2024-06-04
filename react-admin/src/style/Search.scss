@@ -7,8 +7,19 @@
       width: 33.3333%;
       padding: 10px;
     }
-    .hidden {
-      display:none;
+    .searchFold {
+      display: inline-block;
+      max-height:0;
+      visibility: none;
+      transition-timing-function: ease;
+      overflow: hidden;
+      transition: 0.5s;
+    }
+    .searchUnfold {
+      max-height:800px;
+      transition-timing-function: ease;
+      overflow: hidden;
+      transition: 0.8s;
     }
   }
   .opts {

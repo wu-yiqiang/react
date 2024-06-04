@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Menus from './menu'
 import Head from './head'
-import logo from '@/assets/react.svg' 
+import logo from '@/assets/react.svg'
+import './index.scss'
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -18,16 +19,16 @@ const App: React.FC = () => {
         <Menus />
       </Sider>
       <Layout className="site-layout">
-        <Header className="site-layout-background" style={{ padding: '0 20px 0 0', background: '#fff', lineHeight: 0, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Header className="Header">
           {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
             onClick: () => setCollapsed(!collapsed)
           })}
           <Head />
         </Header>
-        <Content className="site-layout-background" style={{ margin: 20, padding: 20,minHeight: 280, backgroundColor: '#fff', borderRadius: '10px' }}>
+        <div className="Content">
           <Outlet />
-        </Content>
+        </div>
       </Layout>
     </Layout>
   )

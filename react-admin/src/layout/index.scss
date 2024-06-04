@@ -1,0 +1,17 @@
+
+.site-layout {
+  .Header {
+    padding: 0 20px 0 0;
+    background: #fff;
+    line-height: 0; 
+    height: $--topbar-height;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Content {
+    padding: 10px;
+      max-height: calc(100vh - $--topbar-height);
+      overflow-y: auto;
+    }
+}

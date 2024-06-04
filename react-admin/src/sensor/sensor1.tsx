@@ -18,11 +18,16 @@ const columns = [
     key: 'modified'
   }
 ]
+const items = [
+  { type: 'input', label: '项目名称' },
+  { type: 'input', label: '传感器名称' },
+  { type: 'input', label: '传感器名称2' }
+]
 export default function Sensor1() {
   
   return (
     <div className="sensor1">
-      <Search />
+      <Search fields={items} />
       <Tab columns={columns} />
     </div>
   )

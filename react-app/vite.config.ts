@@ -12,7 +12,7 @@ export default ({ mode }) => {
     resolve: {
       alias: {
         '@': pathResolve('/src/'),
-        components: pathResolve('src/components')
+        // components: pathResolve('/src/components/')
       }
     },
     css: {

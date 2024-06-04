@@ -19,9 +19,9 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         javascriptEnabled: true,
-        additionalData: `@import "${pathResolve('src/style/global.scss')}";`
+        additionalData: `@import "${pathResolve('src/style/mixin.scss')}";@import "${pathResolve('src/style/global.scss')}";`
       }
-    },
+    }
   },
   plugins: [react()],
   server: {

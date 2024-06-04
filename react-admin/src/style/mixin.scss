@@ -1,0 +1,13 @@
+// 垂直 水平居中
+@mixin hor-ver-align {
+  display: flex;
+  align-content: center;
+  justify-items: center;
+}
+
+// 水平居中
+@mixin hor-align {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
