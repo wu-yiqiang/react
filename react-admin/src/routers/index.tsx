@@ -6,10 +6,10 @@ import UserManager from '@/setting/user-manager'
 import Login from '@/login/index'
 import RoleManager from '@/setting/role-manager'
 import PermissionManager from '@/setting/permission-manager'
-import Sensor1 from '@/sensor/sensor1'
-import Sensor2 from '@/sensor/sensor2'
-import Draw1 from '@/draw/draw1'
-import Draw2 from '@/draw/draw2'
+import Apply from '@/collects/apply'
+import Truck from '@/waste/truck'
+import Driver from '@/waste/driver'
+import WasteType from '@/waste/waste-type'
 import Dashbord from '@/dashbord/index'
 import {AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined } from '@ant-design/icons'
 export let allRouters: Array<any> = [
@@ -22,52 +22,52 @@ export let allRouters: Array<any> = [
     element: <Dashbord />
   },
   {
-    path: '/sensor',
-    label: '传感器管理',
+    path: '/collect',
+    label: '申请单',
     icon: <SettingOutlined />,
-    key: 'sensor',
+    key: 'collect',
+    parentkey: '',
+    element: <Apply />
+  },
+  {
+    path: '/statistics',
+    label: '统计',
+    icon: <SettingOutlined />,
+    key: 'statistics',
     parentkey: '',
     element: null
   },
   {
-    path: '/sensor1',
-    label: '传感器1',
+    path: '/waste-type',
+    label: '垃圾类型',
     icon: <SettingOutlined />,
-    key: 'sensor1',
-    parentkey: 'sensor',
-    element: <Sensor1 />
-  },
-  {
-    path: '/sensor2',
-    label: '传感器2',
-    icon: <SettingOutlined />,
-    key: 'sensor2',
-    parentkey: 'sensor',
-    element: <Sensor2 />
-  },
-  {
-    path: '/draw',
-    label: '图纸管理',
-    icon: <SettingOutlined />,
-    key: 'draw',
-    parentkey: '',
+    key: 'waste-type',
+    parentkey: 'waste',
     element: null
   },
   {
-    path: '/draw1',
-    label: '图纸1',
+    path: '/waste',
+    label: '垃圾管理',
     icon: <SettingOutlined />,
-    key: 'draw1',
-    parentkey: 'draw',
-    element: <Draw1 />
+    key: 'waste',
+    parentkey: '',
+    element: <WasteType />
   },
   {
-    path: '/draw2',
-    label: '图纸2',
+    path: '/truck',
+    label: '卡车',
     icon: <SettingOutlined />,
-    key: 'draw2',
-    parentkey: 'draw',
-    element: <Draw2 />
+    key: 'truck',
+    parentkey: 'waste',
+    element: <Truck />
+  },
+  {
+    path: '/driver',
+    label: '司机',
+    icon: <SettingOutlined />,
+    key: 'driver',
+    parentkey: 'waste',
+    element: <Driver />
   },
   {
     path: '/setting',
