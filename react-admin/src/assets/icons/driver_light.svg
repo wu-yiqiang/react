@@ -1,0 +1,12 @@
+<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" fill-opacity="0.01" fill="white" d="m0,0l20,0l0,20l-20,0l0,-20z"/>
+  <path id="svg_2" stroke-linejoin="round" stroke="black" d="m17.4998,3.33301l-14.99996,0c-0.46024,0 -0.83334,0.37309 -0.83334,0.83333l0,11.66666c0,0.4602 0.3731,0.8333 0.83334,0.8333l14.99996,0c0.4603,0 0.8334,-0.3731 0.8334,-0.8333l0,-11.66666c0,-0.46024 -0.3731,-0.83333 -0.8334,-0.83333z"/>
+  <path id="svg_3" stroke-linejoin="round" stroke="black" d="m7.08317,10.4163c0.92046,0 1.66667,-0.74617 1.66667,-1.66663c0,-0.92045 -0.74621,-1.66666 -1.66667,-1.66666c-0.92046,0 -1.66667,0.74621 -1.66667,1.66666c0,0.92046 0.74621,1.66663 1.66667,1.66663z"/>
+  <path id="svg_4" stroke-linejoin="round" stroke-linecap="round" stroke="black" d="m9.58301,12.916c0,-1.3807 -1.11929,-2.5 -2.5,-2.5c-1.38071,0 -2.5,1.1193 -2.5,2.5"/>
+  <path id="svg_5" stroke-linejoin="round" stroke-linecap="round" stroke="black" d="m11.6665,8.33301l3.3333,0"/>
+  <path id="svg_6" stroke-linejoin="round" stroke-linecap="round" stroke="black" d="m12.5,11.666l2.5,0"/>
+ </g>
+</svg>

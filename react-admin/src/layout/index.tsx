@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Menus from './menu'
 import Head from './head'
-import logo from '@/assets/react.svg'
+import logo from '@/assets/images/logo.png'
 import './index.scss'
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
@@ -14,9 +14,10 @@ const App: React.FC = () => {
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#fff' }}>
           <img src={logo} alt="" style={{ width: 50, height: 50 }} />
-          {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>React Admin</span>}
+          {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>BLMS</span>}
         </div>
         <Menus />
+
       </Sider>
       <Layout className="site-layout">
         <Header className="Header">
