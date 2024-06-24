@@ -11,7 +11,7 @@ import Truck from '@/waste/truck'
 import Driver from '@/waste/driver'
 import WasteType from '@/waste/waste-type'
 import Dashbord from '@/dashbord/index'
-import {AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
 export let allRouters: Array<any> = [
   {
     path: '/dashbord',
@@ -24,7 +24,7 @@ export let allRouters: Array<any> = [
   {
     path: '/collect',
     label: '申请单',
-    icon: <SettingOutlined />,
+    icon: <PrinterOutlined />,
     key: 'collect',
     parentkey: '',
     element: <Apply />
@@ -32,7 +32,7 @@ export let allRouters: Array<any> = [
   {
     path: '/statistics',
     label: '统计',
-    icon: <SettingOutlined />,
+    icon: <PieChartOutlined />,
     key: 'statistics',
     parentkey: '',
     element: null
@@ -40,7 +40,7 @@ export let allRouters: Array<any> = [
   {
     path: '/waste-type',
     label: '垃圾类型',
-    icon: <SettingOutlined />,
+    icon: <FileOutlined />,
     key: 'waste-type',
     parentkey: 'waste',
     element: null
@@ -48,7 +48,7 @@ export let allRouters: Array<any> = [
   {
     path: '/waste',
     label: '垃圾管理',
-    icon: <SettingOutlined />,
+    icon: <HeatMapOutlined />,
     key: 'waste',
     parentkey: '',
     element: <WasteType />
@@ -56,7 +56,7 @@ export let allRouters: Array<any> = [
   {
     path: '/truck',
     label: '卡车',
-    icon: <SettingOutlined />,
+    icon: <CarOutlined />,
     key: 'truck',
     parentkey: 'waste',
     element: <Truck />
@@ -64,7 +64,7 @@ export let allRouters: Array<any> = [
   {
     path: '/driver',
     label: '司机',
-    icon: <SettingOutlined />,
+    icon: <VerifiedOutlined />,
     key: 'driver',
     parentkey: 'waste',
     element: <Driver />
