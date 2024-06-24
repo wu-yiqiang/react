@@ -1,10 +1,14 @@
 import { login } from '@/api/user'
 import { Button, Form, Input } from 'antd'
+import { useNavigate } from 'react-router-dom'
 import './login.scss'
 function Login() {
-  const onFinish = async (values: any) => {
-    const {token}  = await login(values)
-    localStorage.set('token', token)
+  let navgite = useNavigate()
+  const onFinish = (value: any) => {
+    // const { token } = await login(values)
+    // localStorage.set('token', token)
+    navgite('/dashbord')
+    
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -22,11 +26,11 @@ function Login() {
             <Input.Password />
           </Form.Item>
         </Form>
-        <div className='submit'>
+        <div className="submit">
           <Button type="primary" htmlType="submit">
             注册
           </Button>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" onClick={onFinish} htmlType="submit">
             登录
           </Button>
         </div>

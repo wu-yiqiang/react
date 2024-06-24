@@ -9,8 +9,9 @@ import PermissionManager from '@/setting/permission-manager'
 import Apply from '@/collects/apply'
 import Truck from '@/waste/truck'
 import Driver from '@/waste/driver'
-import WasteType from '@/waste/waste-type'
+import WasteType from '@/waste/waste-type/index'
 import Dashbord from '@/dashbord/index'
+import Report from '@/report/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
 export let allRouters: Array<any> = [
   {
@@ -35,7 +36,7 @@ export let allRouters: Array<any> = [
     icon: <PieChartOutlined />,
     key: 'statistics',
     parentkey: '',
-    element: null
+    element: <Report />
   },
   {
     path: '/waste-type',
@@ -43,7 +44,7 @@ export let allRouters: Array<any> = [
     icon: <FileOutlined />,
     key: 'waste-type',
     parentkey: 'waste',
-    element: null
+    element: <WasteType />
   },
   {
     path: '/waste',
