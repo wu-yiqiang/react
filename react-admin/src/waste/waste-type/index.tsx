@@ -1,3 +1,5 @@
+import Tab from '@/components/Tab.tsx';
+
 export default function WasteType() {
-  return 'waste-type'
+  return <Tab />
 }
