@@ -1,39 +1,32 @@
-.Search {
-  margin-bottom: 20px;
-  .form {
-    display: flex;
-    flex-wrap: wrap;
-    .item {
-      width: 33.3333%;
-      padding: 10px;
-    }
-    .searchFold {
-      display: inline-block;
-      max-height:0;
-      visibility: none;
-      transition-timing-function: ease;
-      overflow: hidden;
-      transition: 0.5s;
-    }
-    .searchUnfold {
-      max-height:800px;
-      transition-timing-function: ease;
-      overflow: hidden;
-      transition: 0.8s;
-    }
-  }
-  .opts {
-    width: 100%;
-    @include hor-align;
-    button {
-      margin: 0 10px;
-    }
-  }
-  .fold {
-    margin-top: 2px;
-    @include hor-align;
-    .foldIcon {
-      cursor: pointer;
-    }
-  }
+.ant-form {
+  display: flex;
+  width: 100%;
+  column-gap: 20px;
+  row-gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(var(--numbers), 1fr);
+  margin-bottom: 10px;
+}
+
+.fold {
+  height: auto;
+}
+
+.unfold {
+  height: 0;
+  overflow: hidden;
+}
+
+.inline-opts {
+  display: flex;
+  column-gap: 10px;
+}
+
+.opts {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 10px;
+  margin: 10px 0;
 }

@@ -13,7 +13,7 @@ import WasteType from '@/waste/waste-type/index'
 import Dashbord from '@/dashbord/index'
 import Report from '@/report/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
-export let allRouters: Array<any> = [
+export const allRouters: Array<any> = [
   {
     path: '/dashbord',
     key: 'dashbord',
@@ -103,7 +103,6 @@ export let allRouters: Array<any> = [
     element: <PermissionManager />
   }
 ]
-let router = []
 const rootLoader = async () => {
   const { permissionRouters, name, age, code } = await getUserInfo()
   if (code == 401) {

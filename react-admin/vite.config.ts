@@ -11,7 +11,7 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '@': pathResolve('/src/')
+      '@': pathResolve('src/')
       // components: pathResolve('src/components')
     }
   },
@@ -19,7 +19,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         javascriptEnabled: true,
-        additionalData: `@import "${pathResolve('src/style/mixin.scss')}";@import "${pathResolve('src/style/global.scss')}";`
+        additionalData: `@import "@/style/mixin.scss";@import "@/style/global.scss";`
       }
     }
   },
