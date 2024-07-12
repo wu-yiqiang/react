@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx';
-
+import { getWasteTypeLists } from '@/api/setting';
 export default function WasteType() {
   const dataSource = [
     {
@@ -15,85 +15,85 @@ export default function WasteType() {
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '3',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '4',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '5',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '6',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '7',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '8',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '9',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '10',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '11',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '12',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '13',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '14',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '15',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
     },
     {
-      key: '2',
+      key: '16',
       name: '胡彦祖',
       age: 42,
       address: '西湖区湖底公园1号'
@@ -116,115 +116,53 @@ export default function WasteType() {
     key: 'address',
   },
   ];
-  const searchOptions = [{
-    prop: "conditionType",
-    label: "垃圾类型",
-      type: "select",
-      default: 0,
-      attrs: {
-          placeholder: '请选择'
-      },
-      opts: [
-          { value: 0, label: "#SR" },
-          { value: 1, label: '垃圾类型' },
-          { value: 2, label: '垃圾位置' },
-          { value: 3, label: '处理位置' },
-          { value: 4, label: '处理方法' },
-      ],
-  },
-  {
-      prop: "keyword",
-      label: "查找1",
-      type: "input",
-      default: "",
-      attrs: {
-          placeholder: '快速查找'
-      },
-    },
-    {
-      prop: "keyword2",
-      label: "查找2",
-      type: "input",
-      default: "",
-      attrs: {
-          placeholder: '快速查找'
-      },
-    },
-    {
-      prop: "keyword3",
-      label: "查找3",
-      type: "input",
-      default: "",
-      attrs: {
-          placeholder: '快速查找'
-      },
-    },
-      {
-      prop: "keyword4",
-      label: "查找4",
-      type: "input",
-      default: "sss",
-      attrs: {
-          placeholder: '快速查找'
-      },
-    },
-    //   {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-    //    {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-    //    {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-    //    {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-    //    {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-    //    {
-    //   prop: "keyword",
-    //   label: "查找",
-    //   type: "input",
-    //   default: "",
-    //   attrs: {
-    //       placeholder: '快速查找'
-    //   },
-    // },
-  ]
-  const handleSearch = (data:object) => {
-    console.log('sdsds萨达', data)
+   const searchOptions = [
+      {name: 'keyword', label: '搜索', rules: [{ required: true, message: '请输入用户名' }]},
+      // {name: 'password', label: '密码', type: 'password', rules: [{ required: true, message: '请输入密码' }]},
+      // {name: 'confirmPwd', label: '确认密码', type: 'password', rules: [
+      //   { required: true, message: '请再一次输入密码' },
+      //   ({ getFieldValue }) => ({
+      //     validator(rule, value) {
+      //       //如果value为空，!value为true则直接返回Promise.resolve()就会提示“请再一次输入密码”
+      //       if (!value || getFieldValue('password') === value) {
+      //         return Promise.resolve();
+      //       }
+      //       return Promise.reject('两次密码输入不一致');
+      //     },
+      //   }),
+      // ]},
+      // {name: 'email', label: '邮箱', rules: [
+      //   { required: true, message: '请输入邮箱' },
+      //   {
+      //     validator:(_, value) => {
+      //       const reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+      //       if(!value || reg.test(value)){
+      //         return Promise.resolve();
+      //       }
+  
+      //       return Promise.reject('邮箱格式不正确');
+      //     }
+      //   }
+      // ]},
+      // {name: 'gender', label: '性别', type: 'select', rules: [{ required: true, message: '请选择性别' }], list: [{value: 'male', label: '男'}, {value: 'female', label: '女'}], callback: res => onGenderChange(res)},
+      // {name: 'highHeeled', label: '高跟鞋', rules: [{ required: true, message: '请输入喜欢的高跟鞋' }]},
+      // {name: 'exercise', label: '运动', rules: [{ required: true, message: '请输入喜欢的运动' }]},
+      // {name: 'date', label: '日期', type: 'datePicker', rules: [{ required: true, message: '请输入日期' }]},
+    ]
+  const queryData = {
+    keyword: 'sadas',
+    type: 1,
   }
-  return <Tabular dataSource={dataSource} columns={columns} searchOptions={searchOptions} handleSearch={handleSearch} />
+  const pager = {
+    total: 500,
+    pageNo: 1,
+    pageSize: 30,
+  }
+  const handleSearch = async (values:object) => {
+    console.log('chauxn参数', values)
+    const params = {...values,...queryData }
+    const { data } = await getWasteTypeLists(params)
+    console.log('data', data)
+  }
+  return <Tabular dataSource={dataSource} total={pager.total} pageNo={pager.pageNo} pageSize={pager.pageSize} columns={columns} data={ queryData } searchOptions={searchOptions} handleSearch={handleSearch} />
 }

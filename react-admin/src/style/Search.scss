@@ -1,8 +1,7 @@
 .ant-form {
   display: flex;
   width: 100%;
-  column-gap: 20px;
-  row-gap: 12px;
+  gap: 12px;
   display: grid;
   grid-template-columns: repeat(var(--numbers), 1fr);
   margin-bottom: 10px;
@@ -19,7 +18,10 @@
 
 .inline-opts {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   column-gap: 10px;
+  width: 100%;
 }
 
 .opts {

@@ -29,16 +29,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 8090,
     proxy: {
-      // '/test': { // 测试地址
-      //   target: 'http://127.0.0.1:9999',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/test/, '')
-      // },
-      // '/production': { // 生产地址
-      //   target: 'http://127.0.0.1:9999',
-      //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/production/, '')
-      // },
+      "/prod-api": {
+        // target: `http://192.168.1.34:8081`,
+        // target: `http://192.168.110.101:8000`,
+        target: `http://192.168.1.15:8899`,
+        changeOrigin: true,
+        ws: true,
+        rewrite: (path) => path.replace(/^\/prod-api/, ""),
+      },
     },
     build: {
       // 静态资源处理

@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 import qs from 'qs'
 
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: '/',
+  baseURL: "/prod-api",
   timeout: 10000,
   // 数组格式参数序列化
   paramsSerializer: (params) => qs.stringify(params, { indices: false })
