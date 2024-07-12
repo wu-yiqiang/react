@@ -12,3 +12,5 @@ export const getContractorsLists = (params: any) => {
   const newUrl = `${url}?${urlParams}`
   return request.get(newUrl)
 }
+
+export const postContractor = (data: any) => request.post('/itf/lms/web/company', data)

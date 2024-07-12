@@ -8,8 +8,6 @@ export default function SearchForm(props: any) {
   const handleFold = () => {
     setFoldState(false)
   }
-  const initialValues = {
-  };
   const handleUnFold = () => {
     setFoldState(true)
   }

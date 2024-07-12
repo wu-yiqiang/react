@@ -1,9 +1,11 @@
 import Tabular from '@/components/Tabular.tsx';
-import { getContractorsLists } from '@/api/setting'
+import { getContractorsLists, postContractor } from '@/api/setting'
 import { useState } from 'react';
-import { Button } from 'antd'
+import AddDialog from './add-dialog';
+import { Button, message } from 'antd'
 export default function Contractor() {
   const [lists, setLists] = useState()
+  const [dialogOpen, setDialogOpen] = useState(false)
   const [pager, setPager] = useState(
     {
     total: 0,
@@ -72,5 +74,43 @@ export default function Contractor() {
     }
     setPager(datas)
   }
-  return <Tabular dataSource={lists} total={pager.total} pageNo={pager.pageNo} pageSize={pager.pageSize} columns={columns} data={queryData} searchOptions={searchOptions} handleSearch={handleSearch} left={<Button type="primary" onClick="handleNew">新增</Button>} right={<div>由边组件sss</div>}></Tabular>
+  const formState = {
+    companyName: '',
+    email: '',
+    type: 1
+  }
+  const handleNew = () => {
+    setDialogOpen(true)
+  }
+  const handleClose = () => {
+    setDialogOpen(false)
+  }
+  const handleOk = async (values:any) => {
+    console.log('asdsad')
+    const datas = {...values, type: 1}
+    await postContractor(datas)
+    message.success('操作成功')
+    setDialogOpen(false)
+  }
+  return (
+    <>
+      <Tabular
+        dataSource={lists}
+        total={pager.total}
+        pageNo={pager.pageNo}
+        pageSize={pager.pageSize}
+        columns={columns}
+        data={queryData}
+        searchOptions={searchOptions}
+        handleSearch={handleSearch}
+        left={
+          <Button type="primary" onClick={handleNew}>
+            新增
+          </Button>
+        }
+        right={<div>由边组件sss</div>}
+      ></Tabular>
+      <AddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} />
+    </>
+  )
 }
