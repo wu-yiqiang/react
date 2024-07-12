@@ -9,7 +9,7 @@ import PermissionManager from '@/setting/permission-manager'
 import Apply from '@/collects/apply'
 import Truck from '@/waste/truck'
 import Driver from '@/waste/driver'
-import WasteType from '@/waste/waste-type/index'
+import Contractor from '@/waste/Contractor/index'
 import Dashbord from '@/dashbord/index'
 import Report from '@/report/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
@@ -39,12 +39,12 @@ export const allRouters: Array<any> = [
     element: <Report />
   },
   {
-    path: '/waste-type',
+    path: '/contractor',
     label: '垃圾类型',
     icon: <FileOutlined />,
-    key: 'waste-type',
+    key: 'contractor',
     parentkey: 'waste',
-    element: <WasteType />
+    element: <Contractor />
   },
   {
     path: '/waste',
@@ -52,7 +52,7 @@ export const allRouters: Array<any> = [
     icon: <HeatMapOutlined />,
     key: 'waste',
     parentkey: '',
-    element: <WasteType />
+    element: <Contractor />
   },
   {
     path: '/truck',

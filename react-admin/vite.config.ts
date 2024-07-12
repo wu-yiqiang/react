@@ -29,14 +29,14 @@ export default defineConfig({
     host: '0.0.0.0',
     port: 8090,
     proxy: {
-      "/prod-api": {
+      '/prod-api': {
         // target: `http://192.168.1.34:8081`,
-        // target: `http://192.168.110.101:8000`,
-        target: `http://192.168.1.15:8899`,
+        target: `http://192.168.110.101:8899`,
+        // target: `http://192.168.1.15:8899`,
         changeOrigin: true,
         ws: true,
-        rewrite: (path) => path.replace(/^\/prod-api/, ""),
-      },
+        rewrite: (path) => path.replace(/^\/prod-api/, '')
+      }
     },
     build: {
       // 静态资源处理
