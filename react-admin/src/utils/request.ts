@@ -8,12 +8,12 @@ const defaultConfig: AxiosRequestConfig = {
   paramsSerializer: (params) => qs.stringify(params, { indices: false })
 }
 
-const instance: AxiosInstance = axios.create({
+const request: AxiosInstance = axios.create({
   ...defaultConfig
 })
 
 // 请求拦截器
-instance.interceptors.request.use(
+request.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -26,11 +26,11 @@ instance.interceptors.request.use(
 )
 
 // 响应拦截器
-instance.interceptors.response.use(
+request.interceptors.response.use(
   (response) => {
     return response.data
   },
   (error) => Promise.reject(error)
 )
 
-export default instance
+export default request

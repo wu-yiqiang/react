@@ -7,8 +7,8 @@ import Login from '@/login/index'
 import RoleManager from '@/setting/role-manager'
 import PermissionManager from '@/setting/permission-manager'
 import Apply from '@/collects/apply'
-import Truck from '@/waste/truck'
-import Driver from '@/waste/driver'
+import Truck from '@/waste/truck/index'
+import Driver from '@/waste/driver/index'
 import Contractor from '@/waste/Contractor/index'
 import Dashbord from '@/dashbord/index'
 import Report from '@/report/index'
@@ -40,7 +40,7 @@ export const allRouters: Array<any> = [
   },
   {
     path: '/contractor',
-    label: '垃圾类型',
+    label: '承包商',
     icon: <FileOutlined />,
     key: 'contractor',
     parentkey: 'waste',
