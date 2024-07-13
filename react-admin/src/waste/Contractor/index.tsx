@@ -86,7 +86,6 @@ export default function Contractor() {
     setDialogOpen(false)
   }
   const handleOk = async (values:any) => {
-    console.log('asdsad')
     const datas = {...values, type: 1}
     await postContractor(datas)
     message.success('操作成功')
