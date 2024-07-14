@@ -5,13 +5,11 @@ import '@/style/Search.scss'
 const FormItem = Form.Item, { Password } = Input, { Option } = Select, h = createElement;
 
 const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState = true, handleSearch }) => {
-    //通过Form.useForm对表单数据域进行交互。useForm是React Hooks的实现，只能用于函数组件
     const [foldState, setFoldState] = useState()
     const [form] = Form.useForm();
     useImperativeHandle(cRef, () => ({
         getForm: () => form,
     }));
-
 
     const handleFold = () => {
         setFoldState(false)

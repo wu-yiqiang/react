@@ -1,11 +1,12 @@
 import Tabular from '@/components/Tabular.tsx';
-import { getContractorsLists, postContractor } from '@/api/setting'
-import { useState } from 'react';
+import { getContractorsLists, deleteContractors } from '@/api/setting'
+import React, { useState, useEffect } from 'react';
 import AddDialog from './add-dialog';
 import { Button, message } from 'antd'
 export default function Contractor() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [target, setTarget] = useState({})
   const [pager, setPager] = useState(
     {
     total: 0,
@@ -15,7 +16,7 @@ export default function Contractor() {
   )
   const columns = [
     {
-      title: '姓名',
+      title: '承包商',
       dataIndex: 'companyName',
       key: 'companyName'
     },
@@ -23,10 +24,15 @@ export default function Contractor() {
       title: '邮箱',
       dataIndex: 'email',
       key: 'email'
-    }
+    },
+    {
+      title: '操作',
+      dataIndex: 'action',
+      key: 'action',
+    },
   ]
   const searchOptions = [
-    { name: 'keyword', label: '搜索', rules: [{ required: true, message: '请输入用户名' }] }
+    { name: 'keyword', label: '搜索' }
     // {name: 'password', label: '密码', type: 'password', rules: [{ required: true, message: '请输入密码' }]},
     // {name: 'confirmPwd', label: '确认密码', type: 'password', rules: [
     //   { required: true, message: '请再一次输入密码' },
@@ -58,13 +64,13 @@ export default function Contractor() {
     // {name: 'exercise', label: '运动', rules: [{ required: true, message: '请输入喜欢的运动' }]},
     // {name: 'date', label: '日期', type: 'datePicker', rules: [{ required: true, message: '请输入日期' }]},
   ]
+  const TableRef = React.createRef();
   const queryData = {
-    keyword: 'sadas',
-    type: 1
+    keyword: ''
   }
   
   const handleSearch = async (values: object) => {
-    const params = { ...values, ...queryData }
+    const params = { ...values,type: 1 }
     const { data } = await getContractorsLists(params)
     setLists(data.lists)
     const datas = {
@@ -74,26 +80,41 @@ export default function Contractor() {
     }
     setPager(datas)
   }
-  const formState = {
-    companyName: '',
-    email: '',
-    type: 1
-  }
   const handleNew = () => {
+    setTarget({})
     setDialogOpen(true)
   }
   const handleClose = () => {
     setDialogOpen(false)
   }
-  const handleOk = async (values:any) => {
-    const datas = {...values, type: 1}
-    await postContractor(datas)
-    message.success('操作成功')
-    setDialogOpen(false)
+  const handleEdit = (value: any) => {
+    setTarget(value)
+    setDialogOpen(true)
   }
+  const handleDelete = async (values: any) => {
+    const { uuid } = values
+    await deleteContractors(uuid)
+    message.destroy()
+    message.success('操作成功')
+    handleFlush()
+  }
+
+  
+  const handleOk = () => {
+    setDialogOpen(false)
+    handleFlush()
+  }
+  const handleFlush = () => {
+    TableRef.current.flush()
+  }
+  useEffect(() => {
+    handleFlush()
+  }, [])
+  
   return (
     <>
       <Tabular
+        onRef={TableRef}
         dataSource={lists}
         total={pager.total}
         pageNo={pager.pageNo}
@@ -102,14 +123,15 @@ export default function Contractor() {
         data={queryData}
         searchOptions={searchOptions}
         handleSearch={handleSearch}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
         left={
           <Button type="primary" onClick={handleNew}>
             新增
           </Button>
         }
-        right={<div>由边组件sss</div>}
       ></Tabular>
-      <AddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} />
+      {dialogOpen ? <AddDialog open={dialogOpen} target={ target } handleClose={handleClose} handleOk={handleOk}  /> :null}
     </>
   )
 }

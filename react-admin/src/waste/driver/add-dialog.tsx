@@ -22,10 +22,13 @@ export default function AddDialog(props: any) {
   return (
     <Modal title="Basic Modal" destroyOnClose open={open} onOk={submit} onCancel={close}>
       <Form id="form" form={form} layout="inline" onFinish={submitQuery}>
-        <Form.Item label="公司名" name="companyName">
+        <Form.Item label="司机名" name="companyName">
           <Input />
         </Form.Item>
-        <Form.Item label="公司名2" name="email">
+        <Form.Item label="性别" name="gender">
+          <Input />
+        </Form.Item>
+        <Form.Item label="承包商" name="email">
           <Input />
         </Form.Item>
       </Form>

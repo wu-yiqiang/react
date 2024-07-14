@@ -13,18 +13,23 @@ export default function Driver() {
   })
   const columns = [
     {
-      title: '姓名',
+      title: '司机',
       dataIndex: 'companyName',
       key: 'companyName'
     },
+     {
+      title: '性别',
+      dataIndex: 'gender',
+      key: 'gender'
+    },
     {
-      title: '邮箱',
+      title: '承包商',
       dataIndex: 'email',
       key: 'email'
     }
   ]
   const searchOptions = [
-    { name: 'keyword', label: '搜索', rules: [{ required: true, message: '请输入用户名' }] }
+    { name: 'keyword', label: '搜索' }
     // {name: 'password', label: '密码', type: 'password', rules: [{ required: true, message: '请输入密码' }]},
     // {name: 'confirmPwd', label: '确认密码', type: 'password', rules: [
     //   { required: true, message: '请再一次输入密码' },
@@ -57,8 +62,7 @@ export default function Driver() {
     // {name: 'date', label: '日期', type: 'datePicker', rules: [{ required: true, message: '请输入日期' }]},
   ]
   const queryData = {
-    keyword: 'sadas',
-    type: 1
+    keyword: '',
   }
 
   const handleSearch = async (values: object) => {

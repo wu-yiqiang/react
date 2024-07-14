@@ -18,6 +18,21 @@ export const postContractor = (data: any) => {
   })
 }
 
+
+export const getContractorsDetail = (uuid: any) => {
+  return request({
+    url: `/itf/lms/web/company/uuid/${uuid}`,
+    method: 'get',
+  })
+}
+
+export const deleteContractors = (uuid: any) => {
+  return request({
+    url: `/itf/lms/web/company/uuid/${uuid}`,
+    method: 'delete',
+  })
+}
+
 export const getTruckLists = (params: any) => {
   return request({
     url: '/itf/lms/web/disposalTruck/page',

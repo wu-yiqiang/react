@@ -24,7 +24,7 @@ export default function Truck() {
     }
   ]
   const searchOptions = [
-    { name: 'keyword', label: '搜索', rules: [{ required: true, message: '请输入用户名' }] }
+    { name: 'keyword', label: '搜索' }
     // {name: 'password', label: '密码', type: 'password', rules: [{ required: true, message: '请输入密码' }]},
     // {name: 'confirmPwd', label: '确认密码', type: 'password', rules: [
     //   { required: true, message: '请再一次输入密码' },
@@ -57,7 +57,7 @@ export default function Truck() {
     // {name: 'date', label: '日期', type: 'datePicker', rules: [{ required: true, message: '请输入日期' }]},
   ]
   const queryData = {
-    keyword: 'sadas',
+    keyword: '',
   }
 
   const handleSearch = async (values: object) => {
