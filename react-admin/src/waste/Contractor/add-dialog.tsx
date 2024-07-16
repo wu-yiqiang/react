@@ -38,20 +38,25 @@ export default function AddDialog(props: any) {
   const fetchData = async (target: any) => {
     const { data } = await getContractorsDetail(target.uuid)
     setFormStates(data ?? {})
+    return data
+    console.log('yyyyy',formStates)
   }
-  useEffect(() => {
+  const init = async () => {
     if (isEmpty(target)) {
-      setFormStates(new Contractor())
-      setTitle('新增')
+      form.setFieldsValue(new Contractor())
+      await setTitle('新增')
     }
     if (!isEmpty(target)) {
-      fetchData(target)
-      setTitle('编辑')
+      const data = await fetchData(target)
+      await setTitle('编辑')
+      form.setFieldsValue(data)
     }
-    form.setFieldsValue(formStates)
+  }
+  useEffect(() => {
+    init()
   }, [target])
   return (
-    <Modal title={title} centered forceRender maskClosable={ false} destroyOnClose open={open} onOk={submit} onCancel={close}>
+    <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Form id="form" form={form} layout="inline">
         <Form.Item label="承包商" name="companyName" rules={companyRules}>
           <Input />
