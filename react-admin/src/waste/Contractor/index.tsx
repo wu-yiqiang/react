@@ -66,7 +66,7 @@ export default function Contractor() {
   ]
   const TableRef = React.createRef();
   const queryData = {
-    keyword: ''
+    keyword: '1212'
   }
   
   const handleSearch = async (values: object) => {

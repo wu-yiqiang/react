@@ -37,8 +37,7 @@ export default function Tabular(props: any) {
   }
 
   const handleFlush = () => {
-    const data = SearchFormRef.current.getForm()
-    handleForm(data)
+    SearchFormRef.current.init()
   }
 
   const init = () => {
