@@ -1,12 +1,16 @@
 import Tabular from '@/components/Tabular.tsx';
 import { getContractorsLists, deleteContractors } from '@/api/setting'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import AddDialog from './add-dialog';
 import { Button, message } from 'antd'
 export default function Contractor() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [target, setTarget] = useState({})
+  const TableRef = useRef(null)
+  const queryData = {
+    keyword: ''
+  }
   const [pager, setPager] = useState(
     {
     total: 0,
@@ -63,12 +67,7 @@ export default function Contractor() {
     // {name: 'highHeeled', label: '高跟鞋', rules: [{ required: true, message: '请输入喜欢的高跟鞋' }]},
     // {name: 'exercise', label: '运动', rules: [{ required: true, message: '请输入喜欢的运动' }]},
     // {name: 'date', label: '日期', type: 'datePicker', rules: [{ required: true, message: '请输入日期' }]},
-  ]
-  const TableRef = React.createRef();
-  const queryData = {
-    keyword: '1212'
-  }
-  
+  ] 
   const handleSearch = async (values: object) => {
     const params = { ...values,type: 1 }
     const { data } = await getContractorsLists(params)
@@ -91,12 +90,17 @@ export default function Contractor() {
     setTarget(value)
     setDialogOpen(true)
   }
+
+  const handleFlush = async () => {
+    console.log('ssssss', TableRef)
+    await TableRef.current.flush()
+  }
   const handleDelete = async (values: any) => {
     const { uuid } = values
     await deleteContractors(uuid)
     message.destroy()
     message.success('操作成功')
-    handleFlush()
+    if (TableRef?.current) handleFlush()
   }
 
   
@@ -104,9 +108,7 @@ export default function Contractor() {
     setDialogOpen(false)
     handleFlush()
   }
-  const handleFlush = () => {
-    TableRef.current.flush()
-  }
+  
   useEffect(() => {
     handleFlush()
   }, [])

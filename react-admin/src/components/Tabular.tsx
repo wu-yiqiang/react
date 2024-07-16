@@ -14,7 +14,7 @@ export default function Tabular(props: any) {
   const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, left = null, right = null, defaultFoldState,total ,pageSize = 10, pageNo = 1, handleEdit, handleDelete  } = props
   const [columnLists, setColumnLists] = useState([])
   const [searchParams, setSearchparams] = useState({})
-  const SearchFormRef = useRef();
+  const SearchFormRef = useRef(null);
   const actionSlot = [
     {
     title: '操作',
@@ -36,8 +36,8 @@ export default function Tabular(props: any) {
     handleSearch({ pageSize: pageSize, pageNo: pageNo, ...values })
   }
 
-  const handleFlush = () => {
-    SearchFormRef.current.init()
+  const handleFlush = async () => {
+    if (SearchFormRef?.current) await SearchFormRef.current.init()
   }
 
   const init = () => {
