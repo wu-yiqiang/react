@@ -9,7 +9,7 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
     const [form] = Form.useForm();
     useImperativeHandle(cRef, () => ({
         getForm: () => form,
-        getParams: getParams(),
+        // getParams: getParams(),
         init: onFinish
     }));
 
@@ -22,19 +22,14 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
 
     const onFinish = async (values: any) => {
         const data = await form.getFieldsValue()
+        console.log('sadasdsa', data)
         handleSearch(data)
     };
 
     const onReset = () => {
         form.resetFields();
     };
-    const getParams = () => {
-        const data = form.getFieldsValue()
-        console.log('sssss', new Date().getTime())
-        return data
-    }
     useEffect(() => {
-        console.log('sadasd', new Date().getTime())
         setFoldState(defaultFoldState)
         form.setFieldsValue(data)
     }, [])

@@ -13,7 +13,7 @@ export default function Tabular(props: any) {
   });
   const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, left = null, right = null, defaultFoldState,total ,pageSize = 10, pageNo = 1, handleEdit, handleDelete  } = props
   const [columnLists, setColumnLists] = useState([])
-  const [searchParams, setSearchparams] = useState([])
+  const [searchParams, setSearchparams] = useState({})
   const SearchFormRef = useRef();
   const actionSlot = [
     {
@@ -33,7 +33,7 @@ export default function Tabular(props: any) {
   }
   const handleForm = (values: any) => {
     setSearchparams(values)
-    handleSearch({ pageSize: pageSize, pageNo: pageNo, ...searchParams })
+    handleSearch({ pageSize: pageSize, pageNo: pageNo, ...values })
   }
 
   const handleFlush = () => {
