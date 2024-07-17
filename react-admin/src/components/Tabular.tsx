@@ -6,12 +6,7 @@ import SearchForm from './SearchForm'
 import '@/style/Tabular.scss'
 
 export default function Tabular(props: any) {
-  useImperativeHandle(props.onRef, () => {
-    return {
-      flush: handleFlush,
-    };
-  });
-  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, left = null, right = null, defaultFoldState,total ,pageSize = 10, pageNo = 1, handleEdit, handleDelete  } = props
+  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef,left = null, right = null, defaultFoldState,total ,pageSize = 10, pageNo = 1, handleEdit, handleDelete  } = props
   const [columnLists, setColumnLists] = useState([])
   const [searchParams, setSearchparams] = useState({})
   const SearchFormRef = useRef(null);
@@ -25,8 +20,13 @@ export default function Tabular(props: any) {
         <Button type="text" size="middle" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
       </Space>
     ),
-  }
+    }
   ]
+  useImperativeHandle(onRef, () => {
+    return {
+      flush: handleFlush,
+    };
+  });
 
   const handlePager = (page: number, pageSize: number) => {
     handleSearch({ pageSize, pageNo: page, ...searchParams })
@@ -43,7 +43,7 @@ export default function Tabular(props: any) {
   const init = () => {
     columns.forEach(column => {
       if (column.key == 'action') {
-        setColumnLists((current) => [...current, ...actionSlot,])
+        setColumnLists((current) => [...current, ...actionSlot])
       } else {
         setColumnLists((current) => [...current, column])
       }
@@ -59,7 +59,7 @@ export default function Tabular(props: any) {
         <div className="opts-left">{props?.left}</div>
         <div className="opts-right">{props?.right}</div>
       </section>
-      <Table columns={columnLists} dataSource={dataSource} pagination={false} />
+      <Table columns={columnLists} rowKey='uuid' dataSource={dataSource} pagination={false} />
       { total > 0 ? <Pagination showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} /> : null}
     </>
   )

@@ -22,7 +22,6 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
 
     const onFinish = async (values: any) => {
         const data = await form.getFieldsValue()
-        console.log('sadasdsa', data)
         handleSearch(data)
     };
 

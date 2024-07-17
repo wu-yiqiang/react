@@ -19,10 +19,17 @@ export const postContractor = (data: any) => {
 }
 
 
-export const getContractorsDetail = (uuid: any) => {
+export const getContractorDetail = (uuid: any) => {
   return request({
     url: `/itf/lms/web/company/uuid/${uuid}`,
     method: 'get',
+  })
+}
+export const putContractor = (uuid: string, data: object) => {
+  return request({
+    url: `/itf/lms/web/company/uuid/${uuid}`,
+    method: 'put',
+    data
   })
 }
 

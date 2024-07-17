@@ -92,7 +92,6 @@ export default function Contractor() {
   }
 
   const handleFlush = async () => {
-    console.log('ssssss', TableRef)
     await TableRef.current.flush()
   }
   const handleDelete = async (values: any) => {

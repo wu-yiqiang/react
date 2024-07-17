@@ -1,6 +1,6 @@
 import { Form, Input,Modal } from 'antd'
 import { useEffect, useState } from 'react'
-import { postContractor, getContractorsDetail } from '@/api/setting'
+import { postContractor, getContractorDetail, putContractor } from '@/api/setting'
 import {isEmpty} from 'lodash-es'
 import { message } from 'antd'
 class Contractor {
@@ -15,7 +15,7 @@ class Contractor {
 }
 export default function AddDialog(props: any) {
   const { open, handleClose, target, handleOk } = props
-  const [formStates, setFormStates] = useState(new Contractor())
+  const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [form] = Form.useForm()
   const emailRules = [{ required: true, message: '请输入' }, {type: 'email', message: '请输入合法的邮箱'}]
@@ -28,25 +28,26 @@ export default function AddDialog(props: any) {
     const value = await form.validateFields();
     if (value) {
       const values = form.getFieldsValue()
-      const datas = {...values, type: 1}
-      await postContractor(datas)
+      const datas = { ...values, type: 1 }
+      if (!editStatus) await postContractor(datas)
+      if (editStatus) await putContractor(target.uuid,datas)
       message.destroy()
       message.success('操作成功')
       handleOk(values)
     }
   }
   const fetchData = async (target: any) => {
-    const { data } = await getContractorsDetail(target.uuid)
-    setFormStates(data ?? {})
+    const { data } = await getContractorDetail(target.uuid)
     return data
-    console.log('yyyyy',formStates)
   }
   const init = async () => {
     if (isEmpty(target)) {
+      setEditStatus(false)
       form.setFieldsValue(new Contractor())
       await setTitle('新增')
     }
     if (!isEmpty(target)) {
+      setEditStatus(true)
       const data = await fetchData(target)
       await setTitle('编辑')
       form.setFieldsValue(data)
