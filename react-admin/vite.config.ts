@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import svgLoader from 'vite-svg-loader'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import basicSsl from '@vitejs/plugin-basic-ssl'
 import { resolve } from 'path'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
@@ -23,11 +24,12 @@ export default defineConfig({
       }
     }
   },
-  plugins: [react()],
+  plugins: [basicSsl(), react()],
   server: {
     hmr: true,
     host: '0.0.0.0',
     port: 8090,
+    https: true,
     proxy: {
       '/prod-api': {
         // target: `http://192.168.1.34:8081`,

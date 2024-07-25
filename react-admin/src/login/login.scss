@@ -4,7 +4,7 @@
   background-image: url('../assets/images/background-image.png');
   background-position: center center;
   .logo-box {
-    padding: 20px 50px 150px 50px;
+    padding: 20px 50px 100px 50px;
     img {
       width: 187px;
     }
@@ -28,7 +28,6 @@
     }
     .right-box {
       .card {
-          width: 420px;
           background-color: #fff;
           border-radius: 10px;
           padding: 30px;
@@ -39,11 +38,22 @@
             place-content: center;
             margin-bottom: 20px;
           }
-          .ant-form-item {
-            .ant-row {
-              width: 100%;
-            }
+          .content-box {
+            width: 400px;
+            height: 200px;
+            .LoginFace {
+                width: 100%;
+                display: grid;
+                place-content: center;
+              }
+            
+              .ant-form-item {
+                .ant-row {
+                  width: 100%;
+                }
+              }
           }
+          
           .opts-box {
             width: 100%;
             margin-top: 10px;
@@ -52,6 +62,7 @@
             .content {
               .item-left {
                   text-align: right;
+                  cursor: pointer;
                 }
               
                 .opts-devide {
@@ -60,6 +71,7 @@
               
                 .item-right {
                   text-align: left;
+                  cursor: pointer;
                 }
             }
             
