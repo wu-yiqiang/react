@@ -1,15 +1,76 @@
 .Login {
   width: 100vw;
   height: 100vh;
-  display: grid;
-  place-items: center;
-  .card {
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
+  background-image: url('../assets/images/background-image.png');
+  background-position: center center;
+  .logo-box {
+    padding: 20px 50px 150px 50px;
+    img {
+      width: 187px;
+    }
   }
-  .submit {
+  .bottom-box {
+    padding: 0 10% 0 14%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    .left-box {
+      .first-title {
+        font-size: 120px;
+        font-weight: 700;
+        color: rgba(255, 122, 0, 1);
+      }
+      .second-title {
+        font-size: 34px;
+        font-weight: 500;
+        color: rgb(174, 173, 173);
+      }
+    }
+    .right-box {
+      .card {
+          width: 420px;
+          background-color: #fff;
+          border-radius: 10px;
+          padding: 30px;
+          .title {
+            font-size: 34px;
+            font-weight: 700;
+            display: grid;
+            place-content: center;
+            margin-bottom: 20px;
+          }
+          .ant-form-item {
+            .ant-row {
+              width: 100%;
+            }
+          }
+          .opts-box {
+            width: 100%;
+            margin-top: 10px;
+            display: grid;
+            place-content: center;
+            .content {
+              .item-left {
+                  text-align: right;
+                }
+              
+                .opts-devide {
+                  margin: 0 10px;
+                }
+              
+                .item-right {
+                  text-align: left;
+                }
+            }
+            
+          }
+        }
+      
+        .submit {
+          display: flex;
+          justify-content: space-between;
+        }
+    }
   }
+ 
 }
