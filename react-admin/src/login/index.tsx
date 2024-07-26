@@ -31,7 +31,6 @@ function Login() {
           <div className="card">
             <div className="title">Login In</div>
             <div className="content-box">{loginType == 1 ? <LoginPassword /> : <LoginFace />}</div>
-            <Divider>Or</Divider>
             {loginType == 1 ? (
               <Button type="primary" block onClick={() => handleLoginType(2)}>
                 人脸登陆

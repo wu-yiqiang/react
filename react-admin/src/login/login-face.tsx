@@ -10,14 +10,13 @@ function LoginFace() {
       const constraints = {
         video: {
           width: 400,
-          height: 240,
+          height: 190,
           facingMode: 'environment'
         }
       }
       const video = document.querySelector('#video')
       const videoStream = await navigator.mediaDevices.getUserMedia(constraints)
       video.srcObject = videoStream
-      console.log('sad')
     }
   }
   useEffect(() => {

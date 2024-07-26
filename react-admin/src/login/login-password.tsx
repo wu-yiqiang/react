@@ -26,6 +26,7 @@ function LoginPassword() {
           登录
         </Button>
       </div>
+      <Divider>Or</Divider>
     </div>
   )
 }
