@@ -1,49 +1,101 @@
-
+import Tabular from '@/components/Tabular.tsx'
+import { getTruckLists, postContractor } from '@/api/setting'
+import { useState } from 'react'
+import AddDialog from './add-dialog'
 import './user-manager.scss'
+import { Button, message } from 'antd'
 export default function UserManager() {
+  const [lists, setLists] = useState()
+  const [dialogOpen, setDialogOpen] = useState(false)
+  const [pager, setPager] = useState({
+    total: 0,
+    pageNo: 1,
+    pageSize: 10
+  })
+  const columns = [
+    {
+      title: '姓名',
+      dataIndex: 'displayName',
+      key: 'displayName'
+    },
+    {
+      title: '邮箱',
+      dataIndex: 'email',
+      key: 'email'
+    },
+    {
+      title: '性别',
+      dataIndex: 'gender',
+      key: 'gender'
+    },
+    {
+      title: '照片',
+      dataIndex: 'picture',
+      key: 'picture'
+    },
+    {
+      title: '操作',
+      dataIndex: 'action',
+      key: 'action',
+    },
+  ]
+  const searchOptions = [
+    { name: 'gender', label: '性别', type: 'select', rules: [{ required: true, message: '请选择性别' }], list: [{value: 'male', label: '男'}, {value: 'female', label: '女'}], callback: res => onGenderChange(res)},
+    { name: 'keyword', label: '搜索' },
+  ]
+  const queryData = {
+    keyword: '',
+    gender: 'male'
+  }
+
+  const handleSearch = async (values: object) => {
+    const params = { ...values, ...queryData }
+    const { data } = await getTruckLists(params)
+    setLists(data.lists)
+    const datas = {
+      pageSize: data.pageSize,
+      total: data.total,
+      pageNo: data.pageNo
+    }
+    setPager(datas)
+  }
+  const formState = {
+    companyName: '',
+    email: '',
+    type: 1
+  }
+  const handleNew = () => {
+    setDialogOpen(true)
+  }
+  
+  const handleClose = () => {
+    setDialogOpen(false)
+  }
+
+  const handleOk = async (values: any) => {
+    const datas = { ...values, type: 1 }
+    await postContractor(datas)
+    message.success('操作成功')
+    setDialogOpen(false)
+  }
   return (
-    <div className="UserManager">
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"用户灌流"</div>
-      <div>"asda1"</div>
-    </div>
+    <>
+      <Tabular
+        dataSource={lists}
+        total={pager.total}
+        pageNo={pager.pageNo}
+        pageSize={pager.pageSize}
+        columns={columns}
+        data={queryData}
+        searchOptions={searchOptions}
+        handleSearch={handleSearch}
+        left={
+          <Button type="primary" onClick={handleNew}>
+            新增
+          </Button>
+        }
+      ></Tabular>
+      {/* <AddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} /> */}
+    </>
   )
 }

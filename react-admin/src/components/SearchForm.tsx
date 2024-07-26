@@ -54,7 +54,7 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
                 {columns.length < defaultFoldNum ? (
           <FormItem>
             <section className="inline-opts">
-              <Button type="primary" htmlType="submit">提交</Button>
+              <Button type="primary" htmlType="submit">查询</Button>
               <Button htmlType="button" onClick={onReset}>重置</Button>
             </section>
           </FormItem>
@@ -62,7 +62,7 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
             </Form>
             {columns.length >= defaultFoldNum ? (
                 <section className="opts">
-                        <Button type="primary" form="form" htmlType="submit">提交</Button>
+                        <Button type="primary" form="form" htmlType="submit">查询</Button>
                     <Button htmlType="button" onClick={onReset}>重置</Button>
                     {columns.length <= defaultFoldNum ? null : foldState ? <Button onClick={handleFold}>展开</Button> : <Button onClick={handleUnFold}>折叠</Button>}
                      </section>
