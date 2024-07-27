@@ -1,7 +1,7 @@
 import Tabular from '@/components/Tabular.tsx'
 import { getTruckLists, postContractor } from '@/api/setting'
 import { useState } from 'react'
-import AddDialog from './add-dialog'
+import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
 import { Button, message } from 'antd'
 export default function UserManager() {
@@ -95,7 +95,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      {/* <AddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} /> */}
+      <UserAddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} />
     </>
   )
 }
