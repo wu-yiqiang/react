@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getTruckLists, postContractor } from '@/api/setting'
+import { getTruckLists, getUsersLists } from '@/api/setting'
 import { useState } from 'react'
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
@@ -74,7 +74,7 @@ export default function UserManager() {
 
   const handleOk = async (values: any) => {
     const datas = { ...values, type: 1 }
-    await postContractor(datas)
+    await getUsersLists(datas)
     message.success('操作成功')
     setDialogOpen(false)
   }
