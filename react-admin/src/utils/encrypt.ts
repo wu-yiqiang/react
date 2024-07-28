@@ -42,7 +42,7 @@ function processKey(secretKey: string) {
   }
   if (secretKey.length < 16) {
     newKey = secretKey;
-    newKey.padEnd(16, "0");
+    newKey = newKey.padEnd(16, "0");
   }
   return newKey
 }
