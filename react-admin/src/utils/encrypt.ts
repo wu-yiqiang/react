@@ -7,6 +7,7 @@ import CryptoJS from "crypto-js";
 export function AES_ECB_ENCRYPT(data: string, secretKey: string) {
   if (!data) return null
   const newKey = processKey(secretKey);
+  console.log('asdas', newKey)
   const key = CryptoJS.enc.Utf8.parse(newKey);
   const srcs = CryptoJS.enc.Utf8.parse(data);
   const encrypted = CryptoJS.AES.encrypt(srcs, key, {

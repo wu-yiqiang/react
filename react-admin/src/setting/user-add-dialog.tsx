@@ -39,7 +39,8 @@ export default function UserAddDialog(props: any) {
     if (value) {
       const values = form.getFieldsValue()
       const datas = { ...values }
-      datas.password = AES_ECB_ENCRYPT(datas.email, datas.password)
+      datas.password = AES_ECB_ENCRYPT(datas.password, datas.email)
+      console.log('sadasda', datas)
       if (!editStatus) await postUser(datas)
       // if (editStatus) await putContractor(target.uuid, datas)
       message.destroy()
