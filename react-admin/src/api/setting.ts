@@ -47,3 +47,12 @@ export const getTruckLists = (params: any) => {
     params
   })
 }
+
+// 用户管理
+export const postUser = (data: any) => { 
+  return request({
+    url: '/itf/lms/web/user',
+    method: 'post',
+    data
+  })
+}

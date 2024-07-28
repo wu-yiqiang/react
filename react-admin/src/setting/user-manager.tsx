@@ -60,9 +60,9 @@ export default function UserManager() {
     setPager(datas)
   }
   const formState = {
-    companyName: '',
+    name: '',
     email: '',
-    type: 1
+    picture: ''
   }
   const handleNew = () => {
     setDialogOpen(true)

@@ -1,18 +1,21 @@
 import { Form, Input, Modal, Radio, Upload } from 'antd'
 import { useEffect, useState } from 'react'
-import { postContractor, getContractorDetail, putContractor } from '@/api/setting'
+import { postUser, getContractorDetail, putContractor } from '@/api/setting'
+import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
 import { message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 class Contractor {
-  companyName: string
+  name: string
   email: string
-  gender: number
+  // gender: number
   picture: string
+  password: string
   constructor() {
-    this.companyName = ''
+    this.name = ''
     this.email = ''
-    this.gender = 0
+    this.password = ''
+    // this.gender = 0
     this.picture = ''
   }
 }
@@ -25,7 +28,7 @@ export default function UserAddDialog(props: any) {
     { required: true, message: '请输入' },
     { type: 'email', message: '请输入合法的邮箱' }
   ]
-  const genderRules = [{ required: true, message: '请输入' }]
+  // const genderRules = [{ required: true, message: '请输入' }]
   const companyRules = [{ required: true, message: '请输入' }]
   const close = () => {
     form.resetFields()
@@ -35,9 +38,10 @@ export default function UserAddDialog(props: any) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
-      const datas = { ...values, type: 1 }
-      if (!editStatus) await postContractor(datas)
-      if (editStatus) await putContractor(target.uuid, datas)
+      const datas = { ...values }
+      datas.password = AES_ECB_ENCRYPT(datas.email, datas.password)
+      if (!editStatus) await postUser(datas)
+      // if (editStatus) await putContractor(target.uuid, datas)
       message.destroy()
       message.success('操作成功')
       handleOk(values)
@@ -69,7 +73,6 @@ export default function UserAddDialog(props: any) {
       reader.readAsDataURL(file)
       reader.onload = function () {
         form.setFieldValue('picture', this.result)
-        console.log(form.getFieldValue('picture'))
       }
     }
   }
@@ -79,18 +82,21 @@ export default function UserAddDialog(props: any) {
   return (
     <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Form id="form" form={form} labelCol={{ span: '6' }} layout="inline">
-        <Form.Item label="姓名" name="companyName" rules={companyRules}>
+        <Form.Item label="姓名" name="name" rules={companyRules}>
           <Input />
         </Form.Item>
         <Form.Item label="邮箱" name="email" rules={emailRules}>
           <Input />
         </Form.Item>
-        <Form.Item label="性别" name="gender" rules={genderRules}>
+        <Form.Item label="密码" name="password">
+          <Input.Password />
+        </Form.Item>
+        {/* <Form.Item label="性别" name="gender" rules={genderRules}>
           <Radio.Group value={form.gender}>
             <Radio value={0}>男</Radio>
             <Radio value={1}>女</Radio>
           </Radio.Group>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="照片" name="picture" >
           <div className="image">   
             {
