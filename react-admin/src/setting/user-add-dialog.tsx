@@ -61,7 +61,7 @@ export default function UserAddDialog(props: any) {
     }
   }
   const handleUploadImg = () => {
-    var reader = new FileReader()
+    const reader = new FileReader()
     const f: any = document.getElementById('img')
     f?.click()
     f.onchange = async function (e: any) {
@@ -69,8 +69,7 @@ export default function UserAddDialog(props: any) {
       reader.readAsDataURL(file)
       reader.onload = function () {
         form.setFieldValue('picture', this.result)
-        const data = form.getFieldsValue()
-        console.log('sssss', data)
+        console.log(form.getFieldValue('picture'))
       }
     }
   }
@@ -92,10 +91,11 @@ export default function UserAddDialog(props: any) {
             <Radio value={1}>女</Radio>
           </Radio.Group>
         </Form.Item>
-        <Form.Item label="照片" name="picture">
-          <div className="image">
-            <img src={form.picture} alt="" />
-            <PlusOutlined onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} onClick={handleUploadImg} />
+        <Form.Item label="照片" name="picture" >
+          <div className="image">   
+            {
+              form.getFieldValue('picture') ? (<img src={form.getFieldValue('picture')} alt="" />) : (<PlusOutlined onClick={handleUploadImg} />)
+            }
           </div>
           <input id="img" type="file" accept="image/*" style={{ display: 'none' }} />
         </Form.Item>
