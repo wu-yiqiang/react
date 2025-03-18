@@ -1,3 +1,4 @@
+import "./SvgIcon.scss";
 interface SvgIconProps {
   name: string; // svg名字
   size?: string; // 大小

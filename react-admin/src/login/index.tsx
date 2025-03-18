@@ -1,5 +1,5 @@
 import { login } from '@/api/user'
-import { Button, Form, Input, Divider } from 'antd'
+import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import './login.scss'
 import LoginFace from './login-face'
@@ -24,8 +24,8 @@ function Login() {
       </div>
       <div className="bottom-box">
         <div className="left-box">
-          <div className="first-title">eHSE</div>
-          <div className="second-title">Digital Health-Safety-Environment Management System</div>
+          <div className="first-title">EAMS</div>
+          <div className="second-title">Digital Assets Management System</div>
         </div>
         <div className="right-box">
           <div className="card">

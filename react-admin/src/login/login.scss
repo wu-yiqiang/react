@@ -1,8 +1,12 @@
 .Login {
   width: 100vw;
   height: 100vh;
-  background-image: url('../assets/images/background-image.png');
+  background-image: url('../assets/images/background-image.jpeg');
   background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
   .logo-box {
     padding: 20px 50px 100px 50px;
     img {
@@ -14,6 +18,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex: 1;
     .left-box {
       .first-title {
         font-size: 120px;
@@ -29,7 +34,7 @@
     .right-box {
       .card {
           background-color: #fff;
-          border-radius: 10px;
+          border-radius: 4px;
           padding: 30px;
           .title {
             font-size: 34px;
@@ -84,5 +89,4 @@
         }
     }
   }
- 
 }
