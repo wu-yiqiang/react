@@ -29,15 +29,20 @@ export default function UserManager() {
       key: 'gender'
     },
     {
-      title: '照片',
-      dataIndex: 'picture',
-      key: 'picture'
+      title: '部门',
+      dataIndex: 'department',
+      key: 'department'
     },
     {
-      title: '操作',
-      dataIndex: 'action',
-      key: 'action',
+      title: '岗位',
+      dataIndex: 'positon',
+      key: 'positon'
     },
+    {
+      title: '角色',
+      dataIndex: 'roles',
+      key: 'roles'
+    }
   ]
   const searchOptions = [
     {
@@ -99,7 +104,7 @@ export default function UserManager() {
         data={queryData}
         searchOptions={searchOptions}
         handleSearch={handleSearch}
-        left={
+        right={
           <Button type="primary" onClick={handleNew}>
             新增
           </Button>

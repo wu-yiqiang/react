@@ -12,8 +12,8 @@ const App: React.FC = () => {
   return (
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#fff' }}>
-          <SvgIcon name="eams" size="50px" />
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#fff',columnGap: '10px', padding: "10px"}}>
+          <SvgIcon name="eams" size="40px" />
           {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>EAMS</span>}
         </div>
         <Menus />

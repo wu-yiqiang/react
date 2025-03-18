@@ -14,10 +14,6 @@ import Maintains from "@/pages/maintains/index";
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
 export const allRouters: Array<any> = [
   {
-    path: "/",
-    element: <Dashbord />,
-  },
-  {
     path: "/dashbord",
     key: "dashbord",
     label: "看板",

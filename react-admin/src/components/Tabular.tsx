@@ -41,6 +41,7 @@ export default function Tabular(props: any) {
   }
 
   const init = () => {
+    setColumnLists([])
     columns.forEach(column => {
       if (column.key == 'action') {
         setColumnLists((current) => [...current, ...actionSlot])

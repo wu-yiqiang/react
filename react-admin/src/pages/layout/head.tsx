@@ -1,6 +1,6 @@
 import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
 import './head.scss'
-import { Input } from "antd";
+import { Input, Dropdown, MenuProps } from 'antd'
 
 
 export default function Head() {
@@ -29,12 +29,49 @@ function Search() {
   );
 }
 
+
 function Translate() {
-  return <TranslationOutlined className="headeIcon" />
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: <a>English</a>
+    },
+    {
+      key: '2',
+      label: <a>العربية</a>
+    },
+    {
+      key: '3',
+      label: <a>简体中文</a>
+    }
+  ]
+  return (
+    <Dropdown menu={{ items }} placement="bottom" arrow>
+      <TranslationOutlined className="headeIcon" />
+    </Dropdown>
+  )
 }
 
 function Theme() {
-  return <BgColorsOutlined className="headeIcon" />
+  const items: MenuProps['items'] = [
+    {
+      key: '1',
+      label: <a>浅色模式</a>
+    },
+    {
+      key: '2',
+      label: <a>跟随系统</a>
+    },
+    {
+      key: '3',
+      label: <a>暗黑模式</a>
+    }
+  ]
+  return (
+    <Dropdown menu={{ items }} placement="bottom" arrow>
+      <BgColorsOutlined className="headeIcon" />
+    </Dropdown>
+  )
 }
 
 function Notion() {
@@ -45,6 +82,17 @@ function Setting() {
   return <SettingOutlined className="headeIcon" />
 }
 
+
 function User() {
-  return <UserOutlined className="headeIcon" />
+  const items: MenuProps['items'] = [
+    {
+      key: 'layout',
+      label: <a>退出登录</a>
+    }
+  ]
+  return (
+    <Dropdown menu={{ items }} placement="bottom" arrow>
+      <UserOutlined className="headeIcon" />
+    </Dropdown>
+  )
 }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { postUser, getContractorDetail } from '@/api/settings'
 import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
-import { message } from 'antd'
+import { message, Select, Row, Col } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 class Contractor {
   name: string
@@ -81,31 +81,65 @@ export default function UserAddDialog(props: any) {
     init()
   }, [target])
   return (
-    <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" form={form} labelCol={{ span: '6' }} layout="inline">
-        <Form.Item label="姓名" name="name" rules={companyRules}>
-          <Input />
-        </Form.Item>
-        <Form.Item label="邮箱" name="email" rules={emailRules}>
-          <Input />
-        </Form.Item>
-        <Form.Item label="密码" name="password">
-          <Input.Password />
-        </Form.Item>
+    <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+      <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
+        <Row>
+          <Col span={12}>
+            <Form.Item label="头像" name="picture">
+              <div className="image">{form.getFieldValue('picture') ? <img src={form.getFieldValue('picture')} alt="" /> : <PlusOutlined onClick={handleUploadImg} />}</div>
+              <input id="img" type="file" accept="image/*" style={{ display: 'none' }} />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="姓名" name="name" rules={companyRules}>
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="邮箱" name="email" rules={emailRules}>
+              <Input />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="部门" name="email" rules={emailRules}>
+              <Select>
+                <Select.Option value="sample">Sample</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="岗位" name="email" rules={emailRules}>
+              <Select>
+                <Select.Option value="sample">Sample</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="角色" name="email" rules={emailRules}>
+              <Select>
+                <Select.Option value="sample">Sample</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="密码" name="password">
+              <Input.Password />
+            </Form.Item>
+          </Col>
+        </Row>
+
         {/* <Form.Item label="性别" name="gender" rules={genderRules}>
           <Radio.Group value={form.gender}>
             <Radio value={0}>男</Radio>
             <Radio value={1}>女</Radio>
           </Radio.Group>
         </Form.Item> */}
-        <Form.Item label="照片" name="picture" >
-          <div className="image">   
-            {
-              form.getFieldValue('picture') ? (<img src={form.getFieldValue('picture')} alt="" />) : (<PlusOutlined onClick={handleUploadImg} />)
-            }
-          </div>
-          <input id="img" type="file" accept="image/*" style={{ display: 'none' }} />
-        </Form.Item>
       </Form>
     </Modal>
   )

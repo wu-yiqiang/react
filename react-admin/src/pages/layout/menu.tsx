@@ -50,7 +50,7 @@ const App: React.FC = () => {
     const path = `/${e.key}`
     navgite(path)
   }
-  return <Menu style={{ height: document.body.clientHeight }} onClick={onClick} defaultSelectedKeys={['dashborde']} defaultOpenKeys={['dashborde']} mode="inline" items={items} />
+  return <Menu style={{ height: document.body.clientHeight }} onClick={onClick} defaultSelectedKeys={['dashbord']} defaultOpenKeys={['dashbord']} mode="inline" items={items} />
 }
 
 export default App
