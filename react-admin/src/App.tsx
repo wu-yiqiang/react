@@ -12,10 +12,10 @@ function App() {
     components: {
       Button: {
         colorPrimary: "#FF7A00",
-        colorPrimaryHover: "#ff7a007f",
-        defaultHoverColor: "#ff7a0026",
-        defaultHoverBg: "#ff7a0026",
-        defaultHoverBorderColor: "#ff7a0026",
+        // colorPrimaryHover: "#ff7a007f",
+        // defaultHoverColor: "#ff7a0026",
+        // defaultHoverBg: "#ff7a0026",
+        // defaultHoverBorderColor: "#ff7a0026",
       },
       Input: {
         colorPrimary: "#FF7A00",
