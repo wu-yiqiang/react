@@ -1,17 +1,14 @@
 import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
-import Layout from '@/layout/index'
+import Layout from '@/pages/layout/index'
 import { getUserInfo } from '@/api/user'
-import UserManager from "@/setting/users/index";
-import Login from '@/login/index'
-import RoleManager from "@/setting/roles/index";
-import PermissionManager from '@/setting/permissions/index'
-import Apply from '@/collects/apply'
-import Truck from '@/waste/truck/index'
-import Driver from '@/waste/driver/index'
-import Contractor from '@/waste/contractor/index'
-import Dashbord from '@/dashbord/index'
-import Report from '@/report/index'
+import UserManager from "@/pages/setting/users/index";
+import Login from "@/pages/login/index";
+import RoleManager from "@/pages/setting/roles/index";
+import PermissionManager from "@/pages/setting/permissions/index";
+import Invoices from "@/pages/invoices/index";
+import Dashbord from "@/pages/dashbord/index";
+import Statistics from "@/pages/statistics/index";
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
 export const allRouters: Array<any> = [
   {
@@ -32,24 +29,16 @@ export const allRouters: Array<any> = [
     icon: <PieChartOutlined />,
     key: "statistics",
     parentkey: "",
-    element: <Report />,
+    element: <Statistics />,
   },
   {
-    path: "/collect",
+    path: "/invoices",
     label: "申请单",
     icon: <PrinterOutlined />,
-    key: "collect",
+    key: "invoices",
     parentkey: "",
-    element: <Apply />,
+    element: <Invoices />,
   },
-  // {
-  //   path: '/contractor',
-  //   label: '承包商',
-  //   icon: <FileOutlined />,
-  //   key: 'contractor',
-  //   parentkey: 'waste',
-  //   element: <Contractor />
-  // },
   // {
   //   path: "/waste",
   //   label: "垃圾管理",
