@@ -7,7 +7,6 @@ import { resolve } from 'path'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
 }
-// https://vitejs.dev/config/
 export default defineConfig({
   base: './',
   resolve: {
@@ -24,7 +23,13 @@ export default defineConfig({
       }
     }
   },
-  plugins: [basicSsl(), react()],
+  plugins: [basicSsl(), react(), svgLoader(),
+  createSvgIconsPlugin({
+    // 指定需要缓存的图标文件夹
+    iconDirs: [pathResolve('src/assets/icons/svg')],
+    // 指定symbolId格式
+    symbolId: 'icon-[dir]-[name]'
+  })],
   server: {
     hmr: true,
     host: '0.0.0.0',

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Menus from './menu'
 import Head from './head'
-import logo from '@/assets/images/logo.png'
+import SvgIcon from '@/components/SvgIcon'
 import './index.scss'
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
@@ -13,11 +13,10 @@ const App: React.FC = () => {
     <Layout>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', background: '#fff' }}>
-          <img src={logo} alt="" style={{ width: 50, height: 50 }} />
-          {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>BLMS</span>}
+          <SvgIcon name="eams" size="10px" />
+          {!collapsed && <span style={{ fontSize: '40', fontWeight: 700 }}>EAMS</span>}
         </div>
         <Menus />
-
       </Sider>
       <Layout className="site-layout">
         <Header className="Header">
