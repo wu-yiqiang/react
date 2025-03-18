@@ -1,6 +1,6 @@
-import { Form, Input, Modal, Radio, Upload } from 'antd'
+import { Form, Input, Modal } from 'antd'
 import { useEffect, useState } from 'react'
-import { postUser, getContractorDetail, putContractor } from '@/api/setting'
+import { postUser, getContractorDetail } from '@/api/settings'
 import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
 import { message } from 'antd'

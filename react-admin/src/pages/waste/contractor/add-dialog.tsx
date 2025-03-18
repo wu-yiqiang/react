@@ -1,6 +1,6 @@
 import { Form, Input,Modal } from 'antd'
 import { useEffect, useState } from 'react'
-import { postContractor, getContractorDetail, putContractor } from '@/api/setting'
+import { postContractor, getContractorDetail, putContractor } from '@/api/settings'
 import {isEmpty} from 'lodash-es'
 import { message } from 'antd'
 class Contractor {

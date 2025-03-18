@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getTruckLists, getUsersLists } from '@/api/setting'
+import { getTruckLists, getUsersLists } from '@/api/settings'
 import { useState } from 'react'
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'

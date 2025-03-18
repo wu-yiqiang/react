@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getContractorsLists, postContractor } from '@/api/setting'
+import { getContractorsLists, postContractor } from '@/api/settings'
 import { useState } from 'react'
 import AddDialog from './add-dialog'
 import { Button, message } from 'antd'

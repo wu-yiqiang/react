@@ -2,13 +2,15 @@ import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
 import type { RouteObject } from 'react-router-dom'
 import Layout from '@/pages/layout/index'
 import { getUserInfo } from '@/api/user'
-import UserManager from "@/pages/setting/users/index";
+import UserManager from "@/pages/settings/users/index";
 import Login from "@/pages/login/index";
-import RoleManager from "@/pages/setting/roles/index";
-import PermissionManager from "@/pages/setting/permissions/index";
+import RoleManager from "@/pages/settings/roles/index";
+import PermissionManager from "@/pages/settings/permissions/index";
 import Invoices from "@/pages/invoices/index";
 import Dashbord from "@/pages/dashbord/index";
 import Statistics from "@/pages/statistics/index";
+import Rooms from "@/pages/rooms/index";
+import Maintains from "@/pages/maintains/index";
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
 export const allRouters: Array<any> = [
   {
@@ -25,7 +27,7 @@ export const allRouters: Array<any> = [
   },
   {
     path: "/statistics",
-    label: "统计",
+    label: "统计报表",
     icon: <PieChartOutlined />,
     key: "statistics",
     parentkey: "",
@@ -33,36 +35,28 @@ export const allRouters: Array<any> = [
   },
   {
     path: "/invoices",
-    label: "申请单",
+    label: "申请单据",
     icon: <PrinterOutlined />,
     key: "invoices",
     parentkey: "",
     element: <Invoices />,
   },
-  // {
-  //   path: "/waste",
-  //   label: "垃圾管理",
-  //   icon: <HeatMapOutlined />,
-  //   key: "waste",
-  //   parentkey: "",
-  //   element: <Contractor />,
-  // },
-  // {
-  //   path: "/truck",
-  //   label: "卡车",
-  //   icon: <CarOutlined />,
-  //   key: "truck",
-  //   parentkey: "waste",
-  //   element: <Truck />,
-  // },
-  // {
-  //   path: "/driver",
-  //   label: "司机",
-  //   icon: <VerifiedOutlined />,
-  //   key: "driver",
-  //   parentkey: "waste",
-  //   element: <Driver />,
-  // },
+  {
+    path: "/maintains",
+    label: "维修管理",
+    icon: <HeatMapOutlined />,
+    key: "maintains",
+    parentkey: "",
+    element: <Maintains />,
+  },
+  {
+    path: "/rooms",
+    label: "房间管理",
+    icon: <HeatMapOutlined />,
+    key: "rooms",
+    parentkey: "",
+    element: <Rooms />,
+  },
   {
     path: "/setting",
     label: "设置",
