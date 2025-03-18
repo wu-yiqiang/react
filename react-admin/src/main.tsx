@@ -4,12 +4,9 @@ import App from './App.tsx'
 import "virtual:svg-icons-register";
 import './index.css'
 import '../custom.css'
+import React from 'react';
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
-  
-  <ConfigProvider prefixCls="custom">
+  <React.StrictMode>
     <App />
-  </ConfigProvider>
+  </React.StrictMode>,
 )

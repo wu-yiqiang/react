@@ -1,5 +1,8 @@
 import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
 import './head.scss'
+import { Input } from "antd";
+
+
 export default function Head() {
   return (
     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -14,7 +17,16 @@ export default function Head() {
 }
 
 function Search() {
-  return <SearchOutlined className='headeIcon'/>
+  // return <SearchOutlined className='headeIcon'/>
+  return (
+    <div className="search-expand-container">
+      <Input
+        prefix={<SearchOutlined />}
+        className="search-expanding-input"
+        placeholder="Search..."
+      />
+    </div>
+  );
 }
 
 function Translate() {

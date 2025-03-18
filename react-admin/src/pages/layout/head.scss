@@ -3,3 +3,44 @@
   font-size: 20px;
   cursor: pointer;
 }
+
+.search-expand-container {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+
+  // 初始状态图标样式
+  .ant-input-prefix {
+    cursor: pointer;
+    padding: 0 8px;
+  }
+
+  // 输入框样式
+  .ant-input {
+    width: 60px; // 初始宽度
+    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out;
+    border: none;
+    box-shadow: none !important;
+    background: transparent;
+    cursor: pointer;
+    // 隐藏清除图标
+    .ant-input-clear-icon {
+      display: none;
+    }
+  }
+  // 鼠标悬停时的展开效果
+  &:hover {
+    .ant-input {
+      width: 200px; // 展开后的宽度
+      background: #fff;
+      cursor: text;
+    }
+    // 保持图标可见
+    // .ant-input-prefix {
+    //   position: absolute;
+    //   left: 8px;
+    //   z-index: 1;
+    // }
+  }
+}
