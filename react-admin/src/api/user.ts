@@ -20,6 +20,6 @@ export const getUserInfo = (): Promise<UserInfo> => {
   })
 }
 
-export const login = (data: any) => request.post('/login', data)
+export const login = (data: any) => request.post('/user/login', data)
 
 export const logout = () => request.get('/logout')
