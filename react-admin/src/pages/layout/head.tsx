@@ -3,7 +3,7 @@ import './head.scss'
 import { Input, Dropdown, MenuProps } from 'antd'
 import { logout } from "@/api/user";
 import useSystemStore from '@/store/index'
-
+import {useNavigate} from 'react-router-dom'
 import EventMitt from '@/utils/mitt'
 export default function Head() {
   return (
@@ -94,8 +94,10 @@ function Setting() {
 }
 
 function User() {
+  const navigate = useNavigate()
   const handleLogout = () => {
     console.log("logout")
+    navigate('/login', { replace: false })
     // EventMitt("logout");
     // await logout()
   }

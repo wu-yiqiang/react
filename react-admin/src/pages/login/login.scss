@@ -35,6 +35,7 @@
       .card {
           border-radius: 4px;
           padding: 30px;
+          background-color: #fff;
           .title {
             font-size: 34px;
             font-weight: 700;
@@ -44,11 +45,14 @@
           }
           .content-box {
             width: 400px;
-            height: 200px;
             .LoginFace {
                 width: 100%;
+                margin-bottom: 20px;
                 display: grid;
                 place-content: center;
+                video {
+                  border-radius: 3px;
+                }
               }
             
               .ant-form-item {
