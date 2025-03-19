@@ -2,6 +2,8 @@ import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, 
 import './head.scss'
 import { Input, Dropdown, MenuProps } from 'antd'
 import { logout } from "@/api/user";
+import useSystemStore from '@/store/index'
+
 import EventMitt from '@/utils/mitt'
 export default function Head() {
   return (
@@ -33,7 +35,7 @@ function Search() {
 function Translate() {
   const handleLanguage = (value: string) => {
     console.log("changeLanguage", value);
-    EventMitt('language', value)
+    // EventMitt('language', value)
   };
   const items: MenuProps["items"] = [
     {
@@ -57,9 +59,10 @@ function Translate() {
 }
 
 function Theme() {
+  const {setTheme} = useSystemStore()
   const handleTheme = (value: string) => {
-    console.log("changeTheme", value)
-    EventMitt("changeTheme", value);
+    setTheme(value)
+    // EventMitt("changeTheme", value);
   }
   const items: MenuProps["items"] = [
     {
@@ -93,7 +96,7 @@ function Setting() {
 function User() {
   const handleLogout = () => {
     console.log("logout")
-    EventMitt("logout");
+    // EventMitt("logout");
     // await logout()
   }
   const items: MenuProps["items"] = [
