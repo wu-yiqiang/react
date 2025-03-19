@@ -1,8 +1,8 @@
 import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
 import './head.scss'
 import { Input, Dropdown, MenuProps } from 'antd'
-
-
+import { logout } from "@/api/user";
+import EventMitt from '@/utils/mitt'
 export default function Head() {
   return (
     <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -31,20 +31,24 @@ function Search() {
 
 
 function Translate() {
-  const items: MenuProps['items'] = [
+  const handleLanguage = (value: string) => {
+    console.log("changeLanguage", value);
+    EventMitt('language', value)
+  };
+  const items: MenuProps["items"] = [
     {
-      key: '1',
-      label: <a>English</a>
+      key: "EN",
+      label: <a onClick={() => handleLanguage("EN")}>English</a>,
     },
     {
-      key: '2',
-      label: <a>العربية</a>
+      key: "AR",
+      label: <a onClick={() => handleLanguage("AR")}>العربية</a>,
     },
     {
-      key: '3',
-      label: <a>简体中文</a>
-    }
-  ]
+      key: "CN",
+      label: <a onClick={() => handleLanguage("CN")}>简体中文</a>,
+    },
+  ];
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <TranslationOutlined className="headeIcon" />
@@ -53,20 +57,24 @@ function Translate() {
 }
 
 function Theme() {
-  const items: MenuProps['items'] = [
+  const handleTheme = (value: string) => {
+    console.log("changeTheme", value)
+    EventMitt("changeTheme", value);
+  }
+  const items: MenuProps["items"] = [
     {
-      key: '1',
-      label: <a>浅色模式</a>
+      key: "light",
+      label: <a onClick={() => handleTheme("light")}>浅色模式</a>,
     },
     {
-      key: '2',
-      label: <a>跟随系统</a>
+      key: "dark",
+      label: <a onClick={() => handleTheme("dark")}>暗黑模式</a>,
     },
     {
-      key: '3',
-      label: <a>暗黑模式</a>
-    }
-  ]
+      key: "system",
+      label: <a onClick={() => handleTheme("system")}>跟随系统</a>,
+    },
+  ];
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <BgColorsOutlined className="headeIcon" />
@@ -82,14 +90,18 @@ function Setting() {
   return <SettingOutlined className="headeIcon" />
 }
 
-
 function User() {
-  const items: MenuProps['items'] = [
+  const handleLogout = () => {
+    console.log("logout")
+    EventMitt("logout");
+    // await logout()
+  }
+  const items: MenuProps["items"] = [
     {
-      key: 'layout',
-      label: <a>退出登录</a>
-    }
-  ]
+      key: "layout",
+      label: <a onClick={handleLogout}>退出登录</a>,
+    },
+  ];
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <UserOutlined className="headeIcon" />

@@ -1,8 +1,8 @@
 
 .site-layout {
+  height: 100vh;
   .Header {
     padding: 0 20px 0 0;
-    background: #fff;
     line-height: 0; 
     height: $--topbar-height;
     display: flex;

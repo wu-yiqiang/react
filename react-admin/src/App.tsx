@@ -1,10 +1,11 @@
-import './App.css'
+// import './App.css'
 import { RouterProvider } from 'react-router-dom'
 import { routes } from '@/routers/index.tsx'
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 
 function App() {
-  const theme = {
+  const themeConfig = {
+    algorithm: theme.darkAlgorithm,
     token: {
       colorPrimary: "#FF7A00",
       borderRadius: 4,
@@ -23,7 +24,7 @@ function App() {
     },
   };
   return (
-    <ConfigProvider theme={theme} >
+    <ConfigProvider theme={themeConfig}>
       <RouterProvider router={routes} />
     </ConfigProvider>
   );
