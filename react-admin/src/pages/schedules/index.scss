@@ -1,0 +1,77 @@
+.Schedule {}
+
+.UserCard {
+    border-radius: 4px;
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    padding: 10px;
+    column-gap: 10px;
+    width: 200px;
+    height: 120px;
+
+    .user-avatar {
+        img {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    .user-info {
+        display: grid;
+        place-content: center;
+        row-gap: 10px;
+
+        .info {
+            display: grid;
+            place-content: center;
+        }
+    }
+}
+
+.DaySchedule {
+    display: flex;
+    column-gap: 20px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+
+    .select-pannel {
+        border-radius: 2px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    .schedule-table {
+        background-color: rgb(255, 255, 255);
+        border-radius: 2px;
+        .tabtop {
+            margin-top: 13px;
+            th {
+                text-align: center;
+            }
+            td {
+                background-color: #ffffff;
+                height: 30px;
+                line-height: 150%;
+                text-align: center;
+            }
+
+        }
+
+        .font-center {
+            text-align: center
+        }
+
+        .titfont {
+            font-size: 16px;
+            font-weight: bold;
+            color: #255e95;
+        }
+
+        .active-cell {
+            width: 200px;
+            padding: 10px;
+            height: 150px !important;
+        }
+    }
+}

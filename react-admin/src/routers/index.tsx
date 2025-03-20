@@ -1,7 +1,15 @@
-import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
-import type { RouteObject } from 'react-router-dom'
-import Layout from '@/pages/layout/index'
-import { getUserInfo } from '@/api/user'
+import {
+  createBrowserRouter,
+  Navigate,
+  redirect,
+  Route,
+  Router,
+  useNavigate,
+} from "react-router-dom";
+import eventMitt from "@/utils/eventMitt";
+import type { RouteObject } from "react-router-dom";
+import Layout from "@/pages/layout/index";
+import { getUserInfo } from "@/api/user";
 import UserManager from "@/pages/settings/users/index";
 import Login from "@/pages/login/index";
 import RoleManager from "@/pages/settings/roles/index";
@@ -11,7 +19,17 @@ import Dashbord from "@/pages/dashbord/index";
 import Statistics from "@/pages/statistics/index";
 import Rooms from "@/pages/rooms/index";
 import Maintains from "@/pages/maintains/index";
-import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, VerifiedOutlined, FileOutlined, HeatMapOutlined, CarOutlined } from '@ant-design/icons'
+import Schedules from "@/pages/schedules/index";
+import {
+  AreaChartOutlined,
+  SettingOutlined,
+  UserOutlined,
+  TeamOutlined,
+  UsbOutlined,
+  PrinterOutlined,
+  PieChartOutlined,
+  HeatMapOutlined,
+} from "@ant-design/icons";
 export const allRouters: Array<any> = [
   {
     path: "/dashbord",
@@ -54,6 +72,14 @@ export const allRouters: Array<any> = [
     element: <Rooms />,
   },
   {
+    path: "/schedules",
+    label: "排班管理",
+    icon: <HeatMapOutlined />,
+    key: "schedules",
+    parentkey: "",
+    element: <Schedules />,
+  },
+  {
     path: "/setting",
     label: "设置",
     icon: <SettingOutlined />,
@@ -87,40 +113,46 @@ export const allRouters: Array<any> = [
   },
 ];
 const rootLoader = async () => {
-  const { permissionRouters, name, age, code } = await getUserInfo()
+  const { permissionRouters, name, age, code } = await getUserInfo();
   if (code == 401) {
-    return redirect('/login')
+    return redirect("/login");
   }
   return {
     name,
     age,
-    permissionRouters
-  }
-}
+    permissionRouters,
+  };
+};
 
 const routerConfig: RouteObject[] = [
   {
-    path: '/',
+    path: "/",
     errorElement: <div>make error</div>,
     element: <Layout />,
     loader: rootLoader,
-    children: allRouters
-  }
-]
+    children: allRouters,
+  },
+];
 
 const whiteLists: RouteObject[] = [
   {
-    path: '/',
-    element: <Navigate to="dashbord" />
+    path: "/",
+    element: <Navigate to="dashbord" />,
   },
   {
-    path: '/login',
-    element: <Login />
+    path: "/login",
+    element: <Login />,
   },
   {
-    path: '*',
-    element: <div>404</div>
-  }
-]
+    path: "*",
+    element: <div>404</div>,
+  },
+];
 
-export const routes = createBrowserRouter([...whiteLists, ...routerConfig])
+export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
+
+eventMitt.on("ROUTER:LOGIN", () => {
+  const navigate = useNavigate();
+  navigate("/login");
+  console.log("login");
+});

@@ -32,3 +32,11 @@ If you are developing a production application, we recommend updating the config
 2.接口响应数据分析
 3.垃圾体积重量日期等维度分析
 4.
+
+使用发布订阅者 单例模式 策略模式
+zustand // https://juejin.cn/post/7321049446443384870
+antd Theme // https://ant-design.antgroup.com/theme-editor-cn#Color
+antd Components // https://ant-design.antgroup.com/components/overview-cn/
+
+1.使用发布订阅者 单例模式封装消息中心，降低系统各个部分间的耦合关系，使后期功能维护更加方便快捷。
+2.权限平台使用

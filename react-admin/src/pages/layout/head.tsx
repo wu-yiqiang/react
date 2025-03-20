@@ -3,11 +3,10 @@ import './head.scss'
 import { Input, Dropdown, MenuProps } from 'antd'
 import { logout } from "@/api/user";
 import useSystemStore from '@/store/index'
-import {useNavigate} from 'react-router-dom'
-import EventMitt from '@/utils/mitt'
+import eventMitt from "@/utils/eventMitt";
 export default function Head() {
   return (
-    <span style={{ display: 'flex', justifyContent: 'flex-end' }}>
+    <span style={{ display: "flex", justifyContent: "flex-end" }}>
       <Search />
       <Translate />
       <Theme />
@@ -15,7 +14,7 @@ export default function Head() {
       <Setting />
       <User />
     </span>
-  )
+  );
 }
 
 function Search() {
@@ -31,21 +30,19 @@ function Search() {
   );
 }
 
-
 function Translate() {
   const handleLanguage = (value: string) => {
-    console.log("changeLanguage", value);
-    // EventMitt('language', value)
+    eventMitt.emit("SYSTEM:LANGUAGE", value);
   };
   const items: MenuProps["items"] = [
     {
       key: "EN",
       label: <a onClick={() => handleLanguage("EN")}>English</a>,
     },
-    {
-      key: "AR",
-      label: <a onClick={() => handleLanguage("AR")}>العربية</a>,
-    },
+    // {
+    //   key: "AR",
+    //   label: <a onClick={() => handleLanguage("AR")}>العربية</a>,
+    // },
     {
       key: "CN",
       label: <a onClick={() => handleLanguage("CN")}>简体中文</a>,
@@ -55,15 +52,14 @@ function Translate() {
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <TranslationOutlined className="headeIcon" />
     </Dropdown>
-  )
+  );
 }
 
 function Theme() {
-  const {setTheme} = useSystemStore()
   const handleTheme = (value: string) => {
-    setTheme(value)
+    eventMitt.emit("SYSTEM:THEME", value);
     // EventMitt("changeTheme", value);
-  }
+  };
   const items: MenuProps["items"] = [
     {
       key: "light",
@@ -82,25 +78,22 @@ function Theme() {
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <BgColorsOutlined className="headeIcon" />
     </Dropdown>
-  )
+  );
 }
 
 function Notion() {
-  return <NotificationOutlined className="headeIcon" />
+  return <NotificationOutlined className="headeIcon" />;
 }
 
 function Setting() {
-  return <SettingOutlined className="headeIcon" />
+  return <SettingOutlined className="headeIcon" />;
 }
 
 function User() {
-  const navigate = useNavigate()
   const handleLogout = () => {
-    console.log("logout")
-    navigate('/login', { replace: false })
-    // EventMitt("logout");
     // await logout()
-  }
+    eventMitt.emit("ROUTER:LOGIN");
+  };
   const items: MenuProps["items"] = [
     {
       key: "layout",
@@ -111,5 +104,5 @@ function User() {
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <UserOutlined className="headeIcon" />
     </Dropdown>
-  )
+  );
 }

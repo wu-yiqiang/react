@@ -1,4 +1,4 @@
 
-export default function c() {
+export default function Rooms() {
   return <div>Ro</div>;
 }

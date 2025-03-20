@@ -1,7 +1,7 @@
 import { create } from "zustand";
 const useSystemStore = create((set) => ({
   userInfo: { username: '121' },
-  theme: 'light',
+  theme: 'system',
   language: 'cn',
   menus: [],
   currentMenu: {},
@@ -9,6 +9,5 @@ const useSystemStore = create((set) => ({
   setLanguage: (value: string) => set({ language: value }),
   setUserInfo: (value: object) => set({ userInfo: value })
 }))
-
 
 export default useSystemStore;
