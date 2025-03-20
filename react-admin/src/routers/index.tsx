@@ -20,6 +20,7 @@ import Statistics from "@/pages/statistics/index";
 import Rooms from "@/pages/rooms/index";
 import Maintains from "@/pages/maintains/index";
 import Schedules from "@/pages/schedules/index";
+import DaySchedule from '@/pages/schedules/DaySchedule'
 import {
   AreaChartOutlined,
   SettingOutlined,
@@ -32,86 +33,105 @@ import {
 } from "@ant-design/icons";
 export const allRouters: Array<any> = [
   {
-    path: "/dashbord",
-    key: "dashbord",
-    label: "看板",
+    path: '/dashbord',
+    key: 'dashbord',
+    label: '看板',
     icon: <AreaChartOutlined />,
-    parentkey: "",
-    element: <Dashbord />,
+    parentkey: '',
+    showMenu: true,
+    element: <Dashbord />
   },
   {
-    path: "/statistics",
-    label: "统计报表",
+    path: '/statistics',
+    label: '统计报表',
     icon: <PieChartOutlined />,
-    key: "statistics",
-    parentkey: "",
-    element: <Statistics />,
+    key: 'statistics',
+    parentkey: '',
+    showMenu: true,
+    element: <Statistics />
   },
   {
-    path: "/invoices",
-    label: "申请单据",
+    path: '/invoices',
+    label: '申请单据',
     icon: <PrinterOutlined />,
-    key: "invoices",
-    parentkey: "",
-    element: <Invoices />,
+    key: 'invoices',
+    parentkey: '',
+    showMenu: true,
+    element: <Invoices />
   },
   {
-    path: "/maintains",
-    label: "维修管理",
+    path: '/maintains',
+    label: '维修管理',
     icon: <HeatMapOutlined />,
-    key: "maintains",
-    parentkey: "",
-    element: <Maintains />,
+    key: 'maintains',
+    parentkey: '',
+    showMenu: true,
+    element: <Maintains />
   },
   {
-    path: "/rooms",
-    label: "房间管理",
+    path: '/rooms',
+    label: '房间管理',
     icon: <HeatMapOutlined />,
-    key: "rooms",
-    parentkey: "",
-    element: <Rooms />,
+    key: 'rooms',
+    parentkey: '',
+    showMenu: true,
+    element: <Rooms />
   },
   {
-    path: "/schedules",
-    label: "排班管理",
+    path: '/schedules',
+    label: '排班管理',
     icon: <HeatMapOutlined />,
-    key: "schedules",
-    parentkey: "",
-    element: <Schedules />,
+    key: 'schedules',
+    parentkey: '',
+    showMenu: true,
+    element: <Schedules />
   },
   {
-    path: "/setting",
-    label: "设置",
+    path: '/day-schedule',
+    label: '每日排班',
+    icon: <HeatMapOutlined />,
+    key: 'day-schedule',
+    parentkey: '',
+    showMenu: false,
+    element: <DaySchedule />
+  },
+  {
+    path: '/setting',
+    label: '设置',
     icon: <SettingOutlined />,
-    key: "setting",
-    parentkey: "",
-    element: null,
+    key: 'setting',
+    parentkey: '',
+    showMenu: true,
+    element: null
   },
   {
-    path: "/user-manager",
-    label: "用户管理",
+    path: '/user-manager',
+    label: '用户管理',
     icon: <UserOutlined />,
-    key: "user-manager",
-    parentkey: "setting",
-    element: <UserManager />,
+    key: 'user-manager',
+    parentkey: 'setting',
+    showMenu: true,
+    element: <UserManager />
   },
   {
-    path: "/role-manager",
-    label: "角色管理",
+    path: '/role-manager',
+    label: '角色管理',
     icon: <TeamOutlined />,
-    key: "role-manager",
-    parentkey: "setting",
-    element: <RoleManager />,
+    key: 'role-manager',
+    parentkey: 'setting',
+    showMenu: true,
+    element: <RoleManager />
   },
   {
-    path: "/permission-manager",
-    label: "权限管理",
+    path: '/permission-manager',
+    label: '权限管理',
     icon: <UsbOutlined />,
-    key: "permission-manager",
-    parentkey: "setting",
-    element: <PermissionManager />,
-  },
-];
+    key: 'permission-manager',
+    parentkey: 'setting',
+    showMenu: true,
+    element: <PermissionManager />
+  }
+]
 const rootLoader = async () => {
   const { permissionRouters, name, age, code } = await getUserInfo();
   if (code == 401) {

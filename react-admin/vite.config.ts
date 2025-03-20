@@ -23,18 +23,22 @@ export default defineConfig({
       }
     }
   },
-  plugins: [basicSsl(), react(), svgLoader(),
-  createSvgIconsPlugin({
-    // 指定需要缓存的图标文件夹
-    iconDirs: [pathResolve('src/assets/icons/svg')],
-    // 指定symbolId格式
-    symbolId: 'icon-[dir]-[name]'
-  })],
+  plugins: [
+    basicSsl(),
+    react(),
+    svgLoader(),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [pathResolve('src/assets/icons/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]'
+    })
+  ],
   server: {
-    hmr: true,
     host: '0.0.0.0',
+    hmr: true,
     port: 8090,
-    https: true,
+    // https: true,
     proxy: {
       '/prod-api': {
         // target: `http://192.168.1.34:8081`,

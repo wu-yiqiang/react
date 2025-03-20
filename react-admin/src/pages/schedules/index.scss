@@ -6,19 +6,19 @@
     display: flex;
     padding: 10px;
     column-gap: 10px;
-    width: 200px;
-    height: 120px;
+    // width: 200px;
+    // height: 120px;
 
     .user-avatar {
         img {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: auto;
         }
     }
 
     .user-info {
-        display: grid;
-        place-content: center;
+        display: flex;
+        flex-direction: column;
         row-gap: 10px;
 
         .info {
@@ -69,9 +69,9 @@
         }
 
         .active-cell {
-            width: 200px;
+            width: 240px;
             padding: 10px;
-            height: 150px !important;
+            height: 180px !important;
         }
     }
 }

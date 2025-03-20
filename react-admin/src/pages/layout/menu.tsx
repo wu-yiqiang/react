@@ -19,17 +19,19 @@ const genItems = () => {
   // 清空
   items = []
   let res: Array<MenuItem> = []
-  allRouters.forEach((item: any) => {
-    const template: MenuItem = {
-      key: item.key,
-      parentkey: item.parentkey,
-      icon: item.icon,
-      children: null,
-      label: item.label,
-      path: item.path
-    }
-    res.push(template)
-  })
+  res = allRouters
+    ?.filter((item: any) => item.showMenu)
+    ?.map((item: any) => {
+      const template: MenuItem = {
+        key: item.key,
+        parentkey: item.parentkey,
+        icon: item.icon,
+        children: null,
+        label: item.label,
+        path: item.path
+      }
+      return template
+    })
 
   res.forEach((item) => {
     const parent = res.find((node) => node.key === item.parentkey)

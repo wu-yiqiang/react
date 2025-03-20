@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
 import avatar from "@/assets/images/avatar.jpg";
+import avatar1 from '@/assets/images/1.jpg'
+import avatar2 from '@/assets/images/2.jpeg'
+import avatar3 from '@/assets/images/3.jpeg'
+import avatar4 from '@/assets/images/4.jpeg'
+
 export default function DaySchedule() {
   const [users, setUsers] = useState( [
     {
-      avatar: avatar,
+      avatar: avatar1,
       name: "Tom",
       id: 1,
       code: "00001825",
@@ -12,7 +17,7 @@ export default function DaySchedule() {
       time: null,
     },
     {
-      avatar: avatar,
+      avatar: avatar2,
       name: "Beer",
       id: 2,
       code: "00001826",
@@ -20,7 +25,7 @@ export default function DaySchedule() {
       time: null,
     },
     {
-      avatar: avatar,
+      avatar: avatar3,
       name: "Biden",
       id: 3,
       code: "00001827",
@@ -28,7 +33,7 @@ export default function DaySchedule() {
       time: null,
     },
     {
-      avatar: avatar,
+      avatar: avatar4,
       name: "Lory",
       id: 4,
       code: "00001828",
@@ -36,7 +41,7 @@ export default function DaySchedule() {
       time: null,
     },
     {
-      avatar: avatar,
+      avatar: avatar1,
       id: 5,
       name: "Mike",
       code: "00001829",
@@ -192,7 +197,7 @@ const Card = (props: any) => {
       data-id={user?.id}
     >
       <div className="user-avatar">
-        <img src={user?.avatar} alt="" />
+        <img draggable={ false} src={user?.avatar} alt="" />
       </div>
       <div className="user-info">
         <div className="info user-name">{user?.name}</div>

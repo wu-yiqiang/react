@@ -4,7 +4,7 @@ import { useState } from 'react'
 import UserAddDialog from './role-add-dialog'
 import './role-manager.scss'
 import { Button, message } from 'antd'
-export default function RoleManager() {
+export default function Schedules() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [pager, setPager] = useState({
@@ -44,9 +44,7 @@ export default function RoleManager() {
       key: 'roles'
     }
   ]
-  const searchOptions = [
-    { name: 'keyword', label: '搜索', type: 'input' }
-  ]
+  const searchOptions = [{ name: 'keyword', label: '搜索', type: 'input' }]
   const queryData = {
     keyword: '',
     gender: 'male'
