@@ -2,8 +2,7 @@ import {
   createBrowserRouter,
   Navigate,
   redirect,
-  Route,
-  Router,
+  withRouter,
   useNavigate,
 } from "react-router-dom";
 import eventMitt from "@/utils/eventMitt";
@@ -172,7 +171,5 @@ const whiteLists: RouteObject[] = [
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
 eventMitt.on("ROUTER:LOGIN", () => {
-  const navigate = useNavigate();
-  navigate("/login");
-  console.log("login");
+  routes.navigate('/login')
 });
