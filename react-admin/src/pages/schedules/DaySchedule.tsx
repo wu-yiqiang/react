@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import "./index.scss";
 import avatar from "@/assets/images/avatar.jpg";
-import avatar1 from '@/assets/images/1.jpg'
-import avatar2 from '@/assets/images/2.jpeg'
-import avatar3 from '@/assets/images/3.jpeg'
-import avatar4 from '@/assets/images/4.jpeg'
+import avatar1 from '@/assets/images/1.png'
+import avatar2 from '@/assets/images/2.png'
+import avatar3 from '@/assets/images/3.png'
+import avatar4 from '@/assets/images/4.png'
 
 export default function DaySchedule() {
   const [users, setUsers] = useState( [
