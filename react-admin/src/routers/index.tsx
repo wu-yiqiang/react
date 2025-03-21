@@ -35,7 +35,7 @@ export const allRouters: Array<any> = [
   {
     path: '/dashbord',
     key: 'dashbord',
-    label: '看板',
+    label: '系统看板',
     icon: <AreaChartOutlined />,
     parentkey: '',
     showMenu: true,
@@ -97,7 +97,7 @@ export const allRouters: Array<any> = [
   },
   {
     path: '/setting',
-    label: '设置',
+    label: '系统设置',
     icon: <SettingOutlined />,
     key: 'setting',
     parentkey: '',

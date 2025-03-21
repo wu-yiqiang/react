@@ -4,7 +4,7 @@ import '@/style/Search.scss'
 
 const FormItem = Form.Item, { Password } = Input, { Option } = Select, h = createElement;
 
-const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState = true, handleSearch }) => {
+const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4,labelWidth, defaultFoldState = true, handleSearch }) => {
     const [foldState, setFoldState] = useState()
     const [form] = Form.useForm();
     useImperativeHandle(cRef, () => ({
@@ -41,35 +41,63 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, defaultFoldState 
     }
 
     return (
-        <>
-            <Form id="form" form={form} layout="inline" style={{ '--numbers': defaultFoldNum }} onFinish={onFinish}>
-                {
-                    columns.map((n, i) => {
-                        const { type = 'input' } = n, C = components[type]
-                        return <FormItem label={n.label} name={n.name} rules={n.rules} key={n.name} className={i + 1 > defaultFoldNum && foldState ? 'unfold' : 'fold'}>
-                            {C(n)}
-                        </FormItem>
-                    })
+      <>
+        <Form
+          id="form"
+          form={form}
+          layout="inline"
+          style={{ "--numbers": defaultFoldNum }}
+          labelCol={{ flex: labelWidth }}
+          labelAlign="left"
+          onFinish={onFinish}
+        >
+          {columns.map((n, i) => {
+            const { type = "input" } = n,
+              C = components[type];
+            return (
+              <FormItem
+                label={n.label}
+                name={n.name}
+                rules={n.rules}
+                key={n.name}
+                className={
+                  i + 1 > defaultFoldNum && foldState ? "unfold" : "fold"
                 }
-                {columns.length < defaultFoldNum ? (
-          <FormItem>
-            <section className="inline-opts">
-              <Button type="primary" htmlType="submit">查询</Button>
-              <Button htmlType="button" onClick={onReset}>重置</Button>
-            </section>
-          </FormItem>
+              >
+                {C(n)}
+              </FormItem>
+            );
+          })}
+          {columns.length < defaultFoldNum ? (
+            <FormItem>
+              <section className="inline-opts">
+                <Button type="primary" htmlType="submit">
+                  查询
+                </Button>
+                <Button htmlType="button" onClick={onReset}>
+                  重置
+                </Button>
+              </section>
+            </FormItem>
+          ) : null}
+        </Form>
+        {columns.length >= defaultFoldNum ? (
+          <section className="opts">
+            <Button type="primary" form="form" htmlType="submit">
+              查询
+            </Button>
+            <Button htmlType="button" onClick={onReset}>
+              重置
+            </Button>
+            {columns.length <= defaultFoldNum ? null : foldState ? (
+              <Button onClick={handleFold}>展开</Button>
+            ) : (
+              <Button onClick={handleUnFold}>折叠</Button>
+            )}
+          </section>
         ) : null}
-            </Form>
-            {columns.length >= defaultFoldNum ? (
-                <section className="opts">
-                        <Button type="primary" form="form" htmlType="submit">查询</Button>
-                    <Button htmlType="button" onClick={onReset}>重置</Button>
-                    {columns.length <= defaultFoldNum ? null : foldState ? <Button onClick={handleFold}>展开</Button> : <Button onClick={handleUnFold}>折叠</Button>}
-                     </section>
-        ) : null}
-            
-        </>
-    )
+      </>
+    );
 }
 
 export default SearchForm

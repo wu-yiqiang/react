@@ -35,7 +35,7 @@ export default function RoleManager() {
     },
   ]
   const searchOptions = [
-    { name: 'keyword', label: '快速搜索', type: 'input' }
+    { name: 'keyword', label: '搜索', type: 'input' }
   ]
   const queryData = {
     keyword: '',
