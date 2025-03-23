@@ -38,11 +38,11 @@ export default defineConfig({
     host: '0.0.0.0',
     hmr: true,
     port: 8090,
-    // https: true,
+    https: true,
     proxy: {
       '/prod-api': {
         // target: `http://192.168.1.34:8081`,
-        target: `http://192.168.110.101:8899`,
+        target: `http://192.168.110.219:8000/`,
         //target: `http://192.168.1.15:8899`,
         changeOrigin: true,
         ws: true,

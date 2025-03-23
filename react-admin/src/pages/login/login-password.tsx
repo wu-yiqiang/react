@@ -2,12 +2,15 @@ import './login.scss'
 import { Button, Form, Input, Divider } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { login } from '@/api/user'
+import eventMitt from '@/utils/eventMitt'
 function LoginPassword() {
   const [form] = Form.useForm()
   const onFinish = async (value: any) => {
-    const { token } = await login(value)
-    console.log('token', token)
-    // localStorage.set('token', token)
+    const { access } = await login(value)
+    if (access) {
+      localStorage.setItem('token', access)
+      eventMitt.emit('ROUTER:HOME')
+    }
   }
 
   const onFinishFailed = (errorInfo: any) => {
@@ -15,7 +18,7 @@ function LoginPassword() {
   }
   return (
     <div className="LoginPassword">
-      <Form name="basic" initialValues={{ username: 'python222', password: '23456' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
+      <Form name="basic" initialValues={{ username: 'sutter.wu@outlook.com', password: '1234@Abcd' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
         <Form.Item name="username" rules={[{ required: true, message: 'Please input your username!' }]}>
           <Input placeholder="Email" prefix={<UserOutlined />} />
         </Form.Item>
