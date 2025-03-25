@@ -6,10 +6,10 @@ import eventMitt from '@/utils/eventMitt'
 function LoginPassword() {
   const [form] = Form.useForm()
   const onFinish = async (value: any) => {
-    const { access } = await login(value)
-    if (access) {
-      localStorage.setItem('token', access)
-      eventMitt.emit('ROUTER:HOME')
+    const { data } = await login(value)
+    const token = data?.token
+    if (token) {
+      eventMitt.emit('ROUTER:LOGIN', token)
     }
   }
 

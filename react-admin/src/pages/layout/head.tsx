@@ -92,7 +92,7 @@ function Setting() {
 function User() {
   const handleLogout = () => {
     // await logout()
-    eventMitt.emit("ROUTER:LOGIN");
+    eventMitt.emit('ROUTER:LOGOUT')
   };
   const items: MenuProps["items"] = [
     {
