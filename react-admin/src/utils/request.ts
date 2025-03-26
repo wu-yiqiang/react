@@ -1,11 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
-import qs from 'qs'
+// import qs from 'qs'
 
 const defaultConfig: AxiosRequestConfig = {
   baseURL: '/prod-api',
   timeout: 1000 * 60 * 5,
   // 数组格式参数序列化
-  paramsSerializer: (params) => qs.stringify(params, { indices: false })
+ //  paramsSerializer: (params) => qs.stringify(params, { indices: false })
 }
 
 const request: AxiosInstance = axios.create({
@@ -17,7 +17,7 @@ request.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`
+      config.headers['Authorization'] = `${token}`
     }
     return config
   },

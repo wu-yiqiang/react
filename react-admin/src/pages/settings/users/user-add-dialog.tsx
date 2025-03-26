@@ -5,18 +5,20 @@ import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
 import { message, Select, Row, Col } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-class Contractor {
-  name: string
+class User {
+  username: string
   email: string
-  // gender: number
-  picture: string
   password: string
+  avatar: string
+  phoneNumber: string
+  status: Number | null
   constructor() {
-    this.name = ''
+    this.username = ''
     this.email = ''
     this.password = ''
-    // this.gender = 0
-    this.picture = ''
+    this.avatar = ''
+    this.phoneNumber = ''
+    this.status = null
   }
 }
 export default function UserAddDialog(props: any) {
@@ -28,8 +30,7 @@ export default function UserAddDialog(props: any) {
     { required: true, message: '请输入' },
     { type: 'email', message: '请输入合法的邮箱' }
   ]
-  // const genderRules = [{ required: true, message: '请输入' }]
-  const companyRules = [{ required: true, message: '请输入' }]
+  const requiredRules = [{ required: true, message: '请输入' }]
   const close = () => {
     form.resetFields()
     handleClose()
@@ -39,7 +40,7 @@ export default function UserAddDialog(props: any) {
     if (value) {
       const values = form.getFieldsValue()
       const datas = { ...values }
-      datas.password = AES_ECB_ENCRYPT(datas.password, datas.email)
+     // datas.password = AES_ECB_ENCRYPT(datas.password, datas.email)
       console.log('sadasda', datas)
       if (!editStatus) await postUser(datas)
       // if (editStatus) await putContractor(target.uuid, datas)
@@ -55,7 +56,7 @@ export default function UserAddDialog(props: any) {
   const init = async () => {
     if (isEmpty(target)) {
       setEditStatus(false)
-      form.setFieldsValue(new Contractor())
+      form.setFieldsValue(new User())
       await setTitle('新增')
     }
     if (!isEmpty(target)) {
@@ -85,15 +86,15 @@ export default function UserAddDialog(props: any) {
       <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
         <Row>
           <Col span={12}>
-            <Form.Item label="头像" name="picture">
-              <div className="image">{form.getFieldValue('picture') ? <img src={form.getFieldValue('picture')} alt="" /> : <PlusOutlined onClick={handleUploadImg} />}</div>
+            <Form.Item label="头像" name="avatar">
+              <div className="image">{form.getFieldValue('avatar') ? <img src={form.getFieldValue('avatar')} alt="" /> : <PlusOutlined onClick={handleUploadImg} />}</div>
               <input id="img" type="file" accept="image/*" style={{ display: 'none' }} />
             </Form.Item>
           </Col>
         </Row>
         <Row>
           <Col span={12}>
-            <Form.Item label="姓名" name="name" rules={companyRules}>
+            <Form.Item label="姓名" name="username" rules={requiredRules}>
               <Input />
             </Form.Item>
           </Col>
@@ -105,41 +106,33 @@ export default function UserAddDialog(props: any) {
         </Row>
         <Row>
           <Col span={12}>
-            <Form.Item label="部门" name="email" rules={emailRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
+            <Form.Item label="号码" name="phoneNumber" rules={requiredRules}>
+              <Input />
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="岗位" name="email" rules={emailRules}>
+            <Form.Item label="激活" name="status" rules={requiredRules}>
               <Select>
-                <Select.Option value="sample">Sample</Select.Option>
+                <Select.Option value={1}>Active</Select.Option>
+                <Select.Option value={0}>Disabled</Select.Option>
               </Select>
             </Form.Item>
           </Col>
         </Row>
         <Row>
-          <Col span={12}>
-            <Form.Item label="角色" name="email" rules={emailRules}>
+          {/* <Col span={12}>
+            <Form.Item label="角色" name="email" rules={requiredRules}>
               <Select>
                 <Select.Option value="sample">Sample</Select.Option>
               </Select>
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={12}>
-            <Form.Item label="密码" name="password">
+            <Form.Item label="密码" name="password" rules={requiredRules}>
               <Input.Password />
             </Form.Item>
           </Col>
         </Row>
-
-        {/* <Form.Item label="性别" name="gender" rules={genderRules}>
-          <Radio.Group value={form.gender}>
-            <Radio value={0}>男</Radio>
-            <Radio value={1}>女</Radio>
-          </Radio.Group>
-        </Form.Item> */}
       </Form>
     </Modal>
   )

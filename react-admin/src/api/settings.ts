@@ -12,7 +12,7 @@ export const getContractorsLists = (params: any) => {
 
 export const postContractor = (data: any) => {
   return request({
-    url: '/eams/web/company',
+    url: '/user/create',
     method: 'post',
     data
   })
@@ -51,14 +51,14 @@ export const getTruckLists = (params: any) => {
 // 用户管理
 export const getUsersLists = (params: any) => {
   return request({
-    url: '/eams/web/user/page',
+    url: '/user/page',
     method: 'post',
     params
   })
 }
 export const postUser = (data: any) => {
   return request({
-    url: '/eams/web/user',
+    url: '/user/create',
     method: 'post',
     data
   })

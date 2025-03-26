@@ -1,9 +1,9 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getTruckLists, getUsersLists } from '@/api/settings'
+import { getUsersLists } from '@/api/settings'
 import { useState } from 'react'
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
-import { Button, message } from 'antd'
+import { Button } from 'antd'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -59,13 +59,12 @@ export default function UserManager() {
     { name: "keyword", label: "搜索", type: "input" },
   ];
   const queryData = {
-    keyword: '',
-    gender: 'male'
+    keyword: ''
   }
 
   const handleSearch = async (values: object) => {
     const params = { ...values, ...queryData }
-    const { data } = await getTruckLists(params)
+    const { data } = await getUsersLists(params)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,
@@ -87,11 +86,9 @@ export default function UserManager() {
     setDialogOpen(false)
   }
 
-  const handleOk = async (values: any) => {
-    const datas = { ...values, type: 1 }
-    await getUsersLists(datas)
-    message.success('操作成功')
+  const handleOk = async () => {
     setDialogOpen(false)
+    await handleSearch({ ...queryData, ...pager })
   }
   return (
     <>
