@@ -15,8 +15,8 @@ export default function UserManager() {
   const columns = [
     {
       title: '姓名',
-      dataIndex: 'displayName',
-      key: 'displayName'
+      dataIndex: 'username',
+      key: 'username'
     },
     {
       title: '邮箱',
@@ -24,19 +24,14 @@ export default function UserManager() {
       key: 'email'
     },
     {
-      title: '性别',
-      dataIndex: 'gender',
-      key: 'gender'
+      title: '号码',
+      dataIndex: 'phoneNumber',
+      key: 'phoneNumber'
     },
     {
-      title: '部门',
-      dataIndex: 'department',
-      key: 'department'
-    },
-    {
-      title: '岗位',
-      dataIndex: 'positon',
-      key: 'positon'
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status'
     },
     {
       title: '角色',
@@ -44,20 +39,7 @@ export default function UserManager() {
       key: 'roles'
     }
   ]
-  const searchOptions = [
-    {
-      name: "gender",
-      label: "性别",
-      type: "select",
-      rules: [{ required: true, message: "请选择性别" }],
-      list: [
-        { value: "male", label: "男" },
-        { value: "female", label: "女" },
-      ],
-      callback: (res) => onGenderChange(res),
-    },
-    { name: "keyword", label: "搜索", type: "input" },
-  ];
+  const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const queryData = {
     keyword: ''
   }
