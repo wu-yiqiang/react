@@ -180,3 +180,7 @@ eventMitt.on('ROUTER:LOGIN', (value: string) => {
   routes.navigate('/')
 })
 
+eventMitt.on("ROUTER:HOME", (value: string) => {
+  routes.navigate("/");
+});
+
