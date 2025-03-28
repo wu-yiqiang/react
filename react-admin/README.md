@@ -38,8 +38,14 @@ zustand // https://juejin.cn/post/7321049446443384870
 antd Theme // https://ant-design.antgroup.com/theme-editor-cn#Color
 antd Components // https://ant-design.antgroup.com/components/overview-cn/
 
-1.使用发布订阅者 单例模式封装消息中心，降低系统各个部分间的耦合关系，使后期功能维护更加方便快捷。
-2.权限平台使用
+
+1.使用发布订阅者、单例模式封装各类组件，降低系统各个部分间的耦合关系，减少功能冗余，增强扩展性提升简洁性。
+2.使用策略模式优化代码分支，使代码更加清晰。
+3.使用zustand封装全局状态，使各个组件之间的数据共享更加方便。
+4.使用antd Theme封装主题，使各个组件的样式更加统一。
+5.使用antd Components封装常用组件，使开发更加方便快捷。
+6.使用axios封装请求，使请求更加方便。
+7.使用echarts封装图表，使图表更加方便。
 
 1.避免chunk碎片化，合理设置chunk包体积，减少网络请求将chunk包数量减少20% （experimentalMinChunkSize）
 2.通过引入带有tree-sharking功能的第三方包，减少第三方包的打包体积。
