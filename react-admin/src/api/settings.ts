@@ -49,11 +49,11 @@ export const getTruckLists = (params: any) => {
 }
 
 // 用户管理
-export const getUsersLists = (params: any) => {
+export const getUsersLists = (data: any) => {
   return request({
     url: '/user/page',
     method: 'post',
-    params
+    data
   })
 }
 export const postUser = (data: any) => {

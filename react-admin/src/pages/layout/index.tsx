@@ -7,6 +7,7 @@ import Head from './head'
 import SvgIcon from '@/components/SvgIcon/SvgIcon'
 import './index.scss'
 import eventMitt from '../../utils/eventMitt'
+import { routes } from '../../routers'
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -22,9 +23,9 @@ const App: React.FC = () => {
             padding: "10px",
             cursor: "pointer",
           }}
-          onClick={() => {
-            eventMitt.emit("ROUTER:HOME")
-          }}
+          // onClick={() => {
+          //   eventMitt.emit("ROUTER:HOME")
+          // }}
         >
           <SvgIcon name="eams" size="40px" />
           {!collapsed && (

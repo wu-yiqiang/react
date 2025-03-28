@@ -111,7 +111,7 @@ export default function UserAddDialog(props: any) {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="激活" name="status" rules={requiredRules}>
+            <Form.Item label="状态" name="status" rules={requiredRules}>
               <Select>
                 <Select.Option value={1}>Active</Select.Option>
                 <Select.Option value={0}>Disabled</Select.Option>
