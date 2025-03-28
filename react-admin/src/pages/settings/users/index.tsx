@@ -1,16 +1,21 @@
 import Tabular from '@/components/Tabular.tsx'
 import { getUsersLists } from '@/api/settings'
 import { useState } from 'react'
+import { UserSearch } from "@/types/user";
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
 import { Button } from 'antd'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [pager, setPager] = useState({
-    total: 0,
+  const [total, setTotal] = useState(0)
+  // const [pager, setPager] = useState({
+   
+  // })
+  const [queryData, setQueryData] = useState<UserSearch>({
+    search: "",
     pageNo: 1,
-    pageSize: 10
+    pageSize: 10,
   })
   const columns = [
     {
@@ -40,45 +45,35 @@ export default function UserManager() {
     }
   ]
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
-  const queryData = {
-    keyword: ''
-  }
-
   const handleSearch = async (values: object) => {
     const params = { ...values, ...queryData }
     const { data } = await getUsersLists(params)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,
-      total: data.total,
       pageNo: data.pageNo
     }
-    setPager(datas)
-  }
-  const formState = {
-    name: '',
-    email: '',
-    picture: ''
+    setTotal(data?.total)
+    setQueryData({...queryData,...datas});
   }
   const handleNew = () => {
     setDialogOpen(true)
   }
-  
   const handleClose = () => {
     setDialogOpen(false)
   }
 
   const handleOk = async () => {
     setDialogOpen(false)
-    await handleSearch({ ...queryData, ...pager })
+    await handleSearch({ ...queryData, pageNo: 1 })
   }
   return (
     <>
       <Tabular
         dataSource={lists}
-        total={pager.total}
-        pageNo={pager.pageNo}
-        pageSize={pager.pageSize}
+        total={total}
+        pageNo={queryData.pageNo}
+        pageSize={queryData.pageSize}
         columns={columns}
         data={queryData}
         searchOptions={searchOptions}
@@ -89,7 +84,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} />
+      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} />
     </>
   )
 }
