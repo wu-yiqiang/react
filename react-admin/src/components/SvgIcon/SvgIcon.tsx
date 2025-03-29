@@ -5,8 +5,7 @@ interface SvgIconProps {
   color?: string; // 填充颜色
 }
 export default function SvgIcon(props: SvgIconProps) {
-  const { name, size, color } = props;
-  console.log("sdsd", name);
+  const { name, size, color } = props
   return (
     <svg
       className={`svg-icon icon-${name}`}

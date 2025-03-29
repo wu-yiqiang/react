@@ -42,47 +42,26 @@ export default function Tabular(props: any) {
 
   const init = () => {
     setColumnLists([])
-    columns.forEach(column => {
+    columns.forEach((column: { key: string }) => {
       if (column.key == 'action') {
         setColumnLists((current) => [...current, ...actionSlot])
       } else {
         setColumnLists((current) => [...current, column])
       }
-    });
+    })
   }
   useEffect(() => {
     init()
   }, [])
   return (
     <>
-      <SearchForm
-        columns={searchOptions}
-        labelWidth='50px'
-        data={data}
-        cRef={SearchFormRef}
-        defaultFoldNum={defaultFoldNum}
-        defaultFoldState={defaultFoldState}
-        handleSearch={handleForm}
-      />
+      <SearchForm columns={searchOptions} labelWidth="50px" data={data} cRef={SearchFormRef} defaultFoldNum={defaultFoldNum} defaultFoldState={defaultFoldState} handleSearch={handleForm} />
       <section className="opeartions">
         <div className="opts-left">{props?.left}</div>
         <div className="opts-right">{props?.right}</div>
       </section>
-      <Table
-        columns={columnLists}
-        rowKey="uuid"
-        dataSource={dataSource}
-        pagination={false}
-      />
-      {total > 0 ? (
-        <Pagination
-          showSizeChanger
-          current={pageNo}
-          pageSize={pageSize}
-          total={total}
-          onChange={handlePager}
-        />
-      ) : null}
+      <Table columns={columnLists} rowKey="id" dataSource={dataSource} pagination={false} />
+      {total > 0 ? <Pagination showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} /> : null}
     </>
-  );
+  )
 }

@@ -46,15 +46,14 @@ export default function UserManager() {
   ]
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: object) => {
-    const params = { ...values, ...queryData }
-    const { data } = await getUsersLists(params)
+    const { data } = await getUsersLists(values)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,
       pageNo: data.pageNo
     }
     setTotal(data?.total)
-    setQueryData({...queryData,...datas});
+    setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
     setDialogOpen(true)
@@ -84,7 +83,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} />
+      <UserAddDialog open={dialogOpen} handleSearch={handleSearch} handleClose={handleClose} handleOk={handleOk} />
     </>
   )
 }

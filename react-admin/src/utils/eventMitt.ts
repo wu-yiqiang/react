@@ -16,7 +16,6 @@ class EventMitt {
   emit(event: EventNames, ...args: any) {
     const listens = this.listeners[event]
     if (!listens) return new Error('未注册该事件')
-    console.log('sdsd', listens)
     listens.forEach((litener: any) => {
       litener(...args)
     })
