@@ -24,7 +24,7 @@ request.interceptors.request.use(
   },
   (error) => {
     console.log('response', error)
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 
@@ -44,7 +44,7 @@ request.interceptors.response.use(
       message.error('服务错误')
     }
     console.log('error', status)
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 

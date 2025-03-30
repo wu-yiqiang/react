@@ -54,7 +54,6 @@ export default function UserAddDialog(props: any) {
     if (userId) {
       setEditStatus(true)
       const { data } = await getUserDetail(userId)
-      console.log('dssd', data)
       await setTitle('编辑')
       form.setFieldsValue(data)
     }
