@@ -1,8 +1,6 @@
 import { Form, Input, Modal } from 'antd'
 import { useEffect, useState } from 'react'
-import { postUser, getContractorDetail } from '@/api/settings'
-import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
-import { isEmpty } from 'lodash-es'
+import { postUser, updateUserDetail, getUserDetail } from '@/api/settings'
 import { message, Select, Row, Col } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 class User {
@@ -10,19 +8,19 @@ class User {
   email: string
   password: string
   avatar: string
-  phoneNumber: string
+  phone_number: string
   status: Number | null
   constructor() {
     this.username = ''
     this.email = ''
     this.password = ''
     this.avatar = ''
-    this.phoneNumber = ''
+    this.phone_number = ''
     this.status = null
   }
 }
 export default function UserAddDialog(props: any) {
-  const { open, handleClose, target, handleOk } = props
+  const { open, handleClose, handleOk, userId } = props
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [form] = Form.useForm()
@@ -39,29 +37,24 @@ export default function UserAddDialog(props: any) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
-      const datas = { ...values }
-     // datas.password = AES_ECB_ENCRYPT(datas.password, datas.email)
-      console.log('sadasda', datas)
-      if (!editStatus) await postUser(datas)
-      // if (editStatus) await putContractor(target.uuid, datas)
+      console.log('values', values)
+      if (!editStatus) await postUser(values)
+      if (editStatus) await updateUserDetail(values)
       message.destroy()
       message.success('操作成功')
       handleOk(values)
     }
   }
-  const fetchData = async (target: any) => {
-    const { data } = await getContractorDetail(target.uuid)
-    return data
-  }
   const init = async () => {
-    if (isEmpty(target)) {
+    if (!userId) {
       setEditStatus(false)
       form.setFieldsValue(new User())
       await setTitle('新增')
     }
-    if (!isEmpty(target)) {
+    if (userId) {
       setEditStatus(true)
-      const data = await fetchData(target)
+      const { data } = await getUserDetail(userId)
+      console.log('dssd', data)
       await setTitle('编辑')
       form.setFieldsValue(data)
     }
@@ -80,7 +73,7 @@ export default function UserAddDialog(props: any) {
   }
   useEffect(() => {
     init()
-  }, [target])
+  }, [userId])
   return (
     <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
@@ -106,7 +99,7 @@ export default function UserAddDialog(props: any) {
         </Row>
         <Row>
           <Col span={12}>
-            <Form.Item label="号码" name="phoneNumber" rules={requiredRules}>
+            <Form.Item label="号码" name="phone_number" rules={requiredRules}>
               <Input />
             </Form.Item>
           </Col>
@@ -132,6 +125,9 @@ export default function UserAddDialog(props: any) {
               <Input.Password />
             </Form.Item>
           </Col>
+          <Form.Item hidden label="ID" name="id">
+            <Input hidden />
+          </Form.Item>
         </Row>
       </Form>
     </Modal>

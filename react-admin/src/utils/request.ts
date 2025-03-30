@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 import eventMitt from './eventMitt'
+import { message } from 'antd'
 // import qs from 'qs'
 
 const defaultConfig: AxiosRequestConfig = {
@@ -33,7 +34,15 @@ request.interceptors.response.use(
   },
   (error) => {
     const status = error?.response?.status
-    if (status == 401) eventMitt.emit('ROUTER:LOGOUT')
+    if (status == 401) {
+      message.destroy()
+      message.error('认证信息过期，请重新登录')
+      eventMitt.emit('ROUTER:LOGOUT')
+    }
+    if (status == 500) {
+      message.destroy()
+      message.error('服务错误')
+    }
     console.log('error', status)
     Promise.reject(error)
   }

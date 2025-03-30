@@ -1,4 +1,4 @@
-import { Table, Pagination } from 'antd'
+import { Table, Pagination, PaginationProps } from 'antd'
 import { Button, Space } from 'antd'
 import React, { useImperativeHandle, useState, useRef, useEffect } from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
@@ -6,7 +6,8 @@ import SearchForm from './SearchForm'
 import '@/style/Tabular.scss'
 
 export default function Tabular(props: any) {
-  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef,left = null, right = null, defaultFoldState,total ,pageSize = 10, pageNo = 1, handleEdit, handleDelete  } = props
+  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef, left = null, right = null, defaultFoldState, total, pageSize = 10, pageNo = 1, handleEdit, handleDelete } = props
+  const showTotal: PaginationProps['showTotal'] = (total) => `Total ${total} items`
   const [columnLists, setColumnLists] = useState([])
   const [searchParams, setSearchparams] = useState({})
   const SearchFormRef = useRef(null);
@@ -61,7 +62,7 @@ export default function Tabular(props: any) {
         <div className="opts-right">{props?.right}</div>
       </section>
       <Table columns={columnLists} rowKey="id" dataSource={dataSource} pagination={false} />
-      {total > 0 ? <Pagination showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} /> : null}
+      {total > 0 ? <Pagination showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} align="end" showTotal={showTotal} /> : null}
     </>
   )
 }

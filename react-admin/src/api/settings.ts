@@ -63,3 +63,21 @@ export const postUser = (data: any) => {
     data
   })
 }
+
+export const getUserDetail = (id: number) => {
+  if(!id) return
+  return request({
+    url: `/user/detail/${id}`,
+    method: 'post',
+  })
+}
+
+export const updateUserDetail = (data: object) => {
+  console.log("ssss", data?.id)
+  if (!data?.id) return
+  return request({
+    url: `/user/update`,
+    method: 'post',
+    data
+  })
+}
