@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { postUser, getContractorDetail } from '@/api/settings'
 import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
-import { message, Select, Row, Col } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
+import { Select, Row, Col } from 'antd'
+import Toast from '@/components/Toast'
 class Contractor {
   name: string
   email: string
@@ -43,8 +43,7 @@ export default function UserAddDialog(props: any) {
       console.log('sadasda', datas)
       if (!editStatus) await postUser(datas)
       // if (editStatus) await putContractor(target.uuid, datas)
-      message.destroy()
-      message.success('操作成功')
+      Toast.success('操作成功')
       handleOk(values)
     }
   }

@@ -1,11 +1,12 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getUsersLists } from '@/api/settings'
+import { getUsersLists, deleteUserItem } from '@/api/settings'
 import { useState } from 'react'
 import { UserSearch } from '@/types/user'
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
-import { Button } from 'antd'
-import { EditOutlined } from '@ant-design/icons'
+import { Button, Space } from 'antd'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import Toast from '@/components/Toast'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -22,6 +23,11 @@ export default function UserManager() {
   const handleEdit = (id: number) => {
     setUserId(id)
     setDialogOpen(true)
+  }
+  const handleDelete = async (id: number) => {
+    await deleteUserItem(id)
+    Toast.success('操作成功')
+    await handleSearch({ ...queryData, pageNo: 1 })
   }
   const columns = [
     {
@@ -54,7 +60,12 @@ export default function UserManager() {
       dataIndex: 'opeartions',
       key: 'opeartions',
       render: (value, record, index) => {
-        return <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
+        return (
+          <Space>
+            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
+            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+          </Space>
+        )
       }
     }
   ]

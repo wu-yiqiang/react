@@ -1,8 +1,9 @@
 import Tabular from '@/components/Tabular.tsx'
 import { getTruckLists, getUsersLists } from '@/api/settings'
 import { useState } from 'react'
-import { Button, message } from 'antd'
+import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
+import Toast from '@/components/Toast'
 export default function RoleManager() {
   const navgite = useNavigate()
   const [lists, setLists] = useState()
@@ -69,7 +70,7 @@ export default function RoleManager() {
   const handleOk = async (values: any) => {
     const datas = { ...values, type: 1 }
     await getUsersLists(datas)
-    message.success('操作成功')
+    Toast.success('操作成功')
     setDialogOpen(false)
   }
   return (

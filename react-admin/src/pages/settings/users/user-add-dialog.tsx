@@ -1,7 +1,8 @@
 import { Form, Input, Modal } from 'antd'
 import { useEffect, useState } from 'react'
 import { postUser, updateUserDetail, getUserDetail } from '@/api/settings'
-import { message, Select, Row, Col } from 'antd'
+import { Select, Row, Col } from 'antd'
+import Toast from '@/components/Toast'
 import { PlusOutlined } from '@ant-design/icons'
 class User {
   username: string
@@ -40,8 +41,7 @@ export default function UserAddDialog(props: any) {
       console.log('values', values)
       if (!editStatus) await postUser(values)
       if (editStatus) await updateUserDetail(values)
-      message.destroy()
-      message.success('操作成功')
+      Toast.success('操作成功')
       handleOk(values)
     }
   }

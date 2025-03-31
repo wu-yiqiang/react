@@ -2,7 +2,8 @@ import Tabular from '@/components/Tabular.tsx';
 import { getContractorsLists, deleteContractors } from '@/api/settings'
 import React, { useState, useEffect, useRef } from 'react';
 import AddDialog from './add-dialog';
-import { Button, message } from 'antd'
+import { Button } from 'antd'
+import Toast from '@/components/Toast'
 export default function Contractor() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -97,8 +98,7 @@ export default function Contractor() {
   const handleDelete = async (values: any) => {
     const { uuid } = values
     await deleteContractors(uuid)
-    message.destroy()
-    message.success('操作成功')
+    Toast.success('操作成功')
     if (TableRef?.current) handleFlush()
   }
 

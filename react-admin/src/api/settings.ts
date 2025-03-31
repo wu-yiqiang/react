@@ -81,3 +81,11 @@ export const updateUserDetail = (data: object) => {
     data
   })
 }
+
+export const deleteUserItem = (id: number) => {
+  if (!id) return
+  return request({
+    url: `/user/delete/${id}`,
+    method: 'delete',
+  })
+}

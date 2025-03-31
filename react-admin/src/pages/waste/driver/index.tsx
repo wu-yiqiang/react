@@ -2,7 +2,8 @@ import Tabular from '@/components/Tabular.tsx'
 import { getContractorsLists, postContractor } from '@/api/settings'
 import { useState } from 'react'
 import AddDialog from './add-dialog'
-import { Button, message } from 'antd'
+import { Button } from 'antd'
+import Toast from '@/components/Toast'
 export default function Driver() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -90,7 +91,7 @@ export default function Driver() {
   const handleOk = async (values: any) => {
     const datas = { ...values, type: 1 }
     await postContractor(datas)
-    message.success('操作成功')
+    Toast.success('操作成功')
     setDialogOpen(false)
   }
   return (

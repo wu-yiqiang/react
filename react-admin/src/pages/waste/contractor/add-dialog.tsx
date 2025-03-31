@@ -2,7 +2,7 @@ import { Form, Input,Modal } from 'antd'
 import { useEffect, useState } from 'react'
 import { postContractor, getContractorDetail, putContractor } from '@/api/settings'
 import {isEmpty} from 'lodash-es'
-import { message } from 'antd'
+import Toast from '@/components/Toast'
 class Contractor {
   companyName: string;
   email: string;
@@ -31,8 +31,7 @@ export default function AddDialog(props: any) {
       const datas = { ...values, type: 1 }
       if (!editStatus) await postContractor(datas)
       if (editStatus) await putContractor(target.uuid,datas)
-      message.destroy()
-      message.success('操作成功')
+      Toast.success('操作成功')
       handleOk(values)
     }
   }

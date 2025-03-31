@@ -3,7 +3,8 @@ import { getTruckLists, getUsersLists } from '@/api/settings'
 import { useState } from 'react'
 import UserAddDialog from './permission-add-dialog'
 import './permission-manager.scss'
-import { Button, message } from 'antd'
+import { Button } from 'antd'
+import Toast from '@/components/Toast'
 export default function PermissionManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -77,7 +78,7 @@ export default function PermissionManager() {
   const handleOk = async (values: any) => {
     const datas = { ...values, type: 1 }
     await getUsersLists(datas)
-    message.success('操作成功')
+    Toast.success('操作成功')
     setDialogOpen(false)
   }
   return (
