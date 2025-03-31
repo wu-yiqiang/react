@@ -89,3 +89,21 @@ export const deleteUserItem = (id: number) => {
     method: 'delete',
   })
 }
+
+
+// 角色管理
+export const getRolesLists = (data: any) => {
+  return request({
+    url: '/role/page',
+    method: 'post',
+    data
+  })
+}
+
+export const deleteRoleItem = (id: number) => {
+  if (!id) return
+  return request({
+    url: `/role/delete/${id}`,
+    method: 'delete'
+  })
+}

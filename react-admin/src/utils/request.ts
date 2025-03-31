@@ -30,6 +30,11 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
+    const { code, msg } = response?.data
+    if (code !== 200) {
+      Toast.error(msg)
+      return Promise.reject()
+    }
     return response.data
   },
   (error) => {

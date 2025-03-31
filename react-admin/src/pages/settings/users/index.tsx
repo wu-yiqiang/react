@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getUsersLists, deleteUserItem } from '@/api/settings'
+import { getUsersLists, deleteRoleItem } from '@/api/settings'
 import { useState } from 'react'
 import { UserSearch } from '@/types/user'
 import UserAddDialog from './user-add-dialog'
@@ -25,7 +25,7 @@ export default function UserManager() {
     setDialogOpen(true)
   }
   const handleDelete = async (id: number) => {
-    await deleteUserItem(id)
+    await deleteRoleItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }

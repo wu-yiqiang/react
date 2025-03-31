@@ -1,93 +1,118 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getTruckLists, getUsersLists } from '@/api/settings'
+import { getRolesLists, deleteRoleItem } from '@/api/settings'
 import { useState } from 'react'
-import UserAddDialog from './role-add-dialog'
+import { UserSearch } from '@/types/user'
+import RoleAddDialog from './role-add-dialog'
 import './role-manager.scss'
-import { Button } from 'antd'
-import Toast from '../../../components/Toast'
-export default function Schedules() {
+import { Button, Space } from 'antd'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import Toast from '@/components/Toast'
+export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [pager, setPager] = useState({
-    total: 0,
+  const [userId, setUserId] = useState(0)
+  const [total, setTotal] = useState(0)
+  // const [pager, setPager] = useState({
+
+  // })
+  const [queryData, setQueryData] = useState<UserSearch>({
+    search: '',
     pageNo: 1,
     pageSize: 10
   })
+  const handleEdit = (id: number) => {
+    setUserId(id)
+    setDialogOpen(true)
+  }
+  const handleDelete = async (id: number) => {
+    await deleteRoleItem(id)
+    Toast.success('操作成功')
+    await handleSearch({ ...queryData, pageNo: 1 })
+  }
   const columns = [
+    // {
+    //   title: 'ID',
+    //   dataIndex: 'id',
+    //   key: 'id'
+    // },
     {
-      title: '姓名',
-      dataIndex: 'displayName',
-      key: 'displayName'
+      title: '角色名字',
+      dataIndex: 'name',
+      key: 'name'
     },
     {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email'
+      title: '角色编码',
+      dataIndex: 'code',
+      key: 'code'
     },
     {
-      title: '性别',
-      dataIndex: 'gender',
-      key: 'gender'
+      title: '状态',
+      dataIndex: 'code',
+      key: 'code'
     },
     {
-      title: '部门',
-      dataIndex: 'department',
-      key: 'department'
+      title: '顺序',
+      dataIndex: 'code',
+      key: 'code'
     },
     {
-      title: '岗位',
-      dataIndex: 'positon',
-      key: 'positon'
+      title: '描述',
+      dataIndex: 'remark',
+      key: 'remark'
     },
     {
-      title: '角色',
-      dataIndex: 'roles',
-      key: 'roles'
+      title: '更新时间',
+      dataIndex: 'update_time',
+      key: 'update_time'
+    },
+    {
+      title: '创建时间',
+      dataIndex: 'create_time',
+      key: 'create_time'
+    },
+    {
+      title: '操作',
+      dataIndex: 'opeartions',
+      key: 'opeartions',
+      render: (value, record, index) => {
+        return (
+          <Space>
+            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
+            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+          </Space>
+        )
+      }
     }
   ]
-  const searchOptions = [{ name: 'keyword', label: '搜索', type: 'input' }]
-  const queryData = {
-    keyword: '',
-    gender: 'male'
-  }
-
+  const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: object) => {
-    const params = { ...values, ...queryData }
-    const { data } = await getTruckLists(params)
+    const { data } = await getRolesLists(values)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,
-      total: data.total,
       pageNo: data.pageNo
     }
-    setPager(datas)
-  }
-  const formState = {
-    name: '',
-    email: '',
-    picture: ''
+    setTotal(data?.total)
+    setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
     setDialogOpen(true)
   }
-
   const handleClose = () => {
     setDialogOpen(false)
   }
 
-  const handleOk = async (values: any) => {
-    const datas = { ...values, type: 1 }
-    await getUsersLists(datas)
-    Toast.success('操作成功')
+  const handleOk = async () => {
     setDialogOpen(false)
+    await handleSearch({ ...queryData, pageNo: 1 })
   }
   return (
     <>
       <Tabular
         dataSource={lists}
-        total={pager.total}
-        pageNo={pager.pageNo}
-        pageSize={pager.pageSize}
+        total={total}
+        pageNo={queryData.pageNo}
+        pageSize={queryData.pageSize}
         columns={columns}
         data={queryData}
         searchOptions={searchOptions}
@@ -98,7 +123,7 @@ export default function Schedules() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} formState={formState} handleClose={handleClose} handleOk={handleOk} />
+      <RoleAddDialog open={dialogOpen} handleSearch={handleSearch} handleClose={handleClose} handleOk={handleOk} userId={userId} />
     </>
   )
 }
