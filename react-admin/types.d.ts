@@ -4,4 +4,4 @@
 //     export default componentOptions
 // }
 declare module "@/types/*";
-
+declare module "@/components/*";

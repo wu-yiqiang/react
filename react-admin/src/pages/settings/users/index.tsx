@@ -31,44 +31,53 @@ export default function UserManager() {
   }
   const columns = [
     {
-      title: '姓名',
-      dataIndex: 'username',
-      key: 'username'
+      title: "姓名",
+      dataIndex: "username",
+      key: "username",
     },
     {
-      title: '邮箱',
-      dataIndex: 'email',
-      key: 'email'
+      title: "邮箱",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: '号码',
-      dataIndex: 'phone_number',
-      key: 'phoneNumber'
+      title: "号码",
+      dataIndex: "phone_number",
+      key: "phoneNumber",
     },
     {
-      title: '状态',
-      dataIndex: 'status',
-      key: 'status'
+      title: "状态",
+      dataIndex: "status",
+      key: "status",
     },
     {
-      title: '角色',
-      dataIndex: 'roles',
-      key: 'roles'
+      title: "角色",
+      dataIndex: "roles",
+      key: "roles",
     },
     {
-      title: '操作',
-      dataIndex: 'opeartions',
-      key: 'opeartions',
-      render: (value, record, index) => {
+      title: "操作",
+      dataIndex: "opeartions",
+      key: "opeartions",
+      render: (value: number | string, record: object, index: number) => {
         return (
-          <Space>
-            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
-            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+          <Space key={index}>
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => handleEdit(record?.id)}
+            />
+            <Button
+              icon={<DeleteOutlined />}
+              type="primary"
+              danger
+              ghost
+              onClick={() => handleDelete(record?.id)}
+            />
           </Space>
-        )
-      }
-    }
-  ]
+        );
+      },
+    },
+  ];
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: object) => {
     const { data } = await getUsersLists(values)
