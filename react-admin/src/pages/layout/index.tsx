@@ -6,8 +6,7 @@ import Menus from './menu'
 import Head from './head'
 import SvgIcon from '@/components/SvgIcon/SvgIcon'
 import './index.scss'
-import eventMitt from '../../utils/eventMitt'
-import { routes } from '../../routers'
+import logo from '@/assets/images/logo.png'
 const { Header, Sider, Content } = Layout
 const App: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -27,14 +26,12 @@ const App: React.FC = () => {
           //   eventMitt.emit("ROUTER:HOME")
           // }}
         >
-          <SvgIcon name="eams" size="40px" />
-          {!collapsed && (
-            <span
-              style={{ fontSize: "30px", fontWeight: 700, color: "#868686" }}
+          {/* <SvgIcon name="eams" size="40px" /> */}
+          {collapsed ?  <span
+              style={{ fontSize: "20px", fontWeight: 700, color: "#868686" }}
             >
               EAMS
-            </span>
-          )}
+            </span> :  <img src={ logo } style={{width: '180px'}} />}
         </div>
         <Menus />
       </Sider>

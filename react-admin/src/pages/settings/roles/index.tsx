@@ -30,28 +30,18 @@ export default function UserManager() {
     await handleSearch({ ...queryData, pageNo: 1 })
   }
   const columns = [
-    // {
-    //   title: 'ID',
-    //   dataIndex: 'id',
-    //   key: 'id'
-    // },
     {
-      title: '角色名字',
+      title: '名字',
       dataIndex: 'name',
       key: 'name'
     },
     {
-      title: '角色编码',
+      title: '  编码',
       dataIndex: 'code',
       key: 'code'
     },
     {
       title: '状态',
-      dataIndex: 'code',
-      key: 'code'
-    },
-    {
-      title: '顺序',
       dataIndex: 'code',
       key: 'code'
     },

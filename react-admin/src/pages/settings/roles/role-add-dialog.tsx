@@ -5,6 +5,9 @@ import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
 import { Select, Row, Col } from 'antd'
 import Toast from '@/components/Toast'
+import { Tree } from 'antd'
+import type { TreeDataNode, TreeProps } from 'antd'
+import { Card } from 'antd'
 class Contractor {
   name: string
   email: string
@@ -79,58 +82,124 @@ export default function UserAddDialog(props: any) {
   useEffect(() => {
     init()
   }, [target])
-  return (
-    <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
-        <Row>
-          <Col span={12}>
-            <Form.Item label="姓名" name="name" rules={companyRules}>
-              <Input />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="邮箱" name="email" rules={emailRules}>
-              <Input />
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <Form.Item label="部门" name="email" rules={emailRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="岗位" name="email" rules={emailRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>
-            <Form.Item label="角色" name="email" rules={emailRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item label="密码" name="password">
-              <Input.Password />
-            </Form.Item>
-          </Col>
-        </Row>
+  const treeData: TreeDataNode[] = [
+    {
+      title: '系统看板',
+      key: 'dashboard'
+    },
+    {
+      title: '统计报表',
+      key: 'statics'
+    },
+    {
+      title: '系统管理',
+      key: 'system',
+      children: [
+        { title: '用户管理', key: 'users' },
+        { title: '角色管理', key: 'roles' },
+        { title: '菜单管理', key: 'menus' }
+      ]
+    },
+    {
+      title: '单据管理',
+      key: '0-0-1',
+      children: [
+        { title: '维修单据', key: '0-0-1-0' },
+        { title: '0-0-1-1', key: '0-0-1-1' },
+        { title: '0-0-1-2', key: '0-0-1-2' }
+      ]
+    },
+    {
+      title: '0-0-2',
+      key: '0-0-2'
+    },
+    {
+      title: '0-1',
+      key: '0-1',
+      children: [
+        { title: '0-1-0-0', key: '0-1-0-0' },
+        { title: '0-1-0-1', key: '0-1-0-1' },
+        { title: '0-1-0-2', key: '0-1-0-2' }
+      ]
+    }
+  ]
+   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>(['0-0-0', '0-0-1'])
+   const [checkedKeys, setCheckedKeys] = useState<React.Key[]>(['0-0-0'])
+   const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([])
+   const [autoExpandParent, setAutoExpandParent] = useState<boolean>(true)
 
-        {/* <Form.Item label="性别" name="gender" rules={genderRules}>
-          <Radio.Group value={form.gender}>
-            <Radio value={0}>男</Radio>
-            <Radio value={1}>女</Radio>
-          </Radio.Group>
-        </Form.Item> */}
+   const onExpand: TreeProps['onExpand'] = (expandedKeysValue) => {
+     console.log('onExpand', expandedKeysValue)
+     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
+     // or, you can remove all expanded children keys.
+     setExpandedKeys(expandedKeysValue)
+     setAutoExpandParent(false)
+   }
+
+   const onCheck: TreeProps['onCheck'] = (checkedKeysValue) => {
+     console.log('onCheck', checkedKeysValue)
+     setCheckedKeys(checkedKeysValue as React.Key[])
+   }
+
+   const onSelect: TreeProps['onSelect'] = (selectedKeysValue, info) => {
+     console.log('onSelect', info)
+     setSelectedKeys(selectedKeysValue)
+   }
+  
+   const dataPermissionLists: TreeDataNode[] = [
+     {
+       title: '安东集团',
+       key: 'anton',
+       children: [
+         {
+           title: '迪拜分公司',
+           key: 'dubai',
+           children: [
+             { title: '运维部门', key: 'maintenance' },
+             { title: '开发部门', key: 'develop' },
+             { title: '财务部门', key: 'finance' },
+             { title: '后勤部门', key: 'logistics' }
+           ]
+         }
+       ]
+     }
+   ]
+  return (
+    <Modal title={title} width={600} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll' }} form={form} labelCol={{ span: '4' }} layout="inline">
+        <Row gutter={[16, 16]}>
+          <Col span={24}>
+            <Form.Item label="角色名称" name="name" rules={companyRules}>
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="角色标识" name="email" rules={emailRules}>
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="状态" name="email" rules={emailRules}>
+              <Select>
+                <Select.Option value="sample">Sample</Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="菜单权限" name="email" rules={emailRules}>
+              <Card>
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={treeData} />
+              </Card>
+            </Form.Item>
+          </Col>
+          <Col span={24}>
+            <Form.Item label="数据权限" name="email" rules={emailRules}>
+              <Card>
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={dataPermissionLists} />
+              </Card>
+            </Form.Item>
+          </Col>
+        </Row>
       </Form>
     </Modal>
   )
