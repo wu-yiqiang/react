@@ -1,9 +1,9 @@
-import { Form, Input, Modal } from 'antd'
+import { Form, Input, Modal, Upload } from "antd";
 import { useEffect, useState } from 'react'
 import { postUser, updateUserDetail, getUserDetail } from '@/api/settings'
 import { Select, Row, Col } from 'antd'
 import Toast from '@/components/Toast'
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
 class User {
   username: string
   email: string
@@ -24,6 +24,7 @@ export default function UserAddDialog(props: any) {
   const { open, handleClose, handleOk, userId } = props
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
+  const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
   const emailRules = [
     { required: true, message: '请输入' },
@@ -38,7 +39,6 @@ export default function UserAddDialog(props: any) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
-      console.log('values', values)
       if (!editStatus) await postUser(values)
       if (editStatus) await updateUserDetail(values)
       Toast.success('操作成功')
@@ -58,29 +58,48 @@ export default function UserAddDialog(props: any) {
       form.setFieldsValue(data)
     }
   }
-  const handleUploadImg = () => {
-    const reader = new FileReader()
-    const f: any = document.getElementById('img')
-    f?.click()
-    f.onchange = async function (e: any) {
-      const file = e.target.files[0]
-      reader.readAsDataURL(file)
-      reader.onload = function () {
-        form.setFieldValue('picture', this.result)
-      }
-    }
-  }
   useEffect(() => {
     init()
   }, [userId])
+   const uploadButton = (
+    <button style={{ border: 0, background: "none" }} type="button">
+       {loading ? <LoadingOutlined /> : <PlusOutlined />}
+       <div style={{ marginTop: 8 }}>Upload</div>
+     </button>
+   );
   return (
-    <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
+    <Modal
+      title={title}
+      width={800}
+      centered
+      forceRender
+      maskClosable={false}
+      destroyOnClose={true}
+      open={open}
+      onOk={submit}
+      onCancel={close}
+    >
+      <Form id="form" form={form} labelCol={{ span: "4" }} layout="inline">
         <Row>
           <Col span={12}>
             <Form.Item label="头像" name="avatar">
-              <div className="image">{form.getFieldValue('avatar') ? <img src={form.getFieldValue('avatar')} alt="" /> : <PlusOutlined onClick={handleUploadImg} />}</div>
-              <input id="img" type="file" accept="image/*" style={{ display: 'none' }} />
+              <Upload
+                name="avatar"
+                listType="picture-card"
+                className="avatar-uploader"
+                showUploadList={false}
+                action="http://127.0.0.1/upload"
+              >
+                {form?.getFieldValue("avatar") ? (
+                  <img
+                    src={form?.getFieldValue("avatar")}
+                    alt="avatar"
+                    style={{ width: "100%" }}
+                  />
+                ) : (
+                  uploadButton
+                )}
+              </Upload>
             </Form.Item>
           </Col>
         </Row>
@@ -130,5 +149,5 @@ export default function UserAddDialog(props: any) {
         </Row>
       </Form>
     </Modal>
-  )
+  );
 }
