@@ -46,6 +46,7 @@ antd Components // https://ant-design.antgroup.com/components/overview-cn/
 5.使用antd Components封装常用组件，使开发更加方便快捷。
 6.使用axios封装请求，使请求更加方便。
 7.使用echarts封装图表，使图表更加方便。
+8.使用AI模型，完成人脸识别登陆系统
 
 1.避免chunk碎片化，合理设置chunk包体积，减少网络请求将chunk包数量减少20% （experimentalMinChunkSize）
 2.通过引入带有tree-sharking功能的第三方包，减少第三方包的打包体积。

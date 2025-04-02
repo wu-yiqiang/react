@@ -1,7 +1,7 @@
 // import './App.css'
 import { RouterProvider, useNavigate } from 'react-router-dom'
 import { routes } from '@/routers/index.tsx'
-import { ConfigProvider, Layout } from "antd";
+import { Checkbox, ConfigProvider, Layout } from "antd";
 import useSystemStore from '@/store/index'
 import eventMitt from "@/utils/eventMitt";
 import { isDark } from '@/utils/index'
@@ -35,6 +35,9 @@ function App() {
         colorBorder: "#f9f9f9",
         optionSelectedBg: "#ff7a0026",
       },
+      Tree: {
+        colorBorder: "#ffffff",
+      },
     },
   };
   const lightTheme = {
@@ -64,6 +67,9 @@ function App() {
       Select: {
         colorBorder: "#d9d9d9",
         optionSelectedBg: "#ff7a0026",
+      },
+      Tree: {
+        colorBorder: "#d9d9d9",
       },
     },
   };
