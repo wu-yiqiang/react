@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
-import { allRouters } from '@/routers/index'
+import { allRouters, routes } from '@/routers/index'
 
 interface MenuItem {
   key: string
@@ -46,13 +46,32 @@ const genItems = () => {
 
 
 const App: React.FC = () => {
-  let navgite = useNavigate()
+  const navigate = useNavigate()
   genItems()
   const onClick: MenuProps['onClick'] = (e) => {
     const path = `/${e.key}`
-    navgite(path)
+    navigate(path);
   }
-  return <Menu style={{ height: document.body.clientHeight }} onClick={onClick} defaultSelectedKeys={['dashbord']} defaultOpenKeys={['dashbord']} mode="inline" items={items} />
+  const getCurrentPath = () => {
+    const path = window.location.pathname;
+    const paths = allRouters?.map((item: any) => {
+      if (item.path === path) {
+        return item.key;
+      }
+    });
+    return paths;
+  }
+  const pathSegments = location.pathname.split("/").filter(Boolean);
+  const selectedKey = pathSegments[0] || "/"
+  return (
+    <Menu
+      style={{ height: document.body.clientHeight }}
+      onClick={onClick}
+      selectedKeys={[selectedKey]}
+      mode="inline"
+      items={items}
+    />
+  );
 }
 
 export default App

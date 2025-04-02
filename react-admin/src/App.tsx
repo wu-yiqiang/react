@@ -4,7 +4,7 @@ import { routes } from '@/routers/index.tsx'
 import { ConfigProvider, Layout } from "antd";
 import useSystemStore from '@/store/index'
 import eventMitt from "@/utils/eventMitt";
-import {isDark} from '@/utils/index'
+import { isDark } from '@/utils/index'
 function App() {
   const { theme, setTheme, setLanguage } = useSystemStore();
   const darkTheme = {

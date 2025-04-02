@@ -5,7 +5,9 @@ import UserAddDialog from './permission-add-dialog'
 import './permission-manager.scss'
 import { Button } from 'antd'
 import Toast from '@/components/Toast'
+import { useTranslation } from "react-i18next";
 export default function PermissionManager() {
+  const [t] = useTranslation();
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [pager, setPager] = useState({
@@ -15,7 +17,7 @@ export default function PermissionManager() {
   })
   const columns = [
     {
-      title: '姓名',
+      title: t('username'),
       dataIndex: 'displayName',
       key: 'displayName'
     },

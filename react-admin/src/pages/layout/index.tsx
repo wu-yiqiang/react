@@ -4,7 +4,6 @@ import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Menus from './menu'
 import Head from './head'
-import SvgIcon from '@/components/SvgIcon/SvgIcon'
 import './index.scss'
 import logo from '@/assets/images/logo.png'
 const { Header, Sider, Content } = Layout

@@ -1,0 +1,11 @@
+{
+  "login": "Login",
+  "logout": "Logout",
+  "home": "Home",
+  "systemDashboard": "System Dashboard",
+  "userManagement": "User Management",
+  "roleManagement": "Role Management",
+  "permissionManagement": "Permission Management",
+  "menuManagement": "Menu Management",
+  "username": "username"
+}

@@ -31,7 +31,6 @@ export default function UserAddDialog(props: any) {
     { required: true, message: '请输入' },
     { type: 'email', message: '请输入合法的邮箱' }
   ]
-  // const genderRules = [{ required: true, message: '请输入' }]
   const companyRules = [{ required: true, message: '请输入' }]
   const close = () => {
     form.resetFields()
@@ -65,18 +64,6 @@ export default function UserAddDialog(props: any) {
       const data = await fetchData(target)
       await setTitle('编辑')
       form.setFieldsValue(data)
-    }
-  }
-  const handleUploadImg = () => {
-    const reader = new FileReader()
-    const f: any = document.getElementById('img')
-    f?.click()
-    f.onchange = async function (e: any) {
-      const file = e.target.files[0]
-      reader.readAsDataURL(file)
-      reader.onload = function () {
-        form.setFieldValue('picture', this.result)
-      }
     }
   }
   useEffect(() => {
@@ -165,8 +152,23 @@ export default function UserAddDialog(props: any) {
      }
    ]
   return (
-    <Modal title={title} width={600} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll' }} form={form} labelCol={{ span: '4' }} layout="inline">
+    <Modal
+      title={title}
+      centered
+      forceRender
+      maskClosable={false}
+      destroyOnClose={true}
+      open={open}
+      onOk={submit}
+      onCancel={close}
+    >
+      <Form
+        id="form"
+        style={{ maxHeight: "500px", overflowY: "scroll", overflowX: "hidden" }}
+        form={form}
+        labelCol={{ span: "4" }}
+        layout="inline"
+      >
         <Row gutter={[16, 16]}>
           <Col span={24}>
             <Form.Item label="角色名称" name="name" rules={companyRules}>
@@ -188,19 +190,39 @@ export default function UserAddDialog(props: any) {
           <Col span={24}>
             <Form.Item label="菜单权限" name="email" rules={emailRules}>
               <Card>
-                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={treeData} />
+                <Tree
+                  checkable
+                  onExpand={onExpand}
+                  expandedKeys={expandedKeys}
+                  autoExpandParent={autoExpandParent}
+                  onCheck={onCheck}
+                  checkedKeys={checkedKeys}
+                  onSelect={onSelect}
+                  selectedKeys={selectedKeys}
+                  treeData={treeData}
+                />
               </Card>
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="数据权限" name="email" rules={emailRules}>
               <Card>
-                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={dataPermissionLists} />
+                <Tree
+                  checkable
+                  onExpand={onExpand}
+                  expandedKeys={expandedKeys}
+                  autoExpandParent={autoExpandParent}
+                  onCheck={onCheck}
+                  checkedKeys={checkedKeys}
+                  onSelect={onSelect}
+                  selectedKeys={selectedKeys}
+                  treeData={dataPermissionLists}
+                />
               </Card>
             </Form.Item>
           </Col>
         </Row>
       </Form>
     </Modal>
-  )
+  );
 }

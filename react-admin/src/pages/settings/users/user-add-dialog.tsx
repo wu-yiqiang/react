@@ -10,7 +10,7 @@ class User {
   password: string
   avatar: string
   phone_number: string
-  status: Number | null
+  status: number | null
   constructor() {
     this.username = ''
     this.email = ''

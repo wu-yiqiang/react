@@ -7,14 +7,12 @@ import './role-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import { userItem } from '../users/datasType'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userId, setUserId] = useState(0)
   const [total, setTotal] = useState(0)
-  // const [pager, setPager] = useState({
-
-  // })
   const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
     pageNo: 1,
@@ -64,13 +62,22 @@ export default function UserManager() {
       title: '操作',
       dataIndex: 'opeartions',
       key: 'opeartions',
-      render: (value, record, index) => {
+      render: (value: number | string, record: userItem, index: number) => {
         return (
-          <Space>
-            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
-            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+          <Space key={index}>
+            <Button
+              icon={<EditOutlined />}
+              onClick={() => handleEdit(record?.id)}
+            />
+            <Button
+              icon={<DeleteOutlined />}
+              type="primary"
+              danger
+              ghost
+              onClick={() => handleDelete(record?.id)}
+            />
           </Space>
-        )
+        );
       }
     }
   ]

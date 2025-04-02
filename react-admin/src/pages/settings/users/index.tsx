@@ -7,6 +7,7 @@ import './user-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import {userItem} from './datasType'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -59,7 +60,7 @@ export default function UserManager() {
       title: "操作",
       dataIndex: "opeartions",
       key: "opeartions",
-      render: (value: number | string, record: object, index: number) => {
+      render: (value: number | string, record: userItem, index: number) => {
         return (
           <Space key={index}>
             <Button

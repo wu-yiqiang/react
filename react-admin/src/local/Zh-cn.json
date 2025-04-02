@@ -1,3 +1,11 @@
 {
-  "login": "登录"
-}
+  "login": "登录",
+  "logout": "退出",
+  "home": "首页",
+  "systemDashboard": "系统看板",
+  "userManagement": "用户管理",
+  "roleManagement": "角色管理",
+  "permissionManagement": "权限管理",
+  "menuManagement": "菜单管理",
+  "username": "用户名"
+} 

@@ -1,8 +1,6 @@
 import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
 import './head.scss'
 import { Input, Dropdown, MenuProps } from 'antd'
-import { logout } from "@/api/user";
-import useSystemStore from '@/store/index'
 import eventMitt from "@/utils/eventMitt";
 export default function Head() {
   return (
@@ -36,16 +34,16 @@ function Translate() {
   };
   const items: MenuProps["items"] = [
     {
-      key: "EN",
-      label: <a onClick={() => handleLanguage("EN")}>English</a>,
+      key: "en-US",
+      label: <a onClick={() => handleLanguage("en-US")}>English</a>,
     },
     // {
     //   key: "AR",
     //   label: <a onClick={() => handleLanguage("AR")}>العربية</a>,
     // },
     {
-      key: "CN",
-      label: <a onClick={() => handleLanguage("CN")}>简体中文</a>,
+      key: "zh-CN",
+      label: <a onClick={() => handleLanguage("zh-CN")}>简体中文</a>,
     },
   ];
   return (

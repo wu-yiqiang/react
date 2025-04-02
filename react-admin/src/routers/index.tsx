@@ -2,8 +2,6 @@ import {
   createBrowserRouter,
   Navigate,
   redirect,
-  withRouter,
-  useNavigate,
 } from "react-router-dom";
 import eventMitt from "@/utils/eventMitt";
 import type { RouteObject } from "react-router-dom";
@@ -180,7 +178,7 @@ eventMitt.on('ROUTER:LOGIN', (value: string) => {
   routes.navigate('/')
 })
 
-eventMitt.on("ROUTER:HOME", (value: string) => {
+eventMitt.on("ROUTER:HOME", () => {
   routes.navigate("/");
 });
 
