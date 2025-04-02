@@ -42,7 +42,7 @@ export default defineConfig({
     proxy: {
       '/prod-api': {
         // target: `http://192.168.1.34:8081`,
-        target: `http://192.168.1.2:8000/`,
+        target: `http://192.168.1.222:8000/`,
         //target: `http://192.168.1.15:8899`,
         changeOrigin: true,
         ws: true,

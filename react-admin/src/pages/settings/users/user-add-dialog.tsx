@@ -88,7 +88,7 @@ export default function UserAddDialog(props: any) {
                 listType="picture-card"
                 className="avatar-uploader"
                 showUploadList={false}
-                action="http://127.0.0.1/upload"
+                action="http://192.168.1.222:8000/upload"
               >
                 {form?.getFieldValue("avatar") ? (
                   <img

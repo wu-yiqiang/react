@@ -3,23 +3,19 @@ import { useEffect, useState } from 'react'
 import { postUser, getContractorDetail } from '@/api/settings'
 import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
 import { isEmpty } from 'lodash-es'
-import { Select, Row, Col } from 'antd'
+import { Select, Row, Col, Radio, Tree, Card } from 'antd'
 import Toast from '@/components/Toast'
-import { Tree } from 'antd'
 import type { TreeDataNode, TreeProps } from 'antd'
-import { Card } from 'antd'
-class Contractor {
+class Role {
   name: string
   email: string
-  // gender: number
-  picture: string
   password: string
+  status: number
   constructor() {
     this.name = ''
     this.email = ''
     this.password = ''
-    // this.gender = 0
-    this.picture = ''
+    this.status = 1
   }
 }
 export default function UserAddDialog(props: any) {
@@ -56,7 +52,7 @@ export default function UserAddDialog(props: any) {
   const init = async () => {
     if (isEmpty(target)) {
       setEditStatus(false)
-      form.setFieldsValue(new Contractor())
+      form.setFieldsValue(new Role())
       await setTitle('新增')
     }
     if (!isEmpty(target)) {
@@ -152,23 +148,8 @@ export default function UserAddDialog(props: any) {
      }
    ]
   return (
-    <Modal
-      title={title}
-      centered
-      forceRender
-      maskClosable={false}
-      destroyOnClose={true}
-      open={open}
-      onOk={submit}
-      onCancel={close}
-    >
-      <Form
-        id="form"
-        style={{ maxHeight: "500px", overflowY: "scroll", overflowX: "hidden" }}
-        form={form}
-        labelCol={{ span: "4" }}
-        layout="inline"
-      >
+    <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">
         <Row gutter={[16, 16]}>
           <Col span={24}>
             <Form.Item label="角色名称" name="name" rules={companyRules}>
@@ -181,48 +162,32 @@ export default function UserAddDialog(props: any) {
             </Form.Item>
           </Col>
           <Col span={24}>
-            <Form.Item label="状态" name="email" rules={emailRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
+            <Form.Item label="状态" name="status">
+              <Radio.Group
+                value={form.status}
+                options={[
+                  { value: 1, label: '启用' },
+                  { value: 0, label: '禁用' },
+                ]}
+              />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="菜单权限" name="email" rules={emailRules}>
               <Card>
-                <Tree
-                  checkable
-                  onExpand={onExpand}
-                  expandedKeys={expandedKeys}
-                  autoExpandParent={autoExpandParent}
-                  onCheck={onCheck}
-                  checkedKeys={checkedKeys}
-                  onSelect={onSelect}
-                  selectedKeys={selectedKeys}
-                  treeData={treeData}
-                />
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={treeData} />
               </Card>
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="数据权限" name="email" rules={emailRules}>
               <Card>
-                <Tree
-                  checkable
-                  onExpand={onExpand}
-                  expandedKeys={expandedKeys}
-                  autoExpandParent={autoExpandParent}
-                  onCheck={onCheck}
-                  checkedKeys={checkedKeys}
-                  onSelect={onSelect}
-                  selectedKeys={selectedKeys}
-                  treeData={dataPermissionLists}
-                />
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={dataPermissionLists} />
               </Card>
             </Form.Item>
           </Col>
         </Row>
       </Form>
     </Modal>
-  );
+  )
 }
