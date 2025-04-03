@@ -1,72 +1,85 @@
-import { Form, Input, Modal, Upload } from "antd";
+import { Form, Input, Modal, Upload, Select, Row, Col } from "antd";
 import { useEffect, useState } from 'react'
 import { postUser, updateUserDetail, getUserDetail } from '@/api/settings'
-import { Select, Row, Col } from 'antd'
 import Toast from '@/components/Toast'
 import { PlusOutlined, LoadingOutlined } from "@ant-design/icons";
-class User {
-  username: string
-  email: string
-  password: string
-  avatar: string
-  phone_number: string
-  status: number | null
-  constructor() {
-    this.username = ''
-    this.email = ''
-    this.password = ''
-    this.avatar = ''
-    this.phone_number = ''
-    this.status = null
-  }
+import {
+  emailRequiredRules,
+  requiredRules,
+} from "@/validator/index";
+import { User } from "@/types/user";
+interface PropsItem {
+ open: boolean
+ handleClose: () => void
+ handleOk: (values: object) => void
+ userId: number | null 
 }
-export default function UserAddDialog(props: any) {
-  const { open, handleClose, handleOk, userId } = props
-  const [editStatus, setEditStatus] = useState(false)
-  const [title, setTitle] = useState('新增')
-  const [loading, setLoading] = useState(false)
-  const [form] = Form.useForm()
-  const emailRules = [
-    { required: true, message: '请输入' },
-    { type: 'email', message: '请输入合法的邮箱' }
-  ]
-  const requiredRules = [{ required: true, message: '请输入' }]
+export default function UserAddDialog(props: PropsItem) {
+  const { open, handleClose, handleOk, userId } = props;
+  const [editStatus, setEditStatus] = useState(false);
+  const [title, setTitle] = useState("新增");
+  const [loading, setLoading] = useState(false);
+  const [form] = Form.useForm();
   const close = () => {
-    form.resetFields()
-    handleClose()
-  }
+    form.resetFields();
+    handleClose();
+  };
   const submit = async () => {
-    const value = await form.validateFields()
+    const value = await form.validateFields();
     if (value) {
-      const values = form.getFieldsValue()
-      if (!editStatus) await postUser(values)
-      if (editStatus) await updateUserDetail(values)
-      Toast.success('操作成功')
-      handleOk(values)
+      const values = form.getFieldsValue();
+      if (!editStatus) await postUser(values);
+      if (editStatus) await updateUserDetail(values);
+      Toast.success("操作成功");
+      handleOk(values);
     }
-  }
+  };
   const init = async () => {
     if (!userId) {
-      setEditStatus(false)
-      form.setFieldsValue(new User())
-      await setTitle('新增')
+      setEditStatus(false);
+      form.setFieldsValue(new User());
+      await setTitle("新增");
     }
     if (userId) {
-      setEditStatus(true)
-      const { data } = await getUserDetail(userId)
-      await setTitle('编辑')
-      form.setFieldsValue(data)
+      setEditStatus(true);
+      const response = await getUserDetail(userId);
+      const data = response?.data;
+      if (!data) {
+        console.error("未获取到用户数据");
+        return;
+      }
+      await setTitle("编辑");
+      form.setFieldsValue(data);
     }
-  }
+  };
   useEffect(() => {
-    init()
-  }, [userId])
-   const uploadButton = (
+    init();
+  }, [userId]);
+  const handleUploadDone = async (info: object) => {
+    console.log("sds", info);
+    setLoading(false);
+  };
+  const beforeUpload = (file: File) => {
+    // return new Promise((resolve) => {
+    //   const fileType = file?.type;
+    //   if (fileType !== "image/jpeg" && fileType !== "image/png") {
+    //     Toast.error("请上传 JPEG 或 PNG 格式的图片");
+    //     return resolve(false);
+    //   }
+    //   return resolve(true);
+    // });
+    const fileType = file?.type;
+    if (fileType !== "image/jpeg" && fileType !== "image/png") {
+      Toast.error("请上传 JPEG 或 PNG 格式的图片");
+      return false
+    }
+    return true;
+  };
+  const uploadButton = (
     <button style={{ border: 0, background: "none" }} type="button">
-       {loading ? <LoadingOutlined /> : <PlusOutlined />}
-       <div style={{ marginTop: 8 }}>Upload</div>
-     </button>
-   );
+      {loading ? <LoadingOutlined /> : <PlusOutlined />}
+    </button>
+  );
   return (
     <Modal
       title={title}
@@ -88,7 +101,10 @@ export default function UserAddDialog(props: any) {
                 listType="picture-card"
                 className="avatar-uploader"
                 showUploadList={false}
-                action="http://192.168.1.222:8000/upload"
+                beforeUpload={(file: File) =>
+                  beforeUpload(file)
+                }
+                onChange={handleUploadDone}
               >
                 {form?.getFieldValue("avatar") ? (
                   <img
@@ -110,7 +126,7 @@ export default function UserAddDialog(props: any) {
             </Form.Item>
           </Col>
           <Col span={12}>
-            <Form.Item label="邮箱" name="email" rules={emailRules}>
+            <Form.Item label="邮箱" name="email" rules={emailRequiredRules}>
               <Input />
             </Form.Item>
           </Col>

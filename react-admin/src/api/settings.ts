@@ -1,62 +1,17 @@
 
 import request from '@/utils/request'
-
-export const getUserInfo = (data: any) => request.post('/sensor', data)
-export const getContractorsLists = (params: any) => {
-  return request({
-    url: '/eams/web/company/page',
-    method: 'get',
-    params
-  })
-}
-
-export const postContractor = (data: any) => {
-  return request({
-    url: '/user/create',
-    method: 'post',
-    data
-  })
-}
-
-
-export const getContractorDetail = (uuid: any) => {
-  return request({
-    url: `/eams/web/company/uuid/${uuid}`,
-    method: 'get',
-  })
-}
-export const putContractor = (uuid: string, data: object) => {
-  return request({
-    url: `/eams/web/company/uuid/${uuid}`,
-    method: 'put',
-    data
-  })
-}
-
-export const deleteContractors = (uuid: any) => {
-  return request({
-    url: `/eams/web/company/uuid/${uuid}`,
-    method: 'delete',
-  })
-}
-
-export const getTruckLists = (params: any) => {
-  return request({
-    url: '/eams/web/disposalTruck/page',
-    method: 'get',
-    params
-  })
-}
+import { UserItem, UserSearch } from "@/types/user";
+import { RoleSearch } from "@/types/role";
 
 // 用户管理
-export const getUsersLists = (data: any) => {
+export const getUsersLists = (data: UserSearch) => {
   return request({
     url: '/user/page',
     method: 'post',
     data
   })
 }
-export const postUser = (data: any) => {
+export const postUser = (data: UserItem) => {
   return request({
     url: '/user/create',
     method: 'post',
@@ -72,8 +27,7 @@ export const getUserDetail = (id: number) => {
   })
 }
 
-export const updateUserDetail = (data: object) => {
-  console.log("ssss", data?.id)
+export const updateUserDetail = (data: UserItem) => {
   if (!data?.id) return
   return request({
     url: `/user/update`,
@@ -90,9 +44,8 @@ export const deleteUserItem = (id: number) => {
   })
 }
 
-
 // 角色管理
-export const getRolesLists = (data: any) => {
+export const getRolesLists = (data: RoleSearch) => {
   return request({
     url: '/role/page',
     method: 'post',

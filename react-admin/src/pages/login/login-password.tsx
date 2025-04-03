@@ -1,7 +1,7 @@
 import './login.scss'
 import { Button, Form, Input, Divider } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
-import { login } from '@/api/user'
+import { login } from '@/api/public'
 import eventMitt from '@/utils/eventMitt'
 function LoginPassword() {
   const [form] = Form.useForm()

@@ -1,4 +1,4 @@
-import { login } from '@/api/user'
+import { login } from '@/api/public'
 import { Button } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import './login.scss'

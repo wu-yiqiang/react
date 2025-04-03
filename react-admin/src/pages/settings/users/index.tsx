@@ -1,21 +1,17 @@
 import Tabular from '@/components/Tabular.tsx'
 import { getUsersLists, deleteRoleItem } from '@/api/settings'
 import { useState } from 'react'
-import { UserSearch } from '@/types/user'
+import { UserSearch, UserItem } from "@/types/user";
 import UserAddDialog from './user-add-dialog'
 import './user-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import {userItem} from './datasType'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userId, setUserId] = useState(0)
   const [total, setTotal] = useState(0)
-  // const [pager, setPager] = useState({
-
-  // })
   const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
     pageNo: 1,
@@ -60,7 +56,7 @@ export default function UserManager() {
       title: "操作",
       dataIndex: "opeartions",
       key: "opeartions",
-      render: (value: number | string, record: userItem, index: number) => {
+      render: (value: number | string, record: UserItem, index: number) => {
         return (
           <Space key={index}>
             <Button
@@ -80,16 +76,16 @@ export default function UserManager() {
     },
   ];
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
-  const handleSearch = async (values: object) => {
-    const { data } = await getUsersLists(values)
-    setLists(data.lists)
+  const handleSearch = async (values: UserSearch) => {
+    const { data } = await getUsersLists(values);
+    setLists(data.lists);
     const datas = {
       pageSize: data.pageSize,
-      pageNo: data.pageNo
-    }
-    setTotal(data?.total)
-    setQueryData({ ...queryData, ...datas })
-  }
+      pageNo: data.pageNo,
+    };
+    setTotal(data?.total);
+    setQueryData({ ...queryData, ...datas });
+  };
   const handleNew = () => {
     setDialogOpen(true)
   }
@@ -118,7 +114,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} handleSearch={handleSearch} handleClose={handleClose} handleOk={handleOk} userId={userId} />
+      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} userId={userId} />
     </>
   )
 }
