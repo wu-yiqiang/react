@@ -7,14 +7,9 @@ import { Row, Col, Radio, Tree, Card } from 'antd'
 import Toast from '@/components/Toast'
 import { emailRequiredRules, requiredRules } from "@/validator/index";
 import type { TreeDataNode, TreeProps } from 'antd'
-interface PropsItem {
-  open: boolean;
-  handleClose: () => void;
-  handleOk: (values: object) => void;
-  target: RoleItem;
-}
-export default function UserAddDialog(props: PropsItem) {
-  const { open, handleClose, target, handleOk } = props;
+import { DialogProps } from "@/types/common";
+export default function UserAddDialog(props: DialogProps) {
+  const { open, id, handleClose, handleOk } = props;
   const [editStatus, setEditStatus] = useState(false);
   const [title, setTitle] = useState("新增");
   const [form] = Form.useForm<RoleItem>();
@@ -34,26 +29,26 @@ export default function UserAddDialog(props: PropsItem) {
       handleOk(values);
     }
   };
-  const fetchData = async (target: RoleItem) => {
-    const response = await getUserDetail(target.id);
+  const fetchData = async (id: number) => {
+    const response = await getUserDetail(id);
     return response?.data ?? {};
   };
   const init = async () => {
-    if (isEmpty(target)) {
+    if (isEmpty(id)) {
       setEditStatus(false);
       form.setFieldsValue(new Role());
       await setTitle("新增");
     }
-    if (!isEmpty(target)) {
+    if (id) {
       setEditStatus(true);
-      const data = await fetchData(target);
+      const data = await fetchData(id);
       await setTitle("编辑");
       form.setFieldsValue(data);
     }
   };
   useEffect(() => {
     init();
-  }, [target]);
+  }, [id]);
   const treeData: TreeDataNode[] = [
     {
       title: "系统看板",

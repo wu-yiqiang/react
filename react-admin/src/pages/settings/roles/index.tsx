@@ -7,11 +7,11 @@ import './role-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import { userItem } from '../users/datasType'
+import { RoleSearch, RoleItem } from "@/types/role";
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [userId, setUserId] = useState(0)
+  const [roleId, setRoleId] = useState(0)
   const [total, setTotal] = useState(0)
   const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
@@ -19,7 +19,7 @@ export default function UserManager() {
     pageSize: 10
   })
   const handleEdit = (id: number) => {
-    setUserId(id)
+    setRoleId(id);
     setDialogOpen(true)
   }
   const handleDelete = async (id: number) => {
@@ -29,40 +29,40 @@ export default function UserManager() {
   }
   const columns = [
     {
-      title: '名字',
-      dataIndex: 'name',
-      key: 'name'
+      title: "名字",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      title: '  编码',
-      dataIndex: 'code',
-      key: 'code'
+      title: "  编码",
+      dataIndex: "code",
+      key: "code",
     },
     {
-      title: '状态',
-      dataIndex: 'code',
-      key: 'code'
+      title: "状态",
+      dataIndex: "code",
+      key: "code",
     },
     {
-      title: '描述',
-      dataIndex: 'remark',
-      key: 'remark'
+      title: "描述",
+      dataIndex: "remark",
+      key: "remark",
     },
     {
-      title: '更新时间',
-      dataIndex: 'update_time',
-      key: 'update_time'
+      title: "更新时间",
+      dataIndex: "update_time",
+      key: "update_time",
     },
     {
-      title: '创建时间',
-      dataIndex: 'create_time',
-      key: 'create_time'
+      title: "创建时间",
+      dataIndex: "create_time",
+      key: "create_time",
     },
     {
-      title: '操作',
-      dataIndex: 'opeartions',
-      key: 'opeartions',
-      render: (value: number | string, record: userItem, index: number) => {
+      title: "操作",
+      dataIndex: "opeartions",
+      key: "opeartions",
+      render: (value: number | string, record: RoleItem, index: number) => {
         return (
           <Space key={index}>
             <Button
@@ -78,20 +78,20 @@ export default function UserManager() {
             />
           </Space>
         );
-      }
-    }
-  ]
+      },
+    },
+  ];
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
-  const handleSearch = async (values: object) => {
-    const { data } = await getRolesLists(values)
-    setLists(data.lists)
+  const handleSearch = async (values: RoleSearch) => {
+    const { data } = await getRolesLists(values);
+    setLists(data.lists);
     const datas = {
       pageSize: data.pageSize,
-      pageNo: data.pageNo
-    }
-    setTotal(data?.total)
-    setQueryData({ ...queryData, ...datas })
-  }
+      pageNo: data.pageNo,
+    };
+    setTotal(data?.total);
+    setQueryData({ ...queryData, ...datas });
+  };
   const handleNew = () => {
     setDialogOpen(true)
   }
@@ -120,7 +120,12 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <RoleAddDialog open={dialogOpen} handleSearch={handleSearch} handleClose={handleClose} handleOk={handleOk} userId={userId} />
+      <RoleAddDialog
+        open={dialogOpen}
+        handleClose={handleClose}
+        handleOk={handleOk}
+        id={roleId}
+      />
     </>
-  )
+  );
 }

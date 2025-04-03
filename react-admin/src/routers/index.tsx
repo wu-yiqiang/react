@@ -17,7 +17,7 @@ import Rooms from "@/pages/rooms/index";
 import Maintains from "@/pages/maintains/index";
 import Schedules from "@/pages/schedules/index";
 import DaySchedule from '@/pages/schedules/DaySchedule'
-import {RouterItem} from '@/types/public'
+import {RouterItem} from '@/types/common'
 import {
   AreaChartOutlined,
   SettingOutlined,

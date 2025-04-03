@@ -8,14 +8,9 @@ import {
   requiredRules,
 } from "@/validator/index";
 import { User } from "@/types/user";
-interface PropsItem {
- open: boolean
- handleClose: () => void
- handleOk: (values: object) => void
- userId: number | null 
-}
-export default function UserAddDialog(props: PropsItem) {
-  const { open, handleClose, handleOk, userId } = props;
+import {DialogProps} from '@/types/common'
+export default function UserAddDialog(props: DialogProps) {
+  const { open, id,handleClose, handleOk } = props;
   const [editStatus, setEditStatus] = useState(false);
   const [title, setTitle] = useState("新增");
   const [loading, setLoading] = useState(false);
@@ -35,14 +30,14 @@ export default function UserAddDialog(props: PropsItem) {
     }
   };
   const init = async () => {
-    if (!userId) {
+    if (!id) {
       setEditStatus(false);
       form.setFieldsValue(new User());
       await setTitle("新增");
     }
-    if (userId) {
+    if (id) {
       setEditStatus(true);
-      const response = await getUserDetail(userId);
+      const response = await getUserDetail(id);
       const data = response?.data;
       if (!data) {
         console.error("未获取到用户数据");
@@ -54,7 +49,7 @@ export default function UserAddDialog(props: PropsItem) {
   };
   useEffect(() => {
     init();
-  }, [userId]);
+  }, [id]);
   const handleUploadDone = async (info: object) => {
     console.log("sds", info);
     setLoading(false);
@@ -71,7 +66,7 @@ export default function UserAddDialog(props: PropsItem) {
     const fileType = file?.type;
     if (fileType !== "image/jpeg" && fileType !== "image/png") {
       Toast.error("请上传 JPEG 或 PNG 格式的图片");
-      return false
+      return false;
     }
     return true;
   };
@@ -101,9 +96,7 @@ export default function UserAddDialog(props: PropsItem) {
                 listType="picture-card"
                 className="avatar-uploader"
                 showUploadList={false}
-                beforeUpload={(file: File) =>
-                  beforeUpload(file)
-                }
+                beforeUpload={(file: File) => beforeUpload(file)}
                 onChange={handleUploadDone}
               >
                 {form?.getFieldValue("avatar") ? (

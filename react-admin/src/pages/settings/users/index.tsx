@@ -114,7 +114,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} userId={userId} />
+      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} />
     </>
   )
 }
