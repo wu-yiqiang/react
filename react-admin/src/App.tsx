@@ -1,14 +1,14 @@
-// import './App.css'
-import { RouterProvider, useNavigate } from 'react-router-dom'
-import { routes } from '@/routers/index.tsx'
-import { Checkbox, ConfigProvider, Layout } from "antd";
-import useSystemStore from '@/store/index'
+import { RouterProvider } from "react-router-dom";
+import { routes } from "@/routers/index.tsx";
+import { ConfigProvider } from "antd";
+import useSystemStore from "@/store/index";
 import eventMitt from "@/utils/eventMitt";
-import { isDark } from '@/utils/index'
+import { isDark } from "@/utils/index";
+import { SystemStore } from "@/types/common";
 function App() {
-  const { theme, setTheme, setLanguage } = useSystemStore();
+  const { theme, setTheme, setLanguage } = useSystemStore() as SystemStore;
+  console.log("theme", theme);
   const darkTheme = {
-    algorithm: theme.darkAlgorithm,
     token: {
       colorPrimary: "#FF7A00",
       borderRadius: 4,
@@ -38,10 +38,12 @@ function App() {
       Tree: {
         colorBorder: "#ffffff",
       },
+      Upload: {
+        colorBorder: "#ffffff",
+      },
     },
   };
   const lightTheme = {
-    algorithm: theme.lightAlgorithm,
     token: {
       colorPrimary: "#FF7A00",
       borderRadius: 4,
@@ -71,6 +73,9 @@ function App() {
       Tree: {
         colorBorder: "#d9d9d9",
       },
+      Upload: {
+        colorBorder: "#d9d9d9",
+      },
     },
   };
   const themeConfig = isDark(theme) ? darkTheme : lightTheme;
@@ -87,4 +92,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

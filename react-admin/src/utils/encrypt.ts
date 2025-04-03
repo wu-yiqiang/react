@@ -1,14 +1,14 @@
-import CryptoJS from "crypto-js";
+// 修改为命名导入，避免默认导入的问题
+import * as CryptoJS from "crypto-js";
 /**
- *
+ * 加密
  * @param data
  * @returns {*}
  */
-export function AES_ECB_ENCRYPT(data: string, secretKey: string) {
-  if (!data) return null
-  const newKey = processKey(secretKey);
-  console.log('asdas', newKey)
-  const key = CryptoJS.enc.Utf8.parse(newKey);
+const SECRETKEY = "ERT34^123@`~4@^$%frrtAcErpoliTy&*";
+export function AES_ECB_ENCRYPT(data: string, secretKey: string = SECRETKEY): string {
+  if (!data) return ""
+  const key = CryptoJS.enc.Utf8.parse(secretKey);
   const srcs = CryptoJS.enc.Utf8.parse(data);
   const encrypted = CryptoJS.AES.encrypt(srcs, key, {
     mode: CryptoJS.mode.ECB,
@@ -22,28 +22,12 @@ export function AES_ECB_ENCRYPT(data: string, secretKey: string) {
  * @param data
  * @returns {*}
  */
-export function AES_ECB_DECRYPT(data: string, secretKey: string) {
-  if (!data) return null
-  const newKey = processKey(secretKey);
-  const key = CryptoJS.enc.Utf8.parse(newKey);
+export function AES_ECB_DECRYPT(data: string, secretKey: string = SECRETKEY): string {
+  if (!data) return ""
+  const key = CryptoJS.enc.Utf8.parse(secretKey);
   const decrypt = CryptoJS.AES.decrypt(data, key, {
     mode: CryptoJS.mode.ECB,
     padding: CryptoJS.pad.Pkcs7,
   });
   return CryptoJS.enc.Utf8.stringify(decrypt).toString();
-}
-
-function processKey(secretKey: string) {
-  let newKey = "";
-  if (secretKey.length > 16) {
-    newKey = secretKey.slice(0, 16);
-  }
-  if (secretKey.length == 16) {
-    newKey = secretKey;
-  }
-  if (secretKey.length < 16) {
-    newKey = secretKey;
-    newKey = newKey.padEnd(16, "0");
-  }
-  return newKey
 }

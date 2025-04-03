@@ -38,7 +38,6 @@ zustand // https://juejin.cn/post/7321049446443384870
 antd Theme // https://ant-design.antgroup.com/theme-editor-cn#Color
 antd Components // https://ant-design.antgroup.com/components/overview-cn/
 
-
 1.使用发布订阅者、单例模式封装各类组件，降低系统各个部分间的耦合关系，减少功能冗余，增强扩展性提升简洁性。
 2.使用策略模式优化代码分支，使代码更加清晰。
 3.使用zustand封装全局状态，使各个组件之间的数据共享更加方便。
