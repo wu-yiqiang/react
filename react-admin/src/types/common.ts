@@ -61,3 +61,7 @@ export interface SystemStore {
     setLanguage: (value: string) => void,
     setUserInfo: (value: object) => void,
 }
+
+export interface UploadData {
+    file: FormData
+}

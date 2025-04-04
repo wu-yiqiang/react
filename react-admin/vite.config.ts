@@ -38,7 +38,7 @@ export default defineConfig({
     host: '0.0.0.0',
     hmr: true,
     port: 8090,
-    https: true,
+    https: false,
     proxy: {
       '/prod-api': {
         // target: `http://192.168.1.34:8081`,
