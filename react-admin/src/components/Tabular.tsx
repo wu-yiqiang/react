@@ -62,7 +62,7 @@ export default function Tabular(props: any) {
         <div className="opts-right">{props?.right}</div>
       </section>
       <Table columns={columnLists} rowKey="id" dataSource={dataSource} pagination={false} />
-      {total > 0 ? <Pagination showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} align="end" showTotal={showTotal} /> : null}
+      {total > 0 ? <Pagination style={{ marginTop: 10 } } showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} align="end" showTotal={showTotal} /> : null}
     </>
   )
 }
