@@ -6,129 +6,130 @@ import {
 import eventMitt from "@/utils/eventMitt";
 import type { RouteObject } from "react-router-dom";
 import Layout from "@/pages/layout/index";
-import UserManager from "@/pages/settings/users/index";
+import UserManager from "@/pages/system/users/index";
 import Login from "@/pages/login/index";
-import RoleManager from "@/pages/settings/roles/index";
-import PermissionManager from "@/pages/settings/permissions/index";
+import RoleManager from "@/pages/system/roles/index";
+import PermissionManager from "@/pages/system/permissions/index";
 import Invoices from "@/pages/invoices/index";
 import Dashbord from "@/pages/dashbord/index";
 import Statistics from "@/pages/statistics/index";
 import Rooms from "@/pages/rooms/index";
 import Maintains from "@/pages/maintains/index";
 import Schedules from "@/pages/schedules/index";
+import MenuManager from '@/pages/system/menus/index'
 import DaySchedule from '@/pages/schedules/DaySchedule'
 import {RouterItem} from '@/types/common'
-import {
-  AreaChartOutlined,
-  SettingOutlined,
-  UserOutlined,
-  TeamOutlined,
-  UsbOutlined,
-  PrinterOutlined,
-  PieChartOutlined,
-  HeatMapOutlined,
-} from "@ant-design/icons";
+import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
   {
-    path: "/dashbord",
-    key: "dashbord",
-    label: "系统看板",
+    path: '/dashbord',
+    key: 'dashbord',
+    label: '系统看板',
     icon: <AreaChartOutlined />,
-    parentkey: "",
+    parentkey: '',
     showMenu: true,
-    element: <Dashbord />,
+    element: <Dashbord />
   },
   {
-    path: "/statistics",
-    label: "统计报表",
+    path: '/statistics',
+    label: '统计报表',
     icon: <PieChartOutlined />,
-    key: "statistics",
-    parentkey: "",
+    key: 'statistics',
+    parentkey: '',
     showMenu: true,
-    element: <Statistics />,
+    element: <Statistics />
   },
   {
-    path: "/invoices",
-    label: "申请单据",
+    path: '/invoices',
+    label: '申请单据',
     icon: <PrinterOutlined />,
-    key: "invoices",
-    parentkey: "",
+    key: 'invoices',
+    parentkey: '',
     showMenu: true,
-    element: <Invoices />,
+    element: <Invoices />
   },
   {
-    path: "/maintains",
-    label: "维修管理",
-    icon: <HeatMapOutlined />,
-    key: "maintains",
-    parentkey: "",
+    path: '/maintains',
+    label: '维修管理',
+    icon: <ToolOutlined />,
+    key: 'maintains',
+    parentkey: '',
     showMenu: true,
-    element: <Maintains />,
+    element: <Maintains />
   },
   {
-    path: "/rooms",
-    label: "房间管理",
-    icon: <HeatMapOutlined />,
-    key: "rooms",
-    parentkey: "",
+    path: '/rooms',
+    label: '房间管理',
+    icon: <ContactsOutlined />,
+    key: 'rooms',
+    parentkey: '',
     showMenu: true,
-    element: <Rooms />,
+    element: <Rooms />
   },
   {
-    path: "/schedules",
-    label: "排班管理",
-    icon: <HeatMapOutlined />,
-    key: "schedules",
-    parentkey: "",
+    path: '/schedules',
+    label: '排班管理',
+    icon: <ScheduleOutlined />,
+    key: 'schedules',
+    parentkey: '',
     showMenu: true,
-    element: <Schedules />,
+    element: <Schedules />
   },
   {
-    path: "/day-schedule",
-    label: "每日排班",
+    path: '/day-schedule',
+    label: '每日排班',
     icon: <HeatMapOutlined />,
-    key: "day-schedule",
-    parentkey: "",
+    key: 'day-schedule',
+    parentkey: '',
     showMenu: false,
-    element: <DaySchedule />,
+    element: <DaySchedule />
   },
   {
-    path: "/setting",
-    label: "系统设置",
+    path: '/setting',
+    label: '系统设置',
     icon: <SettingOutlined />,
-    key: "setting",
-    parentkey: "",
+    key: 'setting',
+    parentkey: '',
     showMenu: true,
-    element: null,
+    element: null
   },
   {
-    path: "/user-manager",
-    label: "用户管理",
+    path: '/user-manager',
+    label: '用户管理',
     icon: <UserOutlined />,
-    key: "user-manager",
-    parentkey: "setting",
+    key: 'user-manager',
+    parentkey: 'setting',
     showMenu: true,
-    element: <UserManager />,
+    element: <UserManager />
   },
   {
-    path: "/role-manager",
-    label: "角色管理",
+    path: '/role-manager',
+    label: '角色管理',
     icon: <TeamOutlined />,
-    key: "role-manager",
-    parentkey: "setting",
+    key: 'role-manager',
+    parentkey: 'setting',
     showMenu: true,
-    element: <RoleManager />,
+    element: <RoleManager />
   },
   {
-    path: "/permission-manager",
-    label: "权限管理",
-    icon: <UsbOutlined />,
-    key: "permission-manager",
-    parentkey: "setting",
+    path: '/menu-manager',
+    label: '菜单管理',
+    icon: <MenuOutlined />,
+    key: 'menu-manager',
+    parentkey: 'setting',
     showMenu: true,
-    element: <PermissionManager />,
+    element: <MenuManager />
   },
-];
+  {
+    path: '/permission-manager',
+    label: '权限管理',
+    icon: <SafetyOutlined />,
+    key: 'permission-manager',
+    parentkey: 'setting',
+    showMenu: true,
+    element: <PermissionManager />
+  }
+]
 // const rootLoader = async () => {
 //   const { permissionRouters, name, age, code } = await getUserInfo();
 //   if (code == 401) {

@@ -1,9 +1,8 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getUsersLists, deleteRoleItem } from '@/api/settings'
+import { getUsersLists, deleteRoleItem } from '@/api/system'
 import { useState } from 'react'
 import { UserSearch, UserItem } from "@/types/user";
 import UserAddDialog from './user-add-dialog'
-import './user-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
@@ -114,7 +113,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} />
+      {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
     </>
   )
 }

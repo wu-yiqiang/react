@@ -1,6 +1,6 @@
 import { Form, Input, Modal } from 'antd'
 import { useEffect, useState } from 'react'
-import { postUser, getUserDetail } from "@/api/settings";
+import { postUser, getUserDetail } from "@/api/system";
 import { isEmpty } from 'lodash-es'
 import { RoleItem, Role } from "@/types/role";
 import { Row, Col, Radio, Tree, Card } from 'antd'

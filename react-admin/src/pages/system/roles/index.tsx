@@ -1,9 +1,8 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getRolesLists, deleteRoleItem } from '@/api/settings'
+import { getRolesLists, deleteRoleItem } from '@/api/system'
 import { useState } from 'react'
 import { UserSearch } from '@/types/user'
 import RoleAddDialog from './role-add-dialog'
-import './role-manager.scss'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
@@ -120,12 +119,12 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      <RoleAddDialog
+      {dialogOpen ? <RoleAddDialog
         open={dialogOpen}
         handleClose={handleClose}
         handleOk={handleOk}
         id={roleId}
-      />
+      /> : null }
     </>
   );
 }
