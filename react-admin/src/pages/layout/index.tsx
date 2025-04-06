@@ -30,7 +30,7 @@ const App: React.FC = () => {
               style={{ fontSize: "20px", fontWeight: 700, color: "#868686" }}
             >
               EAMS
-            </span> :  <img src={ logo } style={{width: '180px'}} />}
+            </span> :  <img src={ logo } style={{width: '50px'}} />}
         </div>
         <Menus />
       </Sider>

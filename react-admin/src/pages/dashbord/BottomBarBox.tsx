@@ -89,16 +89,11 @@ const BottomBarBox: React.FC = () => {
       data: ['个人所得(亿元)']
     },
     grid: {
-      left: '5%',
-      right: '2%',
-      width: '80%',
-      bottom: '2%',
-      top: '8%',
+      bottom: '10px',
       containLabel: true
     },
     xAxis: {
       type: 'value',
-
       splitLine: {
         show: false
       },
@@ -144,7 +139,7 @@ const BottomBarBox: React.FC = () => {
               width: 13,
               height: 13,
               fontSize: 10,
-              align: 'center',
+              align: 'left',
               borderRadius: 100,
               lineHeight: '5',
               padding: [0, 1, 2, 1]

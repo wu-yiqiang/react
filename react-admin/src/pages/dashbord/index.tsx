@@ -31,10 +31,10 @@ const Dashbord: React.FC = () => {
   // return <ReactECharts option={options} />
   return (
     <div className="Dashboard">
-      <Card title="事项总数" />
-      <Card title="待审批数" />
-      <Card title="已完成数" />
-      <Card title="已确认数" />
+      <Card title="总数" />
+      <Card title="入住数" />
+      <Card title="空置数" />
+      <Card title="排队数" />
       <div className="col2-3">
         <MiddlePieBox />
       </div>

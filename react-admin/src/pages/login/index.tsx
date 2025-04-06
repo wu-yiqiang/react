@@ -20,7 +20,7 @@ function Login() {
   return (
     <div className="Login">
       <div className="logo-box">
-        <img src={logo} alt="" />
+        <img src={logo} alt="" style={{width: '80px'}} />
       </div>
       <div className="bottom-box">
         <div className="left-box">

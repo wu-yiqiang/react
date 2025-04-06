@@ -13,11 +13,14 @@ import PermissionManager from "@/pages/system/permissions/index";
 import Invoices from "@/pages/invoices/index";
 import Dashbord from "@/pages/dashbord/index";
 import Statistics from "@/pages/statistics/index";
-import Rooms from "@/pages/rooms/index";
 import Maintains from "@/pages/maintains/index";
 import Schedules from "@/pages/schedules/index";
 import MenuManager from '@/pages/system/menus/index'
 import DaySchedule from '@/pages/schedules/DaySchedule'
+import RoomsBook from "@/pages/rooms/rooms-book/index";
+import RoomsType from '@/pages/rooms/rooms-type/index'
+import RoomsStay from '@/pages/rooms/rooms-stay/index'
+import RoomsInfo from "@/pages/rooms/rooms-info/index";
 import {RouterItem} from '@/types/common'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
@@ -64,7 +67,43 @@ export const allRouters: Array<RouterItem> = [
     key: 'rooms',
     parentkey: '',
     showMenu: true,
-    element: <Rooms />
+    element: null
+  },
+  {
+    path: '/rooms-book',
+    label: '订房管理',
+    icon: <ContactsOutlined />,
+    key: 'rooms-book',
+    parentkey: 'rooms',
+    showMenu: true,
+    element: <RoomsBook />
+  },
+  {
+    path: '/rooms-type',
+    label: '房间类型',
+    icon: <ContactsOutlined />,
+    key: 'rooms-type',
+    parentkey: 'rooms',
+    showMenu: true,
+    element: <RoomsType />
+  },
+  {
+    path: '/rooms-info',
+    label: '房间信息',
+    icon: <ContactsOutlined />,
+    key: 'rooms-info',
+    parentkey: 'rooms',
+    showMenu: true,
+    element: <RoomsInfo />
+  },
+  {
+    path: '/rooms-stay',
+    label: '入住管理',
+    icon: <ContactsOutlined />,
+    key: 'rooms-stay',
+    parentkey: 'rooms',
+    showMenu: true,
+    element: <RoomsStay />
   },
   {
     path: '/schedules',
