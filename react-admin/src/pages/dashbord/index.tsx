@@ -2,6 +2,10 @@ import * as React from 'react'
 import Card from './card'
 import MiddlePieBox from './MiddlePieBox'
 import './index.scss'
+import MiddleBarBox from './MiddleBarBox'
+import BottomBarBox from './BottomBarBox.tsx'
+import BottomBarRightBox from './BottomBarRightBox.tsx'
+import BottomMiddleBox from './BottomMiddleBox.tsx'
 const Dashbord: React.FC = () => {
   const options = {
     grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -27,10 +31,10 @@ const Dashbord: React.FC = () => {
   // return <ReactECharts option={options} />
   return (
     <div className="Dashboard">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card title="事项总数" />
+      <Card title="待审批数" />
+      <Card title="已完成数" />
+      <Card title="已确认数" />
       <div className="col2-3">
         <MiddlePieBox />
       </div>
@@ -38,16 +42,16 @@ const Dashbord: React.FC = () => {
         <MiddlePieBox />
       </div>
       <div className="row3-5">
-        <MiddlePieBox />
+        <MiddleBarBox />
       </div>
       <div className="col4-5">
-        <MiddlePieBox />
+        <BottomBarBox />
       </div>
       <div className="row3-4">
-        <MiddlePieBox />
+        <BottomMiddleBox />
       </div>
       <div className="col4-5">
-        <MiddlePieBox />
+        <BottomBarRightBox />
       </div>
     </div>
   )

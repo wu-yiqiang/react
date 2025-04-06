@@ -31,7 +31,7 @@ const MiddlePieBox: React.FC = () => {
    ]
   const options = {
     radar: {
-      center: ['50%', '50%'],
+      center: ['50%', '42%'],
       radius: '80%',
       name: {
         formatter: function (name: string, indicator) {
@@ -63,9 +63,11 @@ const MiddlePieBox: React.FC = () => {
         show: false
       }
     },
+    grid: {
+      y2: '40px',
+    },
     series: [
       {
-        // name: '家庭融合包',
         type: 'radar',
         data: [data],
         // value:14,
