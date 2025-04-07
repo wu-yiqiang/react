@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import eventMitt from "@/utils/eventMitt";
-// import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
+import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
 const useSystemStore = create(
   persist(
     (set) => ({
@@ -20,23 +20,6 @@ const useSystemStore = create(
       name: "ANTON—EAMS-STORE",
       version: 2.0,
       storage: createJSONStorage(() => sessionStorage),
-      // storage: {
-      //   getItem: (name: string): ReturnType<typeof JSON.parse> => {
-      //     const value = sessionStorage.getItem(name) ?? "";
-      //     const dencryptData = JSON.parse(AES_ECB_DECRYPT(value));
-      //     console.log("dencryptData", dencryptData);
-      //     return dencryptData ?? null;
-      //   },
-      //   setItem: (name: string, value: unknown) => {
-      //     const data = JSON.stringify(value);
-      //     const encryptData = AES_ECB_ENCRYPT(data);
-      //     console.log("set name", name, value);
-      //     sessionStorage.setItem(name, encryptData);
-      //   },
-      //   removeItem: (name: string) => {
-      //     sessionStorage.removeItem(name);
-      //   },
-      // },
     }
   )
 );
