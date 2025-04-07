@@ -9,9 +9,13 @@
   .contents {
     display: flex;
     justify-content: space-between;
+    align-content: center;
     .count {
-      font-size: 18px;
+      font-size: 28px;
       font-weight: 500;
+      display: flex;
+      flex-wrap: wrap;
+      align-content: center;
     }
   }
 }

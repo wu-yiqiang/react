@@ -30,10 +30,10 @@ const Dashbord: React.FC = () => {
   }
   return (
     <div className="Dashboard">
-      <Card title="总数" />
-      <Card title="入住数" />
-      <Card title="空置数" />
-      <Card title="排队数" />
+      <Card title="总数" name="data" />
+      <Card title="入住数" name="empty" />
+      <Card title="空置数" name="warn" />
+      <Card title="排队数" name="notice" />
       <div className="col2-3">
         <MiddleLeftPieBox />
       </div>

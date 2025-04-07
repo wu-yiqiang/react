@@ -11,7 +11,7 @@ const MiddleLeftPieBox: React.FC = () => {
       name: "数据统一平台",
       type: 0,
       symbol: "image://" + centerImage,
-      symbolSize: 130,
+      symbolSize: 70,
     },
   ];
   let erArr = [
