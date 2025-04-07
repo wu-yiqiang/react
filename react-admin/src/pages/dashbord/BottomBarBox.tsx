@@ -3,276 +3,223 @@ import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import './BottomBarBox.scss'
 const BottomBarBox: React.FC = () => {
-  var data = [
-    { code: '600519', stock: 'aaa', fundPost: '21.987691' },
-    { code: '000858', stock: 'bbb', fundPost: '20.377176' },
-    { code: '002475', stock: 'ccc', fundPost: '19.127404' },
-    { code: '600276', stock: 'ddd', fundPost: '18.40882' },
-    { code: '601318', stock: 'eee', fundPost: '17.980597' },
-    { code: '000661', stock: 'fff', fundPost: '16.957898' }
-  ]
-  function contains(arr, dst) {
-    var i = arr.length
-    while ((i -= 1)) {
-      if (arr[i] == dst) {
-        return i
-      }
-    }
-    return false
-  }
+      let icon = 'path://M512.584639,219.893708c40.41173,0.258019,73.19961-32.274913,73.199609-72.557634,0-40.025725-32.78788-72.559681-73.199609-72.559681-40.473163,0-73.196538,32.533956-73.196538,72.559681,0,40.089206,32.723375,72.557634,73.196538,72.557634z,m73.330666,16.396499H439.129058c-55.266258,0-91.39098,48.28336-91.390981,94.203594v220.945238c0,42.847553,60.780905,42.847553,60.780905,0V347.144224h11.782872v555.564273c0,59.179548,82.417649,57.316077,84.337434,0V582.569248h15.696162V902.96754c3.391108,60.650871,84.340506,54.817796,84.340506-0.258019V347.144224h9.800631v204.234406c0,42.837314,62.696594,42.837314,62.696594,0V330.433391c0.126962-45.72979-36.116531-94.143184-91.257876-94.143184z'
 
-  var attackSourcesColor = [
-    new echarts.graphic.LinearGradient(0, 1, 1, 1, [
-      { offset: 0, color: '#EB3B5A' },
-      { offset: 1, color: '#FE9C5A' }
-    ]),
-    new echarts.graphic.LinearGradient(0, 1, 1, 1, [
-      { offset: 0, color: '#FA8231' },
-      { offset: 1, color: '#FFD14C' }
-    ]),
-    new echarts.graphic.LinearGradient(0, 1, 1, 1, [
-      { offset: 0, color: '#F7B731' },
-      { offset: 1, color: '#FFEE96' }
-    ]),
-    new echarts.graphic.LinearGradient(0, 1, 1, 1, [
-      { offset: 0, color: '#395CFE' },
-      { offset: 1, color: '#2EC7CF' }
-    ])
-  ]
-  var attackSourcesColor1 = ['#EB3B5A', '#FA8231', '#F7B731', '#3860FC', '#1089E7', '#F57474', '#56D0E3', '#1089E7', '#F57474', '#1089E7', '#F57474', '#F57474']
-  var attaData = []
-  var attaName = []
-  var topName: string[] = []
-  data.forEach((it, index) => {
-    attaData[index] = parseFloat(it.fundPost).toFixed(2)
-    attaName[index] = it.stock
-    topName[index] = `${it.code} ${it.stock}`
-  })
-  var salvProMax = [] //背景按最大值
-  for (let i = 0; i < attaData.length; i++) {
-    salvProMax.push(attaData[0])
-  }
-  function attackSourcesDataFmt(sData) {
-    var sss = []
-    sData.forEach(function (item, i) {
-      let itemStyle = {
-        color: i > 3 ? attackSourcesColor[3] : attackSourcesColor[i]
-      }
-      sss.push({
-        value: item,
-        itemStyle: itemStyle
-      })
-    })
-    return sss
-  }
-
-  const options = {
-    tooltip: {
-      show: false,
-      backgroundColor: 'rgba(3,169,244, 0.5)', //背景颜色（此时为默认色）
-      textStyle: {
-        fontSize: 16
-      }
-    },
-    color: ['#F7B731'],
-    legend: {
-      pageIconSize: [12, 12],
-      itemWidth: 20,
-      itemHeight: 10,
-      textStyle: {
-        //图例文字的样式
-        fontSize: 10,
-        color: '#fff'
-      },
-      selectedMode: false,
-      data: ['个人所得(亿元)']
-    },
-    grid: {
-      bottom: '10px',
-      containLabel: true
-    },
-    xAxis: {
-      type: 'value',
-      splitLine: {
-        show: false
-      },
-      axisLabel: {
-        show: false
-      },
-      axisTick: {
-        show: false
-      },
-      axisLine: {
-        show: false
-      }
-    },
-    yAxis: [
-      {
-        type: 'category',
-        inverse: true,
-        axisLine: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        },
-        axisPointer: {
-          label: {
-            show: true
-            //margin: 30
-          }
-        },
-        pdaaing: [5, 0, 0, 0],
-        postion: 'right',
-        data: attaName,
-        axisLabel: {
-          margin: 30,
-          fontSize: 10,
-          align: 'left',
-          padding: [2, 0, 0, 0],
-          color: '#000',
-          rich: {
-            nt1: {
-              color: '#fff',
-              backgroundColor: attackSourcesColor1[0],
-              width: 13,
-              height: 13,
-              fontSize: 10,
-              align: 'left',
-              borderRadius: 100,
-              lineHeight: '5',
-              padding: [0, 1, 2, 1]
-              // padding:[0,0,2,0],
-            },
-            nt2: {
-              color: '#fff',
-              backgroundColor: attackSourcesColor1[1],
-              width: 13,
-              height: 13,
-              fontSize: 10,
-              align: 'center',
-              borderRadius: 100,
-              padding: [0, 1, 2, 1]
-            },
-            nt3: {
-              color: '#fff',
-              backgroundColor: attackSourcesColor1[2],
-              width: 13,
-              height: 13,
-              fontSize: 10,
-              align: 'center',
-              borderRadius: 100,
-              padding: [0, 1, 2, 1]
-            },
-            nt: {
-              color: '#fff',
-              backgroundColor: attackSourcesColor1[3],
-              width: 13,
-              height: 13,
-              fontSize: 10,
-              align: 'center',
-              lineHeight: 3,
-              borderRadius: 100,
-              padding: [0, 1, 2, 1],
-              lineHeight: 5
-            }
+    const options = {
+        backgroundColor: '#092434',
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'shadow'
           },
-          formatter: function (value, index) {
-            index = contains(attaName, value) + 1
-            if (index - 1 < 3) {
-              return ['{nt' + index + '|' + index + '}'].join('\n')
-            } else {
-              return ['{nt|' + index + '}'].join('\n')
+          formatter: '{b0}: {c0}%'
+        },
+        grid: {
+          containLabel: true,
+          // width: '350px',
+          // height: '220px',
+          left: '7',
+          top: '20',
+          right: '57',
+          bottom: '20'
+        },
+        xAxis: {
+          max: 100,
+          splitLine: {
+            show: false
+          },
+          axisLine: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          }
+        },
+        yAxis: {
+          type: 'category',
+          data: ['放炮员', '安全员', '瓦检员', '采集司机', '电钳工', '二级主提司机', '主提司机', '电工'],
+          inverse: true,
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            fontSize: 16,
+            color: 'white'
+          },
+          axisPointer: {
+            label: {
+              show: true,
+              margin: 100
             }
           }
-        }
-      },
-      {
-        type: 'category',
-        inverse: true,
-        axisTick: 'none',
-        axisLine: 'none',
-        show: true,
-        axisLabel: {
-          textStyle: {
-            color: '#fff',
-            fontSize: '10'
+        },
+        series: [
+          {
+            type: 'pictorialBar',
+            symbolRepeat: 'fixed',
+            symbolMargin: '3!',
+            label: {
+              normal: {
+                show: true,
+                position: 'right',
+                offset: [3, 0],
+                formatter: (param) => {
+                  return param.value.toFixed(0) + '%'
+                },
+                textStyle: {
+                  fontSize: 16,
+                  color: 'white'
+                }
+              }
+            },
+            symbolClip: true,
+            symbolSize: [12, 22], //icon大小
+            symbolPosition: 'start',
+            symbolBoundingData: 100,
+            data: [
+              {
+                value: 13,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 23,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 73,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 66,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 22,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 44,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 23,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 90,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              }
+            ],
+            z: 10
+          },
+          {
+            type: 'pictorialBar',
+            itemStyle: {
+              normal: {
+                opacity: 0.2
+              }
+            },
+            animationDuration: 0,
+            symbolRepeat: 'fixed',
+            symbolMargin: '3!', //间距小人的
+
+            symbolSize: [12, 22],
+
+            symbolBoundingData: 100,
+            symbolPosition: 'start',
+            data: [
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              },
+              {
+                value: 100,
+                symbol: icon,
+                itemStyle: {
+                  color: '#1DDBF9'
+                }
+              }
+            ],
+            z: 5
           }
-        },
-        data: attackSourcesDataFmt(attaName)
-      },
-      {
-        //名称
-        type: 'category',
-        offset: -10,
-        position: 'left',
-        axisLabel: {
-          color: `#fff`,
-          fontSize: 10
-        },
-        axisLine: {
-          show: false
-        },
-        inverse: false,
-        axisTick: {
-          show: false
-        },
-        axisLabel: {
-          interval: 0,
-          color: ['#fff'],
-          align: 'left',
-          verticalAlign: 'bottom',
-          lineHeight: 32,
-          fontSize: 10
-        },
-        data: topName
+        ]
       }
-    ],
-    series: [
-      {
-        zlevel: 1,
-        name: '个人所得(亿元)',
-        type: 'bar',
-        barWidth: '15px',
-        animationDuration: 1500,
-        data: attackSourcesDataFmt(attaData),
-        align: 'center',
-        itemStyle: {
-          normal: {
-            barBorderRadius: 10
-          }
-        },
-        label: {
-          show: true,
-          fontSize: 10,
-          color: '#fff',
-          textBorderWidth: 2,
-          padding: [2, 0, 0, 0]
-        }
-      },
-      {
-        name: '个人所得(亿元)',
-        type: 'bar',
-        barWidth: 15,
-        barGap: '-100%',
-        margin: '20',
-        data: salvProMax,
-        textStyle: {
-          //图例文字的样式
-          fontSize: 10,
-          color: '#fff'
-        },
-        itemStyle: {
-          normal: {
-            color: '#05325F',
-            //width:"100%",
-            fontSize: 10,
-            barBorderRadius: 30
-          }
-        }
-      }
-    ]
-  }
+
   return (
     <div className="BottomBarBox">
       <ReactECharts option={options} />

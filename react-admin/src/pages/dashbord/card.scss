@@ -1,5 +1,5 @@
 .Card {
-  background-color: #fff;
+  background-color: #fcfbf8;
   @include card-frame;
   padding: 20px;
   .title {
@@ -11,8 +11,8 @@
     justify-content: space-between;
     align-content: center;
     .count {
-      font-size: 28px;
-      font-weight: 500;
+      font-size: 30px;
+      font-weight: 600;
       display: flex;
       flex-wrap: wrap;
       align-content: center;

@@ -2,81 +2,279 @@ import * as React from 'react'
 import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import './BottomBarRightBox.scss'
+import first from '@/assets/images/first.png'
+import second from '@/assets/images/second.png'
+import third from '@/assets/images/third.png'
+import frist_dot from '@/assets/images/first_dot.png'
+import second_dot from '@/assets/images/second_dot.png'
+import third_dot from '@/assets/images/third_dot.png'
+import normal_dot from '@/assets/images/normal_dot.png'
+
 const BottomBarBox: React.FC = () => {
+ let echartData = [
+   {
+     value: 44,
+     name: '市本级'
+   },
+   {
+     value: 43,
+     name: '广陵区'
+   },
+   {
+     value: 41,
+     name: '邗江区'
+   },
+   {
+     value: 40,
+     name: '开发区'
+   },
+   {
+     value: 38,
+     name: '江都区'
+   },
+   {
+     value: 33,
+     name: '瘦西湖景区'
+   },
+
+ ]
+ let attackSourcesColor = [
+   new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+     { offset: 0, color: 'rgba(254, 69, 97, 0)' },
+     { offset: 1, color: 'rgba(254, 69, 97, 1)' }
+   ]),
+   new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+     { offset: 0, color: 'rgba(254, 69, 97, 0)' },
+     { offset: 1, color: 'rgba(255, 155, 0, 1)' }
+   ]),
+   new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+     { offset: 0, color: 'rgba(254, 69, 97, 0)' },
+     { offset: 1, color: 'rgba(233, 217, 0, 1)' }
+   ]),
+   new echarts.graphic.LinearGradient(0, 1, 1, 1, [
+     { offset: 0, color: 'rgba(0, 245, 255, 0)' },
+     { offset: 1, color: 'rgba(0, 245, 255, 1)' }
+   ])
+ ]
  const options = {
+   backgroundColor: '#0c1934',
+   //你的代码
    tooltip: {
      trigger: 'axis',
-     show: false,
-     axisPointer: {
-       // 坐标轴指示器，坐标轴触发有效
-       type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+     formatter(params) {
+       for (var i = 0; i < params.length; i++) {
+         return params[i].name + ':' + params[i].data.value + '宗'
+       }
      }
-   },
-   legend: {
-     selectedMode: false
    },
    grid: {
-     left: '10px',
-     right: '10px',
-     bottom: '10px',
-     containLabel: true
+     containLabel: true,
+     bottom: '10%',
+     left: '-5%',
+     top: '10%',
+     right: '10%'
    },
-   xAxis: [
-     {
-       splitLine: {
-         show: false
-       },
-       type: 'value',
+   xAxis: {
+     type: 'value',
+     axisLabel: {
+       show: false
+     },
+     axisLine: {
+       show: false
+     },
+     axisTick: {
+       show: false
+     },
+     splitLine: {
        show: false
      }
-   ],
+   },
    yAxis: [
      {
-       splitLine: {
-         show: false
+       type: 'category',
+       data: echartData.map((item) => item.name),
+       inverse: true,
+       position: 'left',
+       axisLabel: {
+         fontSize: '18px',
+         padding: [-3, 0, 0, 0],
+         margin: 18, //刻度标签与轴线之间的距离
+         formatter: function (value, index) {
+           if (index < 3) {
+             return `{img${index}|}`
+           } else {
+             return `{b|${index + 1}}`
+           }
+         },
+         rich: {
+           b: {
+             color: '#fff',
+             backgroundColor: 'rgba(0, 165, 232, 0.20)',
+             borderWidth: 2,
+             width: 23,
+             height: 23,
+             align: 'center',
+             borderRadius: 23,
+             fontSize: 12
+           },
+           img0: {
+             width: 24,
+             height: 28,
+             backgroundColor: {
+               image: first,
+               repeat: 'no-repeat'
+             }
+           },
+           img1: {
+             width: 24,
+             height: 28,
+             backgroundColor: {
+               image: second,
+               repeat: 'no-repeat'
+             }
+           },
+           img2: {
+             width: 24,
+             height: 28,
+             backgroundColor: {
+               image: third,
+               repeat: 'no-repeat'
+             }
+           }
+         }
        },
        axisLine: {
-         //y轴
          show: false
        },
-       type: 'category',
        axisTick: {
          show: false
        },
-       data: ['0~5岁', '5~10岁', '10-30岁', '30-50岁', '50-70岁', '70-100', '100以上'],
-       axisLabel: {}
+       splitLine: {
+         show: false
+       }
+     },
+     {
+       type: 'category',
+       data: echartData.map((item) => item.value),
+       inverse: true,
+       position: 'right',
+       axisLabel: {
+         padding: [-3, 0, 0, 0],
+         margin: 10, //刻度标签与轴线之间的距离
+         formatter: function (value, index) {
+           return `{a|${echartData[index].value}}{b|宗}`
+         },
+         rich: {
+           a: {
+             fontSize: 15,
+             color: '#fff',
+             padding: [4, 5, 0, 0]
+           },
+           b: {
+             padding: [4, 0, 0, 0]
+           }
+         }
+       },
+       axisLine: {
+         show: false
+       },
+       axisTick: {
+         show: false
+       },
+       splitLine: {
+         show: false
+       }
+     },
+     {
+       type: 'category',
+       inverse: true,
+       position: 'left',
+       axisLine: {
+         show: false
+       },
+       axisTick: {
+         show: false
+       },
+       data: echartData.map((item) => item.name),
+       axisLabel: {
+         show: true,
+         margin: -2,
+         fontSize: 12,
+         align: 'top',
+         verticalAlign: 'bottom',
+         padding: [0, 0, 10, 0],
+         color: '#fff'
+       }
      }
    ],
    series: [
      {
-       name: '标准化',
+       data: echartData.map((item, i) => {
+         let itemStyle = {
+           color: i > 3 ? attackSourcesColor[3] : attackSourcesColor[i]
+         }
+         return {
+           value: item.value,
+           itemStyle: itemStyle
+         }
+       }),
        type: 'bar',
-       barWidth: 30, // 柱子宽度
+       barWidth: 6,
+       showBackground: true,
+       backgroundStyle: {
+         color: 'rgba(32, 104, 118, 1)',
+         borderRadius: 30
+       },
        label: {
          show: true,
-         position: 'right', // 位置
-         color: '#1CD8A8',
-         fontSize: 14,
-         fontWeight: 'bold', // 加粗
-         distance: 5 // 距离
-       }, // 柱子上方的数值
-       itemStyle: {
-         barBorderRadius: [0, 20, 20, 0], // 圆角（左上、右上、右下、左下）
-         color: new echarts.graphic.LinearGradient(
-           0,
-           0,
-           1,
-           0,
-           ['#2FAEF2', '#1CD8A8'].map((color, offset) => ({
-             color,
-             offset
-           }))
-         ) // 渐变
-       },
-       data: [320, 302, 341, 374, 390, 650, 420]
+         position: 'insideRight',
+         distance: -10,
+         formatter: (params) => {
+           if (params.dataIndex < 3) {
+             return `{img${params.dataIndex}|}`
+           } else {
+             return `{b|}`
+           }
+         },
+         rich: {
+           b: {
+             widht: 18,
+             height: 18,
+             backgroundColor: {
+               image: frist_dot,
+               repeat: 'no-repeat'
+             }
+           },
+           img0: {
+             width: 18,
+             height: 18,
+             backgroundColor: {
+               image: second_dot,
+               repeat: 'no-repeat'
+             }
+           },
+           img1: {
+             width: 18,
+             height: 18,
+             backgroundColor: {
+               image: third_dot,
+               repeat: 'no-repeat'
+             }
+           },
+           img2: {
+             width: 18,
+             height: 18,
+             backgroundColor: {
+               image: normal_dot,
+               repeat: 'no-repeat'
+             }
+           }
+         }
+       }
      }
    ]
  }
+
   return (
     <div className="BottomBarRightBox">
       <ReactECharts option={options} />

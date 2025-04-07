@@ -1,220 +1,105 @@
 import * as React from 'react'
 import ReactECharts from 'echarts-for-react'
+import * as echarts from 'echarts'
 import './MiddlePieBox.scss'
 const MiddlePieBox: React.FC = () => {
-   let data = [582, 421.2, 622.1, 625.3, 265, 224]
-   let indicator = [
-     {
-       name: '指标1',
-       max: 1000
-     },
-     {
-       name: '指标2',
-       max: 1000
-     },
-     {
-       name: '指标3',
-       max: 1000
-     },
-     {
-       name: '指标4',
-       max: 1000
-     },
-     {
-       name: '指标5',
-       max: 1000
-     },
-     {
-       name: '指标6',
-       max: 1000
-     }
+   var datavaule = [10, 50, 54, 45, 84]
+   const indicator = [
+     { name: '清洁', max: 100 },
+     { name: '维护', max: 100 },
+     { name: '寿命', max: 100 },
+     { name: '评价', max: 100 },
+     { name: '考核', max: 100 }
    ]
+
   const options = {
-    radar: {
-      center: ['50%', '42%'],
-      radius: '80%',
-      name: {
-        formatter: function (name: string, indicator) {
-          let arr
-          arr = ['{a|' + name + '}']
-          return arr.join('\n')
-        },
-        textStyle: {
-          rich: {
-            //根据文字的组设置格式
-            a: {
-              color: '#BCDCFF',
-              fontSize: 14,
-              fontWeight: 600,
-              fontFamily: 'Source Han Sans CN'
-            }
-          }
-        }
-      },
-      nameGap: 0,
-      indicator: indicator,
-      splitLine: {
-        show: false
-      },
-      splitArea: {
-        show: false
-      },
-      axisLine: {
-        show: false
-      }
-    },
-    grid: {
-      y2: '40px',
-    },
-    series: [
-      {
-        type: 'radar',
-        data: [data],
-        // value:14,
-        label: {
-          show: true,
-          formatter: function (params) {
-            return params.value + '万'
-          },
-          color: '#8E88FE',
-          // position:[-20,-10,-10,-10],
-          align: 'right',
-          distance: 10,
-        },
-        symbolSize: [6, 6],
-        lineStyle: {
-          //边缘颜色
-          width: 0
-        },
-        itemStyle: {
-          borderWidth: 1,
-          color: '#fff',
-          borderColor: '#F2F063'
-        },
-        areaStyle: {
-          color: '#7D77F1',
-          opacity: 0.6
-        }
-      },
-      {
-        type: 'radar',
-        data: [[1000, 1000, 1000, 1000, 1000, 1000]],
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
+     title: {
+       text: '83.7',
+       top: 'center',
+       left: 'center',
+       textStyle: {
+         fontSize: 18
+       }
+     },
+     tooltip: {
+       show: true,
+       trigger: 'item'
+     },
+     radar: {
+       center: ['50%', '50%'],
+       radius: '65%',
+       indicator: indicator,
+       splitNumber: 6,
+       splitArea: {
+         areaStyle: {
+           color: ['rgba(212, 242, 253, 1)', 'rgba(199, 239, 252, 1)'].reverse()
+         }
+       },
+       axisLabel: {
+         show: false
+       },
+       axisLine: {
+         lineStyle: {
+           color: 'rgba(159, 223, 253, 1)',
+           width: 1
+         }
+       },
+       splitLine: {
+         lineStyle: {
+           color: 'rgba(76, 189, 255, 1)', // 分隔线颜色
+           width: 1 // 分隔线线宽
+         }
+       },
+       name: {
+         textStyle: {
+           color: '#f9f9f9',
+           fontSize: 20,
+           padding: [0, 0, 0, 0]
+         }
+       }
+     },
 
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.06
-        }
-      },
-      {
-        type: 'radar',
-        data: [[900, 900, 900, 900, 900, 900]],
-
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#2C72C8'
-        },
-
-        areaStyle: {
-          color: '#2C72C8',
-          opacity: 0.12
-        }
-      },
-      {
-        type: 'radar',
-        data: [[800, 800, 800, 800, 800, 800]],
-
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
-
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.18
-        }
-      },
-      {
-        type: 'radar',
-        data: [[700, 700, 700, 700, 700, 700]],
-
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
-
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.19
-        }
-      },
-      {
-        type: 'radar',
-        data: [[600, 600, 600, 600, 600, 600]],
-
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
-
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.17
-        }
-      },
-      {
-        type: 'radar',
-        data: [[500, 500, 500, 500, 500, 500]],
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
-
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.16
-        }
-      },
-      {
-        type: 'radar',
-        data: [[400, 400, 400, 400, 400, 400]],
-
-        symbol: 'none',
-        lineStyle: {
-          width: 0
-        },
-        itemStyle: {
-          color: '#4175F5'
-        },
-
-        areaStyle: {
-          color: '#4175F5',
-          opacity: 0.13
-        }
-      }
-    ]
-  }
+     series: [
+       {
+         type: 'radar',
+         symbol: 'none',
+         name: '五维雷达',
+         lineStyle: {
+           normal: {
+             color: 'rgba(87, 145, 207, 1)'
+           }
+         },
+         areaStyle: {
+           normal: {
+             // 单项区域填充样式
+             color: new echarts.graphic.LinearGradient(
+               0,
+               0,
+               0,
+               1,
+               [
+                 {
+                   offset: 0,
+                   color: 'rgba(76, 189, 255, 0.2)'
+                 },
+                 {
+                   offset: 1,
+                   color: 'rgba(76, 189, 255, 1)'
+                 }
+               ],
+               false
+             ),
+             // 设置扇形的阴影
+             shadowBlur: 12,
+             shadowColor: 'rgba(76, 189, 255, 0.6)',
+             shadowOffsetX: 6,
+             shadowOffsetY: 6
+           }
+         },
+         data: [datavaule]
+       }
+     ]
+   }
   return (
     <div className="MiddlePieBox">
       <ReactECharts option={options} />

@@ -30,10 +30,10 @@ const Dashbord: React.FC = () => {
   }
   return (
     <div className="Dashboard">
-      <Card title="总数" name="data" />
-      <Card title="入住数" name="empty" />
-      <Card title="空置数" name="warn" />
-      <Card title="排队数" name="notice" />
+      <Card title="总数" name="data" count={12324434} />
+      <Card title="入住数" name="empty" count={34434} />
+      <Card title="空置数" name="warn" count={24434} />
+      <Card title="排队数" name="notice" count={4434} />
       <div className="col2-3">
         <MiddleLeftPieBox />
       </div>
@@ -53,7 +53,7 @@ const Dashbord: React.FC = () => {
         <BottomBarRightBox />
       </div>
     </div>
-  );
+  )
 }
 
 export default Dashbord
