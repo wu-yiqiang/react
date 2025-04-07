@@ -9,7 +9,8 @@ function LoginPassword() {
     const { data } = await login(value)
     const token = data?.token
     if (token) {
-      eventMitt.emit('ROUTER:LOGIN', token)
+      eventMitt.emit("STORE:TOEKN", token);
+      eventMitt.emit("ROUTER:HOME");
     }
   }
 

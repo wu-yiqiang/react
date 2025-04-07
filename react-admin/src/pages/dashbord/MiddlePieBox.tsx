@@ -74,7 +74,6 @@ const MiddlePieBox: React.FC = () => {
         label: {
           show: true,
           formatter: function (params) {
-            console.log(params)
             return params.value + '万'
           },
           color: '#8E88FE',

@@ -13,7 +13,6 @@ export default function SearchForm(props: any) {
   }
   const submitQuery = (value: any) => {
     // const data = form.getFieldsValue()  
-    console.log('ssds萨达萨达舒服舒服', value)
     // handleSearch(data)
   }
   const resetForm = () => {
@@ -23,7 +22,6 @@ export default function SearchForm(props: any) {
     searchOptions.forEach((item) => {
       initialValues[item.prop] = item.default
     });
-    console.log(initialValues)
   }
   useEffect(() => {
     setFoldState(defaultFoldState)

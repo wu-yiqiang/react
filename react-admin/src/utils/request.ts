@@ -41,6 +41,7 @@ request.interceptors.response.use(
     const status = error?.response?.status
     if (status == 401) {
       Toast.error('认证信息过期，请重新登录')
+      eventMitt.emit("STORE:TOEKN", '');
       eventMitt.emit('ROUTER:LOGOUT')
     }
     if (status == 404) {

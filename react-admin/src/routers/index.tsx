@@ -209,14 +209,9 @@ const whiteLists: RouteObject[] = [
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
 eventMitt.on('ROUTER:LOGOUT', () => {
-  localStorage.clear()
   routes.navigate('/login')
 })
 
-eventMitt.on('ROUTER:LOGIN', (value: string) => {
-  localStorage.setItem('token', value)
-  routes.navigate('/')
-})
 
 eventMitt.on("ROUTER:HOME", () => {
   routes.navigate("/");

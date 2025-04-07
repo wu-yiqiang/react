@@ -7,7 +7,6 @@ import { isDark } from "@/utils/index";
 import { SystemStore } from "@/types/common";
 function App() {
   const { theme, setTheme, setLanguage } = useSystemStore() as SystemStore;
-  console.log("theme", theme);
   const darkTheme = {
     token: {
       colorPrimary: "#FF7A00",

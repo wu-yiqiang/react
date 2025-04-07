@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
+import eventMitt from "@/utils/eventMitt";
 // import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
 const useSystemStore = create(
   persist(
@@ -7,13 +8,11 @@ const useSystemStore = create(
       userInfo: { username: "121" },
       theme: "system",
       language: "zh-CN",
+      token: "",
       menus: [],
       currentMenu: {},
-      getTheme: () => {
-        const theme = localStorage.getItem("theme");
-        return theme;
-      },
       setTheme: (value: string) => set({ theme: value }),
+      setToken: (value: string) => set({ token: value }),
       setLanguage: (value: string) => set({ language: value }),
       setUserInfo: (value: object) => set({ userInfo: value }),
     }),
@@ -43,3 +42,7 @@ const useSystemStore = create(
 );
 
 export default useSystemStore;
+eventMitt.on("STORE:TOEKN", (value: string) => {
+  const {setToken} = useSystemStore()
+  setToken(value);
+});
