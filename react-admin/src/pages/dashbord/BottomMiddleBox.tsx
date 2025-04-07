@@ -40,7 +40,7 @@ const BottomMiddleBox: React.FC = () => {
        boundaryGap: false,
        axisLine: {
          //坐标轴轴线相关设置。数学上的x轴
-         show: true,
+         show: false,
          lineStyle: {
            color: 'rgb(41,188,245)'
          }
@@ -82,7 +82,7 @@ const BottomMiddleBox: React.FC = () => {
          }
        },
        axisLine: {
-         show: true,
+         show: false,
          lineStyle: {
            color: '#008de7'
          }
