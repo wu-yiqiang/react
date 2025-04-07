@@ -1,18 +1,18 @@
 import { login } from '@/api/public'
 import { Button } from 'antd'
-import { useNavigate } from 'react-router-dom'
 import './login.scss'
 import LoginFace from './login-face'
 import LoginPassword from './login-password'
 import { useState } from 'react'
 import logo from '@/assets/images/logo.png'
+import eventMitt from "@/utils/eventMitt";
+
 function Login() {
-  const navgite = useNavigate()
   const [loginType, setLoginType] = useState(1)
   const onFinish = (value: any) => {
     // const { token } = await login(values)
     // localStorage.set('token', token)
-    navgite('/dashbord')
+    eventMitt.emit('ROUTER:PATH', '/dashboard')
   }
   const handleLoginType = (value: number) => {
     setLoginType(value)

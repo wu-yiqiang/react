@@ -25,150 +25,150 @@ import {RouterItem} from '@/types/common'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
   {
-    path: '/dashbord',
-    key: 'dashbord',
-    label: '系统看板',
+    path: "/dashbord",
+    key: "dashbord",
+    label: "系统看板",
     icon: <AreaChartOutlined />,
-    parentkey: '',
+    parentkey: "",
     showMenu: true,
-    element: <Dashbord />
+    element: <Dashbord />,
   },
   {
-    path: '/statistics',
-    label: '统计报表',
+    path: "/statistics",
+    label: "统计报表",
     icon: <PieChartOutlined />,
-    key: 'statistics',
-    parentkey: '',
+    key: "statistics",
+    parentkey: "",
     showMenu: true,
-    element: <Statistics />
+    element: <Statistics />,
   },
   {
-    path: '/invoices',
-    label: '申请单据',
+    path: "/invoices",
+    label: "申请单据",
     icon: <PrinterOutlined />,
-    key: 'invoices',
-    parentkey: '',
+    key: "invoices",
+    parentkey: "",
     showMenu: true,
-    element: <Invoices />
+    element: <Invoices />,
   },
   {
-    path: '/maintains',
-    label: '维修管理',
+    path: "/maintains",
+    label: "维修管理",
     icon: <ToolOutlined />,
-    key: 'maintains',
-    parentkey: '',
+    key: "maintains",
+    parentkey: "",
     showMenu: true,
-    element: <Maintains />
+    element: <Maintains />,
   },
   {
-    path: '/rooms',
-    label: '房间管理',
+    path: "/rooms",
+    label: "房间管理",
     icon: <ContactsOutlined />,
-    key: 'rooms',
-    parentkey: '',
+    key: "rooms",
+    parentkey: "",
     showMenu: true,
-    element: null
+    element: null,
   },
   {
-    path: '/rooms-book',
-    label: '订房管理',
+    path: "/rooms-book",
+    label: "订房管理",
     icon: <ContactsOutlined />,
-    key: 'rooms-book',
-    parentkey: 'rooms',
+    key: "rooms-book",
+    parentkey: "rooms",
     showMenu: true,
-    element: <RoomsBook />
+    element: <RoomsBook />,
   },
   {
-    path: '/rooms-type',
-    label: '房间类型',
+    path: "/rooms-type",
+    label: "房间类型",
     icon: <ContactsOutlined />,
-    key: 'rooms-type',
-    parentkey: 'rooms',
+    key: "rooms-type",
+    parentkey: "rooms",
     showMenu: true,
-    element: <RoomsType />
+    element: <RoomsType />,
   },
   {
-    path: '/rooms-info',
-    label: '房间信息',
+    path: "/rooms-info",
+    label: "房间信息",
     icon: <ContactsOutlined />,
-    key: 'rooms-info',
-    parentkey: 'rooms',
+    key: "rooms-info",
+    parentkey: "rooms",
     showMenu: true,
-    element: <RoomsInfo />
+    element: <RoomsInfo />,
   },
   {
-    path: '/rooms-stay',
-    label: '入住管理',
+    path: "/rooms-stay",
+    label: "入住管理",
     icon: <ContactsOutlined />,
-    key: 'rooms-stay',
-    parentkey: 'rooms',
+    key: "rooms-stay",
+    parentkey: "rooms",
     showMenu: true,
-    element: <RoomsStay />
+    element: <RoomsStay />,
   },
   {
-    path: '/schedules',
-    label: '排班管理',
+    path: "/schedules",
+    label: "排班管理",
     icon: <ScheduleOutlined />,
-    key: 'schedules',
-    parentkey: '',
+    key: "schedules",
+    parentkey: "",
     showMenu: true,
-    element: <Schedules />
+    element: <Schedules />,
   },
   {
-    path: '/day-schedule',
-    label: '每日排班',
+    path: "/day-schedule",
+    label: "每日排班",
     icon: <HeatMapOutlined />,
-    key: 'day-schedule',
-    parentkey: '',
+    key: "day-schedule",
+    parentkey: "schedules",
     showMenu: false,
-    element: <DaySchedule />
+    element: <DaySchedule />,
   },
   {
-    path: '/setting',
-    label: '系统设置',
+    path: "/setting",
+    label: "系统设置",
     icon: <SettingOutlined />,
-    key: 'setting',
-    parentkey: '',
+    key: "setting",
+    parentkey: "",
     showMenu: true,
-    element: null
+    element: null,
   },
   {
-    path: '/user-manager',
-    label: '用户管理',
+    path: "/user-manager",
+    label: "用户管理",
     icon: <UserOutlined />,
-    key: 'user-manager',
-    parentkey: 'setting',
+    key: "user-manager",
+    parentkey: "setting",
     showMenu: true,
-    element: <UserManager />
+    element: <UserManager />,
   },
   {
-    path: '/role-manager',
-    label: '角色管理',
+    path: "/role-manager",
+    label: "角色管理",
     icon: <TeamOutlined />,
-    key: 'role-manager',
-    parentkey: 'setting',
+    key: "role-manager",
+    parentkey: "setting",
     showMenu: true,
-    element: <RoleManager />
+    element: <RoleManager />,
   },
   {
-    path: '/menu-manager',
-    label: '菜单管理',
+    path: "/menu-manager",
+    label: "菜单管理",
     icon: <MenuOutlined />,
-    key: 'menu-manager',
-    parentkey: 'setting',
+    key: "menu-manager",
+    parentkey: "setting",
     showMenu: true,
-    element: <MenuManager />
+    element: <MenuManager />,
   },
   {
-    path: '/permission-manager',
-    label: '权限管理',
+    path: "/permission-manager",
+    label: "权限管理",
     icon: <SafetyOutlined />,
-    key: 'permission-manager',
-    parentkey: 'setting',
+    key: "permission-manager",
+    parentkey: "setting",
     showMenu: true,
-    element: <PermissionManager />
-  }
-]
+    element: <PermissionManager />,
+  },
+];
 // const rootLoader = async () => {
 //   const { permissionRouters, name, age, code } = await getUserInfo();
 //   if (code == 401) {
@@ -212,8 +212,11 @@ eventMitt.on('ROUTER:LOGOUT', () => {
   routes.navigate('/login')
 })
 
-
 eventMitt.on("ROUTER:HOME", () => {
   routes.navigate("/");
+});
+
+eventMitt.on("ROUTER:PATH", (path: string) => {
+  routes.navigate(path);
 });
 

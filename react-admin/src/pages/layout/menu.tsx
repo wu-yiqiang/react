@@ -1,9 +1,8 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import { allRouters, routes } from '@/routers/index'
-
+import eventMitt from "@/utils/eventMitt";
 interface MenuItem {
   key: string
   parentkey: string
@@ -46,23 +45,14 @@ const genItems = () => {
 
 
 const App: React.FC = () => {
-  const navigate = useNavigate()
   genItems()
   const onClick: MenuProps['onClick'] = (e) => {
     const path = `/${e.key}`
-    navigate(path);
-  }
-  const getCurrentPath = () => {
-    const path = window.location.pathname;
-    const paths = allRouters?.map((item: any) => {
-      if (item.path === path) {
-        return item.key;
-      }
-    });
-    return paths;
+    eventMitt.emit("ROUTER:PATH", path);
   }
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const selectedKey = pathSegments[0] || "/"
+  console.log('selectedKey', selectedKey) // /dashboard/mai
   return (
     <Menu
       style={{ height: document.body.clientHeight }}
