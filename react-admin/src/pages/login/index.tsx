@@ -12,7 +12,7 @@ function Login() {
   const onFinish = (value: any) => {
     // const { token } = await login(values)
     // localStorage.set('token', token)
-    eventMitt.emit('ROUTER:PATH', '/dashboard')
+    eventMitt.emit("ROUTER:KEY", "dashboard");
   }
   const handleLoginType = (value: number) => {
     setLoginType(value)

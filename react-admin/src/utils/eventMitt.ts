@@ -1,4 +1,4 @@
-const eventNames = ['ROUTER:LOGOUT', 'ROUTER:HOME', 'SYSTEM:THEME', 'SYSTEM:TOKEN', 'SYSTEM:LANGUAGE', 'STORE:TOEKN','ROUTER:PATH']
+const eventNames = ['ROUTER:LOGOUT', 'ROUTER:HOME', 'SYSTEM:THEME', 'SYSTEM:TOKEN', 'SYSTEM:LANGUAGE', 'STORE:TOEKN','ROUTER:KEY']
 type EventNames = (typeof eventNames)[number]
 class EventMitt {
   private listeners: Record<string, Set<Function>> = {
@@ -8,7 +8,7 @@ class EventMitt {
     'SYSTEM:TOKEN': new Set(),
     'SYSTEM:LANGUAGE': new Set(),
     'STORE:TOEKN': new Set(),
-    'ROUTER:PATH': new Set()
+    'ROUTER:KEY': new Set()
   }
   on(event: EventNames, listener: Function) {
     if (!this.listeners[event]) return new Error('未注册该事件')

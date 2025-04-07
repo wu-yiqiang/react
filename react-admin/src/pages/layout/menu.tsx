@@ -47,17 +47,17 @@ const genItems = () => {
 const App: React.FC = () => {
   genItems()
   const onClick: MenuProps['onClick'] = (e) => {
-    const path = `/${e.key}`
-    eventMitt.emit("ROUTER:PATH", path);
+    console.log('onClick', e?.key)
+    eventMitt.emit("ROUTER:KEY", e?.key);
   }
   const pathSegments = location.pathname.split("/").filter(Boolean);
   const selectedKey = pathSegments[0] || "/"
-  console.log('selectedKey', selectedKey) // /dashboard/mai
+  console.log('selectedKey', selectedKey)
   return (
     <Menu
       style={{ height: document.body.clientHeight }}
       onClick={onClick}
-      selectedKeys={[selectedKey]}
+      selectedKeys={['dashboard']}
       mode="inline"
       items={items}
     />

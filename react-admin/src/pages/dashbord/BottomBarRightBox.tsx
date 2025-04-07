@@ -16,9 +16,9 @@ const BottomBarBox: React.FC = () => {
      selectedMode: false
    },
    grid: {
-     left: '3%',
-     right: '4%',
-     bottom: '3%',
+     left: '10px',
+     right: '10px',
+     bottom: '10px',
      containLabel: true
    },
    xAxis: [

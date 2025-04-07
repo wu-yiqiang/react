@@ -6,6 +6,7 @@ import MiddleBarBox from './MiddleBarBox'
 import BottomBarBox from './BottomBarBox.tsx'
 import BottomBarRightBox from './BottomBarRightBox.tsx'
 import BottomMiddleBox from './BottomMiddleBox.tsx'
+import MiddleLeftPieBox from './MiddleLeftPieBox.tsx'
 const Dashbord: React.FC = () => {
   const options = {
     grid: { top: 8, right: 8, bottom: 24, left: 36 },
@@ -27,8 +28,6 @@ const Dashbord: React.FC = () => {
       trigger: 'axis'
     }
   }
-
-  // return <ReactECharts option={options} />
   return (
     <div className="Dashboard">
       <Card title="总数" />
@@ -36,7 +35,7 @@ const Dashbord: React.FC = () => {
       <Card title="空置数" />
       <Card title="排队数" />
       <div className="col2-3">
-        <MiddlePieBox />
+        <MiddleLeftPieBox />
       </div>
       <div className="col2-3">
         <MiddlePieBox />
@@ -54,7 +53,7 @@ const Dashbord: React.FC = () => {
         <BottomBarRightBox />
       </div>
     </div>
-  )
+  );
 }
 
 export default Dashbord

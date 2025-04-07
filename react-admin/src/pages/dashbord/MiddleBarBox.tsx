@@ -16,8 +16,10 @@ const MiddleBarBox: React.FC = () => {
     },
     backgroundColor: '#0f375f',
     grid: {
-      top: '25%',
-      bottom: '10%' //也可设置left和right设置距离来控制图表的大小
+      top: '40px',
+      left: '40px',
+      right: '40px',
+      bottom: '40px'
     },
     tooltip: {
       trigger: 'axis',

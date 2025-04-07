@@ -11,3 +11,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin card-frame   {
+  border-radius: 4px;
+  padding: 4px;
+  height: 100%;
+}

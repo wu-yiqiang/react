@@ -216,7 +216,8 @@ eventMitt.on("ROUTER:HOME", () => {
   routes.navigate("/");
 });
 
-eventMitt.on("ROUTER:PATH", (path: string) => {
+eventMitt.on("ROUTER:KEY", (key: string) => {
+  const path = allRouters.find((item) => item.key === key)?.path || "/";
   routes.navigate(path);
 });
 

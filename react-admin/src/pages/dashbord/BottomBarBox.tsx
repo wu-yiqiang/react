@@ -67,7 +67,6 @@ const BottomBarBox: React.FC = () => {
   }
 
   const options = {
-    backgroundColor: '#0f375f',
     tooltip: {
       show: false,
       backgroundColor: 'rgba(3,169,244, 0.5)', //背景颜色（此时为默认色）

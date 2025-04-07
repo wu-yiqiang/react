@@ -1,10 +1,8 @@
 .BottomBarBox {
   background-color: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  height: 100%;
-  overflow: auto;
-  // width: 100%;
-  // display: grid;
-  // place-content: center;
+  @include card-frame;
+  .echarts-for-react {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }

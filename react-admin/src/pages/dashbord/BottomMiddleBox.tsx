@@ -35,368 +35,500 @@ const BottomMiddleBox: React.FC = () => {
  const options = {
    //timeline基本配置都写在baseoption 中
    baseOption: {
-     backgroundColor: '#11183c',
+     backgroundColor: "#11183c",
      timeline: timeline,
      grid: {
-       top: '15%',
-       bottom: '25%',
-       left: '5%',
-       right: '5%',
-       containLabel: true
+       top: "10px",
+       bottom: "10px",
+       left: "10px",
+       right: "10px",
+       containLabel: true,
      },
      xAxis: [
        {
-         type: 'category'
-       }
+         type: "category",
+       },
      ],
      yAxis: {
-       type: 'value',
+       type: "value",
        //name: 'Mwh',
        axisLine: {
-         show: false
+         show: false,
        },
        axisLabel: {
          textStyle: {
-           color: '#2ededf'
-         }
+           color: "#2ededf",
+         },
        },
        splitLine: {
          show: true,
          onGap: true,
          lineStyle: {
-           color: '#064486'
-         }
-       }
+           color: "#064486",
+         },
+       },
      },
      series: [
        {
-         type: 'bar',
+         type: "bar",
          barWidth: 15,
          itemStyle: {
            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
              {
                offset: 0,
-               color: '#30ebe7'
+               color: "#30ebe7",
              },
              {
                offset: 1,
-               color: '#0173ff'
-             }
-           ])
-         }
-       }
+               color: "#0173ff",
+             },
+           ]),
+         },
+       },
      ],
-     tooltip: {}
+     tooltip: {},
    },
    //变量则写在options中
    options: [
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长',
-         x: '5%',
-         y: '5%',
+         text: "各部门完成情况",
+         x: "5%",
+         y: "5%",
          textStyle: {
-           color: '#2ededf',
-           fontSize: 12
-         }
+           color: "#2ededf",
+           fontSize: 12,
+         },
        },
        series: [
          {
-           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88]
-         }
-       ]
+           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88]
-         }
-       ]
+           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199]
-         }
-       ]
+           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88]
-         }
-       ]
+           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88]
-         }
-       ]
+           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199]
-         }
-       ]
+           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88]
-         }
-       ]
+           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88]
-         }
-       ]
+           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199]
-         }
-       ]
+           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88]
-         }
-       ]
+           data: [225, 175, 175, 155, 100, 20, 80, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88]
-         }
-       ]
+           data: [225, 5, 175, 89, 100, 20, 20, 99, 34, 88],
+         },
+       ],
      },
      {
        xAxis: [
          {
-           data: ['开发部', '产品部', '系统一部', '系统二部', '集成部', 'EE', 'FF', 'AA', 'BB', 'SS'],
+           data: [
+             "开发部",
+             "产品部",
+             "系统一部",
+             "系统二部",
+             "集成部",
+             "EE",
+             "FF",
+             "AA",
+             "BB",
+             "SS",
+           ],
            axisLabel: {
              rotate: -40,
-             color: '#29d0d0'
+             color: "#29d0d0",
            },
            axisLine: {
              lineStyle: {
-               color: '#064485'
-             }
-           }
-         }
+               color: "#064485",
+             },
+           },
+         },
        ],
        title: {
-         text: '人均学习时长'
+         text: "各部门完成情况",
          //subtext: '单位:Mwh'
        },
        series: [
          {
-           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199]
-         }
-       ]
-     }
-   ]
- }
+           data: [90, 5, 175, 89, 34, 20, 20, 12, 34, 199],
+         },
+       ],
+     },
+   ],
+ };
   return (
     <div className="BottomMiddleBox">
       <ReactECharts option={options} />
