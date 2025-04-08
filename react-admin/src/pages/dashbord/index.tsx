@@ -31,9 +31,9 @@ const Dashbord: React.FC = () => {
   return (
     <div className="Dashboard">
       <Card title="总数" name="data" count={12324434} />
-      <Card title="入住数" name="empty" count={34434} />
-      <Card title="空置数" name="warn" count={24434} />
-      <Card title="排队数" name="notice" count={4434} />
+      <Card title="入住数" name="empty" count={46734} />
+      <Card title="空置数" name="warn" count={65434} />
+      <Card title="排队数" name="notice" count={74434} />
       <div className="col2-3">
         <MiddleLeftPieBox />
       </div>
