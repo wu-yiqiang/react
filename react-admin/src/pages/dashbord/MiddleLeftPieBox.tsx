@@ -20,15 +20,15 @@ const MiddleLeftPieBox: React.FC = () => {
       type: 1,
     },
     {
-      name: "指挥调度中心",
+      name: "调度中心",
       type: 3,
     },
     {
-      name: "经营决策系统数据",
+      name: "决策系统数据",
       type: 1,
     },
     {
-      name: "物流综合管控平台数据",
+      name: "综合管控平台数据",
       type: 1,
     },
     {
