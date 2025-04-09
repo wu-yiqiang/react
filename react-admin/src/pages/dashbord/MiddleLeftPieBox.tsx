@@ -5,7 +5,7 @@ import centerImage from "@/assets/images/center.png";
 import NodeImage from "@/assets/images/node.png";
 const MiddleLeftPieBox: React.FC = () => {
   const [options, setOptions] = React.useState<any>({});
-  let color = ["#ffffff", "#36fff6", "#ffe93a", "#67f95f"];
+  const color = ["#ffffff", "#36fff6", "#ffe93a", "#67f95f"];
   let oneArr = [
     {
       name: "数据统一平台",
@@ -168,6 +168,15 @@ const MiddleLeftPieBox: React.FC = () => {
 
   function getOption(startAngle, radius) {
     let options = {
+      title: {
+        text: "调度中心数据流向",
+        left:'center',
+        textStyle: {
+          textAlign: "center",
+          color: "#fff",
+          fontSize: 18,
+        },
+      },
       backgroundColor: "#081c47",
       xAxis: {
         show: false,
