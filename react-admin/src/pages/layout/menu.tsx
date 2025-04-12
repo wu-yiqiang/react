@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useMemo } from "react";
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import { allRouters, routes } from '@/routers/index'
@@ -47,14 +47,20 @@ const genItems = () => {
 const App: React.FC = () => {
   genItems()
   const onClick: MenuProps['onClick'] = (e) => {
-    console.log('onClick', e?.key)
     eventMitt.emit("ROUTER:KEY", e?.key);
-  } 
+  }
+  // eventMitt.emit("STORE:CURRENTMENU", e?.key);
+  const pathSegments = location.pathname.split("/").filter(Boolean);
+  const selectedKeys = useMemo(() => {
+    const selectedKey = pathSegments[0] || "/";
+    console.log("selectedKey", selectedKey);
+    return [selectedKey];
+  }, [pathSegments]);
   return (
     <Menu
       style={{ height: document.body.clientHeight }}
       onClick={onClick}
-      selectedKeys={["dashboard"]}
+      selectedKeys={selectedKeys}
       mode="inline"
       items={items}
     />

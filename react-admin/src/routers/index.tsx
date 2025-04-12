@@ -218,7 +218,6 @@ eventMitt.on("ROUTER:HOME", () => {
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem;
-  eventMitt.emit("STORE:CURRENTMENU", routerItem);
   const path = routerItem?.path || "/";
   routes.navigate(path);
 });
