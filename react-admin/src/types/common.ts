@@ -35,7 +35,6 @@ export interface RouterItem {
     label: string;
     icon: React.ReactNode;
     parentkey: string;
-    showMenu: boolean;
     element: React.ReactNode;
 }
 
