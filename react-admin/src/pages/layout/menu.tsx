@@ -49,15 +49,12 @@ const App: React.FC = () => {
   const onClick: MenuProps['onClick'] = (e) => {
     console.log('onClick', e?.key)
     eventMitt.emit("ROUTER:KEY", e?.key);
-  }
-  const pathSegments = location.pathname.split("/").filter(Boolean);
-  const selectedKey = pathSegments[0] || "/"
-  console.log('selectedKey', selectedKey)
+  } 
   return (
     <Menu
       style={{ height: document.body.clientHeight }}
       onClick={onClick}
-      selectedKeys={['dashboard']}
+      selectedKeys={["dashboard"]}
       mode="inline"
       items={items}
     />

@@ -11,7 +11,7 @@ import Login from "@/pages/login/index";
 import RoleManager from "@/pages/system/roles/index";
 import PermissionManager from "@/pages/system/permissions/index";
 import Invoices from "@/pages/invoices/index";
-import Dashbord from "@/pages/dashbord/index";
+import Dashboard from "@/pages/dashboard/index";
 import Statistics from "@/pages/statistics/index";
 import Maintains from "@/pages/maintains/index";
 import Schedules from "@/pages/schedules/index";
@@ -25,13 +25,13 @@ import {RouterItem} from '@/types/common'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
   {
-    path: "/dashbord",
-    key: "dashbord",
+    path: "/dashboard",
+    key: "dashboard",
     label: "系统看板",
     icon: <AreaChartOutlined />,
     parentkey: "",
     showMenu: true,
-    element: <Dashbord />,
+    element: <Dashboard />,
   },
   {
     path: "/statistics",
@@ -194,7 +194,7 @@ const routerConfig: RouteObject[] = [
 const whiteLists: RouteObject[] = [
   {
     path: "/",
-    element: <Navigate to="dashbord" />,
+    element: <Navigate to="dashboard" />,
   },
   {
     path: "/login",
@@ -217,7 +217,9 @@ eventMitt.on("ROUTER:HOME", () => {
 });
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
-  const path = allRouters.find((item) => item.key === key)?.path || "/";
+  const routerItem = allRouters.find((item) => item.key === key) as RouterItem;
+  eventMitt.emit("STORE:CURRENTMENU", routerItem);
+  const path = routerItem?.path || "/";
   routes.navigate(path);
 });
 

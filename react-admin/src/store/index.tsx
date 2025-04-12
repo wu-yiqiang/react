@@ -15,6 +15,7 @@ const useSystemStore = create(
       setToken: (value: string) => set({ token: value }),
       setLanguage: (value: string) => set({ language: value }),
       setUserInfo: (value: object) => set({ userInfo: value }),
+      setCurrentMenu: (value: object) => set({ currentMenu: value }),
     }),
     {
       name: "ANTON—EAMS-STORE",
@@ -28,4 +29,9 @@ export default useSystemStore;
 eventMitt.on("STORE:TOEKN", (value: string) => {
   const {setToken} = useSystemStore()
   setToken(value);
+});
+
+eventMitt.on("STORE:CURRENTMENU", (value: object) => {
+  const { setCurrentMenu } = useSystemStore();
+  setCurrentMenu(value);
 });
