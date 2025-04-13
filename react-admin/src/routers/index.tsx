@@ -21,6 +21,8 @@ import RoomsBook from "@/pages/rooms/rooms-book/index";
 import RoomsType from '@/pages/rooms/rooms-type/index'
 import RoomsStay from '@/pages/rooms/rooms-stay/index'
 import RoomsInfo from "@/pages/rooms/rooms-info/index";
+import NotFound from "@/pages/error/404"
+import NotPermission from '@/pages/error/403'
 import {RouterItem} from '@/types/common'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
@@ -102,7 +104,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <ScheduleOutlined />,
     key: 'schedules',
     parentkey: '',
-    element: null
+    element: null,
   },
   {
     path: '/schedules/schedule-lists',
@@ -161,6 +163,7 @@ export const allRouters: Array<RouterItem> = [
     element: <PermissionManager />
   }
 ]
+
 // const rootLoader = async () => {
 //   const { permissionRouters, name, age, code } = await getUserInfo();
 //   if (code == 401) {
@@ -185,18 +188,26 @@ const routerConfig: RouteObject[] = [
 
 const whiteLists: RouteObject[] = [
   {
-    path: "/",
-    element: <Navigate to="dashboard" />,
+    path: '/',
+    element: <Navigate to="dashboard" />
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: '/login',
+    element: <Login />
   },
   {
-    path: "*",
-    element: <div>404</div>,
+    path: '/403',
+    element: <NotPermission />
   },
-];
+  {
+    path: '/404',
+    element: <NotFound />
+  },
+  {
+    path: '*',
+    element: <NotFound />
+  }
+]
 
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
@@ -207,6 +218,9 @@ eventMitt.on('ROUTER:LOGOUT', () => {
 eventMitt.on("ROUTER:HOME", () => {
   routes.navigate("/");
 });
+eventMitt.on('ROUTER:BACK', () => {
+  routes.navigate(-1)
+})
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem;

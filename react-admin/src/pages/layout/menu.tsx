@@ -45,19 +45,21 @@ const genItems = () => {
 
 const App: React.FC = () => {
   genItems()
-  const [stateOpenKeys, setStateOpenKeys] = useState(['schedules'])
+  const [stateOpenKeys, setStateOpenKeys] = useState([])
   const onClick: MenuProps['onClick'] = (e) => {
+    setStateOpenKeys([e?.key])
     eventMitt.emit("ROUTER:KEY", e?.key);
   }
-  // eventMitt.emit("STORE:CURRENTMENU", e?.key);
   const pathSegments = location.pathname.split("/").filter(Boolean);
-
   const selectedKeys = useMemo(() => {
     const selectedKey = pathSegments[0] || "/";
-    console.log("selectedKey", selectedKey);
     return [selectedKey];
   }, [pathSegments]);
-  return <Menu style={{ height: document.body.clientHeight }} onClick={onClick} selectedKeys={selectedKeys} openKeys={stateOpenKeys} mode="inline" items={items} />
+  const onOpenChange = (e) => {
+    const lastItem = e[e.length - 1]
+    setStateOpenKeys([lastItem])
+  }
+  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} onOpenChange={ onOpenChange} selectedKeys={selectedKeys} openKeys={stateOpenKeys} mode="inline" items={items} />
 }
 
 export default App

@@ -1,10 +1,10 @@
-import { SettingOutlined, NotificationOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
+import { SettingOutlined, BellOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
 import './head.scss'
-import { Input, Dropdown, MenuProps } from 'antd'
+import { Input, Dropdown, MenuProps, Badge } from 'antd'
 import eventMitt from "@/utils/eventMitt";
 export default function Head() {
   return (
-    <span style={{ display: "flex", justifyContent: "flex-end" }}>
+    <span style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: 4 }}>
       <Search />
       <Translate />
       <Theme />
@@ -80,7 +80,11 @@ function Theme() {
 }
 
 function Notion() {
-  return <NotificationOutlined className="headeIcon" />;
+  return (
+    <Badge count={100} offset={[-3, 0]}>
+      <BellOutlined className="headeIcon" />
+    </Badge>
+  )
 }
 
 function Setting() {
