@@ -1,45 +1,55 @@
-.headeIcon {
-  margin: 0 10px;
-  font-size: 20px;
-  cursor: pointer;
-}
+.Header {
+  display: "flex";
+  justify-content: "flex-end";
+  align-items: "center";
+  column-gap: 0;
 
-.search-expand-container {
-  display: inline-flex;
-  align-items: center;
-  position: relative;
-  transition: all 0.5s ease-in-out;
-
-  // 初始状态图标样式
-  .ant-input-prefix {
+  .headeIcon {
+    margin: 0 10px;
+    font-size: 20px;
     cursor: pointer;
-    padding: 0;
   }
 
-  // 输入框样式
-  .ant-input {
-    width: 80px; // 初始宽度
-    transition: width 0.5s ease-in-out, padding 0.5s ease-in-out;
-    border: none;
-    box-shadow: none !important;
-    background: transparent;
-    cursor: pointer;
-    // 隐藏清除图标
-    .ant-input-clear-icon {
-      display: none;
+  .search-expand-container {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    transition: all 0.5s ease-in-out;
+
+    // 初始状态图标样式
+    .ant-input-prefix {
+      cursor: pointer;
+      padding: 0;
     }
-  }
-  // 鼠标悬停时的展开效果
-  &:hover {
+
+    // 输入框样式
     .ant-input {
-      width: 180px; // 展开后的宽度
-      cursor: text;
+      width: 80px; // 初始宽度
+      transition: width 0.5s ease-in-out, padding 0.5s ease-in-out;
+      border: none;
+      box-shadow: none !important;
+      background: transparent;
+      cursor: pointer;
+
+      // 隐藏清除图标
+      .ant-input-clear-icon {
+        display: none;
+      }
     }
-    // 保持图标可见
-    // .ant-input-prefix {
-    //   position: absolute;
-    //   left: 8px;
-    //   z-index: 1;
-    // }
+
+    // 鼠标悬停时的展开效果
+    &:hover {
+      .ant-input {
+        width: 180px; // 展开后的宽度
+        cursor: text;
+      }
+
+      // 保持图标可见
+      // .ant-input-prefix {
+      //   position: absolute;
+      //   left: 8px;
+      //   z-index: 1;
+      // }
+    }
   }
 }

@@ -52,6 +52,7 @@ antd Components // https://ant-design.antgroup.com/components/overview-cn/
 3.通过打包优化，去除conosle ， debugger 等
 4.通过压缩代码减少打包体积，通过代码混淆提升代码安全性
 5.通过优化，项目启动时间从850ms优化到510ms左右
+6.自动化国际翻译，减少人工翻译成本
 
 
 54 -> 55 ->

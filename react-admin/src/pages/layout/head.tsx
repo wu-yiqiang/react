@@ -4,11 +4,13 @@ import { Input, Dropdown, MenuProps, Badge } from 'antd'
 import eventMitt from "@/utils/eventMitt";
 export default function Head() {
   return (
-    <span style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", columnGap: 4 }}>
+    <span className="Header">
       <Search />
       <Translate />
       <Theme />
-      <Notion />
+      <div style={{ marginRight: 10 }}>
+        <Notion />
+      </div>
       <Setting />
       <User />
     </span>
@@ -16,7 +18,6 @@ export default function Head() {
 }
 
 function Search() {
-  // return <SearchOutlined className='headeIcon'/>
   return (
     <div className="search-expand-container">
       <Input
