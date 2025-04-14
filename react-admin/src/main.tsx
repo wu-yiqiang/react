@@ -3,6 +3,7 @@ import * as React from "react";
 import App from './App.tsx'
 import "virtual:svg-icons-register";
 import './index.css'
+import '@/lang/index.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>

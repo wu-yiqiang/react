@@ -1,10 +1,13 @@
 import React, { createElement, useEffect, useImperativeHandle, useState } from 'react'
 import { Form, Input, Select, DatePicker, Button } from 'antd';
 import '@/style/Search.scss'
+import { useTranslation } from 'react-i18next'
 
 const FormItem = Form.Item, { Password } = Input, { Option } = Select, h = createElement;
 
-const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4,labelWidth, defaultFoldState = true, handleSearch }) => {
+const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, labelWidth, defaultFoldState = true, handleSearch }) => {
+    const { t } = useTranslation()
+
     const [foldState, setFoldState] = useState()
     const [form] = Form.useForm();
     useImperativeHandle(cRef, () => ({
@@ -42,40 +45,24 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4,labelWidth, defaul
 
     return (
       <>
-        <Form
-          id="form"
-          form={form}
-          layout="inline"
-          style={{ "--numbers": defaultFoldNum }}
-          labelCol={{ flex: labelWidth }}
-          labelAlign="left"
-          onFinish={onFinish}
-        >
+        <Form id="form" form={form} layout="inline" style={{ '--numbers': defaultFoldNum }} labelCol={{ flex: labelWidth }} labelAlign="left" onFinish={onFinish}>
           {columns.map((n, i) => {
-            const { type = "input" } = n,
-              C = components[type];
+            const { type = 'input' } = n,
+              C = components[type]
             return (
-              <FormItem
-                label={n.label}
-                name={n.name}
-                rules={n.rules}
-                key={n.name}
-                className={
-                  i + 1 > defaultFoldNum && foldState ? "unfold" : "fold"
-                }
-              >
+              <FormItem label={n.label} name={n.name} rules={n.rules} key={n.name} className={i + 1 > defaultFoldNum && foldState ? 'unfold' : 'fold'}>
                 {C(n)}
               </FormItem>
-            );
+            )
           })}
           {columns.length < defaultFoldNum ? (
             <FormItem>
               <section className="inline-opts">
                 <Button type="primary" htmlType="submit">
-                  查询
+                  {t('Query')}
                 </Button>
                 <Button htmlType="button" onClick={onReset}>
-                  重置
+                  {t('Reset')}
                 </Button>
               </section>
             </FormItem>
@@ -84,20 +71,16 @@ const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4,labelWidth, defaul
         {columns.length >= defaultFoldNum ? (
           <section className="opts">
             <Button type="primary" form="form" htmlType="submit">
-              查询
+              {t('Query')}
             </Button>
             <Button htmlType="button" onClick={onReset}>
-              重置
+              {t('Reset')}
             </Button>
-            {columns.length <= defaultFoldNum ? null : foldState ? (
-              <Button onClick={handleFold}>展开</Button>
-            ) : (
-              <Button onClick={handleUnFold}>折叠</Button>
-            )}
+            {columns.length <= defaultFoldNum ? null : foldState ? <Button onClick={handleFold}>展开</Button> : <Button onClick={handleUnFold}>折叠</Button>}
           </section>
         ) : null}
       </>
-    );
+    )
 }
 
 export default SearchForm

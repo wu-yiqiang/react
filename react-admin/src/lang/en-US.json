@@ -7,5 +7,9 @@
   "roleManagement": "Role Management",
   "permissionManagement": "Permission Management",
   "menuManagement": "Menu Management",
-  "username": "username"
+  "username": "username",
+  "Add": "Add",
+  "Search": "Search",
+  "Query": "Query",
+  "Reset": "Reset"
 }

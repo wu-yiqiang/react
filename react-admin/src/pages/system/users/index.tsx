@@ -6,7 +6,9 @@ import UserAddDialog from './user-add-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import { useTranslation } from 'react-i18next'
 export default function UserManager() {
+  const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userId, setUserId] = useState(0)
@@ -74,7 +76,7 @@ export default function UserManager() {
       },
     },
   ];
-  const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
+  const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
     const { data } = await getUsersLists(values);
     setLists(data.lists);
@@ -109,7 +111,7 @@ export default function UserManager() {
         handleSearch={handleSearch}
         right={
           <Button type="primary" onClick={handleNew}>
-            新增
+            {t('Add')}
           </Button>
         }
       ></Tabular>
