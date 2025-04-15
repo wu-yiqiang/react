@@ -1,14 +1,14 @@
 {
-  "login": "Login",
-  "logout": "Logout",
+  "login": "LogIn",
+  "logout": "LogOut",
   "home": "Home",
-  "systemDashboard": "System Dashboard",
+  "systemDashboard": "System board",
   "userManagement": "User Management",
   "roleManagement": "Role Management",
   "permissionManagement": "Permission Management",
   "menuManagement": "Menu Management",
   "username": "username",
-  "Add": "Add",
+  "Add": "New",
   "Search": "Search",
   "Query": "Query",
   "Reset": "Reset"
