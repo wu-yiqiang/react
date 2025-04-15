@@ -23,7 +23,8 @@ import RoomsStay from '@/pages/rooms/rooms-stay/index'
 import RoomsInfo from "@/pages/rooms/rooms-info/index";
 import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
-import {RouterItem} from '@/types/common'
+import { RouterItem } from '@/types/common'
+import useSystemStore from '@/store/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 export const allRouters: Array<RouterItem> = [
   {
@@ -104,10 +105,10 @@ export const allRouters: Array<RouterItem> = [
     icon: <ScheduleOutlined />,
     key: 'schedules',
     parentkey: '',
-    element: null,
+    element: null
   },
   {
-    path: '/schedules/schedule-lists',
+    path: '/schedules/schedules-lists',
     label: '排班列表',
     icon: <ScheduleOutlined />,
     key: 'schedules-lists',
@@ -222,9 +223,21 @@ eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })
 
+const getNodeAllParents = (lists: Array<Object>, parentKey: String, parents: []) => {
+  const currentItem = lists.find((item) => item.key == parentKey)
+  console.log('sdscurrentItemd', currentItem)
+  parents.push(currentItem.key)
+  if (!currentItem.parentkey) return
+  getNodeAllParents(lists, currentItem.key, parents)
+}
+
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem;
   const path = routerItem?.path || "/";
   routes.navigate(path);
+  let data = []
+  const parentsMenus = getNodeAllParents(allRouters, routerItem.parentkey, data)
+  data.push(routerItem.key)
+  localStorage.setItem("openMunus", JSON.stringify(data))
 });
 

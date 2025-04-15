@@ -11,12 +11,14 @@ const useSystemStore = create(
       language: 'en-US',
       token: '',
       menus: [],
+      openMenu: [],
       currentMenu: {},
       setTheme: (value: string) => set({ theme: value }),
       setToken: (value: string) => set({ token: value }),
       setLanguage: (value: string) => set({ language: value }),
       setUserInfo: (value: object) => set({ userInfo: value }),
-      setCurrentMenu: (value: object) => set({ currentMenu: value })
+      setCurrentMenu: (value: object) => set({ currentMenu: value }),
+      setOpenMenu: (value: object) => set({ openMenu: value }),
     }),
     {
       name: storeName,

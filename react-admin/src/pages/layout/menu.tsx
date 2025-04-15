@@ -47,19 +47,22 @@ const App: React.FC = () => {
   genItems()
   const [stateOpenKeys, setStateOpenKeys] = useState([])
   const onClick: MenuProps['onClick'] = (e) => {
-    setStateOpenKeys([e?.key])
+    // setStateOpenKeys([e?.key])
     eventMitt.emit("ROUTER:KEY", e?.key);
+    setStateOpenKeys(JSON.stringify(localStorage.getItem('openMunus')))
   }
-  const pathSegments = location.pathname.split("/").filter(Boolean);
   const selectedKeys = useMemo(() => {
-    const selectedKey = pathSegments[0] || "/";
-    return [selectedKey];
-  }, [pathSegments]);
-  const onOpenChange = (e) => {
-    const lastItem = e[e.length - 1]
-    setStateOpenKeys([lastItem])
-  }
-  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} onOpenChange={ onOpenChange} selectedKeys={selectedKeys} openKeys={stateOpenKeys} mode="inline" items={items} />
+    const data = JSON.stringify(localStorage.getItem('openMunus'))
+    const selectedKey = data[data.length - 1]
+    return selectedKey;
+  }, []);
+  const openKeys = useMemo(() => {
+    const data = JSON.stringify(localStorage.getItem('openMunus'))
+    const openKey = data.slice(0, data.length - 1)
+    console.log('openKey', openKey)
+    return openKey
+  }, [])
+  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} selectedKeys={selectedKeys} openKeys={openKeys} mode="inline" items={items} />
 }
 
 export default App
