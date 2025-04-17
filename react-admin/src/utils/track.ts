@@ -1,5 +1,13 @@
 // import router from './router'
 
+
+interface ClickRocerd {
+  type: string,
+  url: string,
+  user: string,
+  ua: string,
+  screen: string,
+}
 function isEmptyObject(obj) {
   return !obj || !Object.keys(obj).length
 }
