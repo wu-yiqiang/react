@@ -223,21 +223,19 @@ eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })
 
-const getNodeAllParents = (lists: Array<Object>, parentKey: String, parents: []) => {
-  const currentItem = lists.find((item) => item.key == parentKey)
-  console.log('sdscurrentItemd', currentItem)
-  parents.push(currentItem.key)
-  if (!currentItem.parentkey) return
-  getNodeAllParents(lists, currentItem.key, parents)
-}
+const getNodeAllParents = (lists: Array<object>, key: string | number) => {
+  let paths = [];
+  const currentItem = lists.find((item) => item.key == key);
+  paths.push(currentItem.key);
+  if (!currentItem.parentkey) return paths;
+  return paths.concat(getNodeAllParents(lists, currentItem.parentkey));
+};
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem;
   const path = routerItem?.path || "/";
   routes.navigate(path);
-  let data = []
-  const parentsMenus = getNodeAllParents(allRouters, routerItem.parentkey, data)
-  data.push(routerItem.key)
-  localStorage.setItem("openMunus", JSON.stringify(data))
+  const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
+  localStorage.setItem("openMunus", JSON.stringify(parentsMenus));
 });
 

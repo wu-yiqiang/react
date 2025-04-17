@@ -49,16 +49,15 @@ const App: React.FC = () => {
   const onClick: MenuProps['onClick'] = (e) => {
     // setStateOpenKeys([e?.key])
     eventMitt.emit("ROUTER:KEY", e?.key);
-    setStateOpenKeys(JSON.stringify(localStorage.getItem('openMunus')))
   }
   const selectedKeys = useMemo(() => {
     const data = JSON.stringify(localStorage.getItem('openMunus'))
-    const selectedKey = data[data.length - 1]
+    const selectedKey = data[0]
     return selectedKey;
   }, []);
   const openKeys = useMemo(() => {
     const data = JSON.stringify(localStorage.getItem('openMunus'))
-    const openKey = data.slice(0, data.length - 1)
+    const openKey = data.slice(1, data.length - 1)
     console.log('openKey', openKey)
     return openKey
   }, [])
