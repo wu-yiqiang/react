@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import { allRouters, routes } from '@/routers/index'
@@ -45,23 +45,24 @@ const genItems = () => {
 
 const App: React.FC = () => {
   genItems()
-  const [stateOpenKeys, setStateOpenKeys] = useState([])
+  const [openKeys, setOpenKeys] = useState([])
+  const [selectedKeys, setSelectedKeys] = useState([])
+  const init = () => {
+    const data = JSON.parse(localStorage.getItem('openMunus'))
+    setSelectedKeys(data[0])
+    setOpenKeys(data)
+ }
   const onClick: MenuProps['onClick'] = (e) => {
-    // setStateOpenKeys([e?.key])
     eventMitt.emit("ROUTER:KEY", e?.key);
+    init()
   }
-  const selectedKeys = useMemo(() => {
-    const data = JSON.stringify(localStorage.getItem('openMunus'))
-    const selectedKey = data[0]
-    return selectedKey;
-  }, []);
-  const openKeys = useMemo(() => {
-    const data = JSON.stringify(localStorage.getItem('openMunus'))
-    const openKey = data.slice(1, data.length - 1)
-    console.log('openKey', openKey)
-    return openKey
+  const onOpenChange = (e) => {
+    setOpenKeys(e)
+  }
+  useEffect(() => {
+    init()
   }, [])
-  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} selectedKeys={selectedKeys} openKeys={openKeys} mode="inline" items={items} />
+  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} selectedKeys={selectedKeys} onOpenChange={onOpenChange} openKeys={openKeys} mode="inline" items={items} />
 }
 
 export default App
