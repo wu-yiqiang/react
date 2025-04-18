@@ -47,11 +47,20 @@ const App: React.FC = () => {
   genItems()
   const [openKeys, setOpenKeys] = useState([])
   const [selectedKeys, setSelectedKeys] = useState([])
+  const init2 = () => {
+    const data = JSON.parse(localStorage.getItem("openMunus"));
+    if (!data?.length) {
+          localStorage.setItem(
+            "openMunus",
+            JSON.stringify(['/'])
+          );
+    }
+  }
   const init = () => {
     const data = JSON.parse(localStorage.getItem('openMunus'))
-    setSelectedKeys(data[0])
+    setSelectedKeys(data?.length ? data[0] : '/')
     setOpenKeys(data)
- }
+  }
   const onClick: MenuProps['onClick'] = (e) => {
     eventMitt.emit("ROUTER:KEY", e?.key);
     init()
@@ -60,6 +69,7 @@ const App: React.FC = () => {
     setOpenKeys(e)
   }
   useEffect(() => {
+    init2()
     init()
   }, [])
   return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} selectedKeys={selectedKeys} onOpenChange={onOpenChange} openKeys={openKeys} mode="inline" items={items} />
