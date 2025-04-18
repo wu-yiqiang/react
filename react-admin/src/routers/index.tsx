@@ -237,6 +237,6 @@ eventMitt.on("ROUTER:KEY", (key: string) => {
   routes.navigate(path);
   const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
   console.log("sdsd", parentsMenus)
-  localStorage.setItem("openMunus", JSON.stringify(parentsMenus));
+  sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
 });
 

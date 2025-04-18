@@ -48,16 +48,13 @@ const App: React.FC = () => {
   const [openKeys, setOpenKeys] = useState([])
   const [selectedKeys, setSelectedKeys] = useState([])
   const init2 = () => {
-    const data = JSON.parse(localStorage.getItem("openMunus"));
+    const data = JSON.parse(sessionStorage.getItem("openMunus"));
     if (!data?.length) {
-          localStorage.setItem(
-            "openMunus",
-            JSON.stringify(['/'])
-          );
+          sessionStorage.setItem('openMunus', JSON.stringify(['/']))
     }
   }
   const init = () => {
-    const data = JSON.parse(localStorage.getItem('openMunus'))
+    const data = JSON.parse(sessionStorage.getItem('openMunus'))
     setSelectedKeys(data?.length ? data[0] : '/')
     setOpenKeys(data)
   }
