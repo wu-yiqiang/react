@@ -6,7 +6,6 @@ import { requiredRules } from '@/validator/index'
 import { DialogProps, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
 export default function SettingDialog(props: DialogProps) {
-  
   const { open, handleClose } = props
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()

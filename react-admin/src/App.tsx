@@ -5,8 +5,9 @@ import useSystemStore from "@/store/index";
 import eventMitt from "@/utils/eventMitt";
 import { isDark } from "@/utils/index";
 import { SystemStore } from "@/types/common";
+import ScreenLock from './pages/screenLock'
 function App() {
-  const { theme, setTheme, setLanguage } = useSystemStore() as SystemStore;
+  const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
     token: {
       colorPrimary: '#FF7A00',
@@ -84,16 +85,17 @@ function App() {
       }
     }
   }
-  const themeConfig = isDark(theme) ? darkTheme : lightTheme;
+  const themeConfig = isDark(systemSetting.theme) ? darkTheme : lightTheme;
   eventMitt.on("SYSTEM:THEME", (value: string) => {
-    setTheme(value);
+    setSystemSetting({ ...systemSetting , theme: value})
   });
   eventMitt.on("SYSTEM:LANGUAGE", (value: string) => {
-    setLanguage(value);
+    setSystemSetting({ ...systemSetting, language: value })
   });
   return (
     <ConfigProvider theme={themeConfig}>
       <RouterProvider router={routes} />
+      <ScreenLock />
     </ConfigProvider>
   );
 }

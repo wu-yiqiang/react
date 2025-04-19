@@ -39,6 +39,7 @@ export interface RouterItem {
 }
 
 
+
 export interface DialogProps {
     open: boolean
     handleClose: () => void
@@ -50,15 +51,17 @@ interface UserInfo {
     username: string;
 }
 
+interface SystemSetting {
+    locaTime: number,
+    lockPassword: string,
+    theme: string,
+    language: string
+}
 export interface SystemStore {
   userInfo: UserInfo
-  theme: string
-  language: string
   menus: Array<RouterItem>
   currentMenu: RouterItem
-  systemSetting: Object
-  setTheme: (value: string) => void
-  setLanguage: (value: string) => void
+  systemSetting: SystemSetting
   setUserInfo: (value: object) => void
   setSystemSetting: (value: object) => void
 }

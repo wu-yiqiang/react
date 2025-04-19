@@ -1,0 +1,35 @@
+
+import { Button, Input } from 'antd'
+import useSystemStore from '@/store/index'
+import Dialog from '@/components/Dialog'
+import { SystemStore } from '@/types/common'
+import avatar from '@/assets/images/avatar.jpg'
+import './index.scss'
+import dayjs from 'dayjs'
+export default function ScreenLock() {
+  const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
+
+  return (
+    <Dialog
+      open={true}
+      className="CustomDialog"
+      slot={
+        <div className="mainBox">
+          <div className="dateTime">
+            <div className="date">{dayjs().format('DD/MM YYYY')}</div>
+            <div className="time">{dayjs().format('hh:mm')}</div>
+          </div>
+          <div className="user">
+            <div className="avator">
+              <img src={avatar} />
+            </div>
+            <div className="name">Sutter</div>
+            <Input.Password placeholder="密码" />
+          </div>
+        </div>
+      }
+    ></Dialog>
+  )
+}
+
+

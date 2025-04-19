@@ -7,19 +7,17 @@ const useSystemStore = create(
   persist(
     (set) => ({
       userInfo: { username: '121' },
-      theme: 'system',
-      language: 'en-US',
       token: '',
       menus: [],
       openMenu: [],
       currentMenu: {},
       systemSetting: {
         lockTime: 1,
-        lockPassword: '12345'
+        lockPassword: '123456',
+        language: 'en-US',
+        theme: 'system'
       },
-      setTheme: (value: string) => set({ theme: value }),
       setToken: (value: string) => set({ token: value }),
-      setLanguage: (value: string) => set({ language: value }),
       setUserInfo: (value: object) => set({ userInfo: value }),
       setCurrentMenu: (value: object) => set({ currentMenu: value }),
       setOpenMenu: (value: object) => set({ openMenu: value }),
