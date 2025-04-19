@@ -13,16 +13,21 @@ const useSystemStore = create(
       menus: [],
       openMenu: [],
       currentMenu: {},
+      systemSetting: {
+        lockTime: 1,
+        lockPassword: '12345'
+      },
       setTheme: (value: string) => set({ theme: value }),
       setToken: (value: string) => set({ token: value }),
       setLanguage: (value: string) => set({ language: value }),
       setUserInfo: (value: object) => set({ userInfo: value }),
       setCurrentMenu: (value: object) => set({ currentMenu: value }),
       setOpenMenu: (value: object) => set({ openMenu: value }),
+      setSystemSetting: (value: object) => set({ systemSetting: value })
     }),
     {
       name: storeName,
-      version: 2.0,
+      version: 2.0
       // storage: createJSONStorage(() => sessionStorage)
     }
   )

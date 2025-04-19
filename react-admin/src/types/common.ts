@@ -51,14 +51,16 @@ interface UserInfo {
 }
 
 export interface SystemStore {
-    userInfo: UserInfo,
-    theme: string,
-    language: string,
-    menus: Array<RouterItem>,
-    currentMenu: RouterItem,
-    setTheme: (value: string) => void,
-    setLanguage: (value: string) => void,
-    setUserInfo: (value: object) => void,
+  userInfo: UserInfo
+  theme: string
+  language: string
+  menus: Array<RouterItem>
+  currentMenu: RouterItem
+  systemSetting: Object
+  setTheme: (value: string) => void
+  setLanguage: (value: string) => void
+  setUserInfo: (value: object) => void
+  setSystemSetting: (value: object) => void
 }
 
 export interface UploadData {

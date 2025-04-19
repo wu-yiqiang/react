@@ -2,6 +2,8 @@ import { SettingOutlined, BellOutlined, BgColorsOutlined, UserOutlined, Translat
 import './head.scss'
 import { Input, Dropdown, MenuProps, Badge } from 'antd'
 import eventMitt from "@/utils/eventMitt";
+import SettingDialog from './settings'
+import { useState } from 'react';
 export default function Head() {
   return (
     <span className="Header">
@@ -89,8 +91,15 @@ function Notion() {
 }
 
 function Setting() {
-  return <SettingOutlined className="headeIcon" />;
-}
+  const [open, setOpen] = useState(false)
+  return (
+    <>
+      <SettingOutlined className="headeIcon" onClick={() => setOpen(true)} />
+      {open ? <SettingDialog open={ open }  handleClose={() => setOpen(false)}/>
+: null }
+    </>
+  )
+ }
 
 function User() {
   const handleLogout = () => {
