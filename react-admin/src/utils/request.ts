@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosInstance } from 'axios'
 import eventMitt from './eventMitt'
 import Toast from '@/components/Toast'
+import useSystemStore from '@/store'
 // import qs from 'qs'
 
 const defaultConfig: AxiosRequestConfig = {
@@ -16,7 +17,8 @@ const request: AxiosInstance = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem('token')
+    // const token = localStorage.getItem('token')
+    const token  = useSystemStore.getState().token
     if (token) {
       config.headers['Authorization'] = `${token}`
     }

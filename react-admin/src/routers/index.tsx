@@ -213,6 +213,7 @@ const whiteLists: RouteObject[] = [
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
 eventMitt.on('ROUTER:LOGOUT', () => {
+  console.log("token过期")
   routes.navigate('/login')
 })
 
@@ -237,6 +238,9 @@ eventMitt.on("ROUTER:KEY", (key: string) => {
   routes.navigate(path);
   const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
   console.log("sdsd", parentsMenus)
-  sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
+  // sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
+  useSystemStore.setState(() => ({
+    openMenu: parentsMenus
+  }))
 });
 

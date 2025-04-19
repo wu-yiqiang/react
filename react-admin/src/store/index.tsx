@@ -23,18 +23,22 @@ const useSystemStore = create(
     {
       name: storeName,
       version: 2.0,
-      storage: createJSONStorage(() => sessionStorage)
+      // storage: createJSONStorage(() => sessionStorage)
     }
   )
 )
 
 export default useSystemStore;
 eventMitt.on("STORE:TOEKN", (value: string) => {
-  const {setToken} = useSystemStore()
-  setToken(value);
+  useSystemStore.setState(() => ({
+    token: value
+  }))
 });
 
 eventMitt.on("STORE:CURRENTMENU", (value: object) => {
-  const { setCurrentMenu } = useSystemStore();
-  setCurrentMenu(value);
+  // const { setCurrentMenu } = useSystemStore();
+  // setCurrentMenu(value);
+  // useSystemStore.setState(() => ({
+  //   token: value
+  // }))
 });

@@ -3,6 +3,7 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import { allRouters, routes } from '@/routers/index'
 import eventMitt from "@/utils/eventMitt";
+import useSystemStore from '@/store';
 interface MenuItem {
   key: string
   parentkey: string
@@ -45,31 +46,14 @@ const genItems = () => {
 
 const App: React.FC = () => {
   genItems()
-  const [openKeys, setOpenKeys] = useState([])
-  const [selectedKeys, setSelectedKeys] = useState([])
-  const init2 = () => {
-    const data = JSON.parse(sessionStorage.getItem("openMunus"));
-    if (!data?.length) {
-          sessionStorage.setItem('openMunus', JSON.stringify(['/']))
-    }
-  }
-  const init = () => {
-    const data = JSON.parse(sessionStorage.getItem('openMunus'))
-    setSelectedKeys(data?.length ? data[0] : '/')
-    setOpenKeys(data)
-  }
   const onClick: MenuProps['onClick'] = (e) => {
     eventMitt.emit("ROUTER:KEY", e?.key);
-    init()
+    // init()
   }
-  const onOpenChange = (e) => {
-    setOpenKeys(e)
-  }
-  useEffect(() => {
-    init2()
-    init()
-  }, [])
-  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} selectedKeys={selectedKeys} onOpenChange={onOpenChange} openKeys={openKeys} mode="inline" items={items} />
+  // useEffect(() => {
+  //   init()
+  // }, [])
+  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items} />
 }
 
 export default App
