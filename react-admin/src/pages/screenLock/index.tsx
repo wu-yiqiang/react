@@ -6,16 +6,20 @@ import { SystemStore } from '@/types/common'
 import avatar from '@/assets/images/avatar.jpg'
 import './index.scss'
 import dayjs from 'dayjs'
+import eventMitt from '@/utils/eventMitt'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
   const handleUnlock = (e: Event) => {
     const value = e?.target?.value
-    if (value === systemSetting.lockPassword) setSystemSetting({...systemSetting, locked: false})
+    if (value === systemSetting.lockPassword) {
+      setSystemSetting({ ...systemSetting, locked: false })
+      eventMitt.emit('SYSTEM:LOCKSCREEN')
+    }
   }
   return (
     <Dialog
       open={true}
-      className="CustomDialog"
+      className={systemSetting.locked ? 'close' : null}
       slot={
         <div className="mainBox">
           <div className="dateTime">
