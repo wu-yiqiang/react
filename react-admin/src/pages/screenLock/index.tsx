@@ -8,7 +8,10 @@ import './index.scss'
 import dayjs from 'dayjs'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
-
+  const handleUnlock = (e: Event) => {
+    const value = e?.target?.value
+    if (value === systemSetting.lockPassword) setSystemSetting({...systemSetting, locked: false})
+  }
   return (
     <Dialog
       open={true}
@@ -24,7 +27,7 @@ export default function ScreenLock() {
               <img src={avatar} />
             </div>
             <div className="name">Sutter</div>
-            <Input.Password placeholder="密码" />
+            <Input.Password placeholder="密码" onChange={handleUnlock} />
           </div>
         </div>
       }

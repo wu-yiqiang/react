@@ -56,6 +56,7 @@ interface SystemSetting {
     lockPassword: string,
     theme: string,
     language: string
+    locked: boolean
 }
 export interface SystemStore {
   userInfo: UserInfo

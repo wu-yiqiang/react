@@ -12,7 +12,8 @@ const useSystemStore = create(
       openMenu: [],
       currentMenu: {},
       systemSetting: {
-        lockTime: 1,
+        lockTime: 15,
+        locked: false,
         lockPassword: '123456',
         language: 'en-US',
         theme: 'system'

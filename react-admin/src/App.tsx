@@ -6,6 +6,7 @@ import eventMitt from "@/utils/eventMitt";
 import { isDark } from "@/utils/index";
 import { SystemStore } from "@/types/common";
 import ScreenLock from './pages/screenLock'
+import dayjs from 'dayjs'
 function App() {
   const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
@@ -92,12 +93,18 @@ function App() {
   eventMitt.on("SYSTEM:LANGUAGE", (value: string) => {
     setSystemSetting({ ...systemSetting, language: value })
   });
+  const startTime = new Date().getTime()
+  setInterval(() => {
+    const endTime = new Date().getTime()
+    const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').unix()
+    if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
+  }, 500)
   return (
     <ConfigProvider theme={themeConfig}>
       <RouterProvider router={routes} />
-      <ScreenLock />
+      { systemSetting.locked ? <ScreenLock /> : null}
     </ConfigProvider>
-  );
+  )
 }
 
 export default App;
