@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react-swc'
 import svgLoader from 'vite-svg-loader'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import basicSsl from '@vitejs/plugin-basic-ssl'
+import imageOptimizer  from '@venturan/vite-plugin-image-optimizer'
 import { resolve } from 'path'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
@@ -24,6 +25,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    imageOptimizer({ quality: 5}),
     basicSsl(),
     react(),
     svgLoader(),
