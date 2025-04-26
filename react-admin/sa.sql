@@ -17,3 +17,12 @@ a.CId = '01'
 and a.score is not null 
 and b.CId = '02' 
 and b.score is not null;
+
+-- 查询存在"01"课程但可能不存在"02"课程的情况(不存在时显示为 null)
+
+-- 查询不存在"01"课程但存在"02"课程的情况
+select distinct * from SC a inner join
+(select SId from SC
+where SId not in 
+(select distinct SId from SC where SC.CId = '01')) b
+on b.Sid =a.SId;
