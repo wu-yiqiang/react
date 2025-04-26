@@ -75,29 +75,20 @@ class Track {
     document.onclick = (e) => {
       const target = e?.target
       const offsetParent = target?.offsetParent
-      const classNameLists = offsetParent.className.split(" ")
-      if (cross(classNameLists,clickTargetElement)?.length) {
-        const template = {
-          type: 'click',
-          url: '/xxxx/sdsd',
-          user: 'sutter',
-          ua: 'sd'
+      if (offsetParent) {
+        const classNameLists = offsetParent.className.split(' ')
+        if (cross(classNameLists, clickTargetElement)?.length) {
+          const template = {
+            type: 'click',
+            url: '/xxxx/sdsd',
+            user: 'sutter',
+            ua: 'sd'
+          }
+          this.mdList.push(template)
+          console.log('click event', this.mdList)
         }
-        this.mdList.push(template)
-        console.log('click event', this.mdList)
+        let i = 0
       }
-      let i = 0
-      // while (i < e.path.length) {
-      //   const data = e.path[i].dataset
-      //   if (!isEmptyObject(data)) {
-      //     // 如果data-md-name存在的时候，才进行埋点
-      //     if (data.mdName) {
-      //       i = e.path.length
-      //       handleClickMD(data)
-      //     }
-      //   }
-      //   i++
-      // }
     }
   }
 
