@@ -49,10 +49,11 @@ export interface DialogProps {
 
 interface UserInfo {
     username: string;
+    avator: string;
 }
 
 interface SystemSetting {
-    locaTime: number,
+    lockTime: number,
     lockPassword: string,
     theme: string,
     language: string

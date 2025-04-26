@@ -4,9 +4,10 @@ dialog {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr;
+  // grid-template-columns: 1fr;
   background-color: rgb(75, 74, 74);
   border: unset;
+  transition: 0.5s;
   .mainBox {
     width: 300px;
     display: flex;
@@ -16,7 +17,7 @@ dialog {
     height: 50%;
     .dateTime {
       .date {
-          font-size: 50px;
+          font-size: 46px;
           color: #d1d0d0;
           display: grid;
           place-content: center;
@@ -58,4 +59,5 @@ dialog {
 }
 .close {
   grid-template-columns: 0fr;
+    transition: 0.5s;
 }

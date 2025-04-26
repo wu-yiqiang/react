@@ -1,5 +1,6 @@
 // import router from './router'
-
+import {cross} from '@venturan/ts-tools'
+const clickTargetElement = ['ant-btn']
 
 interface ClickRocerd {
   type: string,
@@ -72,19 +73,31 @@ class Track {
     }
 
     document.onclick = (e) => {
-      console.log("click event", e)
-      let i = 0
-      while (i < e.path.length) {
-        const data = e.path[i].dataset
-        if (!isEmptyObject(data)) {
-          // 如果data-md-name存在的时候，才进行埋点
-          if (data.mdName) {
-            i = e.path.length
-            handleClickMD(data)
-          }
+      const target = e?.target
+      const offsetParent = target?.offsetParent
+      const classNameLists = offsetParent.className.split(" ")
+      if (cross(classNameLists,clickTargetElement)?.length) {
+        const template = {
+          type: 'click',
+          url: '/xxxx/sdsd',
+          user: 'sutter',
+          ua: 'sd'
         }
-        i++
+        this.mdList.push(template)
+        console.log('click event', this.mdList)
       }
+      let i = 0
+      // while (i < e.path.length) {
+      //   const data = e.path[i].dataset
+      //   if (!isEmptyObject(data)) {
+      //     // 如果data-md-name存在的时候，才进行埋点
+      //     if (data.mdName) {
+      //       i = e.path.length
+      //       handleClickMD(data)
+      //     }
+      //   }
+      //   i++
+      // }
     }
   }
 

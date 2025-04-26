@@ -6,13 +6,13 @@ import { storeName } from '@/common/enum.ts'
 const useSystemStore = create(
   persist(
     (set) => ({
-      userInfo: { username: '121' },
+      userInfo: { username: 'Sutter' },
       token: '',
       menus: [],
       openMenu: [],
       currentMenu: {},
       systemSetting: {
-        lockTime: 15,
+        lockTime: 10,
         locked: false,
         lockPassword: '123456',
         language: 'en-US',
