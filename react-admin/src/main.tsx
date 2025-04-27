@@ -4,8 +4,9 @@ import App from './App.tsx'
 import "virtual:svg-icons-register";
 import './index.css'
 import '@/lang/index.ts'
-import track from '@/utils/track.ts';
-track
+import Track from '@/utils/track.ts';
+const clickTargetElement = ['ant-btn']
+const track = new Track(clickTargetElement)
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
   //   <App />

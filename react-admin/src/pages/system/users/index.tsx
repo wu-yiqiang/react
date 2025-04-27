@@ -6,6 +6,7 @@ import UserAddDialog from './user-add-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import Export from '@/components/Export';
 import { useTranslation } from 'react-i18next'
 export default function UserManager() {
   const { t } = useTranslation()
@@ -110,9 +111,12 @@ export default function UserManager() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Button type="primary" onClick={handleNew}>
-            {t('Add')}
-          </Button>
+          <>
+            <Export url="/user/download" method="get" />
+            <Button type="primary" onClick={handleNew}>
+              {t('Add')}
+            </Button>
+          </>
         }
       ></Tabular>
       {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}

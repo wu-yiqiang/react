@@ -1,26 +1,23 @@
-// import router from './router'
 import {cross} from '@venturan/ts-tools'
-const clickTargetElement = ['ant-btn']
 
-interface ClickRocerd {
+interface Record {
   type: string,
   url: string,
   user: string,
-  ua: string,
-  screen: string,
-}
-function isEmptyObject(obj) {
-  return !obj || !Object.keys(obj).length
+  role: string,
+  opeartionName: string
 }
 
 class Track {
-  mdList
+  mdList: Array<object>
   pageFrom
   pageCurrent
-  constructor() {
-    this.pageFrom = {} // 页面从哪里来
-    this.pageCurrent = {} // 当前页面
+  clickTargetElement
+  constructor(targets: Array<string>) {
+    this.pageFrom = {}
+    this.pageCurrent = {}
     this.mdList = []
+    this.clickTargetElement = targets
     this.addListenner()
   }
 
@@ -57,54 +54,33 @@ class Track {
     // })
   }
 
-  // 监听点击事件
   addClickListener() {
-    const handleClickMD = (dataset) => {
-      const data = {
-        type: 'click',
-        page: {
-          from: this.pageFrom,
-          current: this.pageCurrent
-        },
-        data: dataset
-      }
-      console.log("track", data)
-      this.recordMD(data)
-    }
-
     document.onclick = (e) => {
       const target = e?.target
       const offsetParent = target?.offsetParent
       if (offsetParent) {
         const classNameLists = offsetParent.className.split(' ')
-        if (cross(classNameLists, clickTargetElement)?.length) {
+        if (cross(classNameLists, this.clickTargetElement)?.length) {
           const template = {
             type: 'click',
             url: '/xxxx/sdsd',
             user: 'sutter',
             ua: 'sd'
           }
-          this.mdList.push(template)
-          console.log('click event', this.mdList)
+          console.log('offsetParent', offsetParent?.innerText)
+          this.handleRecord(template)
         }
-        let i = 0
       }
     }
   }
-
-  // 记录md数据
-  recordMD(data) {
-    console.warn(data)
-    console.log('%c记录数据埋点...', 'color: red;')
+  handleRecord(data: object) {
     this.mdList.push(data)
   }
-
-  // 埋点数据推送到远程
-  pushOrigin() {
+  handlePushOrigin() {
     console.warn(this.mdList)
     console.log('%c推送埋点数据....', 'color: red;')
     this.mdList = []
   }
 }
 
-export default new Track()
+export default Track
