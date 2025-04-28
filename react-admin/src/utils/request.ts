@@ -32,8 +32,12 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
+    const contentType = response?.headers?.['content-type']
+    const responseType = response?.config.responseType
+    if (responseType == 'blob') return response
+    console.log('sdsd', contentType)
     const { code, msg } = response?.data
-    if (code !== 200) {
+    if (code !== 200 && contentType == 'application/json') {
       Toast.error(msg)
       return Promise.reject()
     }
