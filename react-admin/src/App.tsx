@@ -93,20 +93,20 @@ function App() {
   eventMitt.on("SYSTEM:LANGUAGE", (value: string) => {
     setSystemSetting({ ...systemSetting, language: value })
   });
-  let startTime: number
-  startTime = new Date().getTime()
-  setInterval(() => {
-    const endTime = new Date().getTime()
-    const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
-    if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
-  }, 1000)
+  // let startTime: number
+  // startTime = new Date().getTime()
+  // setInterval(() => {
+  //   const endTime = new Date().getTime()
+  //   const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
+  //   if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
+  // }, 1000)
   eventMitt.emit('SYSTEM:LOCKSCREEN', () => {
-    startTime = new Date().getTime()
+    // startTime = new Date().getTime()
   })
   return (
     <ConfigProvider theme={themeConfig}>
       <RouterProvider router={routes} />
-      {/* { systemSetting.locked ? <ScreenLock /> : null} */}
+      { systemSetting.locked ? <ScreenLock /> : null}
     </ConfigProvider>
   )
 }
