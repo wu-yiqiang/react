@@ -14,7 +14,11 @@ export default function SettingDialog(props: DialogProps) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
-      setSystemSetting(values)
+      setSystemSetting({
+        ...systemSetting,
+        lockTime: values?.lockTime,
+        lockPassword: values?.lockPassword,
+      });
       Toast.success('操作成功')
       handleClose()
     }
