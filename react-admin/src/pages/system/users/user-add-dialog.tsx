@@ -1,6 +1,6 @@
 import { Form, Input, Modal, Upload, Select, Row, Col, Spin, Image } from 'antd'
 import { useEffect, useState } from 'react'
-import { postUser, updateUserDetail, getUserDetail } from '@/api/system'
+import { postUser, updateUserDetail, getUserDetail, getRoleOptions } from '@/api/system'
 import { upload } from '@/api/public'
 import Toast from '@/components/Toast'
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
@@ -12,6 +12,7 @@ export default function UserAddDialog(props: DialogProps) {
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [loading, setLoading] = useState(false)
+  const [roles, setRoles] = useState([])
   const [form] = Form.useForm()
   const close = () => {
     form.resetFields()
@@ -27,7 +28,13 @@ export default function UserAddDialog(props: DialogProps) {
       handleOk(values)
     }
   }
+  const getRoles = async () => {
+    const { data } = await getRoleOptions()
+    console.log('role', data)
+    setRoles(data ?? [])
+  }
   const init = async () => {
+    await getRoles()
     if (!id) {
       await setTitle('新增')
       setEditStatus(false)
@@ -78,21 +85,12 @@ export default function UserAddDialog(props: DialogProps) {
     <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
-          <Form id="form" form={form} labelCol={{ span: '4' }} layout="inline">
+          <Form id="form" form={form} labelCol={{ span: '120px' }} layout="inline">
             <Row>
               <Col span={12}>
                 <Form.Item label="头像" name="avatar">
                   <Upload name="avatar" listType="picture-card" className="avatar-uploader" accept=".jpg,.jpeg,.png" showUploadList={false} beforeUpload={(file: File) => beforeUpload(file)} customRequest={handleUpload}>
-                    {form?.getFieldValue('avatar') ? (
-                      <Image
-                        width='100%'
-                        height='100%'
-                        preview={false}
-                        src={form?.getFieldValue('avatar')}
-                      />
-                    ) : (
-                      uploadButton
-                    )}
+                    {form?.getFieldValue('avatar') ? <Image width="100%" height="100%" preview={false} src={form?.getFieldValue('avatar')} /> : uploadButton}
                   </Upload>
                 </Form.Item>
               </Col>
@@ -125,13 +123,13 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
             </Row>
             <Row>
-              {/* <Col span={12}>
-            <Form.Item label="角色" name="email" rules={requiredRules}>
-              <Select>
-                <Select.Option value="sample">Sample</Select.Option>
-              </Select>
-            </Form.Item>
-          </Col> */}
+              <Col span={24}>
+                <Form.Item label="角色" name="role" rules={requiredRules}>
+                  <Select mode="multiple" options={roles} fieldNames={{ label: 'name', value: 'id' }}></Select>
+                </Form.Item>
+              </Col>
+            </Row>
+            <Row>
               <Col span={12}>
                 <Form.Item label="密码" name="password" rules={requiredRules}>
                   <Input.Password />

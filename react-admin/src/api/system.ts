@@ -54,6 +54,13 @@ export const getRolesLists = (data: RoleSearch) => {
   })
 }
 
+export const getRoleOptions = () => {
+  return request({
+    url: '/role/lists',
+    method: 'get',
+  })
+}
+
 export const deleteRoleItem = (id: number) => {
   if (!id) return
   return request({
