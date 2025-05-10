@@ -1,14 +1,12 @@
 import { Table, Pagination, PaginationProps } from 'antd'
 import { Button, Space } from 'antd'
-import React, { useImperativeHandle, useState, useRef, useEffect } from 'react';
+import  { useImperativeHandle, useState, useRef, useEffect } from 'react';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import SearchForm from './SearchForm'
 import '@/style/Tabular.scss'
 import { useTranslation } from 'react-i18next'
-
 export default function Tabular(props: any) {
-  
-  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef, left = null, right = null, defaultFoldState, total, pageSize = 10, pageNo = 1, handleEdit, handleDelete } = props
+  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef, left = null, right = null, defaultFoldState, total, pageSize = 10, pageNo = 1, handleEdit, handleDelete, handleFresh } = props
   const { t } = useTranslation()
   const showTotal: PaginationProps['showTotal'] = (total) => `Total ${total} items`
   const [columnLists, setColumnLists] = useState([])
@@ -53,6 +51,7 @@ export default function Tabular(props: any) {
         setColumnLists((current) => [...current, column])
       }
     })
+    handleFlush()
   }
   useEffect(() => {
     init()

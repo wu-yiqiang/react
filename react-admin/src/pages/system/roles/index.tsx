@@ -2,7 +2,7 @@ import Tabular from '@/components/Tabular.tsx'
 import { getRolesLists, deleteRoleItem } from '@/api/system'
 import { useState } from 'react'
 import { UserSearch } from '@/types/user'
-import RoleAddDialog from './role-add-dialog'
+import RoleAddDialog from './role-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
@@ -10,7 +10,7 @@ import { RoleSearch, RoleItem } from "@/types/role";
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [roleId, setRoleId] = useState(0)
+  const [roleId, setRoleId] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
   const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
@@ -92,6 +92,7 @@ export default function UserManager() {
     setQueryData({ ...queryData, ...datas });
   };
   const handleNew = () => {
+    setRoleId(null)
     setDialogOpen(true)
   }
   const handleClose = () => {

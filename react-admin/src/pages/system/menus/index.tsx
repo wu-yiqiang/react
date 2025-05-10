@@ -2,14 +2,14 @@ import Tabular from '@/components/Tabular.tsx'
 import { getMenuTreeLists, deleteMenuItem } from '@/api/system'
 import { useState } from 'react'
 import { MenuSearch, MenuItem } from "@/types/menu";
-import UserAddDialog from './menu-add-dialog'
+import UserAddDialog from './menu-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [userId, setUserId] = useState(0)
+  const [menuId, setMenuId] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
   const [queryData, setQueryData] = useState<MenuSearch>({
     search: '',
@@ -17,7 +17,7 @@ export default function UserManager() {
     pageSize: 10
   })
   const handleEdit = (id: number) => {
-    setUserId(id)
+    setMenuId(id)
     setDialogOpen(true)
   }
   const handleDelete = async (id: number) => {
@@ -79,7 +79,6 @@ export default function UserManager() {
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: MenuSearch) => {
     const { data } = await getMenuTreeLists()
-    console.log("sds", data)
     setLists(data);
     const datas = {
       pageSize: data.pageSize,
@@ -89,6 +88,7 @@ export default function UserManager() {
     setQueryData({ ...queryData, ...datas });
   };
   const handleNew = () => {
+    setMenuId(null)
     setDialogOpen(true)
   }
   const handleClose = () => {
@@ -116,7 +116,7 @@ export default function UserManager() {
           </Button>
         }
       ></Tabular>
-      {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null }
+      {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={menuId} /> : null}
     </>
   )
 }

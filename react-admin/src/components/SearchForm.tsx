@@ -8,7 +8,7 @@ const FormItem = Form.Item, { Password } = Input, { Option } = Select, h = creat
 const SearchForm = ({ columns, data, cRef, defaultFoldNum = 4, labelWidth, defaultFoldState = true, handleSearch }) => {
     const { t } = useTranslation()
 
-    const [foldState, setFoldState] = useState()
+    const [foldState, setFoldState] = useState(false)
     const [form] = Form.useForm();
     useImperativeHandle(cRef, () => ({
         getForm: () => form,

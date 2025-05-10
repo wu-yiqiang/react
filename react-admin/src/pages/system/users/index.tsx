@@ -1,8 +1,8 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getUsersLists, deleteRoleItem } from '@/api/system'
-import { useState } from 'react'
+import { getUsersLists, deleteUserItem } from '@/api/system'
+import { useEffect, useState } from 'react'
 import { UserSearch, UserItem } from "@/types/user";
-import UserAddDialog from './user-add-dialog'
+import UserAddDialog from './user-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
@@ -12,7 +12,7 @@ export default function UserManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [userId, setUserId] = useState(0)
+  const [userId, setUserId] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
   const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
@@ -24,7 +24,7 @@ export default function UserManager() {
     setDialogOpen(true)
   }
   const handleDelete = async (id: number) => {
-    await deleteRoleItem(id)
+    await deleteUserItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
@@ -89,6 +89,7 @@ export default function UserManager() {
     setQueryData({ ...queryData, ...datas });
   };
   const handleNew = () => {
+    setUserId(null)
     setDialogOpen(true)
   }
   const handleClose = () => {
@@ -99,6 +100,8 @@ export default function UserManager() {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
   }
+  useEffect(() => {
+  }, [])
   return (
     <>
       <Tabular

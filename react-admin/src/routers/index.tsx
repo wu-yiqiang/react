@@ -26,6 +26,7 @@ import NotPermission from '@/pages/error/403'
 import { RouterItem } from '@/types/common'
 import useSystemStore from '@/store/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
+import { logout } from "@/api/public";
 export const allRouters: Array<RouterItem> = [
   {
     path: '/dashboard',
@@ -213,7 +214,7 @@ const whiteLists: RouteObject[] = [
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
 eventMitt.on('ROUTER:LOGOUT', () => {
-  console.log("token过期")
+  // await logout()
   routes.navigate('/login')
 })
 

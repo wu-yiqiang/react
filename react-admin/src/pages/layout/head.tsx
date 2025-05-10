@@ -4,6 +4,7 @@ import { Input, Dropdown, MenuProps, Badge } from 'antd'
 import eventMitt from "@/utils/eventMitt";
 import SettingDialog from './settings'
 import { useState } from 'react';
+import { logout } from '@/api/public';
 export default function Head() {
   return (
     <span className="Header">
@@ -102,7 +103,7 @@ function Setting() {
  }
 
 function User() {
-  const handleLogout = () => {
+  const handleLogout = async () => {
     // await logout()
     eventMitt.emit("STORE:TOEKN", "");
     eventMitt.emit('ROUTER:LOGOUT')
