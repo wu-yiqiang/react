@@ -168,7 +168,7 @@ export const allRouters: Array<RouterItem> = [
     element: null
   },
   {
-    path: '/user-manager',
+    path: '/setting/user',
     label: '用户管理',
     icon: <UserOutlined />,
     key: 'user-manager',
@@ -176,7 +176,7 @@ export const allRouters: Array<RouterItem> = [
     element: <UserManager />
   },
   {
-    path: '/role-manager',
+    path: '/setting/role',
     label: '角色管理',
     icon: <TeamOutlined />,
     key: 'role-manager',
@@ -184,7 +184,7 @@ export const allRouters: Array<RouterItem> = [
     element: <RoleManager />
   },
   {
-    path: '/menu-manager',
+    path: '/setting/menu',
     label: '菜单管理',
     icon: <MenuOutlined />,
     key: 'menu-manager',
@@ -192,7 +192,7 @@ export const allRouters: Array<RouterItem> = [
     element: <MenuManager />
   },
   {
-    path: '/permission-manager',
+    path: '/setting/permission',
     label: '权限管理',
     icon: <SafetyOutlined />,
     key: 'permission-manager',

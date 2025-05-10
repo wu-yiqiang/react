@@ -6,6 +6,7 @@ import UserAddDialog from './menu-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import { menuType } from '@/common/const'
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -55,7 +56,8 @@ export default function UserManager() {
     {
       title: '类型',
       dataIndex: 'menu_type',
-      key: 'menu_type'
+      key: 'menu_type',
+      render: (value: string | number) => <>{menuType?.find((item) => item.value == value)?.label}</>
     },
     {
       title: '状态',
@@ -79,14 +81,14 @@ export default function UserManager() {
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: MenuSearch) => {
     const { data } = await getMenuTreeLists()
-    setLists(data);
+    setLists(data)
     const datas = {
       pageSize: data.pageSize,
-      pageNo: data.pageNo,
-    };
-    setTotal(data?.total);
-    setQueryData({ ...queryData, ...datas });
-  };
+      pageNo: data.pageNo
+    }
+    setTotal(data?.total)
+    setQueryData({ ...queryData, ...datas })
+  }
   const handleNew = () => {
     setMenuId(null)
     setDialogOpen(true)

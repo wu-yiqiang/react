@@ -85,7 +85,7 @@ export default function UserAddDialog(props: DialogProps) {
     <Modal title={title} width={800} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
-          <Form id="form" form={form} labelCol={{ span: '120px' }} layout="inline">
+          <Form id="form" form={form} labelAlign="left" labelCol={{ style: { width: 60 } }} layout="inline">
             <Row>
               <Col span={12}>
                 <Form.Item label="头像" name="avatar">

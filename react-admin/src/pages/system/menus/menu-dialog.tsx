@@ -6,6 +6,7 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import {  requiredRules } from '@/validator/index'
 import { Menu } from '@/types/menu'
 import { DialogProps } from '@/types/common'
+import { menuType } from '@/common/const'
 export default function UserAddDialog(props: DialogProps) {
   const {open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -62,7 +63,7 @@ export default function UserAddDialog(props: DialogProps) {
     init()
   }, [id])  
   return (
-    <Modal title={title} width={700} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close} >
+    <Modal title={title} width={700} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
           <Form
@@ -87,13 +88,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={24}>
                 <Form.Item label="菜单类型" name="menu_type" rules={requiredRules}>
-                  <Radio.Group
-                    value={form.getFieldValue('menu_type')}
-                    options={[
-                      { value: 'M', label: '目录' },
-                      { value: 'C', label: '菜单' }
-                    ]}
-                  />
+                  <Radio.Group value={form.getFieldValue('menu_type')} options={menuType} />
                 </Form.Item>
               </Col>
               <Col span={12}>

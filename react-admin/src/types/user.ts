@@ -17,7 +17,7 @@ export interface UserItem extends CommonTime, CommonUuid, CommonId, UserField { 
 // export type A = MyPick<UserItem, 'username' | 'email'>
 
 export class User implements UserItem {
-  id: number;
+  id: number | null;
   uuid: string;
   username: string;
   email: string;
@@ -38,7 +38,7 @@ export class User implements UserItem {
     this.company = "";
     this.gender = "";
     this.roles = [];
-    this.id = 0
-    this.uuid = ''// 初始化 roles 为一个空数组，或者根据需要设置默认值
+    this.id = null
+    this.uuid = ''
   }
 }

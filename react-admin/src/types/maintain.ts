@@ -11,7 +11,7 @@ export interface MaintainField {
 export interface MaintainSearch extends Search, Pagenation {}
 export interface MaintainItem extends CommonTime, CommonUuid, CommonId, MaintainField {}
 export class Maintain implements MaintainItem {
-  id: number
+  id: number | null
   uuid: string
   username: string
   email: string
@@ -32,7 +32,7 @@ export class Maintain implements MaintainItem {
     this.company = ''
     this.gender = ''
     this.roles = []
-    this.id = 0
-    this.uuid = '' // 初始化 roles 为一个空数组，或者根据需要设置默认值
+    this.id = null
+    this.uuid = ''
   }
 }

@@ -16,7 +16,7 @@ export interface CommonRemark  {
     remark?: string
  }
 export interface CommonId {
-    id: number;
+  id: number | null
 }
 
 export interface CommonUuid {

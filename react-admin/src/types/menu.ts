@@ -13,7 +13,7 @@ export interface MenuSearch extends Search, Pagenation {}
 export interface MenuItem extends CommonTime, CommonUuid, CommonId, MenuField {}
 
 export class Menu implements MenuItem {
-  id: number
+  id: number | null
   uuid: string
   name: string
   parent_id: number | null
@@ -24,7 +24,7 @@ export class Menu implements MenuItem {
   menu_type: number | null
   perms: string
   constructor() {
-    this.id = 0,
+    this.id = null,
     this.uuid = ''
     this.name = ''
     this.parent_id = null
