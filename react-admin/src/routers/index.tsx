@@ -21,6 +21,9 @@ import RoomsBook from "@/pages/rooms/rooms-book/index";
 import RoomsType from '@/pages/rooms/rooms-type/index'
 import RoomsStay from '@/pages/rooms/rooms-stay/index'
 import RoomsInfo from "@/pages/rooms/rooms-info/index";
+import Company from '@/pages/basicData/company/index'
+import Position from '@/pages/basicData/position/index'
+import Department from '@/pages/basicData/department/index'
 import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
 import { RouterItem } from '@/types/common'
@@ -117,12 +120,44 @@ export const allRouters: Array<RouterItem> = [
     element: <Schedules />
   },
   {
-    path: '/schedules/day-schedule',
+    path: '/schedules/daySchedule',
     label: '每日排班',
     icon: <HeatMapOutlined />,
-    key: 'day-schedule',
+    key: 'daySchedule',
     parentkey: 'schedules',
     element: <DaySchedule />
+  },
+  {
+    path: '/basicData',
+    label: '数据管理',
+    icon: <SettingOutlined />,
+    key: 'BasicData',
+    parentkey: '',
+    element: null
+  },
+  {
+    path: '/basicData/company',
+    label: '公司管理',
+    icon: <UserOutlined />,
+    key: 'company',
+    parentkey: 'BasicData',
+    element: <Company />
+  },
+  {
+    path: '/basicData/position',
+    label: '岗位管理',
+    icon: <TeamOutlined />,
+    key: 'position',
+    parentkey: 'BasicData',
+    element: <Position />
+  },
+  {
+    path: '/basicData/department',
+    label: '部门管理',
+    icon: <TeamOutlined />,
+    key: 'department',
+    parentkey: 'BasicData',
+    element: <Department />
   },
   {
     path: '/setting',

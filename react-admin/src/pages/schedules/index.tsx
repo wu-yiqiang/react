@@ -84,7 +84,7 @@ export default function ScheduleManager() {
     setQueryData({ ...queryData, ...datas });
   };
   const handleNew = () => {
-    eventMitt.emit("ROUTER:KEY", "day-schedule");
+    eventMitt.emit('ROUTER:KEY', 'daySchedule')
   };
   return (
     <>
