@@ -17,8 +17,7 @@ const request: AxiosInstance = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    // const token = localStorage.getItem('token')
-    const token  = useSystemStore.getState().token
+    const token = useSystemStore.getState().userInfo?.token
     if (token) {
       config.headers['Authorization'] = `${token}`
     }
@@ -35,7 +34,6 @@ request.interceptors.response.use(
     const contentType = response?.headers?.['content-type']
     const responseType = response?.config.responseType
     if (responseType == 'blob') return response
-    console.log('sdsd', contentType)
     const { code, msg } = response?.data
     if (code !== 200 && contentType == 'application/json') {
       Toast.error(msg)
@@ -47,7 +45,7 @@ request.interceptors.response.use(
     const status = error?.response?.status
     if (status == 401) {
       Toast.error('认证信息过期，请重新登录')
-      eventMitt.emit("STORE:TOEKN", '');
+      eventMitt.emit('STORE:USER', '')
       eventMitt.emit('ROUTER:LOGOUT')
     }
     if (status == 404) {

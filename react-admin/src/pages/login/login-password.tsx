@@ -7,10 +7,9 @@ function LoginPassword() {
   const [form] = Form.useForm()
   const onFinish = async (value: any) => {
     const { data } = await login(value)
-    const token = data?.token
-    if (token) {
-      eventMitt.emit("STORE:TOEKN", token);
-      eventMitt.emit("ROUTER:HOME");
+    if (data?.token) {
+      eventMitt.emit('STORE:USER', data)
+      eventMitt.emit('ROUTER:HOME')
     }
   }
 

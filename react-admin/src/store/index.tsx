@@ -6,11 +6,7 @@ import { storeName } from '@/common/enum.ts'
 const useSystemStore = create(
   persist(
     (set) => ({
-      userInfo: { username: 'Sutter' },
-      token: '',
-      menus: [],
-      openMenu: [],
-      currentMenu: {},
+      userInfo: { username: 'Sutter', token: '' },
       systemSetting: {
         lockTime: 10,
         locked: true,
@@ -18,7 +14,9 @@ const useSystemStore = create(
         language: 'en-US',
         theme: 'system'
       },
-      setToken: (value: string) => set({ token: value }),
+      menus: [],
+      openMenu: [],
+      currentMenu: {},
       setUserInfo: (value: object) => set({ userInfo: value }),
       setCurrentMenu: (value: object) => set({ currentMenu: value }),
       setOpenMenu: (value: object) => set({ openMenu: value }),
@@ -33,11 +31,11 @@ const useSystemStore = create(
 )
 
 export default useSystemStore;
-eventMitt.on("STORE:TOEKN", (value: string) => {
+eventMitt.on('STORE:USER', (value: object) => {
   useSystemStore.setState(() => ({
-    token: value
+    userInfo: value
   }))
-});
+})
 
 eventMitt.on("STORE:CURRENTMENU", (value: object) => {
   // const { setCurrentMenu } = useSystemStore();

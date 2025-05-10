@@ -238,7 +238,6 @@ eventMitt.on("ROUTER:KEY", (key: string) => {
   const path = routerItem?.path || "/";
   routes.navigate(path);
   const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
-  console.log("sdsd", parentsMenus)
   // sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
   useSystemStore.setState(() => ({
     openMenu: parentsMenus

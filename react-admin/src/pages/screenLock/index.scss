@@ -1,10 +1,7 @@
 dialog {
   display: flex;
   justify-content: center;
-  // width: 100vw;
-  // height: 100vh;
   display: grid;
-  // grid-template-columns: 1fr;
   background-color: inherit;
   border: unset;
   transition: 0.5s;
@@ -14,54 +11,53 @@ dialog {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    row-gap: 20px;
+    row-gap: 24px;
     height: 50%;
+    padding: 40px;
     .dateTime {
       .date {
-          font-size: 46px;
-          color: #d1d0d0;
-          display: grid;
-          place-content: center;
-        }
-      
-        .time {
-          font-size: 60px;
-          color: #fff;
-          display: grid;
-          place-content: center;
-        }
+        font-size: 46px;
+        color: #f6f6f6;
+        display: grid;
+        place-content: center;
+      }
+
+      .time {
+        font-size: 60px;
+        color: #fff;
+        display: grid;
+        place-content: center;
+      }
     }
     .user {
       display: grid;
       row-gap: 20px;
-      .avator {
-        
+      .avatar {
         display: grid;
         place-content: center;
         img {
-          width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: contain;
+          height: 120px;
+          width: 120px;
+          border-radius: 50%;
+          object-fit: cover;
+          object-position: top;
         }
-       
       }
-             .name {
-               display: grid;
-               place-content: center;
-               color: #fff;
-               font-size: 24px;
-             }
+      .name {
+        display: grid;
+        place-content: center;
+        color: #fff;
+        font-size: 24px;
+      }
     }
   }
   &::backdrop {
-    background-color: rgba(255,255,255, 0.4);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background-color: rgba(200, 200, 200, 0.7) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     width: 100vw;
     height: 100vh;
-    filter: brightness(50%);
   }
 }
 .close {

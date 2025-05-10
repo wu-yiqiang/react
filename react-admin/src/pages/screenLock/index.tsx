@@ -8,11 +8,10 @@ import './index.scss'
 import dayjs from 'dayjs'
 import eventMitt from '@/utils/eventMitt'
 import { useState } from 'react'
+import { color } from 'echarts'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
-  const [currentDayTime, setCurrentDayTime] = useState(
-    dayjs().format("DD/MM/YYYY HH:mm")
-  );
+  const [currentDayTime, setCurrentDayTime] = useState(dayjs().format('DD/MM/YYYY HH:mm'))
   const handleUnlock = (e: Event) => {
     const value = e?.target?.value
     if (value === systemSetting.lockPassword) {
@@ -21,7 +20,7 @@ export default function ScreenLock() {
     }
   }
   setInterval(() => {
-    setCurrentDayTime(dayjs().format("DD/MM/YYYY HH:mm"));
+    setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)
   return (
     <Dialog
@@ -30,12 +29,12 @@ export default function ScreenLock() {
       slot={
         <div className="mainBox">
           <div className="dateTime">
-            <div className="date">{currentDayTime?.split(" ")[0]}</div>
-            <div className="time">{currentDayTime?.split(" ")[1]}</div>
+            <div className="date">{currentDayTime?.split(' ')[0]}</div>
+            <div className="time">{currentDayTime?.split(' ')[1]}</div>
           </div>
           <div className="user">
-            <div className="avator">
-              <img src={avatar} />
+            <div className="avatar">
+              <img src={userInfo?.avatar} />
             </div>
             <div className="name">{userInfo?.username}</div>
             <Input.Password placeholder="密码" onChange={handleUnlock} />
@@ -43,7 +42,7 @@ export default function ScreenLock() {
         </div>
       }
     ></Dialog>
-  );
+  )
 }
 
 

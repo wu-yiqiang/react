@@ -105,7 +105,7 @@ function Setting() {
 function User() {
   const handleLogout = async () => {
     // await logout()
-    eventMitt.emit("STORE:TOEKN", "");
+    eventMitt.emit('STORE:USER', {})
     eventMitt.emit('ROUTER:LOGOUT')
   };
   const items: MenuProps["items"] = [

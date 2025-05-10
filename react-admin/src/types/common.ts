@@ -48,8 +48,8 @@ export interface DialogProps {
 }
 
 interface UserInfo {
-    username: string;
-    avator: string;
+  username: string
+  avatar: string
 }
 
 interface SystemSetting {

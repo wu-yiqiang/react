@@ -106,7 +106,7 @@ function App() {
   return (
     <ConfigProvider theme={themeConfig}>
       <RouterProvider router={routes} />
-      { systemSetting.locked ? <ScreenLock /> : null}
+      { systemSetting?.locked ? <ScreenLock /> : null}
     </ConfigProvider>
   )
 }
