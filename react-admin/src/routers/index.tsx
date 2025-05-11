@@ -24,6 +24,7 @@ import RoomsInfo from "@/pages/rooms/rooms-info/index";
 import Company from '@/pages/basicData/company/index'
 import Position from '@/pages/basicData/position/index'
 import Department from '@/pages/basicData/department/index'
+import ButtonManager from '@/pages/system/buttons/index'
 import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
 import { RouterItem } from '@/types/common'
@@ -192,6 +193,14 @@ export const allRouters: Array<RouterItem> = [
     element: <MenuManager />
   },
   {
+    path: '/setting/button',
+    label: '按钮管理',
+    icon: <MenuOutlined />,
+    key: 'button-manager',
+    parentkey: 'setting',
+    element: <ButtonManager />
+  },
+  {
     path: '/setting/permission',
     label: '权限管理',
     icon: <SafetyOutlined />,
@@ -272,8 +281,6 @@ eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem
   const path = routerItem?.path || '/'
   routes.navigate(path)
-  // const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
-  // sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
   useSystemStore.setState(() => ({
     selectMenu: [key]
   }))
