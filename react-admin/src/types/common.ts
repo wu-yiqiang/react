@@ -64,8 +64,12 @@ export interface SystemStore {
   menus: Array<RouterItem>
   currentMenu: RouterItem
   systemSetting: SystemSetting
+  selectMenu: Array<String>
+  openMenu: Array<String>
   setUserInfo: (value: object) => void
   setSystemSetting: (value: object) => void
+  setSelectMenu: (value: object) => void
+  setOpenMenu: (value: object) => void
 }
 
 export interface UploadData {

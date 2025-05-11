@@ -3,7 +3,8 @@ import type { MenuProps } from 'antd'
 import { Menu } from 'antd'
 import { allRouters, routes } from '@/routers/index'
 import eventMitt from "@/utils/eventMitt";
-import useSystemStore from '@/store';
+import useSystemStore from '@/store/index'
+import { SystemStore } from '@/types/common'
 interface MenuItem {
   key: string
   parentkey: string
@@ -43,17 +44,25 @@ const genItems = () => {
   })
 }
 
+ const Menus = () => {
+   genItems()
+   const [selectedKeys, setSelectedKeys] = useState([])
+   const onClick: MenuProps['onClick'] = (e) => {
+     eventMitt.emit('ROUTER:KEY', e?.key)
+     // eventMitt.emit('ROUTER:OPENMENU', [])
+   }
+   const selectMenu = useMemo(() => useSystemStore.getState().selectMenu, [useSystemStore().selectMenu])
+   const openMenu = useMemo(() => useSystemStore.getState().openMenu, [useSystemStore().openMenu])
+   const onOpenChange = (openKeys: Object) => {
+      console.log('openKeys', openKeys)
+     eventMitt.emit('ROUTER:OPENMENU', [])
+     eventMitt.emit('ROUTER:OPENMENU', [openKeys.pop()])
+   }
+   return (
+     <>
+       <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items} selectedKeys={selectMenu} onOpenChange={onOpenChange} openKeys={openMenu} />
+     </>
+   )
+ }
 
-const App: React.FC = () => {
-  genItems()
-  const onClick: MenuProps['onClick'] = (e) => {
-    eventMitt.emit("ROUTER:KEY", e?.key);
-    // init()
-  }
-  // useEffect(() => {
-  //   init()
-  // }, [])
-  return <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items} />
-}
-
-export default App
+ export default Menus

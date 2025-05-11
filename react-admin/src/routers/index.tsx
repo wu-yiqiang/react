@@ -269,13 +269,13 @@ const getNodeAllParents = (lists: Array<object>, key: string | number) => {
 };
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
-  const routerItem = allRouters.find((item) => item.key === key) as RouterItem;
-  const path = routerItem?.path || "/";
-  routes.navigate(path);
-  const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
+  const routerItem = allRouters.find((item) => item.key === key) as RouterItem
+  const path = routerItem?.path || '/'
+  routes.navigate(path)
+  // const parentsMenus = getNodeAllParents(allRouters, routerItem.key);
   // sessionStorage.setItem('openMunus', JSON.stringify(parentsMenus))
   useSystemStore.setState(() => ({
-    openMenu: parentsMenus
+    selectMenu: [key]
   }))
 });
 

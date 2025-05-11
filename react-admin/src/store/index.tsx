@@ -15,10 +15,12 @@ const useSystemStore = create(
         theme: 'system'
       },
       menus: [],
+      selectMenu: [],
       openMenu: [],
       currentMenu: {},
       setUserInfo: (value: object) => set({ userInfo: value }),
       setCurrentMenu: (value: object) => set({ currentMenu: value }),
+      setSelectMenu: (value: object) => set({ selectMenu: value }),
       setOpenMenu: (value: object) => set({ openMenu: value }),
       setSystemSetting: (value: object) => set({ systemSetting: value })
     }),
@@ -30,17 +32,15 @@ const useSystemStore = create(
   )
 )
 
-export default useSystemStore;
+export default useSystemStore
 eventMitt.on('STORE:USER', (value: object) => {
   useSystemStore.setState(() => ({
     userInfo: value
   }))
 })
 
-eventMitt.on("STORE:CURRENTMENU", (value: object) => {
-  // const { setCurrentMenu } = useSystemStore();
-  // setCurrentMenu(value);
-  // useSystemStore.setState(() => ({
-  //   token: value
-  // }))
-});
+eventMitt.on('ROUTER:OPENMENU', (value: object) => {
+  useSystemStore.setState(() => ({
+    openMenu: value
+  }))
+})
