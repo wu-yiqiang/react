@@ -7,6 +7,7 @@ import { isDark } from "@/utils/index";
 import { SystemStore } from "@/types/common";
 import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
+import { useEffect } from "react";
 function App() {
   const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
@@ -93,15 +94,31 @@ function App() {
   eventMitt.on("SYSTEM:LANGUAGE", (value: string) => {
     setSystemSetting({ ...systemSetting, language: value })
   });
-  // let startTime: number
-  // startTime = new Date().getTime()
-  // setInterval(() => {
-  //   const endTime = new Date().getTime()
-  //   const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
-  //   if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
-  // }, 1000)
+  
   eventMitt.on('SYSTEM:LOCKSCREEN', () => {
     setSystemSetting({ ...systemSetting, locked: true })
+  })
+  const init = () => {
+    let startTime: number
+    startTime = new Date().getTime()
+    setInterval(() => {
+      const endTime = new Date().getTime()
+      const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
+      console.log('start', startTime, 'end', endTime, 'inter', startTimeAdded)
+      if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
+    }, 1000)
+    document.addEventListener('mousemove', () => {
+      startTime = new Date().getTime()
+    })
+    document.addEventListener('keypress', () => {
+      startTime = new Date().getTime()
+    })
+    document.addEventListener('click', () => {
+      startTime = new Date().getTime()
+    })
+  }
+  useEffect(() => {
+    init()
   })
   return (
     <ConfigProvider theme={themeConfig}>
