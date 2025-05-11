@@ -3,11 +3,13 @@ import { Button, Form, Input, Divider } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { login } from '@/api/public'
 import eventMitt from '@/utils/eventMitt'
+import Toast from '@/components/Toast'
 function LoginPassword() {
   const [form] = Form.useForm()
   const onFinish = async (value: any) => {
     const { data } = await login(value)
     if (data?.token) {
+      Toast.success('登录成功')
       eventMitt.emit('STORE:USER', data)
       eventMitt.emit('ROUTER:HOME')
     }

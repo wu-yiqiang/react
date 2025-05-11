@@ -5,6 +5,7 @@ import eventMitt from "@/utils/eventMitt";
 import SettingDialog from './settings'
 import { useState } from 'react';
 import { logout } from '@/api/public';
+import Toast from '@/components/Toast';
 export default function Head() {
   return (
     <span className="Header">
@@ -118,6 +119,7 @@ function User() {
     // await logout()
     eventMitt.emit('STORE:USER', {})
     eventMitt.emit('ROUTER:LOGOUT')
+    Toast.success('操作成功')
   };
   const items: MenuProps["items"] = [
     {

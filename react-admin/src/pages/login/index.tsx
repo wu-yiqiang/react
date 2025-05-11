@@ -33,7 +33,7 @@ function Login() {
             <div className="content-box">{loginType == 1 ? <LoginPassword /> : <LoginFace />}</div>
             {loginType == 1 ? (
               <Button type="primary" block onClick={() => handleLoginType(2)}>
-                人脸登陆
+                人脸识别登陆
               </Button>
             ) : (
               <Button type="primary" block onClick={() => handleLoginType(1)}>

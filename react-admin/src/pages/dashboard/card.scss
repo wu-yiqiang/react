@@ -2,6 +2,7 @@
   background-color: #fff2e5;
   @include card-frame;
   padding: 20px;
+  border: 1px solid #dfdddd;
   .title {
     font-size: 16px;
     font-weight: 500;
