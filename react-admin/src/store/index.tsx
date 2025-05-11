@@ -9,7 +9,7 @@ const useSystemStore = create(
       userInfo: { username: 'Sutter', token: '' },
       systemSetting: {
         lockTime: 10,
-        locked: true,
+        locked: false,
         lockPassword: '123456',
         language: 'en-US',
         theme: 'system'

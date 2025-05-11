@@ -1,4 +1,4 @@
-import { SettingOutlined, BellOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined } from '@ant-design/icons'
+import { SettingOutlined, BellOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined, LockOutlined } from '@ant-design/icons'
 import './head.scss'
 import { Input, Dropdown, MenuProps, Badge } from 'antd'
 import eventMitt from "@/utils/eventMitt";
@@ -11,6 +11,7 @@ export default function Head() {
       <Search />
       <Translate />
       <Theme />
+      <Lock />
       <div style={{ marginRight: 10 }}>
         <Notion />
       </div>
@@ -30,6 +31,16 @@ function Search() {
       />
     </div>
   );
+}
+const Lock = () => {
+  const handleLock = () => {
+    eventMitt.emit('SYSTEM:LOCKSCREEN')
+  }
+  return (
+    <div className="search-expand-container">
+      <LockOutlined className="headeIcon" onClick={handleLock} />
+    </div>
+  )
 }
 
 function Translate() {

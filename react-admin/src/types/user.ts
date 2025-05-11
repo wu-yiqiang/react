@@ -21,7 +21,7 @@ export class User implements UserItem {
   uuid: string;
   username: string;
   email: string;
-  password: string;
+  // password: string;
   avatar: string;
   phone_number: string;
   status: number | null;
@@ -31,7 +31,7 @@ export class User implements UserItem {
   constructor() {
     this.username = "";
     this.email = "";
-    this.password = "";
+    // this.password = "";
     this.avatar = "";
     this.phone_number = "";
     this.status = null;

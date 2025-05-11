@@ -30,17 +30,20 @@ export default function UserManager() {
     {
       title: '菜单名',
       dataIndex: 'name',
-      key: 'name'
+      key: 'name',
+      width: 140
     },
     {
       title: '排序',
       dataIndex: 'order_num',
-      key: 'order_num'
+      key: 'order_num',
+      width: 60
     },
     {
       title: '权限标识',
       dataIndex: 'perms',
-      key: 'perms'
+      key: 'perms',
+      width: 120
     },
     {
       title: '路由地址',
@@ -57,17 +60,21 @@ export default function UserManager() {
       title: '类型',
       dataIndex: 'menu_type',
       key: 'menu_type',
+      width: 60,
       render: (value: string | number) => <>{menuType?.find((item) => item.value == value)?.label}</>
     },
     {
       title: '状态',
       dataIndex: 'roles',
-      key: 'roles'
+      key: 'roles',
+      width: 60
     },
     {
       title: '操作',
       dataIndex: 'opeartions',
       key: 'opeartions',
+      width: 100,
+      align: 'center',
       render: (value: number | string, record: MenuItem, index: number) => {
         return (
           <Space key={index}>

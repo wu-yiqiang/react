@@ -16,7 +16,6 @@ export default function ScreenLock() {
     const value = e?.target?.value
     if (value === systemSetting.lockPassword) {
       setSystemSetting({ ...systemSetting, locked: false })
-      eventMitt.emit('SYSTEM:LOCKSCREEN')
     }
   }
   setInterval(() => {

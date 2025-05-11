@@ -28,12 +28,12 @@ export default function UserManager() {
   }
   const columns = [
     {
-      title: "名字",
+      title: "名称",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "  编码",
+      title: "编码",
       dataIndex: "code",
       key: "code",
     },

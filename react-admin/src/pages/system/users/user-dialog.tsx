@@ -7,6 +7,7 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import { emailRequiredRules, requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
 import { DialogProps } from '@/types/common'
+import {status} from '@/common/const'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -115,10 +116,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={12}>
                 <Form.Item label="状态" name="status" rules={requiredRules}>
-                  <Select>
-                    <Select.Option value={1}>Active</Select.Option>
-                    <Select.Option value={0}>Disabled</Select.Option>
-                  </Select>
+                  <Select options={status} />
                 </Form.Item>
               </Col>
             </Row>
@@ -130,11 +128,6 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
             </Row>
             <Row>
-              <Col span={12}>
-                <Form.Item label="密码" name="password" rules={requiredRules}>
-                  <Input.Password />
-                </Form.Item>
-              </Col>
               <Form.Item hidden label="ID" name="id">
                 <Input hidden />
               </Form.Item>

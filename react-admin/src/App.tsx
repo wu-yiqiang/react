@@ -100,8 +100,8 @@ function App() {
   //   const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
   //   if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
   // }, 1000)
-  eventMitt.emit('SYSTEM:LOCKSCREEN', () => {
-    // startTime = new Date().getTime()
+  eventMitt.on('SYSTEM:LOCKSCREEN', () => {
+    setSystemSetting({ ...systemSetting, locked: true })
   })
   return (
     <ConfigProvider theme={themeConfig}>

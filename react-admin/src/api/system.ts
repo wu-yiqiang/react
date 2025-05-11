@@ -36,6 +36,15 @@ export const updateUserDetail = (data: UserItem) => {
     data
   })
 }
+export const updateUserPassword = (data: UserItem) => {
+  if (!data?.id) return
+  return request({
+    url: `/user/update/password`,
+    method: 'post',
+    data
+  })
+}
+
 
 export const deleteUserItem = (id: number) => {
   if (!id) return
