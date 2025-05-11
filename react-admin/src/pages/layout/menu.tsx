@@ -54,7 +54,6 @@ const genItems = () => {
    const selectMenu = useMemo(() => useSystemStore.getState().selectMenu, [useSystemStore().selectMenu])
    const openMenu = useMemo(() => useSystemStore.getState().openMenu, [useSystemStore().openMenu])
    const onOpenChange = (openKeys: Object) => {
-      console.log('openKeys', openKeys)
      eventMitt.emit('ROUTER:OPENMENU', [])
      eventMitt.emit('ROUTER:OPENMENU', [openKeys.pop()])
    }
