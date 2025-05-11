@@ -104,7 +104,7 @@ function App() {
     setInterval(() => {
       const endTime = new Date().getTime()
       const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
-      console.log('start', startTime, 'end', endTime, 'inter', startTimeAdded)
+      // console.log('start', startTime, 'end', endTime, 'inter', startTimeAdded)
       if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
     }, 1000)
     document.addEventListener('mousemove', () => {
