@@ -25,6 +25,7 @@ import Company from '@/pages/basicData/company/index'
 import Position from '@/pages/basicData/position/index'
 import Department from '@/pages/basicData/department/index'
 import ButtonManager from '@/pages/system/buttons/index'
+import Intelligent from "@/pages/intelligent";
 import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
 import { RouterItem } from '@/types/common'
@@ -207,6 +208,14 @@ export const allRouters: Array<RouterItem> = [
     key: 'permission-manager',
     parentkey: 'setting',
     element: <PermissionManager />
+  },
+  {
+    path: '/setting/intelligent',
+    label: '智能应答',
+    icon: <SafetyOutlined />,
+    key: 'intelligent',
+    parentkey: 'setting',
+    element: <Intelligent />
   }
 ]
 

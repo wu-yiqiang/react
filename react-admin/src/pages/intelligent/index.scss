@@ -1,4 +1,24 @@
 
 .Intelligent {
- 
+  width: 420px;
+  height: 100%;
+  background-color: #fff;
+  padding: 14px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 14px;
+  .title-box {
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contents {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    padding: 14px;
+  }
 }

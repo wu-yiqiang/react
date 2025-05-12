@@ -1,10 +1,34 @@
-//import { Button } from "antd"
+import { Input } from "antd"
 //import useSystemStore from "@/store/index";
+const { Search } = Input
 import './index.scss'
+import Chat from "./chat"
+import { useState } from "react"
+
 export default function Intelligent() {
+  const [loading, setLoading] = useState(false)
+  const [datas, setDatas] = useState([
+    { type: 'question', msg: '你是谁' },
+    { type: 'answer', msg: '我叫deepseek' },
+    { type: 'question', msg: '今天天气' },
+    { type: 'answer', msg: '今天是个大晴天' },
+  ])
+  const onSearch = (value: string) => {
+    if(!value) return
+    setLoading(true)
+    setDatas([...datas, { type: 'question', msg: value }])
+    setLoading(false)
+  }
+  
   return (
-    <section className='Intelligent'>
-        Intelligent
+    <section className="Intelligent">
+      <div className="title-box">智能解答</div>
+      <div className="contents">
+        <Chat datas={datas} />
+      </div>
+      <div className="submit">
+        <Search placeholder="input your question" allowClear enterButton="Search" onSearch={onSearch} loading={loading} />
+      </div>
     </section>
-  );
+  )
 }
