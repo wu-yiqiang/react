@@ -13,10 +13,15 @@ export default function Intelligent() {
     { type: 'question', msg: '今天天气' },
     { type: 'answer', msg: '今天是个大晴天' },
   ])
-  const onSearch = (value: string) => {
+  const onSearch = async (value: string) => {
     if(!value) return
     setLoading(true)
     setDatas([...datas, { type: 'question', msg: value }])
+    const data = await fetch('https://locahost:8700/intelligent', {method: 'post', body: JSON.stringify(value),
+      headers: {
+        'Content-Type': 'application/json'
+      }})
+    setDatas([...datas, { type: 'answer', msg: data }])
     setLoading(false)
   }
   
