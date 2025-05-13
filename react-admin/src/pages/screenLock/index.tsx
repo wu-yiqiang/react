@@ -18,6 +18,9 @@ export default function ScreenLock() {
       setSystemSetting({ ...systemSetting, locked: false })
     }
   }
+  const handleLoadError = (e: Event) => {
+    e.target.src = avatar
+  }
   setInterval(() => {
     setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)
@@ -33,7 +36,7 @@ export default function ScreenLock() {
           </div>
           <div className="user">
             <div className="avatar">
-              <img src={userInfo?.avatar} />
+              <img src={userInfo?.avatar} onError={handleLoadError}/>
             </div>
             <div className="name">{userInfo?.username}</div>
             <Input.Password placeholder="密码" onChange={handleUnlock} />

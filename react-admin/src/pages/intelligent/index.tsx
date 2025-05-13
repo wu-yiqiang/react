@@ -20,9 +20,11 @@ export default function Intelligent() {
     const data = await fetch('https://locahost:8700/intelligent', {method: 'post', body: JSON.stringify(value),
       headers: {
         'Content-Type': 'application/json'
-      }})
+      }
+    }).finally(() => {
+      setLoading(false)
+      })
     setDatas([...datas, { type: 'answer', msg: data }])
-    setLoading(false)
   }
   
   return (
