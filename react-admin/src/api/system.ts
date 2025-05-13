@@ -1,7 +1,7 @@
 
 import request from '@/utils/request'
 import { UserItem, UserSearch } from "@/types/user";
-import { RoleSearch } from "@/types/role";
+import { RoleItem, RoleSearch } from "@/types/role";
 import {MenuSearch} from '@/types/menu'
 
 // 用户管理
@@ -63,10 +63,35 @@ export const getRolesLists = (data: RoleSearch) => {
   })
 }
 
+export const postRoleItem = (data: RoleItem) => {
+  return request({
+    url: '/role/create',
+    method: 'post',
+    data
+  })
+}
+
 export const getRoleOptions = () => {
   return request({
     url: '/role/lists',
     method: 'get',
+  })
+}
+
+export const getRoleDetails = (id: number) => {
+  if (!id) return
+  return request({
+    url: `/role/detail/${id}`,
+    method: 'post'
+  })
+}
+
+export const putRoleItem = (data: RoleItem) => {
+  if (!data?.id) return
+  return request({
+    url: `/role/update`,
+    method: 'post',
+    data
   })
 }
 
