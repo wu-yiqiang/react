@@ -55,26 +55,17 @@ export default defineConfig({
     },
     build: {
       // 静态资源处理
-      assetsDir: 'assets',
-      // 最终构建的浏览器兼容目标
+      // assetsDir: 'assets',
       target: 'es2015',
-      // 是否自动注入module preload的polyfill
       polyfillModulePreload: true,
-      // 指定混淆器
       minify: 'esbuild',
-      // 启用css代码拆分
       cssCodeSplit: true,
-      // 允许用户为css的压缩设置一个不同的浏览器target, 与build esbuild一致
       cssTarget: '',
-      // 清空输入文件夹
-      emptyOutDir: false,
-      // 取消计算文件大小，加快打包速度
+      emptyOutDir: true,
       reportCompressedSize: false,
       // 启用压缩大小报告,
-      // brotliSize: false,
-      // chunk大小警告的限制
+       brotliSize: false,
       chunkSizeWarningLimit: 500,
-      // 取消sourceMap， 加快打包速度,
       sourcemap: false,
       outDir: 'dist', // 构建输出目录
       rollupOptions: {
@@ -83,16 +74,16 @@ export default defineConfig({
           manualChunks: (id) => {
             if (id.includes('node_modules')) return id.toString().split('node_modules')[1].split('/')[0].toString()
           },
-          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
-          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
-          assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
           treeshake: true,
-          // assetFileNames: (assetInfo) => {
-          //   const fileName = assetInfo.name
-          //   if (fileName?.endsWith('.svg')) return 'img/svg/[name]-[hash][extname]'
-          //   if (fileName?.endsWith('.ogg')) return 'audio/[name][extname]'
-          //   return 'css/[name]-[hash][extname]'
-          // }
+          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+          assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
+//           assetFileNames: (assetInfo) => {
+//             const fileName = assetInfo.name
+//             if (fileName?.endsWith('.svg')) return '/assets/img/svg/[name]-[hash][extname]'
+//             if (fileName?.endsWith('.ogg')) return '/assets/audio/[name][extname]'
+//             return 'css/[name]-[hash][extname]'
+//           }
         }
       }
     }
