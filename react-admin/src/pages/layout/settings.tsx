@@ -1,11 +1,10 @@
-import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber } from 'antd'
+import { Form, Input, Modal, Row, Col, Spin, InputNumber } from 'antd'
 import { useEffect, useState } from 'react'
 import Toast from '@/components/Toast'
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import { requiredRules } from '@/validator/index'
 import { DialogProps, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
-export default function SettingDialog(props: DialogProps) {
+const  SettingDialog = (props: any) => {
   const { open, handleClose } = props
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
@@ -62,3 +61,6 @@ export default function SettingDialog(props: DialogProps) {
     </Modal>
   )
 }
+
+
+export default SettingDialog;

@@ -51,11 +51,14 @@ const genItems = () => {
      eventMitt.emit('ROUTER:KEY', e?.key)
      // eventMitt.emit('ROUTER:OPENMENU', [])
    }
-   const selectMenu = useMemo(() => useSystemStore.getState().selectMenu, [useSystemStore().selectMenu])
-   const openMenu = useMemo(() => useSystemStore.getState().openMenu, [useSystemStore().openMenu])
-   const onOpenChange = (openKeys: Object) => {
+   const selectMenu = useMemo(() => (useSystemStore.getState() as SystemStore)?.selectMenu, [(useSystemStore() as SystemStore)?.selectMenu])
+   const openMenu = useMemo(
+     () => (useSystemStore.getState() as SystemStore)?.openMenu,
+     [(useSystemStore() as SystemStore)?.openMenu]
+   );
+   const onOpenChange = (openKeys: Array<string>) => {
      eventMitt.emit('ROUTER:OPENMENU', [])
-     eventMitt.emit('ROUTER:OPENMENU', [openKeys.pop()])
+     eventMitt.emit("ROUTER:OPENMENU", [openKeys.pop()]);
    }
    return (
      <>

@@ -17,7 +17,9 @@ const request: AxiosInstance = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const token = useSystemStore.getState().userInfo?.token
+// 假设 useSystemStore.getState() 返回的类型为 unknown，先进行类型断言
+const systemState = useSystemStore.getState() as { userInfo?: { token?: string } };
+const token = systemState.userInfo?.token;
     if (token) {
       config.headers['Authorization'] = `${token}`
     }

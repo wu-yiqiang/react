@@ -17,11 +17,13 @@ export default function UserManager() {
     pageNo: 1,
     pageSize: 10
   })
-  const handleEdit = (id: number) => {
+  const handleEdit = (id: number | null) => {
+    if (!id) return
     setMenuId(id)
     setDialogOpen(true)
   }
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number | null) => {
+    if (!id) return
     await deleteMenuItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })

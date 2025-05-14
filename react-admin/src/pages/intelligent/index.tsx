@@ -17,14 +17,14 @@ export default function Intelligent() {
     if(!value) return
     setLoading(true)
     setDatas([...datas, { type: 'question', msg: value }])
-    const data = await fetch('https://locahost:8700/intelligent', {method: 'post', body: JSON.stringify(value),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).finally(() => {
-      setLoading(false)
-      })
-    setDatas([...datas, { type: 'answer', msg: data }])
+    // const data = await fetch('https://locahost:8700/intelligent', {method: 'post', body: JSON.stringify(value),
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   }
+    // }).finally(() => {
+    //   setLoading(false)
+    //   })
+    setDatas([...datas, { type: 'answer', msg: '11' }])
   }
   
   return (

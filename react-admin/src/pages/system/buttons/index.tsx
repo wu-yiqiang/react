@@ -22,16 +22,19 @@ export default function ButtonManager() {
     pageNo: 1,
     pageSize: 10
   })
-  const handleEdit = (id: number) => {
+  const handleEdit = (id: number | null) => {
+    if (!id) return
     setUserId(id)
     setDialogOpen(true)
   }
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number | null) => {
+    if (!id) return
     await deleteUserItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
-  const handleResetPassword = (id: number) => {
+  const handleResetPassword = (id: number | null) => {
+    if (!id) return
     setUserId(id)
     setResetDialogOpen(true)
   }

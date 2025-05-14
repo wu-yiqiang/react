@@ -14,16 +14,26 @@ export default function Tabular(props: any) {
   const SearchFormRef = useRef(null);
   const actionSlot = [
     {
-    title: '操作',
-    key: 'action',
-    render: (_, record: object) => (
-      <Space size="middle">
-        <Button type="text" size="middle" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
-        <Button type="text" size="middle" icon={<DeleteOutlined />} onClick={() => handleDelete(record)} />
-      </Space>
-    ),
-    }
-  ]
+      title: "操作",
+      key: "action",
+      render: (_: object, record: object) => (
+        <Space size="middle">
+          <Button
+            type="text"
+            size="middle"
+            icon={<EditOutlined />}
+            onClick={() => handleEdit(record)}
+          />
+          <Button
+            type="text"
+            size="middle"
+            icon={<DeleteOutlined />}
+            onClick={() => handleDelete(record)}
+          />
+        </Space>
+      ),
+    },
+  ];
   useImperativeHandle(onRef, () => {
     return {
       flush: handleFlush,
@@ -39,16 +49,20 @@ export default function Tabular(props: any) {
   }
 
   const handleFlush = async () => {
-    if (SearchFormRef?.current) await SearchFormRef.current.init()
+    // 为 SearchFormRef 的 current 属性添加类型断言，假设 SearchFormRef 的 current 具有 init 方法
+    if (SearchFormRef.current) {
+      const searchFormInstance = SearchFormRef.current as { init: () => Promise<any> | void };
+      await searchFormInstance.init();
+    }
   }
 
   const init = () => {
     setColumnLists([])
     columns.forEach((column: { key: string }) => {
       if (column.key == 'action') {
-        setColumnLists((current) => [...current, ...actionSlot])
+        setColumnLists((current) => [...current, ...actionSlot] as any)
       } else {
-        setColumnLists((current) => [...current, column])
+        setColumnLists((current) => [...current, column] as any)
       }
     })
     handleFlush()

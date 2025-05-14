@@ -3,9 +3,9 @@ import * as echarts from 'echarts'
 import ReactECharts from 'echarts-for-react'
 import './BottomMiddleBox.scss'
 const BottomMiddleBox: React.FC = () => {
- let xLabel = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
- let dataValue = [20, 30, 40, 35, 34, 15, 56, 15, 12, 25, 34, 42]
- let dataValue1 = [40, 35, 34, 15, 56, 15, 12, 25, 34, 42, 20, 30]
+ const xLabel = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+ const dataValue = [20, 30, 40, 35, 34, 15, 56, 15, 12, 25, 34, 42]
+ const dataValue1 = [40, 35, 34, 15, 56, 15, 12, 25, 34, 42, 20, 30]
  const options = {
    backgroundColor: '#0c2d55',
    tooltip: {
@@ -120,7 +120,7 @@ const BottomMiddleBox: React.FC = () => {
              show: true, //开启显示
              color: '#fff',
              position: 'top', //在上方显示
-             formatter: function (res) {
+             formatter: function (res: { value: any }) {
                if (res.value) {
                  return res.value
                } else {
@@ -179,7 +179,7 @@ const BottomMiddleBox: React.FC = () => {
              show: true, //开启显示
              color: '#fff',
              position: 'top', //在上方显示
-             formatter: function (res) {
+             formatter: function (res: { value: any }) {
                if (res.value) {
                  return res.value
                } else {

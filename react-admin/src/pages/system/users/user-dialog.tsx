@@ -60,6 +60,7 @@ export default function UserAddDialog(props: DialogProps) {
     init()
   }, [id])
   const handleUpload = async (info: object) => {
+    // @ts-ignore
     const file = info?.file
     const formData = new FormData()
     formData.append('file', file)

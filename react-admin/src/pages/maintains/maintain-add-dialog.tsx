@@ -6,7 +6,7 @@ import Toast from '@/components/Toast'
 import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import { emailRequiredRules, requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
-import { DialogProps } from '@/types/common'
+import {DialogProps, UploadData} from '@/types/common'
 export default function MaintainDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -52,7 +52,7 @@ export default function MaintainDialog(props: DialogProps) {
     init()
   }, [id])
   const handleUpload = async (info: object) => {
-    const file = info?.file
+    const file = (info as { file: any })?.file
     const formData = new FormData()
     formData.append('file', file)
     setLoading(true)

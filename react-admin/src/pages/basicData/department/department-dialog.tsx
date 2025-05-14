@@ -23,7 +23,7 @@ export default function UserAddDialog(props: DialogProps) {
       const values = form.getFieldsValue();
       const datas = { ...values };
       console.log("sadasda", datas);
-      if (!editStatus) await postUser(datas);
+      // if (!editStatus) await postUser(datas);
       // if (editStatus) await putContractor(target.uuid, datas)
       Toast.success("操作成功");
       handleOk(values);

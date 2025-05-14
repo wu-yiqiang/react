@@ -4,10 +4,11 @@ export default function Dialog(props: any) {
   const { open, slot } = props
   const dialog = useRef(null)
   const init = () => {
-    dialog.current.showModal()
+    // @ts-ignore
+    open && dialog?.current?.showModal()
   }
   useEffect(() => {
     init()
   }, [])
-  return <dialog ref={dialog} >{props.slot}</dialog>
+  return <dialog ref={dialog} >{slot}</dialog>
 }

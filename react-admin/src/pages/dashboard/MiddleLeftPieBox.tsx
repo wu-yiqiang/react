@@ -49,17 +49,21 @@ const MiddleLeftPieBox: React.FC = () => {
     },
   ]
   let allArr = [...oneArr, ...erArr],
-  dataArr = [];
+  dataArr: never[] = [];
   // 点
   allArr.forEach((el, ind) => {
     if (el.type > 0) {
-      el.symbolSize = 50;
-      el.symbol = "image://" + NodeImage;
-      el.itemStyle = {
-        color: color[el.type],
-      };
-    }
-    el.label = {
+      // 使用类型断言解决类型错误，为 el 添加 symbolSize 属性
+      (el as { [key: string]: any }).symbolSize = 50;
+      // 使用类型断言解决类型错误，为 el 添加 symbol 属性
+      (el as { [key: string]: any }).symbol = "image://" + NodeImage;
+      // 使用类型断言解决类型错误，为 el 添加 itemStyle 属性
+      (el as { [key: string]: any }).itemStyle = {
+          color: color[el.type],
+        };
+      }
+    // 为 el 添加 label 属性类型定义，使用类型断言解决类型错误
+    (el as { [key: string]: any }).label = {
       show: true,
       position: "bottom",
       distance: 10,
@@ -68,18 +72,18 @@ const MiddleLeftPieBox: React.FC = () => {
   });
 
   // 圆形分区
-  function group(arr, r) {
-    const newArray = [];
+  function group(arr: any[], r: number) {
+    const newArray: any[] = [];
     const arLen = arr.length;
-    arr.forEach((e, ind) => {
+    arr.forEach((e: { value: string[]; twoPoint: string[][]; }, ind: number) => {
       // 按角度均匀分布
-      const ang = 90 - (360 / arLen).toFixed(2) * (ind + 1);
-      const x = Math.cos((ang * Math.PI) / 180).toFixed(2) * r;
-      const y = Math.sin((ang * Math.PI) / 180).toFixed(2) * r;
-      const x1 = Math.cos((ang * Math.PI) / 180).toFixed(2) * (r - 5);
-      const y1 = Math.sin((ang * Math.PI) / 180).toFixed(2) * (r - 5);
-      const x0 = Math.cos((ang * Math.PI) / 180).toFixed(2) * (r - 30);
-      const y0 = Math.sin((ang * Math.PI) / 180).toFixed(2) * (r - 30);
+      const ang = 90 - Number((360 / arLen).toFixed(2)) * (ind + 1);
+      const x = Number(Math.cos((ang * Math.PI) / 180).toFixed(2)) * r;
+      const y = Number(Math.sin((ang * Math.PI) / 180).toFixed(2)) * r;
+      const x1 = Number(Math.cos((ang * Math.PI) / 180).toFixed(2)) * (r - 5);
+      const y1 = Number(Math.sin((ang * Math.PI) / 180).toFixed(2)) * (r - 5);
+      const x0 = Number(Math.cos((ang * Math.PI) / 180).toFixed(2)) * (r - 30);
+      const y0 = Number(Math.sin((ang * Math.PI) / 180).toFixed(2)) * (r - 30);
       e.value = [x.toFixed(2), y.toFixed(2)];
       e.twoPoint = [
         [x1.toFixed(2), y1.toFixed(2)],
@@ -91,11 +95,11 @@ const MiddleLeftPieBox: React.FC = () => {
   }
 
   // 线配置
-  function linesConfig(arr) {
+  function linesConfig(arr: any[]) {
     const [dataArr, targetCoord] = [[], [0, 0]];
-    arr.forEach((el) => {
-      function getFormatItem(start, end) {
-        let item = [
+    arr.forEach((el: { twoPoint: { [x: string]: unknown; }; type: number; }) => {
+      const getFormatItem = (start: number, end: number) => {
+        const item = [
           { coord: el.twoPoint[start] }, // 起点
           {
             coord: el.twoPoint[end],
@@ -114,14 +118,14 @@ const MiddleLeftPieBox: React.FC = () => {
         case 0:
           break;
         case 1:
-          dataArr.push(getFormatItem(0, 1));
+          dataArr.push(getFormatItem(0, 1) as never);
           break;
         case 2:
-          dataArr.push(getFormatItem(1, 0));
+          dataArr.push(getFormatItem(1, 0) as never);
           break;
         case 3:
-          dataArr.push(getFormatItem(0, 1));
-          dataArr.push(getFormatItem(1, 0));
+          dataArr.push(getFormatItem(0, 1) as never);
+          dataArr.push(getFormatItem(1, 0) as never);
           break;
       }
     });
@@ -137,8 +141,8 @@ const MiddleLeftPieBox: React.FC = () => {
   // 线坐标和配置
   dataArr = linesConfig(allArr);
 
-  function generateData(totalNum, bigvalue, smallvalue, color) {
-    let dataArr = [];
+  function generateData(totalNum: number, bigvalue: number, smallvalue: number, color: string) {
+    const dataArr = [];
     for (var i = 0; i < totalNum; i++) {
       if (i % 2 === 0) {
         dataArr.push({
@@ -163,14 +167,14 @@ const MiddleLeftPieBox: React.FC = () => {
     return dataArr;
   }
 
-  let dolitData = generateData(100, 25, 20, "rgb(126,190,255)");
-  let threeData = generateData(6, 40, 10, "#2dc0c9");
+  const dolitData = generateData(100, 25, 20, "rgb(126,190,255)");
+  const threeData = generateData(6, 40, 10, "#2dc0c9");
 
-  function getOption(startAngle, radius) {
-    let options = {
+  function getOption(startAngle: number, radius: string | number) {
+    const options = {
       title: {
         text: "调度中心数据流向",
-        left:'center',
+        left: "center",
         textStyle: {
           textAlign: "center",
           color: "#fff",
@@ -284,7 +288,7 @@ const MiddleLeftPieBox: React.FC = () => {
           type: "pie",
           zlevel: 4,
           silent: true,
-          radius: [radius + 1 + "%", radius + "%"],
+          radius: [Number(radius) + 1 + "%", radius + "%"],
           label: {
             normal: {
               show: false,
@@ -303,6 +307,7 @@ const MiddleLeftPieBox: React.FC = () => {
   }
 
   let startAngle = 50; // 初始旋转角度
+  // eslint-disable-next-line prefer-const
   let [minradius, radius, maxradius] = [24, 24, 28]; // 初始缩放尺寸
   let isBig = true; // 缩放动画 标识
   function draw() {

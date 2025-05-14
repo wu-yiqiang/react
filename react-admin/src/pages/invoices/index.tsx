@@ -1,7 +1,9 @@
 import { Button } from "antd"
 import useSystemStore from "@/store/index";
+import { SystemStore } from "@/types/common";
 export default function Invoices() {
-  const { userInfo, setUserInfo } = useSystemStore();
+// 假设 useSystemStore 返回的类型包含 userInfo 字段，这里进行类型断言
+const { userInfo } = useSystemStore() as SystemStore
   return (
     <div>
       <Button

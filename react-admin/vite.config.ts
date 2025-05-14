@@ -76,24 +76,23 @@ export default defineConfig({
       chunkSizeWarningLimit: 500,
       // 取消sourceMap， 加快打包速度,
       sourcemap: false,
+      outDir: 'dist', // 构建输出目录
       rollupOptions: {
         output: {
           format: 'esm',
           manualChunks: (id) => {
-            // if (id.includes('node_modules/vant')) return 'vant'
-            // 对views目录中的文件进行单独打包
-            // if (id.includes('src/views')) return 'views'
             if (id.includes('node_modules')) return id.toString().split('node_modules')[1].split('/')[0].toString()
           },
-          entryFileNames: 'js/[name].hash.js',
-          chunkFileNames: 'js/[name].hash.js',
-          // assetFileNames: 'css/[name]-[hash][extname]'
-          assetFileNames: (assetInfo) => {
-            const fileName = assetInfo.name
-            if (fileName?.endsWith('.svg')) return 'img/svg/[name]-[hash][extname]'
-            if (fileName?.endsWith('.ogg')) return 'audio/[name][extname]'
-            return 'css/[name]-[hash][extname]'
-          }
+          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
+          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
+          assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
+          treeshake: true,
+          // assetFileNames: (assetInfo) => {
+          //   const fileName = assetInfo.name
+          //   if (fileName?.endsWith('.svg')) return 'img/svg/[name]-[hash][extname]'
+          //   if (fileName?.endsWith('.ogg')) return 'audio/[name][extname]'
+          //   return 'css/[name]-[hash][extname]'
+          // }
         }
       }
     }

@@ -4,9 +4,16 @@ import avatar1 from '@/assets/images/1.png'
 import avatar2 from '@/assets/images/2.png'
 import avatar3 from '@/assets/images/3.png'
 import avatar4 from '@/assets/images/4.png'
-
+interface User {
+  avatar: string;
+  name: string;
+  id: number;
+  code: string;
+  department: string;
+  time: number | null;
+}
 export default function DaySchedule() {
-  const [users, setUsers] = useState( [
+  const [users, setUsers] = useState<User[]>([
     {
       avatar: avatar1,
       name: "Tom",
@@ -47,14 +54,16 @@ export default function DaySchedule() {
       department: "IT",
       time: null,
     },
-  ])
-  const [userId, setUserId] = useState(null)
+  ]);
+//  const [userId, setUserId] = useState(null)
   const init = () => {
-    let userId = null
+    let userId: null | number = null
     const element = document.querySelector(".DaySchedule");
     element?.addEventListener('dragstart', (event: Event) => {
-      event.dataTransfer.effectAllowed = event.target?.dataset?.effect;
-      userId = event?.target?.dataset?.id;
+      // 由于 event.target 类型为 EventTarget，其本身没有 dataset 属性，需要将其转换为 HTMLElement 类型
+      const targetElement = event.target as HTMLElement;
+      // event.dataTransfer.effectAllowed = targetElement?.dataset?.effect ?? 'move';
+      userId = Number(targetElement?.dataset?.id) ?? null;
     })
     // element?.addEventListener("dragenter", (event: Event) => {
     //   console.log("dragenter", event);
@@ -63,12 +72,12 @@ export default function DaySchedule() {
       event?.preventDefault && event?.preventDefault();
     });
     element?.addEventListener("drop", (event: Event) => {
-      const time = event?.target?.dataset?.time;
+      // 由于 event.target 类型为 EventTarget，其本身没有 dataset 属性，需要将其转换为 HTMLElement 类型
+      const targetElement = event?.target as HTMLElement;
+      const time = targetElement?.dataset?.time ?? null;
       const newUsers = users?.map((item) => {
-        console.log("sdddddd", item, userId);
         if (item?.id == userId) {
-          
-          item.time = time;
+          item.time = time as unknown as number;
          }
          return item
       });
@@ -83,7 +92,7 @@ export default function DaySchedule() {
     <section draggable={true} className="DaySchedule">
       <div draggable={true} data-time={null} className="select-pannel">
         {users?.map((user, index) => {
-          return user?.time == null ? <Card user={user} key={user.id} /> : null;
+          return user?.time == null ? <Card user={user} key={index} /> : null;
         })}
       </div>
       <div draggable={true} className="schedule-table">

@@ -69,7 +69,7 @@ const BottomBarBox: React.FC = () => {
                 show: true,
                 position: 'right',
                 offset: [3, 0],
-                formatter: (param) => {
+                formatter: (param: { value: number }) => {
                   return param.value.toFixed(0) + '%'
                 },
                 textStyle: {

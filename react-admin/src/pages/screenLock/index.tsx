@@ -6,21 +6,20 @@ import { SystemStore } from '@/types/common'
 import avatar from '@/assets/images/user.jpg'
 import './index.scss'
 import dayjs from 'dayjs'
-import eventMitt from '@/utils/eventMitt'
-import { useState } from 'react'
-import { color } from 'echarts'
+// import eventMitt from '@/utils/eventMitt'
+import { ChangeEvent, ReactEventHandler, useState } from 'react'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const [currentDayTime, setCurrentDayTime] = useState(dayjs().format('DD/MM/YYYY HH:mm'))
-  const handleUnlock = (e: Event) => {
-    const value = e?.target?.value
+  const handleUnlock = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e?.target?.value;
     if (value === systemSetting.lockPassword) {
-      setSystemSetting({ ...systemSetting, locked: false })
+      setSystemSetting({ ...systemSetting, locked: false });
     }
-  }
-  const handleLoadError = (e: Event) => {
-    e.target.src = avatar
-  }
+  };
+  const handleLoadError = (e: any) => {
+    e.target.src = avatar;
+  };
   setInterval(() => {
     setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)

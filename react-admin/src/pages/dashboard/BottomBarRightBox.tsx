@@ -11,7 +11,7 @@ import third_dot from '@/assets/images/third_dot.png'
 import normal_dot from '@/assets/images/normal_dot.png'
 
 const BottomBarBox: React.FC = () => {
- let echartData = [
+ const echartData = [
    {
      value: 44,
      name: '市本级'
@@ -38,7 +38,7 @@ const BottomBarBox: React.FC = () => {
    },
 
  ]
- let attackSourcesColor = [
+ const attackSourcesColor = [
    new echarts.graphic.LinearGradient(0, 1, 1, 1, [
      { offset: 0, color: 'rgba(254, 69, 97, 0)' },
      { offset: 1, color: 'rgba(254, 69, 97, 1)' }
@@ -61,8 +61,8 @@ const BottomBarBox: React.FC = () => {
    //你的代码
    tooltip: {
      trigger: 'axis',
-     formatter(params) {
-       for (var i = 0; i < params.length; i++) {
+     formatter(params: string | any[]) {
+       for (let i = 0; i < params.length; i++) {
          return params[i].name + ':' + params[i].data.value + '宗'
        }
      }
@@ -99,7 +99,7 @@ const BottomBarBox: React.FC = () => {
          fontSize: '18px',
          padding: [-3, 0, 0, 0],
          margin: 18, //刻度标签与轴线之间的距离
-         formatter: function (value, index) {
+         formatter: function (value: any, index: number) {
            if (index < 3) {
              return `{img${index}|}`
            } else {
@@ -161,7 +161,7 @@ const BottomBarBox: React.FC = () => {
        axisLabel: {
          padding: [-3, 0, 0, 0],
          margin: 10, //刻度标签与轴线之间的距离
-         formatter: function (value, index) {
+         formatter: function (value: any, index: number) {
            return `{a|${echartData[index].value}}{b|宗}`
          },
          rich: {
@@ -210,7 +210,7 @@ const BottomBarBox: React.FC = () => {
    series: [
      {
        data: echartData.map((item, i) => {
-         let itemStyle = {
+         const itemStyle = {
            color: i > 3 ? attackSourcesColor[3] : attackSourcesColor[i]
          }
          return {
@@ -229,7 +229,7 @@ const BottomBarBox: React.FC = () => {
          show: true,
          position: 'insideRight',
          distance: -10,
-         formatter: (params) => {
+         formatter: (params: { dataIndex: number }) => {
            if (params.dataIndex < 3) {
              return `{img${params.dataIndex}|}`
            } else {

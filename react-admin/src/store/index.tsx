@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import eventMitt from "@/utils/eventMitt";
-import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
+//import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
 import { storeName } from '@/common/enum.ts'
 const useSystemStore = create(
   persist(

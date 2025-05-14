@@ -59,16 +59,6 @@ export default function UserAddDialog(props: DialogProps) {
   useEffect(() => {
     init()
   }, [id])
-  const handleUpload = async (info: object) => {
-    const file = info?.file
-    const formData = new FormData()
-    formData.append('file', file)
-    setLoading(true)
-    const { data } = await upload(formData)
-    form.setFieldValue('avatar', data)
-    console.log('sds', form.getFieldValue('avatar'))
-    setLoading(false)
-  }
   const beforeUpload = (file: File) => {
     const fileType = file?.type
     if (fileType !== 'image/jpeg' && fileType !== 'image/png') {

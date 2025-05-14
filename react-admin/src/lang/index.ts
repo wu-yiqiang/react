@@ -3,7 +3,8 @@ import i18n from 'i18next';
 import resources from './language.ts';
 import eventMitt from '@/utils/eventMitt.ts';
 import useSystemStore from '@/store/index.tsx';
-const language  = useSystemStore.getState().systemSetting?.language
+import { SystemStore } from '@/types/common.ts';
+const language  = (useSystemStore.getState() as SystemStore)?.systemSetting?.language
 i18n.use(initReactI18next).init({
   resources,
   lng: language,

@@ -14,11 +14,13 @@ export default function ScheduleManager() {
     pageNo: 1,
     pageSize: 10,
   });
-  const handleEdit = (id: number) => {
-    setUserId(id);
-    setDialogOpen(true);
+  const handleEdit = (id: number | null) => {
+    if (!id) return
+//    setUserId(id);
+//    setDialogOpen(true);
   };
-  const handleDelete = async (id: number) => {
+  const handleDelete = async (id: number | null) => {
+    if (!id) return
     await deleteRoleItem(id);
     Toast.success("操作成功");
     await handleSearch({ ...queryData, pageNo: 1 });

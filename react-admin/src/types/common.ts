@@ -64,8 +64,8 @@ export interface SystemStore {
   menus: Array<RouterItem>
   currentMenu: RouterItem
   systemSetting: SystemSetting
-  selectMenu: Array<String>
-  openMenu: Array<String>
+  selectMenu: Array<string>
+  openMenu: Array<string>
   setUserInfo: (value: object) => void
   setSystemSetting: (value: object) => void
   setSelectMenu: (value: object) => void
@@ -74,4 +74,10 @@ export interface SystemStore {
 
 export interface UploadData {
     file: FormData
+}
+
+export interface SearchFormProps {
+    label: string
+    name: string
+    type: string
 }

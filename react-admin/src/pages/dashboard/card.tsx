@@ -2,7 +2,7 @@ import * as React from 'react'
 import CountUp from 'react-countup'
 import './card.scss'
 import SvgIcon from '@/components/SvgIcon/SvgIcon.tsx'
-const Card: React.FC = (props: any) => {
+const Card = (props: any) => {
   const {title, name, count} = props
   return (
     <div className="Card">

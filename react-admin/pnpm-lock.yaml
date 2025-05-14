@@ -11,9 +11,6 @@ importers:
       '@ant-design/icons':
         specifier: ^5.6.1
         version: 5.6.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@venturan/ts-tools':
-        specifier: ^1.0.6
-        version: 1.0.6
       '@venturan/vite-plugin-build-compress':
         specifier: ^1.0.0
         version: 1.0.0(@swc/core@1.5.24)(postcss@5.2.18)(sass@1.77.4)
@@ -1061,9 +1058,6 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
-
-  '@venturan/ts-tools@1.0.6':
-    resolution: {integrity: sha512-+jW06ASWZYFvSrAhjvg8DovsNtOGnJtYdg0EtHhNxWgbTIYObCBVC46czLNYGW7Tidy0MJaEE/bIMW0BkVuaMA==}
 
   '@venturan/vite-plugin-build-compress@1.0.0':
     resolution: {integrity: sha512-DdO22Nky4F/IdPmt0bbI615lKwAhYYMvgxMmRBXNd+Vp35UOqnDW1usfeRntG+5m+s5x8r3jrB5yKAB9VWzcPw==}
@@ -4880,14 +4874,12 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@venturan/ts-tools@1.0.6': {}
-
   '@venturan/vite-plugin-build-compress@1.0.0(@swc/core@1.5.24)(postcss@5.2.18)(sass@1.77.4)':
     dependencies:
       '@mistjs/eslint-config-vue': 0.1.0(eslint@9.25.1)(typescript@5.8.3)
       '@mistjs/tsconfig-vue': 1.1.2
       '@types/node': 22.14.1
-      '@vitejs/plugin-vue': 5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.8.3))
+      '@vitejs/plugin-vue': 5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.4.5))
       compressing: 1.10.1
       eslint: 9.25.1
       tsup: 8.4.0(@swc/core@1.5.24)(postcss@5.2.18)(typescript@5.8.3)
@@ -4918,7 +4910,7 @@ snapshots:
       '@mistjs/eslint-config-vue': 0.1.0(eslint@9.25.1)(typescript@5.8.3)
       '@mistjs/tsconfig-vue': 1.1.2
       '@types/node': 22.14.1
-      '@vitejs/plugin-vue': 5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.8.3))
+      '@vitejs/plugin-vue': 5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.4.5))
       eslint: 9.25.1
       sharp: 0.34.1
       tsup: 8.4.0(@swc/core@1.5.24)(postcss@5.2.18)(typescript@5.8.3)
@@ -4955,7 +4947,7 @@ snapshots:
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitejs/plugin-vue@5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.8.3))':
+  '@vitejs/plugin-vue@5.2.3(vite@6.3.2(@types/node@22.14.1)(sass@1.77.4))(vue@3.5.13(typescript@5.4.5))':
     dependencies:
       vite: 6.3.2(@types/node@22.14.1)(sass@1.77.4)
       vue: 3.5.13(typescript@5.8.3)
@@ -5006,7 +4998,7 @@ snapshots:
       '@vue/shared': 3.5.13
       csstype: 3.1.3
 
-  '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.8.3))':
+  '@vue/server-renderer@3.5.13(vue@3.5.13(typescript@5.4.5))':
     dependencies:
       '@vue/compiler-ssr': 3.5.13
       '@vue/shared': 3.5.13
@@ -8256,7 +8248,7 @@ snapshots:
       '@vue/compiler-dom': 3.5.13
       '@vue/compiler-sfc': 3.5.13
       '@vue/runtime-dom': 3.5.13
-      '@vue/server-renderer': 3.5.13(vue@3.5.13(typescript@5.8.3))
+      '@vue/server-renderer': 3.5.13(vue@3.5.13(typescript@5.4.5))
       '@vue/shared': 3.5.13
     optionalDependencies:
       typescript: 5.8.3
