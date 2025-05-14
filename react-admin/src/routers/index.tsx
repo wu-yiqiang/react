@@ -28,10 +28,12 @@ import ButtonManager from '@/pages/system/buttons/index'
 import Intelligent from "@/pages/intelligent";
 import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
-import { RouterItem } from '@/types/common'
+import { RouterItem, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
-import { logout } from "@/api/public";
+import { logout } from '@/api/public'
+const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
+console.log('perms', menus)
 export const allRouters: Array<RouterItem> = [
   {
     path: '/dashboard',
@@ -141,7 +143,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/basicData/company',
     label: '公司管理',
     icon: <UserOutlined />,
-    key: 'company',
+    key: 'companys',
     parentkey: 'BasicData',
     element: <Company />
   },
@@ -149,7 +151,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/basicData/position',
     label: '岗位管理',
     icon: <TeamOutlined />,
-    key: 'position',
+    key: 'positions',
     parentkey: 'BasicData',
     element: <Position />
   },
@@ -157,7 +159,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/basicData/department',
     label: '部门管理',
     icon: <TeamOutlined />,
-    key: 'department',
+    key: 'departments',
     parentkey: 'BasicData',
     element: <Department />
   },
@@ -173,7 +175,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/setting/user',
     label: '用户管理',
     icon: <UserOutlined />,
-    key: 'user-manager',
+    key: 'users',
     parentkey: 'setting',
     element: <UserManager />
   },
@@ -181,7 +183,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/setting/role',
     label: '角色管理',
     icon: <TeamOutlined />,
-    key: 'role-manager',
+    key: 'roles',
     parentkey: 'setting',
     element: <RoleManager />
   },
@@ -189,7 +191,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/setting/menu',
     label: '菜单管理',
     icon: <MenuOutlined />,
-    key: 'menu-manager',
+    key: 'menus',
     parentkey: 'setting',
     element: <MenuManager />
   },
@@ -197,7 +199,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/setting/button',
     label: '按钮管理',
     icon: <MenuOutlined />,
-    key: 'button-manager',
+    key: 'buttons',
     parentkey: 'setting',
     element: <ButtonManager />
   },
@@ -205,7 +207,7 @@ export const allRouters: Array<RouterItem> = [
     path: '/setting/permission',
     label: '权限管理',
     icon: <SafetyOutlined />,
-    key: 'permission-manager',
+    key: 'permissions',
     parentkey: 'setting',
     element: <PermissionManager />
   },
@@ -233,18 +235,19 @@ export const allRouters: Array<RouterItem> = [
 
 const routerConfig: RouteObject[] = [
   {
-    path: "/",
+    path: '/',
     errorElement: <div>make error</div>,
     element: <Layout />,
     // loader: rootLoader,
-    children: allRouters,
-  },
-];
+    children: allRouters?.filter((v) => menus?.some((val: any) => val.perms == v.key))
+    // children: allRouters
+  }
+]
 
 const whiteLists: RouteObject[] = [
   {
     path: '/',
-    element: <Navigate to="dashboard" />
+    element: <Layout />
   },
   {
     path: '/login',

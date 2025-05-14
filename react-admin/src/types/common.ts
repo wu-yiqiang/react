@@ -49,7 +49,10 @@ export interface DialogProps {
 
 interface UserInfo {
   username: string
-  avatar: string
+    avatar: string
+    token: string
+    menus: object
+    roles: object
 }
 
 interface SystemSetting {

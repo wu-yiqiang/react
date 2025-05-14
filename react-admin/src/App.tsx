@@ -9,7 +9,7 @@ import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
 import { useEffect } from "react";
 function App() {
-  const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
+  const { systemSetting,userInfo, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
     token: {
       colorPrimary: '#FF7A00',
@@ -104,8 +104,7 @@ function App() {
     setInterval(() => {
       const endTime = new Date().getTime()
       const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
-      // console.log('start', startTime, 'end', endTime, 'inter', startTimeAdded)
-      if (endTime > startTimeAdded) setSystemSetting({ ...systemSetting, locked: true })
+      if (endTime > startTimeAdded && !systemSetting?.locked && userInfo?.token) setSystemSetting({ ...systemSetting, locked: true })
     }, 1000)
     document.addEventListener('mousemove', () => {
       startTime = new Date().getTime()
