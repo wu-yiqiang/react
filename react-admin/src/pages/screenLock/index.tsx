@@ -35,7 +35,7 @@ export default function ScreenLock() {
           </div>
           <div className="user">
             <div className="avatar">
-              <img src={userInfo?.avatar} onError={handleLoadError}/>
+              <img src={userInfo?.avatar ?? ''} onError={handleLoadError}/>
             </div>
             <div className="name">{userInfo?.username}</div>
             <Input.Password placeholder="密码" onChange={handleUnlock} />
