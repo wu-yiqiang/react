@@ -33,7 +33,6 @@ import useSystemStore from '@/store/index'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
-console.log('perms', menus)
 export const allRouters: Array<RouterItem> = [
   {
     path: '/dashboard',
@@ -239,7 +238,7 @@ const routerConfig: RouteObject[] = [
     errorElement: <div>make error</div>,
     element: <Layout />,
     // loader: rootLoader,
-    children: allRouters?.filter((v) => menus?.some((val: any) => val.perms == v.key))
+    children: allRouters?.filter((v) => menus?.some((val: any) => val.code == v.key))
     // children: allRouters
   }
 ]

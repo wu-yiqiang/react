@@ -92,7 +92,7 @@ export default function UserAddDialog(props: DialogProps) {
                 </Form.Item>
               </Col>
               <Col span={12}>
-                <Form.Item label="权限标识" name="perms" rules={requiredRules}>
+                <Form.Item label="权限标识" name="code" rules={requiredRules}>
                   <Input placeholder="权限标识" />
                 </Form.Item>
               </Col>
@@ -107,11 +107,11 @@ export default function UserAddDialog(props: DialogProps) {
                   <Input placeholder="路由地址" />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              {/* <Col span={24}>
                 <Form.Item label="组件路径" name="component" rules={requiredRules}>
                   <Input placeholder="组件路径" />
                 </Form.Item>
-              </Col>
+              </Col> */}
               <Form.Item hidden label="ID" name="id">
                 <Input hidden />
               </Form.Item>

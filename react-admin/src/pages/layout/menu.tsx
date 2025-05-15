@@ -13,14 +13,14 @@ interface MenuItem {
   label: string
   path: string
 }
-
 let items: Array<MenuItem> = []
-
 const genItems = () => {
+  const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
   // 清空
   items = []
   let res: Array<MenuItem> = []
   res = allRouters
+    ?.filter((v) => menus?.some((val: any) => val.code == v.key))
     ?.map((item: any) => {
       const template: MenuItem = {
         key: item.key,

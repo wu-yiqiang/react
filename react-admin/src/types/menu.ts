@@ -3,11 +3,10 @@ export interface MenuField {
   name: string
   parent_id: number | null
   path: string
-  component: string
   phone_number: string
   order_num: number | null
   menu_type: number | null
-  perms: string
+  code: string
 }
 export interface MenuSearch extends Search, Pagenation {}
 export interface MenuItem extends CommonTime, CommonUuid, CommonId, MenuField {}
@@ -18,21 +17,19 @@ export class Menu implements MenuItem {
   name: string
   parent_id: number | null
   path: string
-  component: string
   phone_number: string
   order_num: number | null
   menu_type: number | null
-  perms: string
+  code: string
   constructor() {
     this.id = null,
     this.uuid = ''
     this.name = ''
     this.parent_id = null
     this.path = ''
-    this.component = ''
     this.phone_number = ''
     this.order_num = null
-    this.perms = ''
+    this.code = ''
     this.menu_type = null
   }
 }

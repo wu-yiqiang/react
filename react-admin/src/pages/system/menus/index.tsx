@@ -43,8 +43,8 @@ export default function UserManager() {
     },
     {
       title: '权限标识',
-      dataIndex: 'perms',
-      key: 'perms',
+      dataIndex: 'code',
+      key: 'code',
       width: 120
     },
     {
