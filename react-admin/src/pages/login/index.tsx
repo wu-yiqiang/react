@@ -20,12 +20,12 @@ function Login() {
   return (
     <div className="Login">
       <div className="logo-box">
-        <img src={logo} alt="" style={{width: '80px'}} />
+        <img src={logo} alt="" style={{ width: '80px' }} />
       </div>
       <div className="bottom-box">
         <div className="left-box">
           <div className="first-title">EAMS</div>
-          <div className="second-title">Digital Assets Management System</div>
+          <div className="second-title">Equipment Acquisition Management System</div>
         </div>
         <div className="right-box">
           <div className="card">

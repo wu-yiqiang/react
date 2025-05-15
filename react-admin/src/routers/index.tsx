@@ -30,7 +30,7 @@ import NotFound from "@/pages/error/404"
 import NotPermission from '@/pages/error/403'
 import { RouterItem, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
-import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined } from '@ant-design/icons'
+import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined, MenuUnfoldOutlined, DatabaseOutlined } from '@ant-design/icons'
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 export const allRouters: Array<RouterItem> = [
@@ -108,7 +108,7 @@ export const allRouters: Array<RouterItem> = [
   },
   {
     path: '/schedules',
-    label: '排班管理',
+    label: '班次管理',
     icon: <ScheduleOutlined />,
     key: 'schedules',
     parentkey: '',
@@ -133,7 +133,7 @@ export const allRouters: Array<RouterItem> = [
   {
     path: '/basicData',
     label: '数据管理',
-    icon: <SettingOutlined />,
+    icon: <DatabaseOutlined />,
     key: 'BasicData',
     parentkey: '',
     element: null
@@ -163,59 +163,59 @@ export const allRouters: Array<RouterItem> = [
     element: <Department />
   },
   {
-    path: '/setting',
+    path: '/settings',
     label: '系统设置',
     icon: <SettingOutlined />,
-    key: 'setting',
+    key: 'settings',
     parentkey: '',
     element: null
   },
   {
-    path: '/setting/user',
+    path: '/settings/users',
     label: '用户管理',
     icon: <UserOutlined />,
     key: 'users',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <UserManager />
   },
   {
-    path: '/setting/role',
+    path: '/settings/roles',
     label: '角色管理',
     icon: <TeamOutlined />,
     key: 'roles',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <RoleManager />
   },
   {
-    path: '/setting/menu',
+    path: '/settings/menus',
     label: '菜单管理',
     icon: <MenuOutlined />,
     key: 'menus',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <MenuManager />
   },
   {
-    path: '/setting/button',
+    path: '/settings/buttons',
     label: '按钮管理',
-    icon: <MenuOutlined />,
+    icon: <MenuUnfoldOutlined />,
     key: 'buttons',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <ButtonManager />
   },
   {
-    path: '/setting/permission',
+    path: '/settings/permissions',
     label: '权限管理',
     icon: <SafetyOutlined />,
     key: 'permissions',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <PermissionManager />
   },
   {
-    path: '/setting/intelligent',
+    path: '/settings/intelligent',
     label: '智能应答',
     icon: <SafetyOutlined />,
     key: 'intelligent',
-    parentkey: 'setting',
+    parentkey: 'settings',
     element: <Intelligent />
   }
 ]

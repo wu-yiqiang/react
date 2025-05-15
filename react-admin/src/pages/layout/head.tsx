@@ -1,11 +1,13 @@
 import { SettingOutlined, BellOutlined, BgColorsOutlined, UserOutlined, TranslationOutlined, SearchOutlined, LockOutlined } from '@ant-design/icons'
 import './head.scss'
-import { Input, Dropdown, MenuProps, Badge } from 'antd'
+import { Input, Dropdown, MenuProps, Badge, Avatar } from 'antd'
 import eventMitt from "@/utils/eventMitt";
 import SettingDialog from './settings'
 import { useState } from 'react';
 import { logout } from '@/api/public';
 import Toast from '@/components/Toast';
+import useSystemStore from '@/store';
+import { SystemStore } from '@/types/common';
 export default function Head() {
   return (
     <span className="Header">
@@ -115,6 +117,7 @@ function Setting() {
  }
 
 function User() {
+  const { userInfo } = useSystemStore() as SystemStore
   const handleLogout = async () => {
     // await logout()
     eventMitt.emit('STORE:USER', {})
@@ -129,7 +132,8 @@ function User() {
   ];
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
-      <UserOutlined className="headeIcon" />
+      {/* <UserOutlined className="headeIcon" /> */}
+      <Avatar src={userInfo?.avatar} size={36} style={{ objectPosition: 'top' }} icon={<UserOutlined />} />
     </Dropdown>
-  );
+  )
 }

@@ -12,7 +12,7 @@ dialog {
     flex-direction: column;
     justify-content: space-around;
     row-gap: 24px;
-    height: 50%;
+    // height: 50%;
     padding: 40px;
     .dateTime {
       .date {
@@ -24,6 +24,7 @@ dialog {
 
       .time {
         font-size: 60px;
+        margin-top: 14px;
         color: #fff;
         display: grid;
         place-content: center;

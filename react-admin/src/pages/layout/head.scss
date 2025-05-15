@@ -43,13 +43,11 @@
         width: 180px; // 展开后的宽度
         cursor: text;
       }
-
-      // 保持图标可见
-      // .ant-input-prefix {
-      //   position: absolute;
-      //   left: 8px;
-      //   z-index: 1;
-      // }
+    }
+  }
+  .ant-avatar {
+    img {
+      object-position: top;
     }
   }
 }
