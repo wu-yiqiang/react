@@ -5,6 +5,7 @@ import useSystemStore from '@/store'
 // import qs from 'qs'
 
 const defaultConfig: AxiosRequestConfig = {
+  // baseURL: 'https://venturan.site/eams',
   baseURL: '/prod-api',
   timeout: 1000 * 60 * 5
   // 数组格式参数序列化

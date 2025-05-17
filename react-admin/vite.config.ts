@@ -6,6 +6,7 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 import imageOptimizer from '@venturan/vite-plugin-image-optimizer'
 import buildCompress from '@venturan/vite-plugin-build-compress'
 import { resolve } from 'path'
+import { chunk } from 'lodash-es'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
 }
@@ -52,38 +53,34 @@ export default defineConfig({
         ws: true,
         rewrite: (path) => path.replace(/^\/prod-api/, '')
       }
-    },
-    build: {
-      // 静态资源处理
-      // assetsDir: 'assets',
-      target: 'es2015',
-      polyfillModulePreload: true,
-      minify: 'esbuild',
-      cssCodeSplit: true,
-      cssTarget: '',
-      emptyOutDir: true,
-      reportCompressedSize: false,
-      // 启用压缩大小报告,
-       brotliSize: false,
-      chunkSizeWarningLimit: 500,
-      sourcemap: false,
-      outDir: 'dist', // 构建输出目录
-      rollupOptions: {
-        output: {
-          format: 'esm',
-          manualChunks: (id) => {
-            if (id.includes('node_modules')) return id.toString().split('node_modules')[1].split('/')[0].toString()
-          },
-          treeshake: true,
-          entryFileNames: 'js/[name]-[hash].js', // 包的入口文件名称
-          chunkFileNames: 'js/[name]-[hash].js', // 引入文件名的名称
-          assetFileNames: '[ext]/[name]-[hash].[ext]', // 资源文件像 字体，图片等
-//           assetFileNames: (assetInfo) => {
-//             const fileName = assetInfo.name
-//             if (fileName?.endsWith('.svg')) return '/assets/img/svg/[name]-[hash][extname]'
-//             if (fileName?.endsWith('.ogg')) return '/assets/audio/[name][extname]'
-//             return 'css/[name]-[hash][extname]'
-//           }
+    }
+  },
+  build: {
+    assetsDir: 'assets',
+    target: 'es2015',
+    polyfillModulePreload: true,
+    minify: 'esbuild',
+    cssCodeSplit: false,
+    cssTarget: '',
+    emptyOutDir: true,
+    reportCompressedSize: false,
+    chunkSizeWarningLimit: 500,
+    sourcemap: false,
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        format: 'esm',
+        manualChunks: {
+          echarts: ['echarts'],
+          vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'axios', 'zustand'],
+          antd: ['antd'],
+        },
+        entryFileNames: 'js/[name]-[hash].js',
+        chunkFileNames: 'js/[name]-[hash].js',
+        assetFileNames: (assetInfo) => {
+          const fileName = assetInfo?.name
+          if (fileName?.endsWith('.css')) return 'css/[name]-[hash].css'
+          return 'assets/[ext]/[name]-[hash].[ext]'
         }
       }
     }
