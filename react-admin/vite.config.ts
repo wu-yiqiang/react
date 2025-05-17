@@ -6,11 +6,11 @@ import basicSsl from '@vitejs/plugin-basic-ssl'
 import imageOptimizer from '@venturan/vite-plugin-image-optimizer'
 import buildCompress from '@venturan/vite-plugin-build-compress'
 import { resolve } from 'path'
-import { chunk } from 'lodash-es'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
 }
 export default defineConfig({
+  envDir: './env',
   base: './',
   resolve: {
     alias: {
@@ -45,10 +45,8 @@ export default defineConfig({
     hmr: true,
     port: 8090,
     proxy: {
-      '/prod-api': {
-        // target: `http://192.168.1.34:8081`,
+      '/pro-api': {
         target: `http://192.168.1.222:8000/`,
-        //target: `http://192.168.1.15:8899`,
         changeOrigin: true,
         ws: true,
         rewrite: (path) => path.replace(/^\/prod-api/, '')
@@ -73,7 +71,7 @@ export default defineConfig({
         manualChunks: {
           echarts: ['echarts'],
           vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'axios', 'zustand'],
-          antd: ['antd'],
+          antd: ['antd']
         },
         entryFileNames: 'js/[name]-[hash].js',
         chunkFileNames: 'js/[name]-[hash].js',

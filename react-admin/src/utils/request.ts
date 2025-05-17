@@ -3,10 +3,9 @@ import eventMitt from './eventMitt'
 import Toast from '@/components/Toast'
 import useSystemStore from '@/store'
 // import qs from 'qs'
-
+console.log('sdsd', import.meta.env.VITE_API_BASE_URL)
 const defaultConfig: AxiosRequestConfig = {
-  baseURL: 'https://venturan.site/eams',
-  // baseURL: '/prod-api',
+  baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 1000 * 60 * 5
   // 数组格式参数序列化
   //  paramsSerializer: (params) => qs.stringify(params, { indices: false })

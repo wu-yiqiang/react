@@ -4,10 +4,15 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { login } from '@/api/public'
 import eventMitt from '@/utils/eventMitt'
 import Toast from '@/components/Toast'
+import { useState } from 'react'
 function LoginPassword() {
   const [form] = Form.useForm()
+  const [loading, setLoading] = useState(false)
   const onFinish = async (value: any) => {
-    const { data } = await login(value)
+    setLoading(true)
+    const { data } = await login(value).finally(() => {
+      setLoading(false)
+    })
     if (data?.token) {
       Toast.success('登录成功')
       eventMitt.emit('STORE:USER', data)
@@ -29,7 +34,7 @@ function LoginPassword() {
         </Form.Item>
         <Form.Item>
           <div className="submit">
-            <Button type="primary" block htmlType="submit">
+            <Button type="primary" loading={loading} block htmlType="submit">
               登录
             </Button>
           </div>

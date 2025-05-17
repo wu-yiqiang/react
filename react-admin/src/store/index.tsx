@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { persist, createJSONStorage } from "zustand/middleware";
 import eventMitt from "@/utils/eventMitt";
 //import { AES_ECB_ENCRYPT, AES_ECB_DECRYPT } from "@/utils/encrypt";
-import { storeName } from '@/common/enum.ts'
+import { STORENAME } from '@/common/enum.ts'
 const useSystemStore = create(
   persist(
     (set) => ({
@@ -25,7 +25,7 @@ const useSystemStore = create(
       setSystemSetting: (value: object) => set({ systemSetting: value })
     }),
     {
-      name: storeName,
+      name: STORENAME,
       version: 2.0
       // storage: createJSONStorage(() => sessionStorage)
     }
