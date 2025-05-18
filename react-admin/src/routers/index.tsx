@@ -142,7 +142,7 @@ export const allRouters: Array<RouterItem> = [
     element: null
   },
   {
-    path: '/basicData/company',
+    path: '/basicData/companys',
     label: '公司管理',
     icon: <UserOutlined />,
     key: 'companys',
@@ -150,7 +150,7 @@ export const allRouters: Array<RouterItem> = [
     element: <Companys />
   },
   {
-    path: '/basicData/position',
+    path: '/basicData/positions',
     label: '岗位管理',
     icon: <TeamOutlined />,
     key: 'positions',
@@ -158,7 +158,7 @@ export const allRouters: Array<RouterItem> = [
     element: <Positions />
   },
   {
-    path: '/basicData/department',
+    path: '/basicData/departments',
     label: '部门管理',
     icon: <TeamOutlined />,
     key: 'departments',
