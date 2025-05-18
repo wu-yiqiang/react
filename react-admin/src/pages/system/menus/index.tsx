@@ -53,12 +53,6 @@ export default function UserManager() {
       key: 'path'
     },
     {
-      title: '组件路径',
-      dataIndex: 'component',
-      key: 'component'
-    },
-
-    {
       title: '类型',
       dataIndex: 'menu_type',
       key: 'menu_type',
