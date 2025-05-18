@@ -1,13 +1,14 @@
 import { RouterProvider } from "react-router-dom";
-import { routes } from "@/routers/index.tsx";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, Spin } from "antd";
 import useSystemStore from "@/store/index";
 import eventMitt from "@/utils/eventMitt";
 import { isDark } from "@/utils/index";
 import { SystemStore } from "@/types/common";
 import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
+import { routes } from '@/routers/index.tsx'
+import { LoadingOutlined } from "@ant-design/icons";
 function App() {
   const { systemSetting,userInfo, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
@@ -121,8 +122,11 @@ function App() {
   })
   return (
     <ConfigProvider theme={themeConfig}>
-      <RouterProvider router={routes} />
-      { systemSetting?.locked ? <ScreenLock /> : null}
+      <Suspense fallback={<Spin percent="auto" fullscreen size="large" />}>
+        {/* <SomeComponent /> */}
+        <RouterProvider router={routes} />
+      </Suspense>
+      {systemSetting?.locked ? <ScreenLock /> : null}
     </ConfigProvider>
   )
 }

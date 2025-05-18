@@ -5,6 +5,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import imageOptimizer from '@venturan/vite-plugin-image-optimizer'
 import buildCompress from '@venturan/vite-plugin-build-compress'
+import { visualizer } from 'rollup-plugin-visualizer'
 import { resolve } from 'path'
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, '.', dir)
@@ -37,7 +38,14 @@ export default defineConfig({
       // 指定symbolId格式
       symbolId: 'icon-[dir]-[name]'
     }),
-    buildCompress()
+    buildCompress(),
+    visualizer({
+      gzipSize: true,
+      brotliSize: true,
+      emitFile: false,
+      filename: 'visualizer.html',
+      open: true 
+    })
   ],
   server: {
     host: '0.0.0.0',
@@ -45,10 +53,10 @@ export default defineConfig({
     hmr: true,
     port: 8090,
     proxy: {
-      '/pro-api': {
+      '/prod-api': {
         target: `http://192.168.1.222:8000/`,
         changeOrigin: true,
-        ws: true,
+        ws: false,
         rewrite: (path) => path.replace(/^\/prod-api/, '')
       }
     }

@@ -3,34 +3,37 @@ import {
   Navigate,
   // redirect,
 } from "react-router-dom";
+import React from 'react'
 import eventMitt from "@/utils/eventMitt";
 import type { RouteObject } from "react-router-dom";
-import Layout from "@/pages/layout/index";
-import UserManager from "@/pages/system/users/index";
-import Login from "@/pages/login/index";
-import RoleManager from "@/pages/system/roles/index";
-import PermissionManager from "@/pages/system/permissions/index";
-import Invoices from "@/pages/invoices/index";
-import Dashboard from "@/pages/dashboard/index";
-import Statistics from "@/pages/statistics/index";
-import Maintains from "@/pages/maintains/index";
-import Schedules from "@/pages/schedules/index";
-import MenuManager from '@/pages/system/menus/index'
-import DaySchedule from '@/pages/schedules/DaySchedule'
-import RoomsBook from "@/pages/rooms/rooms-book/index";
-import RoomsType from '@/pages/rooms/rooms-type/index'
-import RoomsStay from '@/pages/rooms/rooms-stay/index'
-import RoomsInfo from "@/pages/rooms/rooms-info/index";
-import Company from '@/pages/basicData/company/index'
-import Position from '@/pages/basicData/position/index'
-import Department from '@/pages/basicData/department/index'
-import ButtonManager from '@/pages/system/buttons/index'
-import Intelligent from "@/pages/intelligent";
-import NotFound from "@/pages/error/404"
-import NotPermission from '@/pages/error/403'
-import { RouterItem, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
+import { RouterItem, SystemStore } from '@/types/common'
 import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined, MenuUnfoldOutlined, DatabaseOutlined } from '@ant-design/icons'
+// import Layout from "@/pages/layout/index";
+const Layout = React.lazy(() => import('@/pages/layout/index'))
+const Users = React.lazy(() => import('@/pages/system/users/index'))
+const Login = React.lazy(() => import('@/pages/login/index'))
+const Roles = React.lazy(() => import('@/pages/system/roles/index'))
+const Menus = React.lazy(() => import('@/pages/system/menus/index'))
+const Buttons = React.lazy(() => import('@/pages/system/buttons/index'))
+const Permissions = React.lazy(() => import('@/pages/system/permissions/index'))
+const Invoices = React.lazy(() => import('@/pages/invoices/index'))
+const Dashboard = React.lazy(() => import('@/pages/dashboard/index'))
+const Statistics = React.lazy(() => import('@/pages/statistics/index'))
+const Maintains = React.lazy(() => import('@/pages/maintains/index'))
+const Schedules = React.lazy(() => import('@/pages/schedules/index'))
+const DaySchedule = React.lazy(() => import('@/pages/schedules/index'))
+const RoomsBook = React.lazy(() => import('@/pages/rooms/rooms-book/index'))
+const RoomsType = React.lazy(() => import('@/pages/rooms/rooms-type/index'))
+const RoomsStay = React.lazy(() => import('@/pages/rooms/rooms-stay/index'))
+const RoomsInfo = React.lazy(() => import('@/pages/rooms/rooms-info/index'))
+const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
+const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
+const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
+const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
+const NotFound = React.lazy(() => import('@/pages/error/404'))
+const NotPermission = React.lazy(() => import('@/pages/error/403'))
+
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 export const allRouters: Array<RouterItem> = [
@@ -144,7 +147,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <UserOutlined />,
     key: 'companys',
     parentkey: 'BasicData',
-    element: <Company />
+    element: <Companys />
   },
   {
     path: '/basicData/position',
@@ -152,7 +155,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <TeamOutlined />,
     key: 'positions',
     parentkey: 'BasicData',
-    element: <Position />
+    element: <Positions />
   },
   {
     path: '/basicData/department',
@@ -160,7 +163,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <TeamOutlined />,
     key: 'departments',
     parentkey: 'BasicData',
-    element: <Department />
+    element: <Departments />
   },
   {
     path: '/settings',
@@ -176,7 +179,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <UserOutlined />,
     key: 'users',
     parentkey: 'settings',
-    element: <UserManager />
+    element: <Users />
   },
   {
     path: '/settings/roles',
@@ -184,7 +187,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <TeamOutlined />,
     key: 'roles',
     parentkey: 'settings',
-    element: <RoleManager />
+    element: <Roles />
   },
   {
     path: '/settings/menus',
@@ -192,7 +195,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <MenuOutlined />,
     key: 'menus',
     parentkey: 'settings',
-    element: <MenuManager />
+    element: <Menus />
   },
   {
     path: '/settings/buttons',
@@ -200,7 +203,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <MenuUnfoldOutlined />,
     key: 'buttons',
     parentkey: 'settings',
-    element: <ButtonManager />
+    element: <Buttons />
   },
   {
     path: '/settings/permissions',
@@ -208,7 +211,7 @@ export const allRouters: Array<RouterItem> = [
     icon: <SafetyOutlined />,
     key: 'permissions',
     parentkey: 'settings',
-    element: <PermissionManager />
+    element: <Permissions />
   },
   {
     path: '/settings/intelligent',
