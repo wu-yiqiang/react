@@ -14,7 +14,6 @@ export default function UserAddDialog(props: DialogProps) {
   const [title, setTitle] = useState('新增')
   const [treeData, setTreeData] = useState([])
   const [checkedKeys, setCheckedKeys] = useState<React.Key[]>([])
-  // const [selectedKeys, setSelectedKeys] = useState<React.Key[]>([9,7,6,2])
   const [form] = Form.useForm<RoleItem>()
   const close = () => {
     form.resetFields()
@@ -25,7 +24,6 @@ export default function UserAddDialog(props: DialogProps) {
     if (value) {
       const values = form.getFieldsValue()
       const datas = { ...values }
-      console.log("sdsd", datas)
       if (!editStatus) await postRoleItem(datas)
       if (editStatus) await putRoleItem(datas)
       Toast.success('操作成功')
@@ -56,8 +54,9 @@ export default function UserAddDialog(props: DialogProps) {
   }, [id])
 
   const onCheck: TreeProps['onCheck'] = (checkedKeysValue, { halfCheckedKeys }) => {
+    console.log('sds', checkedKeysValue)
     setCheckedKeys(checkedKeysValue as React.Key[])
-    form.setFieldValue('menus', checkedKeysValue)
+    form.setFieldValue('menus', checkedKeysValue.checked)
   }
 
   const onSelect: TreeProps['onSelect'] = (selectedKeysValue, info) => {
@@ -109,7 +108,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Col>
           <Col span={24}>
             <Form.Item label="菜单权限" name="menus" rules={requiredRules}>
-              <Card>{treeData?.length ? <Tree checkable onCheck={onCheck} autoExpandParent={true} defaultExpandAll checkedKeys={form.getFieldValue('menus')} onSelect={onSelect} fieldNames={{ title: 'name', key: 'id' }} selectedKeys={form.getFieldValue('menus')} treeData={treeData} /> : null}</Card>
+              <Card>{treeData?.length ? <Tree checkable onCheck={onCheck} autoExpandParent={true} defaultExpandAll checkStrictly={ true } checkedKeys={form.getFieldValue('menus')}  fieldNames={{ title: 'name', key: 'id' }} treeData={treeData} /> : null}</Card>
             </Form.Item>
           </Col>
           {/* <Col span={24}>
