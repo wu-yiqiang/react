@@ -149,3 +149,43 @@ export const getMenuItem = (id: number) => {
     method: 'get',
   })
 }
+// 按钮管理
+
+export const postButtonItem = (data: any) => {
+  return request({
+    url: '/button/create',
+    method: 'post',
+    data
+  })
+}
+
+export const getButtonsLists = (data: MenuSearch) => {
+  return request({
+    url: '/button/page',
+    method: 'post',
+    data
+  })
+}
+
+export const deleteButtonItem = (id: number) => {
+  if (!id) return
+  return request({
+    url: `/button/delete/${id}`,
+    method: 'delete'
+  })
+}
+
+export const updateButtonItem = (data: any) => {
+  return request({
+    url: `/button/update`,
+    method: 'post',
+    data
+  })
+}
+
+export const getButtonItem = (id: number) => {
+  return request({
+    url: `/button/detail/${id}`,
+    method: 'post'
+  })
+}

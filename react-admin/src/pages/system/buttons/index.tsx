@@ -1,5 +1,5 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getUsersLists, deleteUserItem, getRoleOptions } from '@/api/system'
+import { getButtonsLists, deleteButtonItem } from '@/api/system'
 import { useEffect, useState } from 'react'
 import { UserSearch, UserItem } from '@/types/user'
 import UserAddDialog from './button-dialog'
@@ -29,7 +29,7 @@ export default function ButtonManager() {
   }
   const handleDelete = async (id: number | null) => {
     if (!id) return
-    await deleteUserItem(id)
+    await deleteButtonItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
@@ -41,13 +41,13 @@ export default function ButtonManager() {
   const columns = [
     {
       title: '名称',
-      dataIndex: 'username',
-      key: 'username'
+      dataIndex: 'name',
+      key: 'name'
     },
     {
       title: '权限标识',
-      dataIndex: 'email',
-      key: 'email'
+      dataIndex: 'code',
+      key: 'code'
     },
     {
       title: '操作',
@@ -67,7 +67,7 @@ export default function ButtonManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getUsersLists(values)
+    const { data } = await getButtonsLists(values)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,
@@ -87,12 +87,8 @@ export default function ButtonManager() {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
   }
-  const getRoles = async () => {
-    const { data } = await getRoleOptions()
-    setRoles(data ?? [])
-  }
+
   useEffect(() => {
-    getRoles()
   }, [])
   return (
     <>
