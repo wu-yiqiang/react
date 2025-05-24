@@ -1,10 +1,8 @@
-import { Form, Input, Modal, Upload, Select, Row, Col, Spin, Image } from 'antd'
+import { Form, Input, Modal, InputNumber, Row, Col, Spin } from 'antd'
 import { useEffect, useState } from 'react'
 import { postButtonItem, updateButtonItem, getButtonItem } from '@/api/system'
-import { upload } from '@/api/public'
 import Toast from '@/components/Toast'
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
-import { emailRequiredRules, requiredRules } from '@/validator/index'
+import { requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
 import { DialogProps } from '@/types/common'
 import {status} from '@/common/const'
@@ -66,7 +64,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={24}>
                 <Form.Item label="权限标识" name="code" rules={requiredRules}>
-                  <Input />
+                  <InputNumber style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
             </Row>

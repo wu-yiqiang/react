@@ -8,6 +8,7 @@ import './index.scss'
 import dayjs from 'dayjs'
 // import eventMitt from '@/utils/eventMitt'
 import { ChangeEvent, ReactEventHandler, useState } from 'react'
+import { TimeInterval } from '@/utils'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const [currentDayTime, setCurrentDayTime] = useState(dayjs().format('DD/MM/YYYY HH:mm'))
@@ -20,7 +21,7 @@ export default function ScreenLock() {
   const handleLoadError = (e: any) => {
     e.target.src = avatar;
   };
-  setInterval(() => {
+  new TimeInterval(() => {
     setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)
   return (

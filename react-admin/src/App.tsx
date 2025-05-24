@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router-dom";
 import { ConfigProvider, Spin } from "antd";
 import useSystemStore from "@/store/index";
 import eventMitt from "@/utils/eventMitt";
-import { isDark } from "@/utils/index";
+import { isDark, TimeInterval, timeInterval } from '@/utils/index'
 import { SystemStore } from "@/types/common";
 import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
@@ -99,13 +99,17 @@ function App() {
   eventMitt.on('SYSTEM:LOCKSCREEN', () => {
     setSystemSetting({ ...systemSetting, locked: true })
   })
+  
+  
   const init = () => {
     let startTime: number
     startTime = new Date().getTime()
-    setInterval(() => {
+    new TimeInterval(() => {
       const endTime = new Date().getTime()
       const startTimeAdded = dayjs(startTime).add(systemSetting.lockTime, 'minute').valueOf()
-      if (endTime > startTimeAdded && !systemSetting?.locked && userInfo?.token) setSystemSetting({ ...systemSetting, locked: true })
+      if (endTime > startTimeAdded && !systemSetting?.locked && userInfo?.token) {
+        setSystemSetting({ ...systemSetting, locked: true })
+      }
     }, 1000)
     document.addEventListener('mousemove', () => {
       startTime = new Date().getTime()
