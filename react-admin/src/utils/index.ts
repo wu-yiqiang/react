@@ -3,15 +3,6 @@ export const isDark = (theme: string) => {
   return theme == 'system' && isDarkTheme ? true : theme == 'system' && !isDarkTheme ? false : theme == 'dark' ? true : false
 }
 
-// export const timeInterval = (startTime: number, interval: number = 1000, func: Function) => {
-//     requestAnimationFrame(() => {
-//         const delay = new Date().getTime() - startTime
-//         if (delay <= interval) {
-//           func()
-//         }
-//   })
-//   timeInterval(startTime, interval, func)
-// }
 
 export class TimeInterval {
   interval: number

@@ -2,7 +2,7 @@ import { RouterProvider } from "react-router-dom";
 import { ConfigProvider, Spin } from "antd";
 import useSystemStore from "@/store/index";
 import eventMitt from "@/utils/eventMitt";
-import { isDark, TimeInterval, timeInterval } from '@/utils/index'
+import { isDark, TimeInterval } from '@/utils/index'
 import { SystemStore } from "@/types/common";
 import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
