@@ -1,191 +1,108 @@
 
-import request from '@/utils/request'
-import { UserItem, UserSearch } from "@/types/user";
-import { RoleItem, RoleSearch } from "@/types/role";
-import {MenuSearch} from '@/types/menu'
+import requestes from '@/utils/request'
+import { UserItem, UserSearch } from '@/types/user'
+import { RoleItem, RoleSearch } from '@/types/role'
+import { MenuSearch } from '@/types/menu'
 
 // 用户管理
 export const getUsersLists = (data: UserSearch) => {
-  return request({
-    url: '/user/page',
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/user/page`, data)
 }
 export const postUser = (data: UserItem) => {
-  return request({
-    url: '/user/create',
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/user/create`, data)
 }
 
 export const getUserDetail = (id: number) => {
-  if(!id) return
-  return request({
-    url: `/user/detail/${id}`,
-    method: 'post',
-  })
+  if (!id) return
+  return requestes.Post(`/user/detail/${id}`)
 }
 
 export const updateUserDetail = (data: UserItem) => {
   if (!data?.id) return
-  return request({
-    url: `/user/update`,
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/user/update`, data)
 }
 export const updateUserPassword = (data: UserItem) => {
   if (!data?.id) return
-  return request({
-    url: `/user/update/password`,
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/user/update/password`, data)
 }
-
 
 export const deleteUserItem = (id: number) => {
   if (!id) return
-  return request({
-    url: `/user/delete/${id}`,
-    method: 'delete',
-  })
+  return requestes.Delete(`/user/delete/${id}`)
 }
 
 // 角色管理
 export const getRolesLists = (data: RoleSearch) => {
-  return request({
-    url: '/role/page',
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/role/page`, data)
 }
 
 export const postRoleItem = (data: RoleItem) => {
-  return request({
-    url: '/role/create',
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/role/create`, data)
 }
 
 export const getRoleOptions = () => {
-  return request({
-    url: '/role/lists',
-    method: 'get',
-  })
+  return requestes.Get(`/role/lists`)
 }
 
 export const getRoleDetails = (id: number) => {
   if (!id) return
-  return request({
-    url: `/role/detail/${id}`,
-    method: 'post'
-  })
+  return requestes.Post(`/role/detail/${id}`)
 }
 
 export const putRoleItem = (data: RoleItem) => {
   if (!data?.id) return
-  return request({
-    url: `/role/update`,
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/role/update`)
 }
 
 export const deleteRoleItem = (id: number) => {
   if (!id) return
-  return request({
-    url: `/role/delete/${id}`,
-    method: 'delete'
-  })
+  return requestes.Delete(`/role/delete/${id}`)
 }
 
 // 菜单管理
 export const getMenuTreeLists = () => {
-  return request({
-    url: '/menu/treeLists',
-    method: 'get',
-  })
+  return requestes.Get('/menu/treeLists')
 }
 
 export const postMenuItem = (data: any) => {
-  return request({
-    url: '/menu/create',
-    method: 'post',
-    data
-  })
+  return requestes.Post('/menu/create', data)
 }
 
 export const getMenusLists = (data: MenuSearch) => {
-  return request({
-    url: '/menu/page',
-    method: 'post',
-    data
-  })
+  return requestes.Post('/menu/page', data)
 }
 
 export const deleteMenuItem = (id: number) => {
   if (!id) return
-  return request({
-    url: `/menu/delete/${id}`,
-    method: 'delete',
-  })
+  return requestes.Delete(`/menu/delete/${id}`)
 }
 
 export const updateMenuItem = (data: any) => {
-  return request({
-    url: `/menu/update`,
-    method: 'post',
-    data
-  })
+  return requestes.Post('/menu/update', data)
 }
 
 export const getMenuItem = (id: number) => {
-  return request({
-    url: `/menu/detail/${id}`,
-    method: 'get',
-  })
+  return requestes.Get(`/menu/detail/${id}`)
 }
-// 按钮管理
 
+// 按钮管理
 export const postButtonItem = (data: any) => {
-  return request({
-    url: '/button/create',
-    method: 'post',
-    data
-  })
+  return requestes.Post('/button/create', data)
 }
 
 export const getButtonsLists = (data: MenuSearch) => {
-  return request({
-    url: '/button/page',
-    method: 'post',
-    data
-  })
+  return requestes.Post('/button/page', data)
 }
 
 export const deleteButtonItem = (id: number) => {
   if (!id) return
-  return request({
-    url: `/button/delete/${id}`,
-    method: 'delete'
-  })
+  return requestes.Delete(`/button/delete/${id}`)
 }
 
 export const updateButtonItem = (data: any) => {
-  return request({
-    url: `/button/update`,
-    method: 'post',
-    data
-  })
+  return requestes.Post(`/button/update`, data)
 }
 
 export const getButtonItem = (id: number) => {
-  return request({
-    url: `/button/detail/${id}`,
-    method: 'post'
-  })
+  return requestes.Post(`/button/detail/${id}`)
 }
