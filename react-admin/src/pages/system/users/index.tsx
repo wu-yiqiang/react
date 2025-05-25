@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { status } from '@/common/const'
 import ResetPasswordDialog from './reset-password'
 import { RoleItem } from "@/types/role";
+import Authority from '@/components/Authority'
 export default function UserManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -137,12 +138,12 @@ export default function UserManager() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <>
+          <Authority>
             <Export url="/user/download" method="get" />
             <Button type="primary" onClick={handleNew}>
               {t('Add')}
             </Button>
-          </>
+          </Authority>
         }
       ></Tabular>
       {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
