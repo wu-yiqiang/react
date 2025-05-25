@@ -44,7 +44,7 @@ export default defineConfig({
       brotliSize: true,
       emitFile: false,
       filename: 'visualizer.html',
-      open: true 
+      open: false
     })
   ],
   server: {
