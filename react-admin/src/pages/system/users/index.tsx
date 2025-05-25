@@ -14,7 +14,7 @@ import { RoleItem } from "@/types/role";
 export default function UserManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
-  const [roles, setRoles] = useState<RoleItem[]>([]);
+  const [roles, setRoles] = useState<RoleItem[]>([])
   const [dialogOpen, setDialogOpen] = useState(false)
   const [resetDialogOpen, setResetDialogOpen] = useState(false)
   const [userId, setUserId] = useState<number | null>(null)
@@ -42,67 +42,61 @@ export default function UserManager() {
   }
   const columns = [
     {
-      title: "用户名",
-      dataIndex: "username",
-      key: "username",
+      title: '用户名',
+      dataIndex: 'username',
+      key: 'username'
     },
     {
-      title: "邮箱",
-      dataIndex: "email",
-      key: "email",
+      title: '邮箱',
+      dataIndex: 'email',
+      key: 'email'
     },
     {
-      title: "号码",
-      dataIndex: "phone_number",
-      key: "phoneNumber",
+      title: '号码',
+      dataIndex: 'phone_number',
+      key: 'phoneNumber'
     },
     {
-      title: "状态",
-      dataIndex: "status",
-      key: "status",
-      render: (value: string | number) => (
-        <>{status?.find((item) => item.value == value)?.label}</>
-      ),
+      title: '状态',
+      dataIndex: 'status',
+      key: 'status',
+      render: (value: string | number) => <>{status?.find((item) => item.value == value)?.label}</>
     },
     {
-      title: "角色",
-      dataIndex: "role",
-      key: "role",
-      render: (value: string | number) => (
-        <>{roles?.find((item: RoleItem) => item.id == value)?.name}</>
-      ),
+      title: '角色',
+      dataIndex: 'roles',
+      key: 'roles',
+      // render: (value: Array<Number>) => {
+      //   return (
+      //     <>
+      //       {value
+      //         .map((id) => {
+      //           const item = roles.find((item) => item.id == id)
+      //           return item?.name
+      //         }).filter(Boolean)?.join(',')}
+      //     </>
+      //   )
+      // }
     },
     {
-      title: "操作",
-      dataIndex: "opeartions",
-      key: "opeartions",
+      title: '操作',
+      dataIndex: 'opeartions',
+      key: 'opeartions',
       render: (value: number | string, record: UserItem, index: number) => {
         return (
           <Space key={index}>
-            <Button
-              icon={<EditOutlined />}
-              onClick={() => handleEdit(record?.id)}
-            />
-            <Button
-              icon={<ReloadOutlined />}
-              onClick={() => handleResetPassword(record?.id)}
-            />
-            <Button
-              icon={<DeleteOutlined />}
-              type="primary"
-              danger
-              ghost
-              onClick={() => handleDelete(record?.id)}
-            />
+            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
+            <Button icon={<ReloadOutlined />} onClick={() => handleResetPassword(record?.id)} />
+            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
           </Space>
-        );
-      },
-    },
-  ];
+        )
+      }
+    }
+  ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
     const { data } = await getUsersLists(values)
-    setLists(data.lists)
+    setLists(data?.lists)
     const datas = {
       pageSize: data.pageSize,
       pageNo: data.pageNo
