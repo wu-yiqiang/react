@@ -37,10 +37,9 @@ export default function UserAddDialog(props: DialogProps) {
       await setTitle('编辑')
       setEditStatus(true)
       setLoading(true)
-      const response = await getButtonItem(id)?.finally(() => {
+      const { data } = await getButtonItem(id)?.finally(() => {
         setLoading(false)
       })
-      const data = response?.data
       if (!data) {
         Toast.error('未获取到用户数据')
         return

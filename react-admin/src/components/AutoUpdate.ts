@@ -1,6 +1,6 @@
 import { result } from "lodash-es";
 
-let lastSrcs: string[]
+let lastSrcs: (string|undefined)[] = []
 const scriptReg = /\<script.*src=["'](?<src>[^"']+)/gm;
 
 async function extractNewScripts() {

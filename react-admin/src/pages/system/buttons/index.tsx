@@ -6,10 +6,8 @@ import UserAddDialog from './button-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import Export from '@/components/Export'
-import {ResponseType} from '@/types/common'
 import { useTranslation } from 'react-i18next'
-import { status } from '@/common/const'
+import { ResponseTypes } from '@/types/common'
 export default function ButtonManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -63,7 +61,7 @@ export default function ButtonManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getButtonsLists(values) as Response
+    const { data } = await getButtonsLists(values)
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,

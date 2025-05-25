@@ -2,6 +2,6 @@ import requestes from '@/utils/request'
 import { MaintainSearch } from '@/types/maintain'
 
 // 维修管理
-export const getMaintainLists = (data: MaintainSearch) => {
-  return requestes.Post('/maintain/page', data)
+export const getMaintainLists = async (data: MaintainSearch): Promise<any> => {
+  return await requestes.Post('/maintain/page', data)
 }

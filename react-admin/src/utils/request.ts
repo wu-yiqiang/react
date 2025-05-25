@@ -3,7 +3,6 @@ import adapterFetch from 'alova/fetch'
 import eventMitt from './eventMitt'
 import Toast from '@/components/Toast'
 import useSystemStore from '@/store'
-import {ResponseType} from '@/types/common'
 const Alova = createAlova({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 1000 * 60 * 5,
@@ -24,13 +23,13 @@ const Alova = createAlova({
         eventMitt.emit('STORE:USER', '')
         eventMitt.emit('ROUTER:LOGOUT')
       }
-      if (status == 404) Toast.error('接口地址不存在')
+      if (status == 404) Toast.error('请求地址不存在')
       if (status == 500) Toast.error('服务错误')
       if (method.config.headers['Content-Type'] == 'blob') {
         return response
       }
       const data = (await response.json())
-      if (data.code == 200) return data
+      if (data.code == 200) return Promise.resolve(data)
       if (data.code != 200) Toast.error(data?.msg)
       return Promise.reject()
     },
@@ -38,20 +37,9 @@ const Alova = createAlova({
       Toast.error('网络出现错误')
       return Promise.reject(err)
     },
-    // onComplete: (method, status) => {
+    // onComplete: (method: { config: { headers: { [x: string]: string } } }) => {
     //   if (method.config.headers['Content-Type'] == 'blob') {
-    //     // return
-        // const params = res?.ResponseHeader
-        // const name = params['content-disposition']
-        // let filename = name?.split('=')
-        // const blob = new Blob([res?.data], { type: 'application/octet-stream' })
-        // const url = window.URL.createObjectURL(blob)
-        // const a = document.createElement('a')
-        // a.href = url
-        // a.download = filename[1]
-        // document.body.appendChild(a)
-        // a.click()
-        // window.URL.revokeObjectURL(url)
+        
     //   }
     // }
   }

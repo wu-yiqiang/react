@@ -63,7 +63,7 @@ export default defineConfig({
   },
   build: {
     assetsDir: 'assets',
-    target: 'es2015',
+    target: 'es2022',
     polyfillModulePreload: true,
     minify: 'esbuild',
     cssCodeSplit: false,
@@ -78,7 +78,7 @@ export default defineConfig({
         format: 'esm',
         manualChunks: {
           echarts: ['echarts'],
-          vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'axios', 'zustand'],
+          vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'alova', 'zustand'],
           antd: ['antd']
         },
         entryFileNames: 'js/[name]-[hash].js',
