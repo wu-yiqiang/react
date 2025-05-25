@@ -17,14 +17,14 @@ const Alova = createAlova({
   responded: {
     onSuccess: async (response: { status: number; statusText: string | undefined; json: () => any }, method: any) => {
       const { status } = response
-      if (status >= 400) Toast.error('客户端错误')
+      if (status >= 400) Toast.error('客户端出现错误')
       if (status == 401) {
         Toast.error('认证信息过期，请重新登录')
         eventMitt.emit('STORE:USER', '')
         eventMitt.emit('ROUTER:LOGOUT')
       }
       if (status == 404) Toast.error('请求地址不存在')
-      if (status == 500) Toast.error('服务错误')
+      if (status == 500) Toast.error('服务出现错误')
       if (method.config.headers['Content-Type'] == 'blob') {
         return response
       }

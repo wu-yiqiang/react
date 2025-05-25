@@ -8,7 +8,6 @@ import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
 import { Suspense, useEffect } from "react";
 import { routes } from '@/routers/index.tsx'
-import { LoadingOutlined } from "@ant-design/icons";
 function App() {
   const { systemSetting,userInfo, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {

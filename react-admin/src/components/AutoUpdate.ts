@@ -1,6 +1,4 @@
-import { result } from "lodash-es";
-
-let lastSrcs: (string|undefined)[] = []
+let lastSrcs: (string|undefined)[]
 const scriptReg = /\<script.*src=["'](?<src>[^"']+)/gm;
 
 async function extractNewScripts() {
@@ -25,20 +23,22 @@ async function needUpdate() {
     return true
   }
   for (let i = 0; i < lastSrcs.length; i++) {
-    result = true
-    break
+    if (lastSrcs[i] != newScripts[i]) {
+      result = true
+      break
+    }
   }
   lastSrcs = newScripts
   return result
 }
 
-const DURATION = 1000 * 10
+const DURATION = 1000 * 60
 
 function autoRefresh() {
   setTimeout(async () => {
     const willUpdate = await needUpdate()
     if (willUpdate) {
-      const result = await confirm('页面有更新，点击确定刷新页面')
+      const result = await confirm('版本有更新，点击确定刷新页面')
       if (result) {
         location.reload()
       }
