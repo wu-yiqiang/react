@@ -1,4 +1,4 @@
 import { Button, Result } from 'antd'
 export default function LoadError() {
-  return <Result status="error" title="Page Load Failed" subTitle="Please check the network and the service." />
+  return <Result status="500" subTitle="Sorry, something went wrong." />
 }
