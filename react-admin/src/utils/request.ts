@@ -3,6 +3,7 @@ import adapterFetch from 'alova/fetch'
 import eventMitt from './eventMitt'
 import Toast from '@/components/Toast'
 import useSystemStore from '@/store'
+import {ResponseType} from '@/types/common'
 const Alova = createAlova({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 1000 * 60 * 5,
@@ -28,7 +29,7 @@ const Alova = createAlova({
       if (method.config.headers['Content-Type'] == 'blob') {
         return response
       }
-      const data = await response.json()
+      const data = (await response.json())
       if (data.code == 200) return data
       if (data.code != 200) Toast.error(data?.msg)
       return Promise.reject()

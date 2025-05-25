@@ -33,7 +33,8 @@ const Departments = React.lazy(() => import('@/pages/basicData/departments/index
 const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
 const NotFound = React.lazy(() => import('@/pages/error/404'))
 const NotPermission = React.lazy(() => import('@/pages/error/403'))
-
+// const LoadError = React.lazy(() => import('@/pages/error/500'))
+import LoadError from "@/pages/error/500";
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 export const allRouters: Array<RouterItem> = [
@@ -238,7 +239,7 @@ export const allRouters: Array<RouterItem> = [
 const routerConfig: RouteObject[] = [
   {
     path: '/',
-    errorElement: <div>make error</div>,
+    errorElement: <LoadError />,
     element: <Layout />,
     // loader: rootLoader,
     children: allRouters?.filter((v) => menus?.some((val: any) => val.code == v.key))

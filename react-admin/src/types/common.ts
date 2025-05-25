@@ -84,3 +84,9 @@ export interface SearchFormProps {
     name: string
     type: string
 }
+
+export interface ResponseType<T> {
+    data: T
+    code: number
+    msg: string
+}

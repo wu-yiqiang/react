@@ -7,6 +7,7 @@ import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import Export from '@/components/Export'
+import {ResponseType} from '@/types/common'
 import { useTranslation } from 'react-i18next'
 import { status } from '@/common/const'
 export default function ButtonManager() {
@@ -32,11 +33,6 @@ export default function ButtonManager() {
     await deleteButtonItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
-  }
-  const handleResetPassword = (id: number | null) => {
-    if (!id) return
-    setUserId(id)
-    setResetDialogOpen(true)
   }
   const columns = [
     {
@@ -67,7 +63,7 @@ export default function ButtonManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getButtonsLists(values)
+    const { data } = await getButtonsLists(values) as Response
     setLists(data.lists)
     const datas = {
       pageSize: data.pageSize,

@@ -3,6 +3,7 @@ import requestes from '@/utils/request'
 import { UserItem, UserSearch } from '@/types/user'
 import { RoleItem, RoleSearch } from '@/types/role'
 import { MenuSearch } from '@/types/menu'
+import { ResponseType } from '@/types/common'
 
 // 用户管理
 export const getUsersLists = (data: UserSearch) => {
@@ -91,7 +92,7 @@ export const postButtonItem = (data: any) => {
 }
 
 export const getButtonsLists = (data: MenuSearch) => {
-  return requestes.Post('/button/page', data)
+  return requestes.Post<ResponseType<Array<object>>>('/button/page', data)
 }
 
 export const deleteButtonItem = (id: number) => {
