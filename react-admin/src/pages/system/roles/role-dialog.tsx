@@ -81,8 +81,8 @@ export default function UserAddDialog(props: DialogProps) {
     }
   ]
   return (
-    <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">
+    <Modal title={title} width='100%' centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+      <Form id="form" style={{ maxHeight: '100%', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">
         <Row gutter={[16, 16]}>
           <Col span={24}>
             <Form.Item label="角色名称" name="name" rules={requiredRules}>

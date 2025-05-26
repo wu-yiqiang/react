@@ -33,7 +33,7 @@ const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
 const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
 const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
 const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
-const PersonalCenter =  React.lazy(() => import('@/pages/personalCenter/index'))
+const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 const whiteLists: RouteObject[] = [
