@@ -1,6 +1,6 @@
 import * as React from 'react'
 import ReactECharts from 'echarts-for-react'
-import * as echarts from 'echarts'
+import * as echarts from 'echarts/core'
 import './MiddlePieBox.scss'
 const MiddlePieBox: React.FC = () => {
    var datavaule = [57, 50, 53, 45, 84, 70]

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as echarts from 'echarts'
+import * as echarts from 'echarts/core'
 import ReactECharts from 'echarts-for-react'
 import './BottomBarBox.scss'
 const BottomBarBox: React.FC = () => {
