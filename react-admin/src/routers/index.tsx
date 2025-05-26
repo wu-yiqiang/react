@@ -8,8 +8,10 @@ import eventMitt from "@/utils/eventMitt";
 import type { RouteObject } from "react-router-dom";
 import useSystemStore from '@/store/index'
 import { RouterItem, SystemStore } from '@/types/common'
-import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, UsbOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined, MenuUnfoldOutlined, DatabaseOutlined } from '@ant-design/icons'
-// import Layout from "@/pages/layout/index";
+import { AreaChartOutlined, SettingOutlined, UserOutlined, TeamOutlined, HomeOutlined, PrinterOutlined, PieChartOutlined, HeatMapOutlined, MenuOutlined, ScheduleOutlined, SafetyOutlined, ToolOutlined, ContactsOutlined, MenuUnfoldOutlined, DatabaseOutlined } from '@ant-design/icons'
+import LoadError from '@/pages/error/500'
+const NotFound = React.lazy(() => import('@/pages/error/404'))
+const NotPermission = React.lazy(() => import('@/pages/error/403'))
 const Layout = React.lazy(() => import('@/pages/layout/index'))
 const Users = React.lazy(() => import('@/pages/system/users/index'))
 const Login = React.lazy(() => import('@/pages/login/index'))
@@ -31,13 +33,40 @@ const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
 const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
 const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
 const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
-const NotFound = React.lazy(() => import('@/pages/error/404'))
-const NotPermission = React.lazy(() => import('@/pages/error/403'))
-// const LoadError = React.lazy(() => import('@/pages/error/500'))
-import LoadError from "@/pages/error/500";
+const PersonalCenter =  React.lazy(() => import('@/pages/personalCenter/index'))
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
+const whiteLists: RouteObject[] = [
+  {
+    path: '/',
+    element: <Layout />
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
+    path: '/403',
+    element: <NotPermission />
+  },
+  {
+    path: '/404',
+    element: <NotFound />
+  },
+  {
+    path: '*',
+    element: <NotFound />
+  }
+]
 export const allRouters: Array<RouterItem> = [
+  {
+    path: '/personal',
+    key: 'personal',
+    label: '个人中心',
+    icon: <HomeOutlined />,
+    parentkey: '',
+    element: <PersonalCenter />
+  },
   {
     path: '/dashboard',
     key: 'dashboard',
@@ -224,51 +253,17 @@ export const allRouters: Array<RouterItem> = [
   }
 ]
 
-// const rootLoader = async () => {
-//   const { permissionRouters, name, age, code } = await getUserInfo();
-//   if (code == 401) {
-//     return redirect("/login");
-//   }
-//   return {
-//     name,
-//     age,
-//     permissionRouters,
-//   };
-// };
-
 const routerConfig: RouteObject[] = [
   {
     path: '/',
     errorElement: <LoadError />,
     element: <Layout />,
-    // loader: rootLoader,
+    // element: <Navigate to="dashboard" />,
     children: allRouters?.filter((v) => menus?.some((val: any) => val.code == v.key))
-    // children: allRouters
   }
 ]
 
-const whiteLists: RouteObject[] = [
-  {
-    path: '/',
-    element: <Layout />
-  },
-  {
-    path: '/login',
-    element: <Login />
-  },
-  {
-    path: '/403',
-    element: <NotPermission />
-  },
-  {
-    path: '/404',
-    element: <NotFound />
-  },
-  {
-    path: '*',
-    element: <NotFound />
-  }
-]
+
 
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
@@ -284,13 +279,6 @@ eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })
 
-// const getNodeAllParents = (lists: Array<object>, key: string | number) : any => {
-//   const paths = [];
-//   const currentItem = lists.find((item) => item.key == key);
-//   paths.push(currentItem.key);
-//   if (!currentItem.parentkey) return paths;
-//   return paths.concat(getNodeAllParents(lists, currentItem.parentkey));
-// };
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem

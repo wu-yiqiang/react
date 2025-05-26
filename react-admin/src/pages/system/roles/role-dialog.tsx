@@ -54,10 +54,8 @@ export default function UserAddDialog(props: DialogProps) {
   }, [id])
 
   const onCheck: TreeProps['onCheck'] = (checkedKeysValue, { halfCheckedKeys }) => {
-    console.log('sds', checkedKeysValue)
-    setCheckedKeys(checkedKeysValue as React.Key[])
-    // 根据错误提示，checkedKeysValue 可能是 Key[] 类型，直接使用该值作为 menus 的值
-    form.setFieldValue('menus', checkedKeysValue ?? [])
+    setCheckedKeys(checkedKeysValue?.checked as React.Key[])
+    form.setFieldValue('menus', checkedKeysValue?.checked ?? [])
   }
 
   const onSelect: TreeProps['onSelect'] = (selectedKeysValue, info) => {

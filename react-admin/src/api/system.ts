@@ -52,7 +52,7 @@ export const getRoleDetails = async (id: number): Promise<any> => {
 
 export const putRoleItem = async (data: RoleItem): Promise<any> => {
   if (!data?.id) return
-  return await requestes.Post(`/role/update`)
+  return await requestes.Post(`/role/update`, data)
 }
 
 export const deleteRoleItem = async (id: number): Promise<any> => {
