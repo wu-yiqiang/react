@@ -258,7 +258,6 @@ const routerConfig: RouteObject[] = [
     path: '/',
     errorElement: <LoadError />,
     element: <Layout />,
-    // element: <Navigate to="dashboard" />,
     children: allRouters?.filter((v) => menus?.some((val: any) => val.code == v.key))
   }
 ]

@@ -46,12 +46,11 @@ const genItems = () => {
 
  const Menus = () => {
    genItems()
-   const [selectedKeys, setSelectedKeys] = useState([])
    const onClick: MenuProps['onClick'] = (e) => {
      eventMitt.emit('ROUTER:KEY', e?.key)
      // eventMitt.emit('ROUTER:OPENMENU', [])
    }
-   const selectMenu = useMemo(() => (useSystemStore.getState() as SystemStore)?.selectMenu, [(useSystemStore() as SystemStore)?.selectMenu])
+   const selectMenu = useMemo(() => (useSystemStore.getState() as SystemStore)?.selectMenu || (useSystemStore.getState() as SystemStore)?.userInfo?.menus[9]?.code, [(useSystemStore() as SystemStore)?.selectMenu, (useSystemStore() as SystemStore)?.userInfo?.menus])
    const openMenu = useMemo(
      () => (useSystemStore.getState() as SystemStore)?.openMenu,
      [(useSystemStore() as SystemStore)?.openMenu]
@@ -62,6 +61,7 @@ const genItems = () => {
    }
    return (
      <>
+       {selectMenu}
        <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items} selectedKeys={selectMenu} onOpenChange={onOpenChange} openKeys={openMenu} />
      </>
    )
