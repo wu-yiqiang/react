@@ -132,7 +132,6 @@ function User() {
   ];
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
-      {/* <UserOutlined className="headeIcon" /> */}
       <Avatar src={userInfo?.avatar} size={36} style={{ objectPosition: 'top' }} icon={<UserOutlined />} />
     </Dropdown>
   )

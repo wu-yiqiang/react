@@ -102,11 +102,11 @@ export default function UserAddDialog(props: DialogProps) {
                   <InputNumber placeholder="显示排序" min={1} style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
-              <Col span={24}>
+              {/* <Col span={24}>
                 <Form.Item label="路由地址" name="path" rules={requiredRules}>
                   <Input placeholder="路由地址" />
                 </Form.Item>
-              </Col>
+              </Col> */}
               {/* <Col span={24}>
                 <Form.Item label="组件路径" name="component" rules={requiredRules}>
                   <Input placeholder="组件路径" />
