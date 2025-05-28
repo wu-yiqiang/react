@@ -270,9 +270,10 @@ eventMitt.on('ROUTER:LOGOUT', () => {
   routes.navigate('/login')
 })
 
-eventMitt.on("ROUTER:HOME", () => {
-  routes.navigate("/");
-});
+// eventMitt.on("ROUTER:HOME", () => {
+//   // routes.navigate("/");
+//   routes.navigate('/personal')
+// });
 eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })

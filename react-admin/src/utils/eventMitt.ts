@@ -1,9 +1,8 @@
-const eventNames = ['ROUTER:LOGOUT', 'ROUTER:HOME', 'ROUTER:BACK', 'SYSTEM:THEME', 'SYSTEM:LANGUAGE', 'SYSTEM:LOCKSCREEN', 'STORE:USER', 'ROUTER:KEY', 'ROUTER:OPENMENU']
+const eventNames = ['ROUTER:LOGOUT', 'ROUTER:BACK', 'SYSTEM:THEME', 'SYSTEM:LANGUAGE', 'SYSTEM:LOCKSCREEN', 'STORE:USER', 'ROUTER:KEY', 'ROUTER:OPENMENU']
 type EventNames = (typeof eventNames)[number]
 class EventMitt {
   private listeners: Record<string, Set<Function>> = {
     'ROUTER:LOGOUT': new Set(),
-    'ROUTER:HOME': new Set(),
     'SYSTEM:THEME': new Set(),
     'SYSTEM:LOCKSCREEN': new Set(),
     'SYSTEM:LANGUAGE': new Set(),

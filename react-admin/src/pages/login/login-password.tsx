@@ -15,7 +15,7 @@ function LoginPassword() {
     })
     if (data?.token) {
       eventMitt.emit('STORE:USER', data)
-      eventMitt.emit('ROUTER:HOME')
+      eventMitt.emit('ROUTER:KEY', 'personal')
       window.location.reload()
       Toast.success('登录成功')
     }
