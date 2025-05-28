@@ -1,4 +1,4 @@
-import requestes from '@/utils/request'
+import requestes from '@/network/request'
 import { MaintainSearch } from '@/types/maintain'
 
 // 维修管理

@@ -14,9 +14,10 @@ function LoginPassword() {
       setLoading(false)
     })
     if (data?.token) {
-      Toast.success('登录成功')
       eventMitt.emit('STORE:USER', data)
       eventMitt.emit('ROUTER:HOME')
+      window.location.reload()
+      Toast.success('登录成功')
     }
   }
 
