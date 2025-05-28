@@ -6,6 +6,7 @@ import { RoleItem, Role } from '@/types/role'
 import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import type { TreeDataNode, TreeProps } from 'antd'
+import PermissionDialog from './permission-dialog'
 import { DialogProps } from '@/types/common'
 const { TextArea } = Input
 export default function UserAddDialog(props: DialogProps) {
@@ -13,6 +14,7 @@ export default function UserAddDialog(props: DialogProps) {
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [treeData, setTreeData] = useState([])
+  const [visible, setVisible] = useState(false)
   const [checkedKeys, setCheckedKeys] = useState<React.Key[]>([])
   const [form] = Form.useForm<RoleItem>()
   const close = () => {
@@ -54,14 +56,21 @@ export default function UserAddDialog(props: DialogProps) {
   }, [id])
 
   const onCheck: TreeProps['onCheck'] = (checkedKeysValue, { halfCheckedKeys }) => {
-    console.log('sds', checkedKeysValue)
-    setCheckedKeys(checkedKeysValue as React.Key[])
-    // 根据错误提示，checkedKeysValue 可能是 Key[] 类型，直接使用该值作为 menus 的值
-    form.setFieldValue('menus', checkedKeysValue ?? [])
+    setCheckedKeys(checkedKeysValue?.checked as React.Key[])
+    form.setFieldValue('menus', checkedKeysValue?.checked ?? [])
   }
 
   const onSelect: TreeProps['onSelect'] = (selectedKeysValue, info) => {
     console.log('onSelect', info)
+  }
+  const handleSelect = (value: any) => {
+    setVisible(true)
+  }
+  const handleClose2 = () => {
+    setVisible(false)
+  }
+  const handleOk2 = () => {
+    setVisible(false)
   }
 
   const dataPermissionLists: TreeDataNode[] = [
@@ -109,7 +118,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Col>
           <Col span={24}>
             <Form.Item label="菜单权限" name="menus" rules={requiredRules}>
-              <Card>{treeData?.length ? <Tree checkable onCheck={onCheck} autoExpandParent={true} defaultExpandAll checkStrictly={ true } checkedKeys={form.getFieldValue('menus')}  fieldNames={{ title: 'name', key: 'id' }} treeData={treeData} /> : null}</Card>
+              <Card>{treeData?.length ? <Tree checkable onCheck={onCheck} autoExpandParent={true} defaultExpandAll checkStrictly={true} checkedKeys={form.getFieldValue('menus')} onSelect={handleSelect} fieldNames={{ title: 'name', key: 'id' }} treeData={treeData} /> : null}</Card>
             </Form.Item>
           </Col>
           {/* <Col span={24}>
@@ -129,6 +138,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Form.Item>
         </Row>
       </Form>
+      <PermissionDialog open={visible} handleClose={handleClose2} handleOk={handleOk2} id={ null } />
     </Modal>
   )
 }

@@ -47,11 +47,11 @@ export default function UserManager() {
       key: 'code',
       width: 120
     },
-    {
-      title: '路由地址',
-      dataIndex: 'path',
-      key: 'path'
-    },
+    // {
+    //   title: '路由地址',
+    //   dataIndex: 'path',
+    //   key: 'path'
+    // },
     {
       title: '类型',
       dataIndex: 'menu_type',
