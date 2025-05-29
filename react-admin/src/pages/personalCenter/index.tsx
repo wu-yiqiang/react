@@ -3,6 +3,7 @@ import { SystemStore } from '@/types/common'
 import { UserOutlined } from '@ant-design/icons'
 import { Avatar, Col, Row } from 'antd'
 import UpdateAvatarDialog from './update-avatar-dialog'
+import avatar from '@/assets/images/user.jpg'
 import './index.scss'
 import { useState } from 'react'
 export default function PersonalCenter() {
@@ -15,11 +16,12 @@ export default function PersonalCenter() {
   const handleOpenStatus = (value: boolean) => {
     setVisible(value)
   }
+  const handleLoadError = (e: any) => {
+    e.target.src = avatar
+  }
   return (
     <div className="PersonalCenter">
-      <div onClick={() => handleOpenStatus(true)}>
-        <Avatar src={userInfo?.avatar} size={120} style={{ objectPosition: 'top', cursor: 'pointer' }} icon={<UserOutlined />} />
-      </div>
+      <img src={userInfo?.avatar ?? ''} onError={handleLoadError} onClick={() => handleOpenStatus(true)} />
       <div className="Info">
         <Row gutter={[16, 16]}>
           <Col span={12}>
