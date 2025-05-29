@@ -1,15 +1,51 @@
 .PersonalCenter {
-  display: flex;
-  flex-grow: 0;
-  .Info {
-    width: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: auto 1fr;
+  .topbar {
+    grid-column: 1 / 3;
+    display: flex;
+      flex-grow: 0;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 4px;
+      column-gap: 14px;
+      .Info {
+        flex: 1;
+      }
+    
+      img {
+        object-position: top;
+        object-fit: cover;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
   }
-  img {
-    object-position: top;
-    object-fit: cover;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    cursor: pointer;
+  .left-pannel {
+    border-radius: 4px;
+    padding: 14px;
+    background-color: #fff;
+    .pannel-item {
+      display: grid;
+      place-content: center;
+      padding: 5px 0;
+      cursor: pointer;
+      font-size: 16px;
+      color: #555454;
+    }
+    .active-pannel-item {
+      background: rgb(251, 146, 66);
+      border-radius: 4px;
+      color: #fff;
+    }
   }
+  .right-contents {
+    border-radius: 4px;
+    padding: 14px;
+    background-color: #fff;
+  }
+  
 }
