@@ -44,7 +44,7 @@ export interface DialogProps {
     open: boolean
     handleClose: () => void
     handleOk: (values: object) => void
-    id: number | null
+    id?: number | null
 }
 
 interface UserInfo {

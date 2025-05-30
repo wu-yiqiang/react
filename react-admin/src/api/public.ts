@@ -1,4 +1,4 @@
-import requestes from '@/utils/request'
+import requestes from '@/network/request'
 import { LoginData } from '@/types/common'
 export const login = async (data: LoginData): Promise<any> => await requestes.Post('/user/login', data)
 export const logout = async (): Promise<any> => await requestes.Post('/user/logout')

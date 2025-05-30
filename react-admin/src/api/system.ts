@@ -1,9 +1,8 @@
 
-import requestes from '@/utils/request'
+import requestes from '@/network/request'
 import { UserItem, UserSearch } from '@/types/user'
 import { RoleItem, RoleSearch } from '@/types/role'
 import { MenuSearch } from '@/types/menu'
-import { ResponseTypes } from '@/types/common'
 
 // 用户管理
 export const getUsersLists = async (data: UserSearch): Promise<any> => {

@@ -258,11 +258,10 @@ const routerConfig: RouteObject[] = [
     path: '/',
     errorElement: <LoadError />,
     element: <Layout />,
+    // children: allRouters
     children: allRouters?.filter((v) => menus?.some((val: any) => val.code == v.key))
   }
 ]
-
-
 
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
@@ -271,9 +270,10 @@ eventMitt.on('ROUTER:LOGOUT', () => {
   routes.navigate('/login')
 })
 
-eventMitt.on("ROUTER:HOME", () => {
-  routes.navigate("/");
-});
+// eventMitt.on("ROUTER:HOME", () => {
+//   // routes.navigate("/");
+//   routes.navigate('/personal')
+// });
 eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })
@@ -281,7 +281,7 @@ eventMitt.on('ROUTER:BACK', () => {
 
 eventMitt.on("ROUTER:KEY", (key: string) => {
   const routerItem = allRouters.find((item) => item.key === key) as RouterItem
-  const path = routerItem?.path || '/'
+  const path = routerItem?.path || '/404'
   routes.navigate(path)
   useSystemStore.setState(() => ({
     selectMenu: [key]

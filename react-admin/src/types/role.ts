@@ -19,7 +19,7 @@ export class Role implements RoleField {
     this.id = null
     this.name = ''
     this.code = ''
-    this.menus = []
+    this.menus = [15]
     this.remark = ''
     this.status = null
   }

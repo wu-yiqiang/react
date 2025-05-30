@@ -1,6 +1,6 @@
 import { createAlova } from 'alova'
 import adapterFetch from 'alova/fetch'
-import eventMitt from './eventMitt'
+import eventMitt from '@/utils/eventMitt'
 import Toast from '@/components/Toast'
 import useSystemStore from '@/store'
 const Alova = createAlova({

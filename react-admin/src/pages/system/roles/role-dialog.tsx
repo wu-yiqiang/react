@@ -38,7 +38,10 @@ export default function UserAddDialog(props: DialogProps) {
   }
   const init = async () => {
     const { data } = await getMenuTreeLists()
-    setTreeData(data)
+    setTreeData(data?.map((item) => {
+      if (item.id == 15) item.disabled = true
+      return item
+    }))
     if (isEmpty(id)) {
       setEditStatus(false)
       form.setFieldsValue(new Role())
@@ -138,7 +141,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Form.Item>
         </Row>
       </Form>
-      <PermissionDialog open={visible} handleClose={handleClose2} handleOk={handleOk2} id={ null } />
+      <PermissionDialog open={visible} handleClose={handleClose2} handleOk={handleOk2} id={null} />
     </Modal>
   )
 }
