@@ -173,136 +173,136 @@ const MiddleLeftPieBox: React.FC = () => {
   function getOption(startAngle: number, radius: string | number) {
     const options = {
       title: {
-        text: "调度中心数据流向",
-        left: "center",
+        text: '调度中心数据流向',
+        left: 'center',
         textStyle: {
-          textAlign: "center",
-          color: "#fff",
-          fontSize: 18,
-        },
+          textAlign: 'center',
+          color: '#fff',
+          fontSize: 18
+        }
       },
-      backgroundColor: "#081c47",
+      backgroundColor: '#0f375f',
       xAxis: {
         show: false,
-        type: "value",
+        type: 'value',
         max: 50,
-        min: -51,
+        min: -51
       },
       grid: {
         top: 10,
         bottom: 10,
         left: 10,
-        right: 10,
+        right: 10
       },
       yAxis: {
         show: false,
-        type: "value",
+        type: 'value',
         max: 50,
-        min: -50,
+        min: -50
       },
       series: [
         {
-          name: "节点",
-          type: "graph",
+          name: '节点',
+          type: 'graph',
           silent: false,
           hoverAnimation: false, // 鼠标悬浮高亮
-          cursor: "default",
-          coordinateSystem: "cartesian2d",
+          cursor: 'default',
+          coordinateSystem: 'cartesian2d',
           z: 3,
           itemStyle: {
-            shadowColor: "none",
+            shadowColor: 'none'
           },
           emphasis: {
-            scale: false,
+            scale: false
           },
-          data: allArr,
+          data: allArr
         },
         {
-          name: "线图",
-          type: "lines",
+          name: '线图',
+          type: 'lines',
           hoverAnimation: false,
           silent: false,
-          cursor: "default",
-          coordinateSystem: "cartesian2d",
+          cursor: 'default',
+          coordinateSystem: 'cartesian2d',
           polyline: false, // 多线段
           z: 1,
           lineStyle: {
             width: 2,
-            type: "dashed",
-            curveness: 0,
+            type: 'dashed',
+            curveness: 0
           },
           effect: {
             show: true,
             period: 8, //箭头指向速度，值越小速度越快
             trailLength: 0, //特效尾迹长度[0,1]值越大，尾迹越长重
-            symbol: "arrow", //箭头图标
-            symbolSize: 6,
+            symbol: 'arrow', //箭头图标
+            symbolSize: 6
           },
           emphasis: {
             lineStyle: {
-              type: "dashed",
-            },
+              type: 'dashed'
+            }
           },
-          data: dataArr,
+          data: dataArr
         },
         {
-          name: "不动外圆",
-          type: "pie",
+          name: '不动外圆',
+          type: 'pie',
           zlevel: 4,
           silent: true,
-          radius: ["50%", "49%"],
+          radius: ['50%', '49%'],
           label: {
             normal: {
-              show: false,
-            },
+              show: false
+            }
           },
           labelLine: {
             normal: {
-              show: false,
-            },
+              show: false
+            }
           },
-          data: dolitData,
+          data: dolitData
         },
         {
-          type: "pie",
-          name: "旋转圆",
+          type: 'pie',
+          name: '旋转圆',
           zlevel: 20,
           silent: true,
-          radius: ["40%", "39%"], //圆的大小
+          radius: ['40%', '39%'], //圆的大小
           hoverAnimation: false,
           startAngle: startAngle,
           data: threeData,
           label: {
             normal: {
-              show: false,
-            },
+              show: false
+            }
           },
           labelLine: {
             normal: {
-              show: false,
-            },
-          },
+              show: false
+            }
+          }
         },
         {
-          name: "缩放圆",
-          type: "pie",
+          name: '缩放圆',
+          type: 'pie',
           zlevel: 4,
           silent: true,
-          radius: [Number(radius) + 1 + "%", radius + "%"],
+          radius: [Number(radius) + 1 + '%', radius + '%'],
           label: {
             normal: {
-              show: false,
-            },
+              show: false
+            }
           },
           labelLine: {
             normal: {
-              show: false,
-            },
+              show: false
+            }
           },
-          data: dolitData,
-        },
-      ],
-    };
+          data: dolitData
+        }
+      ]
+    }
     return options;
   }
 

@@ -57,7 +57,7 @@ const BottomBarBox: React.FC = () => {
    ])
  ]
  const options = {
-   backgroundColor: '#0c1934',
+   backgroundColor: '#0f375f',
    //你的代码
    tooltip: {
      trigger: 'axis',
