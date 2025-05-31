@@ -5,6 +5,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import imageOptimizer from '@venturan/vite-plugin-image-optimizer'
 import buildCompress from '@venturan/vite-plugin-build-compress'
+import autoUpload from '@venturan/vite-plugin-upload-deploy'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { resolve } from 'path'
 const pathResolve = (dir: string): string => {
@@ -45,6 +46,14 @@ export default defineConfig({
       emitFile: false,
       filename: 'visualizer.html',
       open: false
+    }),
+    autoUpload({
+      host: '185.198.166.245',
+      port: '3333',
+      username: 'root',
+      password: 'gUbP29RyGunM',
+      localPath: '/Users/atlas/react/react-admin/dist/',
+      remotePath: '/usr/share/nginx/html/easm-web/dist',
     })
   ],
   server: {
