@@ -7,15 +7,11 @@ export interface IntefaceField {
 export interface IntefaceSearch extends Search, Pagenation {}
 export interface IntefaceItem extends CommonTime, CommonUuid, CommonId, IntefaceField {}
 
-export class Inteface implements IntefaceItem {
-  id: number | null
-  uuid: string
+export class Inteface implements Omit<IntefaceItem,'id' | 'uuid'> {
   name: string
   path: string
   type: number | null
   constructor() {
-    this.id = null
-    this.uuid = ''
     this.name = ''
     this.path = ''
     this.type = null

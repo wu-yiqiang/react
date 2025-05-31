@@ -38,7 +38,7 @@ export default function UserAddDialog(props: DialogProps) {
   }
   const init = async () => {
     const { data } = await getMenuTreeLists()
-    setTreeData(data?.map((item) => {
+    setTreeData(data?.map((item: any) => {
       if (item.id == 15) item.disabled = true
       return item
     }))
@@ -58,8 +58,8 @@ export default function UserAddDialog(props: DialogProps) {
     init()
   }, [id])
 
-  const onCheck: TreeProps['onCheck'] = (checkedKeysValue, { halfCheckedKeys }) => {
-    setCheckedKeys(checkedKeysValue?.checked as React.Key[])
+  const onCheck: TreeProps['onCheck'] = (checkedKeysValue: any) => {
+    setCheckedKeys(checkedKeysValue?.checked)
     form.setFieldValue('menus', checkedKeysValue?.checked ?? [])
   }
 

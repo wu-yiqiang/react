@@ -32,7 +32,6 @@ export class TimeInterval {
 export const diff = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(union(arr1, arr2).filter((item) => !cross(arr1, arr2).includes(item))))
 
 // 数组并集
-export const union = (arr1: Array<string | number>, arr2:Array<string | number>): Array<string | number> => Array.from(new Set([...arr1, ...arr2]));
+export const union = (arr1: Array<string | number>, arr2: Array<string | number >): Array<string | number> => Array.from(new Set([...arr1, ...arr2]))
 // 数组交集
-export const cross = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(arr1.filter((item) =>
-    arr2.includes(item))));
+export const cross = (arr1: Array<number | string>, arr2: Array<number | string>) => Array.from(new Set(arr1.filter((item) => arr2.includes(item))))

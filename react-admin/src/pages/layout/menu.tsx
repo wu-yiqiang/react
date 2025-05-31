@@ -50,7 +50,7 @@ const genItems = () => {
      eventMitt.emit('ROUTER:KEY', e?.key)
      // eventMitt.emit('ROUTER:OPENMENU', [])
    }
-   const selectMenu = useMemo(() => (useSystemStore.getState() as SystemStore)?.selectMenu || (useSystemStore.getState() as SystemStore)?.userInfo?.menus[9]?.code, [(useSystemStore() as SystemStore)?.selectMenu, (useSystemStore() as SystemStore)?.userInfo?.menus])
+   const [selectMenu, setSelectMenu] = useState(['personnal'])
    const openMenu = useMemo(
      () => (useSystemStore.getState() as SystemStore)?.openMenu,
      [(useSystemStore() as SystemStore)?.openMenu]

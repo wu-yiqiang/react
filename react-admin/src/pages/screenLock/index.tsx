@@ -1,4 +1,3 @@
-
 import { Input } from 'antd'
 import useSystemStore from '@/store/index'
 import Dialog from '@/components/Dialog'
@@ -13,14 +12,14 @@ export default function ScreenLock() {
   const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const [currentDayTime, setCurrentDayTime] = useState(dayjs().format('DD/MM/YYYY HH:mm'))
   const handleUnlock = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e?.target?.value;
+    const value = e?.target?.value
     if (value === systemSetting.lockPassword) {
-      setSystemSetting({ ...systemSetting, locked: false });
+      setSystemSetting({ ...systemSetting, locked: false })
     }
-  };
+  }
   const handleLoadError = (e: any) => {
-    e.target.src = avatar;
-  };
+    e.target.src = avatar
+  }
   new TimeInterval(() => {
     setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)
@@ -36,7 +35,7 @@ export default function ScreenLock() {
           </div>
           <div className="user">
             <div className="avatar">
-              <img src={userInfo?.avatar ?? ''} onError={handleLoadError}/>
+              <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
             </div>
             <div className="name">{userInfo?.username}</div>
             <Input.Password placeholder="密码" onChange={handleUnlock} />
@@ -46,5 +45,3 @@ export default function ScreenLock() {
     ></Dialog>
   )
 }
-
-

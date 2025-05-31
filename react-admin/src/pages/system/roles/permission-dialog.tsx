@@ -4,16 +4,17 @@ import { RoleItem, Role } from '@/types/role'
 import { DialogProps } from '@/types/common'
 import Tabular from '@/components/Tabular.tsx'
 import { getIntefaceLists, getButtonsOpts } from '@/api/system'
-import { UserSearch, UserItem } from '@/types/user'
+import { UserSearch } from '@/types/user'
 import { useTranslation } from 'react-i18next'
 import { intefaceType } from '@/common/const'
 import { diff } from '@/utils'
+import { IntefaceItem } from '@/types/inteface'
 const CheckboxGroup = Checkbox.Group
 export default function UserAddDialog(props: DialogProps) {
   const { open, handleClose, handleOk } = props
-  const [checkedLists, setCheckedLists] = useState([])
+  const [checkedLists, setCheckedLists] = useState<Array<any>>([])
   const [buttons, setButtons] = useState([])
-  const [checkedButtons, setCheckedButtons] = useState([])
+  const [checkedButtons, setCheckedButtons] = useState<Array<any>>([])
   const [form] = Form.useForm<RoleItem>()
   const close = () => {
     form.resetFields()
@@ -50,7 +51,7 @@ export default function UserAddDialog(props: DialogProps) {
       title: '请求路径',
       dataIndex: 'path',
       key: 'path'
-    },
+    }
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
@@ -63,18 +64,18 @@ export default function UserAddDialog(props: DialogProps) {
     setTotal(data?.total)
     setQueryData({ ...queryData, ...datas })
   }
-  const rowSelection: TableProps<DataType>['rowSelection'] = {
+  const rowSelection = {
     selectedRowKeys: checkedLists,
-    onSelect: (record: React.Key[], selected) => {
+    onSelect: (record: IntefaceItem, selected : boolean) => {
       const key = record?.id
       if (selected) {
-        setCheckedLists([...checkedLists, key])
+        setCheckedLists([...checkedLists, key].filter(Boolean))
       } else {
         setCheckedLists(checkedLists.filter((item) => item !== key))
       }
     },
-    onSelectAll: (selected, selectedRows, changeRows) => {
-      const keys = changeRows?.map((item) => item.id)
+    onSelectAll: (selected: boolean, selectedRows: any, changeRows : IntefaceItem[]) => {
+      const keys = changeRows?.map((item: any) => item.id)
       if (selected) {
         setCheckedLists([...checkedLists, ...keys])
       } else {
@@ -85,14 +86,14 @@ export default function UserAddDialog(props: DialogProps) {
   }
   const getButtons = async () => {
     const { data } = await getButtonsOpts()
-    const lists = data?.map((item) => {
+    const lists = data?.map((item: { value: any; id: any; label: any; name: any }) => {
       item.value = item.id
       item.label = item?.name
       return item
-    } )
+    })
     setButtons(lists ?? [])
   }
-  const onChange = (list: string[] | number[]) => {
+  const onChange = (list: number[]) => {
     setCheckedButtons(list)
   }
   useEffect(() => {
