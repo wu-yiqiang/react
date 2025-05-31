@@ -89,6 +89,9 @@ export const getMenuItem = async (id: number): Promise<any> => {
 export const getButtonsLists = async (data: MenuSearch):Promise<any> => {
   return  await requestes.Post('/button/page', data)
 }
+export const getButtonsOpts = async (): Promise<any> => {
+  return await requestes.Post('/button/lists')
+}
 
 export const postButtonItem = async (data: any): Promise<any> => {
   return await requestes.Post('/button/create', data)
@@ -105,4 +108,26 @@ export const updateButtonItem = async (data: any): Promise<any> => {
 
 export const getButtonItem = async (id: number): Promise<any> => {
   return await requestes.Post(`/button/detail/${id}`)
+}
+
+// 接口管理
+export const getIntefaceLists = async (data: MenuSearch): Promise<any> => {
+  return await requestes.Post('/inteface/page', data)
+}
+
+export const postIntefaceItem = async (data: any): Promise<any> => {
+  return await requestes.Post('/inteface/create', data)
+}
+
+export const deleteIntefaceItem = async (id: number): Promise<any> => {
+  if (!id) return
+  return await requestes.Delete(`/inteface/delete/${id}`)
+}
+
+export const updateIntefaceItem = async (data: any): Promise<any> => {
+  return await requestes.Post(`/inteface/update`, data)
+}
+
+export const getIntefaceItem = async (id: number): Promise<any> => {
+  return await requestes.Get(`/inteface/detail/${id}`)
 }

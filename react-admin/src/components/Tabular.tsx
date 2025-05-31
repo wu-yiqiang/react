@@ -6,7 +6,7 @@ import SearchForm from './SearchForm'
 import '@/style/Tabular.scss'
 import { useTranslation } from 'react-i18next'
 export default function Tabular(props: any) {
-  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef, left = null, right = null, defaultFoldState, total, pageSize = 10, pageNo = 1, handleEdit, handleDelete, handleFresh } = props
+  const { dataSource, columns, data, searchOptions, handleSearch, defaultFoldNum, onRef, left = null, right = null, defaultFoldState, total, pageSize = 10, pageNo = 1, handleEdit, handleDelete, handleFresh, rowSelection, preserveSelectedRowKeys } = props
   const { t } = useTranslation()
   const showTotal: PaginationProps['showTotal'] = (total) => `Total ${total} items`
   const [columnLists, setColumnLists] = useState([])
@@ -77,7 +77,7 @@ export default function Tabular(props: any) {
         <div className="opts-left">{props?.left}</div>
         <div className="opts-right">{props?.right}</div>
       </section>
-      <Table columns={columnLists} scroll={{ y: 550 }} rowKey="id" dataSource={dataSource} pagination={false} />
+      <Table columns={columnLists} rowSelection={rowSelection} scroll={{ y: 550 }} rowKey="id" dataSource={dataSource} pagination={false} preserveSelectedRowKeys={preserveSelectedRowKeys} />
       {total > 0 ? <Pagination style={{ marginTop: 10 }} showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} align="end" showTotal={showTotal} /> : null}
     </>
   )

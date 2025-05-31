@@ -18,7 +18,7 @@ const Login = React.lazy(() => import('@/pages/login/index'))
 const Roles = React.lazy(() => import('@/pages/system/roles/index'))
 const Menus = React.lazy(() => import('@/pages/system/menus/index'))
 const Buttons = React.lazy(() => import('@/pages/system/buttons/index'))
-const Permissions = React.lazy(() => import('@/pages/system/permissions/index'))
+const Inteface = React.lazy(() => import('@/pages/system/inteface/index'))
 const Invoices = React.lazy(() => import('@/pages/invoices/index'))
 const Dashboard = React.lazy(() => import('@/pages/dashboard/index'))
 const Statistics = React.lazy(() => import('@/pages/statistics/index'))
@@ -236,12 +236,12 @@ export const allRouters: Array<RouterItem> = [
     element: <Buttons />
   },
   {
-    path: '/settings/permissions',
-    label: '权限管理',
+    path: '/settings/inteface',
+    label: '接口管理',
     icon: <SafetyOutlined />,
-    key: 'permissions',
+    key: 'inteface',
     parentkey: 'settings',
-    element: <Permissions />
+    element: <Inteface />
   },
   {
     path: '/settings/intelligent',
