@@ -1,6 +1,5 @@
 import './index.scss'
-import { Divider, Typography } from 'antd'
-import { Button, Checkbox, Form, Input } from 'antd'
+import { Button, Space, Form, Input, Row, Typography, Col } from 'antd'
 const { Title } = Typography
 
 export default function SelfService() {
@@ -10,7 +9,7 @@ export default function SelfService() {
     <div className="SelfService">
       <Title level={5}>信息修改</Title>
       <div className="contents">
-        <Form labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{ maxWidth: 600 }} initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
+        <Form labelCol={{ style: { width: 100 } }} style={{ maxWidth: 400 }} initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
           <Form.Item label="联系电话" name="username">
             <Input />
           </Form.Item>
@@ -23,8 +22,8 @@ export default function SelfService() {
           <Form.Item label="修改密码" name="password">
             <Input.Password />
           </Form.Item>
-          <Form.Item label={null}>
-            <Button block type="primary" htmlType="submit">
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
               Submit
             </Button>
           </Form.Item>

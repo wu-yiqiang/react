@@ -8,6 +8,7 @@ import PersonalDetails from './personnal-detail'
 import avatar from '@/assets/images/user.jpg'
 import './index.scss'
 import { useState } from 'react'
+import AvatarHover from '@/components/Avatar'
 export default function PersonalCenter() {
   // const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const { userInfo } = useSystemStore() as SystemStore
@@ -29,7 +30,13 @@ export default function PersonalCenter() {
   return (
     <div className="PersonalCenter">
       <div className="topbar">
-        <img src={userInfo?.avatar ?? ''} onError={handleLoadError} onClick={() => handleOpenStatus(true)} />
+        {/* <AvatarHover image={userInfo?.avatar} /> */}
+        <div className="image">
+          <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
+          <div className="tips" onClick={() => handleOpenStatus(true)}>
+            修改
+          </div>
+        </div>
         <div className="Info">
           <Row gutter={[16, 16]}>
             <Col span={12}>

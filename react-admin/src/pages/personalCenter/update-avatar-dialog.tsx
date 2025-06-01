@@ -12,13 +12,7 @@ export default function UpdateAvatarDialog(props: any) {
   const [title, setTitle] = useState('头像修改')
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const [crop, setCrop] = useState<Crop>({
-    unit: '%',
-    width: 50,
-    height: 50,
-    x: 25,
-    y: 25
-  })
+  const [crop, setCrop] = useState<Crop>()
 
   const close = () => {
     form.resetFields()
