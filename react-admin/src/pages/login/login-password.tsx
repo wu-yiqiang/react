@@ -26,7 +26,7 @@ function LoginPassword() {
   }
   return (
     <div className="LoginPassword">
-      <Form name="basic" initialValues={{ email: 'sutter.wu@outlook.com', password: '1234@Abcd' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
+      <Form name="basic" initialValues={{ email: 'Administrator@outlook.com', password: '1234@Abcd' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
         <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
           <Input placeholder="Email" prefix={<UserOutlined />} />
         </Form.Item>
