@@ -164,35 +164,35 @@ export const allRouters: Array<RouterItem> = [
     element: <DaySchedule />
   },
   {
-    path: '/basicData',
+    path: '/datas',
     label: '数据管理',
     icon: <DatabaseOutlined />,
-    key: 'BasicData',
+    key: 'datas',
     parentkey: '',
     element: null
   },
   {
-    path: '/basicData/companys',
+    path: '/datas/companys',
     label: '公司管理',
     icon: <UserOutlined />,
     key: 'companys',
-    parentkey: 'BasicData',
+    parentkey: 'datas',
     element: <Companys />
   },
   {
-    path: '/basicData/positions',
+    path: '/datas/positions',
     label: '岗位管理',
     icon: <TeamOutlined />,
     key: 'positions',
-    parentkey: 'BasicData',
+    parentkey: 'datas',
     element: <Positions />
   },
   {
-    path: '/basicData/departments',
+    path: '/datas/departments',
     label: '部门管理',
     icon: <TeamOutlined />,
     key: 'departments',
-    parentkey: 'BasicData',
+    parentkey: 'datas',
     element: <Departments />
   },
   {

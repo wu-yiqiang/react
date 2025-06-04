@@ -62,6 +62,7 @@ export default defineConfig(({ command, mode }) => {
     ],
     server: {
       host: '0.0.0.0',
+      https: false,
       hmr: true,
       port: 8090,
       proxy: {

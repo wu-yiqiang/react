@@ -14,6 +14,7 @@ function LoginPassword() {
       setLoading(false)
     })
     if (data?.token) {
+      // console.log('login data', data)
       eventMitt.emit('STORE:USER', data)
       eventMitt.emit('ROUTER:KEY', 'personal')
       window.location.reload()
