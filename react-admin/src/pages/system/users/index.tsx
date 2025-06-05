@@ -12,6 +12,7 @@ import { status } from '@/common/const'
 import ResetPasswordDialog from './reset-password'
 import { RoleItem } from "@/types/role";
 import Authority from '@/components/Authority'
+import { MenuItem } from '@/types/menu'
 export default function UserManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -67,17 +68,18 @@ export default function UserManager() {
       title: '角色',
       dataIndex: 'roles',
       key: 'roles',
-      // render: (value: Array<Number>) => {
-      //   return (
-      //     <>
-      //       {value
-      //         .map((id) => {
-      //           const item = roles.find((item) => item.id == id)
-      //           return item?.name
-      //         }).filter(Boolean)?.join(',')}
-      //     </>
-      //   )
-      // }
+      render: (value: Array<MenuItem>) => {
+        return (
+          <>
+            {value
+              .map((item) => {
+                return item?.name
+              })
+              .filter(Boolean)
+              ?.join(',')}
+          </>
+        )
+      }
     },
     {
       title: '操作',
@@ -96,13 +98,14 @@ export default function UserManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getUsersLists(values)
-    setLists(data?.lists)
+    const { data, pageSize, pageNo, total } = await getUsersLists(values)
+    console.log('sdsd', data)
+    setLists(data)
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
+      pageSize: pageSize,
+      pageNo: pageNo
     }
-    setTotal(data?.total)
+    setTotal(total)
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {

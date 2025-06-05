@@ -1,3 +1,4 @@
+import {MenuItem} from './menu'
 export interface Pagenation {
     pageSize: number;
     pageNo: number; 
@@ -48,11 +49,11 @@ export interface DialogProps {
 }
 
 interface UserInfo {
-    username: string
-    avatar: string
-    token: string
-    menus: Array<object>
-    roles: Array<object>
+  username: string
+  avatar: string
+  token: string
+  menus: Array<MenuItem>
+  roles: Array<object>
 }
 
 interface SystemSetting {

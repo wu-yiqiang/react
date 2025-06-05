@@ -123,7 +123,7 @@ export default function UserAddDialog(props: DialogProps) {
             </Row>
             <Row>
               <Col span={24}>
-                <Form.Item label="角色" name="role" rules={requiredRules}>
+                <Form.Item label="角色" name="roles" rules={requiredRules}>
                   <Select mode="multiple" options={roles} fieldNames={{ label: 'name', value: 'id' }}></Select>
                 </Form.Item>
               </Col>

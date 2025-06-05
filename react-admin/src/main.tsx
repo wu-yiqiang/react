@@ -4,8 +4,8 @@ import App from './App.tsx'
 import "virtual:svg-icons-register";
 import './index.css'
 import '@/lang/index.ts'
-import '@/components/AutoUpdate.ts'
-// if (!import.meta.env.DEV) import('@/components/AutoUpdate.ts')
+import autoRefresh from '@/components/AutoUpdate.ts'
+if (!import.meta.env.DEV) autoRefresh()
 //import Track from '@/utils/track.ts';
 //const clickTargetElement = ['ant-btn']
 //const track = new Track(clickTargetElement)

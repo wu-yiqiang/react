@@ -35,7 +35,7 @@ export default function UserManager() {
       key: "name",
     },
     {
-      title: "编码",
+      title: "权限标识",
       dataIndex: "code",
       key: "code",
     },

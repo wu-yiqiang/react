@@ -47,4 +47,4 @@ function autoRefresh() {
   }, DURATION);
 }
 
-autoRefresh()
+export default autoRefresh;
