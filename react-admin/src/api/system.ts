@@ -131,3 +131,30 @@ export const updateIntefaceItem = async (data: any): Promise<any> => {
 export const getIntefaceItem = async (id: number): Promise<any> => {
   return await requestes.Get(`/inteface/detail/${id}`)
 }
+
+
+// 字典管理
+export const getDictionaryLists = async (data: MenuSearch): Promise<any> => {
+  return await requestes.Post('/dictionary/page', data)
+}
+
+export const postDictionaryItem = async (data: any): Promise<any> => {
+  return await requestes.Post('/dictionary/create', data)
+}
+
+export const deleteDictionaryItem = async (id: number): Promise<any> => {
+  if (!id) return
+  return await requestes.Delete(`/dictionary/delete/${id}`)
+}
+
+export const updateDictionaryItem = async (data: any): Promise<any> => {
+  return await requestes.Post(`/dictionary/update`, data)
+}
+
+export const getDictionaryItem = async (id: number): Promise<any> => {
+  return await requestes.Get(`/dictionary/detail/${id}`)
+}
+
+export const getDictionaryItemByType = async (type: string): Promise<any> => {
+  return await requestes.Post(`/dictionary/types`, {type: type})
+}

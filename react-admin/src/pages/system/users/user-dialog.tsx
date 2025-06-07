@@ -7,7 +7,7 @@ import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import { emailRequiredRules, requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
 import { DialogProps } from '@/types/common'
-import {status} from '@/common/const'
+import DictsSelector from '@/components/DictsSelector'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -117,7 +117,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={12}>
                 <Form.Item label="状态" name="status" rules={requiredRules}>
-                  <Select options={status} />
+                  <DictsSelector type="status" onChange={(value: number) => form.setFieldValue('status', value)} />
                 </Form.Item>
               </Col>
             </Row>

@@ -8,6 +8,7 @@ import { requiredRules } from '@/validator/index'
 import type { TreeDataNode, TreeProps } from 'antd'
 import PermissionDialog from './permission-dialog'
 import { DialogProps } from '@/types/common'
+import DictsRadioGroup from '@/components/DictsRadioGroup'
 const { TextArea } = Input
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
@@ -39,7 +40,7 @@ export default function UserAddDialog(props: DialogProps) {
   const init = async () => {
     const { data } = await getMenuTreeLists()
     setTreeData(data?.map((item: any) => {
-      if (item.id == 15) item.disabled = true
+      if (item.id == 1) item.disabled = true
       return item
     }))
     if (isEmpty(id)) {
@@ -110,13 +111,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Col>
           <Col span={24}>
             <Form.Item label="状态" name="status">
-              <Radio.Group
-                value={form.getFieldValue('status')}
-                options={[
-                  { value: 1, label: '启用' },
-                  { value: 0, label: '禁用' }
-                ]}
-              />
+              <DictsRadioGroup type="status" onSelect={(value: number) => form.setFieldValue('status', value)} />
             </Form.Item>
           </Col>
           <Col span={24}>

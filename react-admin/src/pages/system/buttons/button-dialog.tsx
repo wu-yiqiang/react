@@ -5,7 +5,6 @@ import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
 import { DialogProps } from '@/types/common'
-import {status} from '@/common/const'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)

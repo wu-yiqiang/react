@@ -2,11 +2,10 @@ import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputN
 import { useEffect, useState } from 'react'
 import { postMenuItem, updateMenuItem, getMenuItem, getMenuTreeLists } from '@/api/system'
 import Toast from '@/components/Toast'
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
-import {  requiredRules } from '@/validator/index'
+import { requiredRules } from '@/validator/index'
 import { Menu } from '@/types/menu'
 import { DialogProps } from '@/types/common'
-import { menuType } from '@/common/const'
+import DictsRadioGroup from '@/components/DictsRadioGroup'
 export default function UserAddDialog(props: DialogProps) {
   const {open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -88,7 +87,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={24}>
                 <Form.Item label="菜单类型" name="menu_type" rules={requiredRules}>
-                  <Radio.Group value={form.getFieldValue('menu_type')} options={menuType} />
+                  <DictsRadioGroup type="menuType" onSelect={(value: number) => form.setFieldValue('menu_type', value)} />
                 </Form.Item>
               </Col>
               <Col span={12}>

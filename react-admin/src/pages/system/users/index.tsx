@@ -8,11 +8,11 @@ import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import Export from '@/components/Export'
 import { useTranslation } from 'react-i18next'
-import { status } from '@/common/const'
 import ResetPasswordDialog from './reset-password'
 import { RoleItem } from "@/types/role";
 import Authority from '@/components/Authority'
 import { MenuItem } from '@/types/menu'
+import TableCell from '@/components/TableCell'
 export default function UserManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -62,7 +62,10 @@ export default function UserManager() {
       title: '状态',
       dataIndex: 'status',
       key: 'status',
-      render: (value: string | number) => <>{status?.find((item) => item.value == value)?.label}</>
+      render: (value: string | number) => {
+        return <TableCell value={value} type="status" />
+        
+      }
     },
     {
       title: '角色',

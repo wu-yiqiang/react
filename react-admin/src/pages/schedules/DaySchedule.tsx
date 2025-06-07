@@ -82,7 +82,6 @@ export default function DaySchedule() {
          return item
       });
       setUsers([...newUsers]);
-      console.log('sss', users)
     });
   }
   useEffect(() => {

@@ -5,7 +5,7 @@ import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import { Inteface } from '@/types/inteface'
 import { DialogProps } from '@/types/common'
-import {intefaceType} from '@/common/const'
+import DictsSelector from '@/components/DictsSelector'
 export default function IntefaceDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -62,7 +62,7 @@ export default function IntefaceDialog(props: DialogProps) {
               </Col>
               <Col span={24}>
                 <Form.Item label="请求方式" name="type" rules={requiredRules}>
-                  <Select options={intefaceType} fieldNames={{ label: 'label', value: 'code' }}></Select>
+                  <DictsSelector type="intefaceType" onChange={(value: number) => form.setFieldValue('type', value)} />
                 </Form.Item>
               </Col>
               <Col span={24}>

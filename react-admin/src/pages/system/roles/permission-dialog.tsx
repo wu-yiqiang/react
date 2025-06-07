@@ -6,9 +6,9 @@ import Tabular from '@/components/Tabular.tsx'
 import { getIntefaceLists, getButtonsOpts } from '@/api/system'
 import { UserSearch } from '@/types/user'
 import { useTranslation } from 'react-i18next'
-import { intefaceType } from '@/common/const'
 import { diff } from '@/utils'
 import { IntefaceItem } from '@/types/inteface'
+import TableCell from '@/components/TableCell'
 const CheckboxGroup = Checkbox.Group
 export default function UserAddDialog(props: DialogProps) {
   const { open, handleClose, handleOk } = props
@@ -21,7 +21,6 @@ export default function UserAddDialog(props: DialogProps) {
     handleClose()
   }
   const submit = async () => {
-    console.log('checked', checkedLists)
     // handleOk()
   }
 
@@ -45,7 +44,9 @@ export default function UserAddDialog(props: DialogProps) {
       dataIndex: 'type',
       key: 'type',
       width: 150,
-      render: (value: string | number) => <>{intefaceType?.find((item) => item.code == value)?.label}</>
+      render: (value: string | number) => { 
+        return <TableCell value={value} type="intefaceType" />
+      }
     },
     {
       title: '请求路径',
@@ -55,13 +56,13 @@ export default function UserAddDialog(props: DialogProps) {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getIntefaceLists(values)
-    setLists(data.lists)
+    const { data, total, pageSize, pageNo } = await getIntefaceLists(values)
+    setLists(data)
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
+      pageSize: pageSize,
+      pageNo: pageNo
     }
-    setTotal(data?.total)
+    setTotal(total)
     setQueryData({ ...queryData, ...datas })
   }
   const rowSelection = {
@@ -81,7 +82,6 @@ export default function UserAddDialog(props: DialogProps) {
       } else {
         setCheckedLists(diff(checkedLists, keys))
       }
-      console.log('ssss', checkedLists)
     }
   }
   const getButtons = async () => {

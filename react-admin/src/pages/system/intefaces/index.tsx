@@ -4,11 +4,10 @@ import { useEffect, useState } from 'react'
 import { UserSearch, UserItem } from '@/types/user'
 import  IntefaceDialog from './inteface-dialog.tsx'
 import { Button, Space } from 'antd'
-import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import { useTranslation } from 'react-i18next'
-import { intefaceType } from '@/common/const'
-
+import TableCell from '@/components/TableCell.tsx'
 export default function IntefaceManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -43,7 +42,9 @@ export default function IntefaceManager() {
       dataIndex: 'type',
       key: 'type',
       width: 150,
-      render: (value: string | number) => <>{intefaceType?.find((item) => item.code == value)?.label}</>
+      render: (value: number) => {
+        return <TableCell value={value} type="intefaceType" />
+    }
     },
     {
       title: '请求路径',
@@ -68,13 +69,13 @@ export default function IntefaceManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data } = await getIntefaceLists(values)
-    setLists(data.lists)
+    const { data, total, pageSize, pageNo } = await getIntefaceLists(values)
+    setLists(data)
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
+      pageSize: pageSize,
+      pageNo: pageNo
     }
-    setTotal(data?.total)
+    setTotal(total)
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
@@ -88,8 +89,6 @@ export default function IntefaceManager() {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
   }
-
-  useEffect(() => {}, [])
   return (
     <>
       <Tabular

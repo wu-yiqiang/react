@@ -4,6 +4,8 @@ export interface RoleField {
   code: string
   status: number | null
   menus: object
+  buttons: object
+  intefaces: object
   remark: string
 }
 export interface RoleSearch extends Search, Pagenation {}
@@ -14,12 +16,16 @@ export class Role implements RoleField {
   code: string
   remark: string
   menus: object
-  status: number | null;
+  buttons: object
+  intefaces: object
+  status: number | null
   constructor() {
     this.id = null
     this.name = ''
     this.code = ''
-    this.menus = [15]
+    this.menus = [1]
+    this.buttons = []
+    this.intefaces = []
     this.remark = ''
     this.status = null
   }

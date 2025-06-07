@@ -8,6 +8,7 @@ import Toast from '@/components/Toast'
 import { emailRequiredRules, requiredRules } from "@/validator/index";
 import type { TreeDataNode, TreeProps } from 'antd'
 import { DialogProps } from "@/types/common";
+import DictsRadioGroup from '@/components/DictsRadioGroup';
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props;
   const [editStatus, setEditStatus] = useState(false);
@@ -135,23 +136,8 @@ export default function UserAddDialog(props: DialogProps) {
     },
   ];
   return (
-    <Modal
-      title={title}
-      centered
-      forceRender
-      maskClosable={false}
-      destroyOnClose={true}
-      open={open}
-      onOk={submit}
-      onCancel={close}
-    >
-      <Form
-        id="form"
-        style={{ maxHeight: "500px", overflowY: "scroll", overflowX: "hidden" }}
-        form={form}
-        labelCol={{ span: "4" }}
-        layout="inline"
-      >
+    <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">
         <Row gutter={[16, 16]}>
           <Col span={24}>
             <Form.Item label="角色名称" name="name" rules={requiredRules}>
@@ -165,51 +151,25 @@ export default function UserAddDialog(props: DialogProps) {
           </Col>
           <Col span={24}>
             <Form.Item label="状态" name="status">
-              <Radio.Group
-                value={form.getFieldValue("status")}
-                options={[
-                  { value: 1, label: "启用" },
-                  { value: 0, label: "禁用" },
-                ]}
-              />
+              <DictsRadioGroup type="status" onSelect={(value: number) => form.setFieldValue('status', value)} />
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="菜单权限" name="email" rules={requiredRules}>
               <Card>
-                <Tree
-                  checkable
-                  onExpand={onExpand}
-                  expandedKeys={expandedKeys}
-                  autoExpandParent={autoExpandParent}
-                  onCheck={onCheck}
-                  checkedKeys={checkedKeys}
-                  onSelect={onSelect}
-                  selectedKeys={selectedKeys}
-                  treeData={treeData}
-                />
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={treeData} />
               </Card>
             </Form.Item>
           </Col>
           <Col span={24}>
             <Form.Item label="数据权限" name="email" rules={requiredRules}>
               <Card>
-                <Tree
-                  checkable
-                  onExpand={onExpand}
-                  expandedKeys={expandedKeys}
-                  autoExpandParent={autoExpandParent}
-                  onCheck={onCheck}
-                  checkedKeys={checkedKeys}
-                  onSelect={onSelect}
-                  selectedKeys={selectedKeys}
-                  treeData={dataPermissionLists}
-                />
+                <Tree checkable onExpand={onExpand} expandedKeys={expandedKeys} autoExpandParent={autoExpandParent} onCheck={onCheck} checkedKeys={checkedKeys} onSelect={onSelect} selectedKeys={selectedKeys} treeData={dataPermissionLists} />
               </Card>
             </Form.Item>
           </Col>
         </Row>
       </Form>
     </Modal>
-  );
+  )
 }

@@ -8,6 +8,7 @@ import Toast from '@/components/Toast'
 import { emailRequiredRules, requiredRules } from "@/validator/index";
 import type { TreeDataNode, TreeProps } from 'antd'
 import { DialogProps } from "@/types/common";
+import DictsRadioGroup from '@/components/DictsRadioGroup';
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props;
   const [editStatus, setEditStatus] = useState(false);
@@ -165,13 +166,7 @@ export default function UserAddDialog(props: DialogProps) {
           </Col>
           <Col span={24}>
             <Form.Item label="状态" name="status">
-              <Radio.Group
-                value={form.getFieldValue("status")}
-                options={[
-                  { value: 1, label: "启用" },
-                  { value: 0, label: "禁用" },
-                ]}
-              />
+              <DictsRadioGroup type="status" onSelect={(value: number) => form.setFieldValue('status', value)} />
             </Form.Item>
           </Col>
           <Col span={24}>

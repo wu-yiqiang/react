@@ -18,7 +18,7 @@ const Login = React.lazy(() => import('@/pages/login/index'))
 const Roles = React.lazy(() => import('@/pages/system/roles/index'))
 const Menus = React.lazy(() => import('@/pages/system/menus/index'))
 const Buttons = React.lazy(() => import('@/pages/system/buttons/index'))
-const Inteface = React.lazy(() => import('@/pages/system/inteface/index'))
+const Intefaces = React.lazy(() => import('@/pages/system/intefaces/index'))
 const Invoices = React.lazy(() => import('@/pages/invoices/index'))
 const Dashboard = React.lazy(() => import('@/pages/dashboard/index'))
 const Statistics = React.lazy(() => import('@/pages/statistics/index'))
@@ -34,6 +34,7 @@ const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
 const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
 const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
 const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
+const Dictionarys = React.lazy(() => import('@/pages/system/dictionarys/index'))
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 const whiteLists: RouteObject[] = [
@@ -239,9 +240,17 @@ export const allRouters: Array<RouterItem> = [
     path: '/settings/inteface',
     label: '接口管理',
     icon: <SafetyOutlined />,
-    key: 'inteface',
+    key: 'intefaces',
     parentkey: 'settings',
-    element: <Inteface />
+    element: <Intefaces />
+  },
+  {
+    path: '/settings/dictionarys',
+    label: '字典管理',
+    icon: <SafetyOutlined />,
+    key: 'dictionarys',
+    parentkey: 'settings',
+    element: <Dictionarys />
   },
   {
     path: '/settings/intelligent',

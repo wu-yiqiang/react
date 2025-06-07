@@ -1,12 +1,12 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getMenuTreeLists, deleteMenuItem } from '@/api/system'
+import { getMenusLists, deleteMenuItem } from '@/api/system'
 import { useState } from 'react'
 import { MenuSearch, MenuItem } from "@/types/menu";
 import UserAddDialog from './menu-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import { menuType } from '@/common/const'
+import TableCell from '@/components/TableCell';
 export default function UserManager() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -57,14 +57,11 @@ export default function UserManager() {
       dataIndex: 'menu_type',
       key: 'menu_type',
       width: 60,
-      render: (value: string | number) => <>{menuType?.find((item) => item.value == value)?.label}</>
+      render: (value: string | number) => {
+        return <TableCell value={value} type="menuType" />
+      }
     },
-    {
-      title: '状态',
-      dataIndex: 'roles',
-      key: 'roles',
-      width: 60
-    },
+
     {
       title: '操作',
       dataIndex: 'opeartions',
@@ -83,13 +80,13 @@ export default function UserManager() {
   ]
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: MenuSearch) => {
-    const { data } = await getMenuTreeLists()
+    const { data, pageNo, pageSize, total } = await getMenusLists(values)
     setLists(data)
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
+      pageSize: pageSize,
+      pageNo: pageNo
     }
-    setTotal(data?.total)
+    setTotal(total)
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {

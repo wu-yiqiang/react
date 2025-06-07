@@ -1,55 +1,59 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getButtonsLists, deleteButtonItem } from '@/api/system'
-import { useEffect, useState } from 'react'
-import { UserSearch, UserItem } from '@/types/user'
-import UserAddDialog from './button-dialog'
+import { getDictionaryLists, deleteDictionaryItem } from '@/api/system'
+import { useState } from 'react'
+import { DictionarySearch, DictionaryItem } from "@/types/dictionary";
+import DictionaryAddDialog from './dictionary-dialog'
 import { Button, Space } from 'antd'
-import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import { useTranslation } from 'react-i18next'
-import { ResponseTypes } from '@/types/common'
-export default function ButtonManager() {
-  const { t } = useTranslation()
+export default function Dictionarys() {
   const [lists, setLists] = useState()
-  const [roles, setRoles] = useState([])
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [resetDialogOpen, setResetDialogOpen] = useState(false)
-  const [userId, setUserId] = useState<number | null>(null)
+  const [menuId, setMenuId] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
-  const [queryData, setQueryData] = useState<UserSearch>({
+  const [queryData, setQueryData] = useState<DictionarySearch>({
     search: '',
     pageNo: 1,
     pageSize: 10
   })
   const handleEdit = (id: number | null) => {
     if (!id) return
-    setUserId(id)
+    setMenuId(id)
     setDialogOpen(true)
   }
   const handleDelete = async (id: number | null) => {
     if (!id) return
-    await deleteButtonItem(id)
+    await deleteDictionaryItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
   const columns = [
     {
-      title: '名称',
-      dataIndex: 'name',
-      key: 'name'
+      title: '字典类型',
+      dataIndex: 'type',
+      key: 'type',
+      width: 140
+    },
+
+    {
+      title: '标识',
+      dataIndex: 'code',
+      key: 'code',
+      width: 120
     },
     {
-      title: '权限标识',
-      dataIndex: 'code',
-      key: 'code'
+      title: '标签',
+      dataIndex: 'label',
+      key: 'label',
+      width: 60
     },
     {
       title: '操作',
       dataIndex: 'opeartions',
       key: 'opeartions',
-      width: 150,
+      width: 100,
       align: 'center',
-      render: (value: number | string, record: UserItem, index: number) => {
+      render: (value: number | string, record: DictionaryItem, index: number) => {
         return (
           <Space key={index}>
             <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
@@ -59,9 +63,9 @@ export default function ButtonManager() {
       }
     }
   ]
-  const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
-  const handleSearch = async (values: UserSearch) => {
-    const { data, pageSize, pageNo, total } = await getButtonsLists(values)
+  const searchOptions = [{ name: 'search', label: '字典类型', type: 'input' }]
+  const handleSearch = async (values: DictionarySearch) => {
+    const { data, pageNo, pageSize, total } = await getDictionaryLists(values)
     setLists(data)
     const datas = {
       pageSize: pageSize,
@@ -71,19 +75,17 @@ export default function ButtonManager() {
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
-    setUserId(null)
+    setMenuId(null)
     setDialogOpen(true)
   }
   const handleClose = () => {
     setDialogOpen(false)
   }
+
   const handleOk = async () => {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
   }
-
-  useEffect(() => {
-  }, [])
   return (
     <>
       <Tabular
@@ -96,14 +98,12 @@ export default function ButtonManager() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <>
-            <Button type="primary" onClick={handleNew}>
-              {t('Add')}
-            </Button>
-          </>
+          <Button type="primary" onClick={handleNew}>
+            新增
+          </Button>
         }
       ></Tabular>
-      {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
+      {dialogOpen ? <DictionaryAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={menuId} /> : null}
     </>
   )
 }
