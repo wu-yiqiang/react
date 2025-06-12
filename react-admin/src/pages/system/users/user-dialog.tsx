@@ -65,6 +65,7 @@ export default function UserAddDialog(props: DialogProps) {
     const formData = new FormData()
     formData.append('file', file)
     setLoading(true)
+    console.log('sss', formData)
     const { data } = await upload(formData)
     form.setFieldValue('avatar', data)
     console.log('sds', form.getFieldValue('avatar'))
