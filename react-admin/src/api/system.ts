@@ -25,6 +25,10 @@ export const updateUserPassword = async (data: UserItem): Promise<any> => {
   if (!data?.id) return
   return await requestes.Post(`/user/update/password`, data)
 }
+export const updateUserAvatar = async (data: UserItem): Promise<any> => {
+  if (!data?.id) return
+  return await requestes.Post(`/user/update_avatar`, data)
+}
 
 export const deleteUserItem = async (id: number): Promise<any> => {
   if (!id) return

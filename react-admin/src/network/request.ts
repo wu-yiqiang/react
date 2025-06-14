@@ -9,8 +9,7 @@ const Alova = createAlova({
   requestAdapter: adapterFetch(),
   cacheFor: {},
   beforeRequest(method: { config: { headers: { [x: string]: string } } }) {
-    console.log('1111', method?.config?.headers['Content-Type'])
-    method.config.headers['Content-Type'] = method?.config?.headers['Content-Type'] ?? 'application/json;charset=utf-8'
+    // method.config.headers['Content-Type'] = method?.config?.headers['Content-Type'] ?? null 
     const systemState = useSystemStore.getState() as { userInfo?: { token?: string } }
     const token = systemState.userInfo?.token
     if (token) method.config.headers['Authorization'] = token

@@ -102,7 +102,6 @@ export default function UserManager() {
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
     const { data, pageSize, pageNo, total } = await getUsersLists(values)
-    console.log('sdsd', data)
     setLists(data)
     const datas = {
       pageSize: pageSize,

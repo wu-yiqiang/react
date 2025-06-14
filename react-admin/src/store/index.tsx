@@ -14,7 +14,6 @@ const useSystemStore = create(
         language: 'en-US',
         theme: 'system'
       },
-      // menus: [],
       selectMenu: [],
       openMenu: [],
       currentMenu: {},

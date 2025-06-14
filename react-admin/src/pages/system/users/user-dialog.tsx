@@ -1,13 +1,14 @@
-import { Form, Input, Modal, Upload, Select, Row, Col, Spin, Image } from 'antd'
+import { Form, Input, Modal, Upload, Select, Row, Col, Spin, Image, Avatar, UploadFile } from 'antd'
 import { useEffect, useState } from 'react'
 import { postUser, updateUserDetail, getUserDetail, getRoleOptions } from '@/api/system'
 import { upload } from '@/api/public'
 import Toast from '@/components/Toast'
-import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
+import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons'
 import { emailRequiredRules, requiredRules } from '@/validator/index'
 import { User } from '@/types/user'
 import { DialogProps } from '@/types/common'
 import DictsSelector from '@/components/DictsSelector'
+import ImgCrop from 'antd-img-crop'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -62,14 +63,11 @@ export default function UserAddDialog(props: DialogProps) {
   const handleUpload = async (info: object) => {
     // @ts-ignore
     const file = info?.file
-    const formData = new FormData()
-    formData.append('file', file)
     setLoading(true)
-    console.log('sss', formData)
-    const { data } = await upload(formData)
+    const { data } = await upload(file).finally(() => {
+      setLoading(false)
+    })
     form.setFieldValue('avatar', data)
-    console.log('sds', form.getFieldValue('avatar'))
-    setLoading(false)
   }
   const beforeUpload = (file: File) => {
     const fileType = file?.type
@@ -92,8 +90,8 @@ export default function UserAddDialog(props: DialogProps) {
             <Row>
               <Col span={12}>
                 <Form.Item label="头像" name="avatar">
-                  <Upload name="avatar" listType="picture-card" className="avatar-uploader" accept=".jpg,.jpeg,.png" showUploadList={false} beforeUpload={(file: File) => beforeUpload(file)} customRequest={handleUpload}>
-                    {form?.getFieldValue('avatar') ? <Image width="100%" height="100%" preview={false} src={form?.getFieldValue('avatar')} /> : uploadButton}
+                  <Upload name="avatar" listType="picture-card" accept=".jpg,.jpeg,.png" showUploadList={false} beforeUpload={(file: File) => beforeUpload(file)} maxCount={1} customRequest={handleUpload}>
+                    {form?.getFieldValue('avatar') ? <Image preview={false} style={{ width: '100px', height: '100px', objectFit: 'cover', objectPosition: 'top', borderRadius: '2px' }} src={form?.getFieldValue('avatar')} /> : uploadButton}
                   </Upload>
                 </Form.Item>
               </Col>

@@ -46,7 +46,6 @@ const genItems = () => {
 
  const Menus = () => {
    genItems()
-   console.log('sds', items)
    const onClick: MenuProps['onClick'] = (e) => {
      eventMitt.emit('ROUTER:KEY', e?.key)
      // eventMitt.emit('ROUTER:OPENMENU', [])

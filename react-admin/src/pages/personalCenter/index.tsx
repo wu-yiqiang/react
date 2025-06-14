@@ -1,16 +1,13 @@
 import useSystemStore from '@/store/index'
 import { SystemStore } from '@/types/common'
-import { UserOutlined } from '@ant-design/icons'
 import { Avatar, Col, Row } from 'antd'
 import UpdateAvatarDialog from './update-avatar-dialog'
 import SelfService from './self-service'
 import PersonalDetails from './personnal-detail'
 import avatar from '@/assets/images/user.jpg'
-import './index.scss'
 import { useState } from 'react'
-import AvatarHover from '@/components/Avatar'
+import './index.scss'
 export default function PersonalCenter() {
-  // const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const { userInfo } = useSystemStore() as SystemStore
   const [visible, setVisible] = useState(false)
   const [active, setActive] = useState('详细信息')
@@ -71,7 +68,7 @@ export default function PersonalCenter() {
       </div>
       {active == '详细信息' ? <PersonalDetails /> : null}
       {active == '自助服务' ? <SelfService /> : null}
-      <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} />
+      {visible ? <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} />: null}
     </div>
   )
 }
