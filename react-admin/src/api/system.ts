@@ -14,12 +14,12 @@ export const postUser = async (data: UserItem): Promise<any> => {
 
 export const getUserDetail = async (id: number): Promise<any> => {
   if (!id) return
-  return await requestes.Post(`/user/detail/${id}`)
+  return await requestes.Get(`/user/detail/${id}`)
 }
 
 export const updateUserDetail = async (data: UserItem): Promise<any> => {
   if (!data?.id) return
-  return await requestes.Post(`/user/update`, data)
+  return await requestes.Put(`/user/update`, data)
 }
 export const updateUserPassword = async (data: UserItem): Promise<any> => {
   if (!data?.id) return
