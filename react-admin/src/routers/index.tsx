@@ -13,12 +13,26 @@ import LoadError from '@/pages/error/500'
 const NotFound = React.lazy(() => import('@/pages/error/404'))
 const NotPermission = React.lazy(() => import('@/pages/error/403'))
 const Layout = React.lazy(() => import('@/pages/layout/index'))
-const Users = React.lazy(() => import('@/pages/system/users/index'))
 const Login = React.lazy(() => import('@/pages/login/index'))
+// Personal Center
+const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
+// System
+const Users = React.lazy(() => import('@/pages/system/users/index'))
 const Roles = React.lazy(() => import('@/pages/system/roles/index'))
 const Menus = React.lazy(() => import('@/pages/system/menus/index'))
 const Buttons = React.lazy(() => import('@/pages/system/buttons/index'))
 const Intefaces = React.lazy(() => import('@/pages/system/intefaces/index'))
+const Dictionarys = React.lazy(() => import('@/pages/system/dictionarys/index'))
+// Datas
+const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
+const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
+const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
+const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
+
+// File
+const Doeuments = React.lazy(() => import('@/pages/files/documents/index'))
+
+//
 const Invoices = React.lazy(() => import('@/pages/invoices/index'))
 const Dashboard = React.lazy(() => import('@/pages/dashboard/index'))
 const Statistics = React.lazy(() => import('@/pages/statistics/index'))
@@ -29,12 +43,8 @@ const RoomsBook = React.lazy(() => import('@/pages/rooms/rooms-book/index'))
 const RoomsType = React.lazy(() => import('@/pages/rooms/rooms-type/index'))
 const RoomsStay = React.lazy(() => import('@/pages/rooms/rooms-stay/index'))
 const RoomsInfo = React.lazy(() => import('@/pages/rooms/rooms-info/index'))
-const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
-const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
-const Departments = React.lazy(() => import('@/pages/basicData/departments/index'))
-const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
-const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
-const Dictionarys = React.lazy(() => import('@/pages/system/dictionarys/index'))
+
+
 import { logout } from '@/api/public'
 const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
 const whiteLists: RouteObject[] = [
@@ -197,6 +207,22 @@ export const allRouters: Array<RouterItem> = [
     element: <Departments />
   },
   {
+    path: '/files',
+    label: '文件管理',
+    icon: <SettingOutlined />,
+    key: 'files',
+    parentkey: '',
+    element: null
+  },
+  {
+    path: '/files/documents',
+    label: '文档管理',
+    icon: <UserOutlined />,
+    key: 'documents',
+    parentkey: 'files',
+    element: <Doeuments />
+  },
+  {
     path: '/settings',
     label: '系统设置',
     icon: <SettingOutlined />,
@@ -204,6 +230,7 @@ export const allRouters: Array<RouterItem> = [
     parentkey: '',
     element: null
   },
+
   {
     path: '/settings/users',
     label: '用户管理',
