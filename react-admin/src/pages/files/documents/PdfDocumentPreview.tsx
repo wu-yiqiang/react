@@ -1,16 +1,19 @@
 import Dialog from '@/components/Dialog'
 import './index.scss'
 import SvgIcon from '@/components/SvgIcon/SvgIcon'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import FilePreviewer from 'react-file-previewer'
 export default function PdfDocumentPreview(props: any) {
   const { visible, url, handleClose } = props
+  const pdfRef = useRef()
   const [scale, setScale] = useState(1)
   const handleMinus = () => {
     setScale(Number((scale - 0.2).toFixed(2)))
   }
   const handlePlus = () => {
     setScale(Number((scale + 0.2).toFixed(2)))
+  }
+  const handleDownload = () => {
   }
   return (
     <Dialog
@@ -25,7 +28,7 @@ export default function PdfDocumentPreview(props: any) {
             </div>
           </div>
           <div className="PreviewBox">
-            <FilePreviewer file={{ url: url }} hideControls />
+            <FilePreviewer ref={pdfRef} file={{ url: url }} hideControls />
           </div>
           <div className="bottombar">
             <div className="toolbar">
@@ -44,7 +47,9 @@ export default function PdfDocumentPreview(props: any) {
               ) : (
                 <SvgIcon name="plus-diabled" size="24px" />
               )}
-              <SvgIcon name="download" size="24px" />
+              <div className="opt-icon" onClick={handleDownload}>
+                <SvgIcon name="download" size="24px" />
+              </div>
             </div>
           </div>
         </div>

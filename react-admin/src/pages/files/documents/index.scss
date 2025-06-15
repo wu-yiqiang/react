@@ -25,19 +25,15 @@ dialog {
   justify-content: flex-start;
   width: 100vw;
   height: 100vh;
-
   &:focus {
     outline: none;
   }
 
   .PdfDocumentPreview {
-    width: 100%;
-    height: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
-    // border-radius: 4px;
-    // overflow: hidden;
+    overflow: hidden;
     &:focus {
       outline: none;
     }
@@ -53,9 +49,15 @@ dialog {
     .PreviewBox {
       flex: 1;
       overflow: auto;
-      margin: 0 auto;
-      // display: grid;
-      // place-content: center;
+      display: flex;
+      justify-content: center;
+      .preview-wrapper {
+        flex: 1;
+        .react-pdf__Page{
+          display: flex;
+          justify-content: center;
+        }
+      }
     }
 
     .bottombar {
@@ -86,8 +88,8 @@ dialog {
   }
 
   &::backdrop {
-    // background-color: rgba(0, 0, 0, 0.8) !important;
-    // backdrop-filter: blur(0);
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    backdrop-filter: blur(0);
     height: 100%;
     width: 100%;
   }

@@ -1,21 +1,18 @@
 dialog {
   display: flex;
   justify-content: center;
-  display: grid;
-  background-color: inherit;
   border: unset;
   transition: 0.5s;
   margin: 0 auto;
-  width: 100vw;
-  height: 100vh;
+  background-color: unset;
+  backdrop-filter: blur(10px);
   .mainBox {
     width: 320px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    display: grid;
     row-gap: 24px;
     padding: 40px;
+    background-color: inherit;
     .dateTime {
       .date {
         font-size: 46px;
@@ -55,10 +52,9 @@ dialog {
     }
   }
   &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    display: flex;
   }
 }
 .close {
