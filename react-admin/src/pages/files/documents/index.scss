@@ -12,8 +12,8 @@
     .filename {
       width: 100px;
       overflow: hidden;
-      text-align: justify;
-      text-overflow: ellipsis;
+      text-align:center;
+      // text-overflow: ellipsis;
       flex-wrap: nowrap;
     }
   }
@@ -85,6 +85,12 @@ dialog {
         }
       }
     }
+  }
+  .VideoPreview {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &::backdrop {
