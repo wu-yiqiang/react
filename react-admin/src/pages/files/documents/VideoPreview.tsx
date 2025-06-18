@@ -13,13 +13,10 @@ export default function VideoPreview(props: any) {
     setScale(Number((scale + 0.2).toFixed(2)))
   }
   return (
-    <Dialog
-      open={visible}
-      slot={
-        <div className="VideoPreview">
-          <ReactPlayer url={url} controls width="100%" height="100%" />
-        </div>
-      }
-    ></Dialog>
+    <Dialog open={visible}>
+      <div className="VideoPreview">
+        <ReactPlayer url={url} controls width="100%" height="100%" />
+      </div>
+    </Dialog>
   )
 }

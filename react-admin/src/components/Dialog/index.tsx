@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react"
-
+import { Children, useEffect, useRef } from "react"
+import './index.scss'
 export default function Dialog(props: any) {
-  const { open, slot } = props
+  const { open, children } = props
   const dialog = useRef(null)
   const init = () => {
     // @ts-ignore
@@ -10,5 +10,5 @@ export default function Dialog(props: any) {
   useEffect(() => {
     init()
   }, [])
-  return <dialog ref={dialog} id="Dialog" >{slot}</dialog>
+  return <dialog ref={dialog} id="Dialog" >{children}</dialog>
 }

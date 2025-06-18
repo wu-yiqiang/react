@@ -1,60 +1,51 @@
-dialog {
-  display: flex;
-  justify-content: center;
-  border: unset;
-  transition: 0.5s;
+.mainBox {
+  width: 320px;
   margin: 0 auto;
+  display: grid;
+  row-gap: 24px;
+  padding: 40px;
   background-color: unset;
-  backdrop-filter: blur(10px);
-  .mainBox {
-    width: 320px;
-    margin: 0 auto;
-    display: grid;
-    row-gap: 24px;
-    padding: 40px;
-    background-color: inherit;
-    .dateTime {
-      .date {
-        font-size: 46px;
-        color: #f6f6f6;
-        display: grid;
-        place-content: center;
-      }
 
-      .time {
-        font-size: 60px;
-        margin-top: 14px;
-        color: #fff;
-        display: grid;
-        place-content: center;
-      }
-    }
-    .user {
+  .dateTime {
+    .date {
+      font-size: 46px;
+      color: #f6f6f6;
       display: grid;
-      row-gap: 20px;
-      .avatar {
-        display: grid;
-        place-content: center;
-        img {
-          height: 120px;
-          width: 120px;
-          border-radius: 50%;
-          object-fit: cover;
-          object-position: top;
-        }
-      }
-      .name {
-        display: grid;
-        place-content: center;
-        color: #fff;
-        font-size: 24px;
-      }
+      place-content: center;
+    }
+
+    .time {
+      font-size: 60px;
+      margin-top: 14px;
+      color: #fff;
+      display: grid;
+      place-content: center;
     }
   }
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.6) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+
+  .user {
+    display: grid;
+    row-gap: 20px;
+
+    .avatar {
+      display: grid;
+      place-content: center;
+
+      img {
+        height: 120px;
+        width: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+
+    .name {
+      display: grid;
+      place-content: center;
+      color: #fff;
+      font-size: 24px;
+    }
   }
 }
 .close {

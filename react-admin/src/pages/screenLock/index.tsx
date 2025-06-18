@@ -24,24 +24,20 @@ export default function ScreenLock() {
     setCurrentDayTime(dayjs().format('DD/MM/YYYY HH:mm'))
   }, 1000)
   return (
-    <Dialog
-      open={true}
-      // className={systemSetting.locked ? 'close' : null}
-      slot={
-        <div className="mainBox">
-          <div className="dateTime">
-            <div className="date">{currentDayTime?.split(' ')[0]}</div>
-            <div className="time">{currentDayTime?.split(' ')[1]}</div>
-          </div>
-          <div className="user">
-            <div className="avatar">
-              <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
-            </div>
-            <div className="name">{userInfo?.username}</div>
-            <Input.Password placeholder="密码" onChange={handleUnlock} />
-          </div>
+    <Dialog open={true}>
+      <div className="mainBox">
+        <div className="dateTime">
+          <div className="date">{currentDayTime?.split(' ')[0]}</div>
+          <div className="time">{currentDayTime?.split(' ')[1]}</div>
         </div>
-      }
-    ></Dialog>
+        <div className="user">
+          <div className="avatar">
+            <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
+          </div>
+          <div className="name">{userInfo?.username}</div>
+          <Input.Password placeholder="密码" onChange={handleUnlock} />
+        </div>
+      </div>
+    </Dialog>
   )
 }

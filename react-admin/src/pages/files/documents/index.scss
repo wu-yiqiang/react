@@ -8,7 +8,7 @@
     align-items: center;
     row-gap: 10px;
     cursor: pointer;
-
+ 
     .filename {
       width: 100px;
       overflow: hidden;
@@ -19,84 +19,65 @@
   }
 }
 
-dialog {
+.PdfDocumentPreview {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  height: 100vh;
-  &:focus {
-    outline: none;
+  overflow: hidden;
+  row-gap: 10px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  .topbar {
+    display: flex;
+    justify-content: end;
+    .opt-icon {
+      cursor: pointer;
+    }
   }
 
-  .PdfDocumentPreview {
+  .PreviewBox {
     flex: 1;
+    overflow: auto;
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    &:focus {
-      outline: none;
+    justify-content: center;
+    .preview-wrapper {
+      flex: 1;
+      .react-pdf__Page{
+        display: flex;
+        justify-content: center;
+      }
     }
+  }
 
-    .topbar {
+  .bottombar {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    .toolbar {
       display: flex;
-      justify-content: end;
+      width: fit-content;
+      background-color: #000000;
+      border-radius: 4px;
+      padding: 6px 10px;
+      column-gap: 14px;
+
       .opt-icon {
         cursor: pointer;
       }
-    }
-
-    .PreviewBox {
-      flex: 1;
-      overflow: auto;
-      display: flex;
-      justify-content: center;
-      .preview-wrapper {
-        flex: 1;
-        .react-pdf__Page{
-          display: flex;
-          justify-content: center;
-        }
-      }
-    }
-
-    .bottombar {
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      margin-top: 10px;
-      .toolbar {
-        display: flex;
-        width: fit-content;
-        background-color: #000000;
-        border-radius: 4px;
-        padding: 6px 10px;
-        column-gap: 14px;
-
-        .opt-icon {
-          cursor: pointer;
-        }
-        .scale {
-          font-size: 14px;
-          color: #fff;
-          display: grid;
-          place-content: center;
-          width: 26px;
-        }
+      .scale {
+        font-size: 14px;
+        color: #fff;
+        display: grid;
+        place-content: center;
+        width: 26px;
       }
     }
   }
-  .VideoPreview {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  &::backdrop {
-    background-color: rgba(0, 0, 0, 0.8) !important;
-    backdrop-filter: blur(0);
-    height: 100%;
-    width: 100%;
-  }
+}
+.VideoPreview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
