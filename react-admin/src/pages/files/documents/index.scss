@@ -42,7 +42,9 @@
     justify-content: center;
     .preview-wrapper {
       flex: 1;
-      .react-pdf__Page{
+      width: 100%;
+      height: 100%;
+      .react-pdf__Page {
         display: flex;
         justify-content: center;
       }

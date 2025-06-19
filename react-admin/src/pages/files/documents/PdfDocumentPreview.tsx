@@ -5,7 +5,6 @@ import { useRef, useState } from 'react'
 import FilePreviewer from 'react-file-previewer'
 export default function PdfDocumentPreview(props: any) {
   const { visible, url, handleClose } = props
-  const pdfRef = useRef()
   const [scale, setScale] = useState(1)
   const handleMinus = () => {
     setScale(Number((scale - 0.2).toFixed(2)))
@@ -25,7 +24,7 @@ export default function PdfDocumentPreview(props: any) {
           </div>
         </div>
         <div className="PreviewBox">
-          <FilePreviewer ref={pdfRef} file={{ url: url }} hideControls />
+          <FilePreviewer file={{ url: url, mimeType: 'application/pdf' }} hideControls />
         </div>
         <div className="bottombar">
           <div className="toolbar">
