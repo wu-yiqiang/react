@@ -12,6 +12,7 @@ export default function VideoPreview(props: any) {
   const handlePlus = () => {
     setScale(Number((scale + 0.2).toFixed(2)))
   }
+  if (!visible) return null
   return (
     <Dialog open={visible}>
       <div className="VideoPreview">

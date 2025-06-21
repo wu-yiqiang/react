@@ -10,5 +10,5 @@ export default function Dialog(props: any) {
   useEffect(() => {
     init()
   }, [])
-  return <dialog ref={dialog} id="Dialog" >{children}</dialog>
+  return <dialog ref={dialog} >{children}</dialog>
 }
