@@ -6,9 +6,6 @@ export default function DocumentManager() {
     <div className="Document">
       <FileItem url="http://192.168.1.222:8000/media/avatar/2022_PDF.pdf" />
       <FileItem url="http://192.168.1.222:8000/media/avatar/物体的缩放.mp4" />
-      <FileItem
-        url="http://192.168.1.222:8000/media/avatar/JUQ-832 为了深爱的丈夫-广濑百合.mp4"
-      />
     </div>
   )
 }
