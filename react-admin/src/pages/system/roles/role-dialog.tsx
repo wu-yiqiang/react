@@ -27,7 +27,6 @@ export default function UserAddDialog(props: DialogProps) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
-      console.log('体积爱', values)
       const datas = { ...values }
       if (!editStatus) await postRoleItem(datas)
       if (editStatus) await putRoleItem(datas)
