@@ -1,8 +1,8 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getIntefaceLists, deleteIntefaceItem } from '@/api/system'
+import { getIntefacesPage, deleteIntefaceItem } from '@/api/system'
 import { useEffect, useState } from 'react'
 import { UserSearch, UserItem } from '@/types/user'
-import  IntefaceDialog from './inteface-dialog.tsx'
+import IntefaceDialog from './inteface-dialog.tsx'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
@@ -44,7 +44,7 @@ export default function IntefaceManager() {
       width: 150,
       render: (value: number) => {
         return <TableCell value={value} type="intefaceType" />
-    }
+      }
     },
     {
       title: '请求路径',
@@ -69,7 +69,7 @@ export default function IntefaceManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data, total, pageSize, pageNo } = await getIntefaceLists(values)
+    const { data, total, pageSize, pageNo } = await getIntefacesPage(values)
     setLists(data)
     const datas = {
       pageSize: pageSize,

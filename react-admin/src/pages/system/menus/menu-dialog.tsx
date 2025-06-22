@@ -1,6 +1,6 @@
-import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber } from 'antd'
+import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber, Select, TableColumnsType, Table } from 'antd'
 import { useEffect, useState } from 'react'
-import { postMenuItem, updateMenuItem, getMenuItem, getMenuTreeLists } from '@/api/system'
+import { postMenuItem, updateMenuItem, getMenuItem, getMenuTreeLists, getButtonsOpts, getIntefacesList } from '@/api/system'
 import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import { Menu } from '@/types/menu'
@@ -12,6 +12,8 @@ export default function UserAddDialog(props: DialogProps) {
   const [title, setTitle] = useState('新增')
   const [loading, setLoading] = useState(false)
   const [menuOpts, setMenuOpts] = useState<Option[]>([])
+  const [buttonOpts, setButtonOpts] = useState<Option[]>([])
+  const [intefaceOpts, setIntefaceOpts] = useState<Option[]>([])
   const [form] = Form.useForm()
   interface Option {
     id: string
@@ -36,8 +38,23 @@ export default function UserAddDialog(props: DialogProps) {
     const { data } = await getMenuTreeLists()
     setMenuOpts(data ?? [])
   }
+  const getButtons = async () => {
+    const { data } = await getButtonsOpts()
+    setButtonOpts(data ?? [])
+  }
+  const getIntefaces = async () => {
+    const { data } = await getIntefacesList()
+    const datas =
+      data?.map((item: any) => {
+        item.label = `【${item?.name}】${item?.path}`
+        return item
+      }) ?? []
+    setIntefaceOpts(datas)
+  }
   const init = async () => {
     await getTreeOpts()
+    await getButtons()
+    await getIntefaces()
     if (!id) {
       await setTitle('新增')
       setEditStatus(false)
@@ -55,6 +72,10 @@ export default function UserAddDialog(props: DialogProps) {
         Toast.error('未获取到用户数据')
         return
       }
+      const buttons = data?.buttons?.map((item) => item?.id)
+      const intefaces = data?.intefaces?.map((item) => item?.id)
+      data.buttons = buttons
+      data.intefaces = intefaces
       form.setFieldsValue(data)
     }
   }
@@ -72,7 +93,7 @@ export default function UserAddDialog(props: DialogProps) {
             labelCol={{
               style: { width: 80 }
             }}
-            layout="inline"
+            layout="horizontal"
           >
             <Row gutter={[12, 12]}>
               <Col span={24}>
@@ -101,6 +122,16 @@ export default function UserAddDialog(props: DialogProps) {
                   <InputNumber placeholder="显示排序" min={1} style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
+              <Col span={24}>
+                <Form.Item label="按钮" name="buttons" rules={requiredRules}>
+                  <Select mode="multiple" allowClear placeholder="Please select" options={buttonOpts} optionFilterProp="name" fieldNames={{ label: 'name', value: 'id' }} />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label="接口" name="intefaces" rules={requiredRules}>
+                  <Select mode="multiple" style={{ width: '100%' }} allowClear placeholder="Please select" options={intefaceOpts} optionFilterProp="label" fieldNames={{ label: 'label', value: 'id' }} />
+                </Form.Item>
+              </Col>
               {/* <Col span={24}>
                 <Form.Item label="路由地址" name="path" rules={requiredRules}>
                   <Input placeholder="路由地址" />
@@ -111,6 +142,7 @@ export default function UserAddDialog(props: DialogProps) {
                   <Input placeholder="组件路径" />
                 </Form.Item>
               </Col> */}
+
               <Form.Item hidden label="ID" name="id">
                 <Input hidden />
               </Form.Item>

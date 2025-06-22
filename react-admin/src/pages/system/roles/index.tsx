@@ -84,13 +84,13 @@ export default function UserManager() {
   ];
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: RoleSearch) => {
-    const { data } = await getRolesLists(values);
-    setLists(data.lists);
+    const { data, total, pageSize, pageNo } = await getRolesLists(values)
+    setLists(data ?? []);
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo,
+      pageSize: pageSize,
+      pageNo: pageNo,
     };
-    setTotal(data?.total);
+    setTotal(total);
     setQueryData({ ...queryData, ...datas });
   };
   const handleNew = () => {

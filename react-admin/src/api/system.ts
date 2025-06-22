@@ -115,8 +115,12 @@ export const getButtonItem = async (id: number): Promise<any> => {
 }
 
 // 接口管理
-export const getIntefaceLists = async (data: MenuSearch): Promise<any> => {
+export const getIntefacesPage = async (data: MenuSearch): Promise<any> => {
   return await requestes.Post('/inteface/page', data)
+}
+
+export const getIntefacesList = async (): Promise<any> => {
+  return await requestes.Post('/inteface/lists')
 }
 
 export const postIntefaceItem = async (data: any): Promise<any> => {

@@ -1,37 +1,33 @@
-import { Form, Button, Modal, Row, Col, Checkbox, Tree, Card, TableProps } from 'antd'
+import { Form, Button, Modal, Row, Col, Checkbox, Tree, Card, TableProps, Table } from 'antd'
 import { useEffect, useState } from 'react'
 import { RoleItem, Role } from '@/types/role'
 import { DialogProps } from '@/types/common'
 import Tabular from '@/components/Tabular.tsx'
-import { getIntefaceLists, getButtonsOpts } from '@/api/system'
-import { UserSearch } from '@/types/user'
+import { getMenuItem } from '@/api/system'
 import { useTranslation } from 'react-i18next'
-import { diff } from '@/utils'
+import { cross, diff } from '@/utils'
 import { IntefaceItem } from '@/types/inteface'
 import TableCell from '@/components/TableCell'
 const CheckboxGroup = Checkbox.Group
-export default function UserAddDialog(props: DialogProps) {
-  const { open, handleClose, handleOk } = props
+export default function UserAddDialog(props: any) {
+  const { id,open, handleClose, handleOk, roleButtons, roleIntefaces } = props
   const [checkedLists, setCheckedLists] = useState<Array<any>>([])
   const [buttons, setButtons] = useState([])
+  const { t } = useTranslation()
+  const [lists, setLists] = useState([])
   const [checkedButtons, setCheckedButtons] = useState<Array<any>>([])
+  const [remaindButtons, setRemaindButtons] = useState<Array<any>>([])
+  const [remaindIntefaes, setRemaindIntefaces] = useState<Array<any>>([])
   const [form] = Form.useForm<RoleItem>()
   const close = () => {
     form.resetFields()
     handleClose()
   }
   const submit = async () => {
-    // handleOk()
+    const checkedAllButtons = [...new Set(checkedButtons.concat(remaindButtons))]
+    const checkedAllIntefaces = [...new Set(checkedLists.concat(remaindIntefaes))]
+    handleOk({ buttons: checkedAllButtons, intefaces: checkedAllIntefaces })
   }
-
-  const { t } = useTranslation()
-  const [lists, setLists] = useState()
-  const [total, setTotal] = useState(0)
-  const [queryData, setQueryData] = useState<UserSearch>({
-    search: '',
-    pageNo: 1,
-    pageSize: 10
-  })
   const columns = [
     {
       title: '名称',
@@ -44,7 +40,7 @@ export default function UserAddDialog(props: DialogProps) {
       dataIndex: 'type',
       key: 'type',
       width: 150,
-      render: (value: string | number) => { 
+      render: (value: string | number) => {
         return <TableCell value={value} type="intefaceType" />
       }
     },
@@ -54,20 +50,9 @@ export default function UserAddDialog(props: DialogProps) {
       key: 'path'
     }
   ]
-  const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
-  const handleSearch = async (values: UserSearch) => {
-    const { data, total, pageSize, pageNo } = await getIntefaceLists(values)
-    setLists(data)
-    const datas = {
-      pageSize: pageSize,
-      pageNo: pageNo
-    }
-    setTotal(total)
-    setQueryData({ ...queryData, ...datas })
-  }
   const rowSelection = {
     selectedRowKeys: checkedLists,
-    onSelect: (record: IntefaceItem, selected : boolean) => {
+    onSelect: (record: IntefaceItem, selected: boolean) => {
       const key = record?.id
       if (selected) {
         setCheckedLists([...checkedLists, key].filter(Boolean))
@@ -75,7 +60,7 @@ export default function UserAddDialog(props: DialogProps) {
         setCheckedLists(checkedLists.filter((item) => item !== key))
       }
     },
-    onSelectAll: (selected: boolean, selectedRows: any, changeRows : IntefaceItem[]) => {
+    onSelectAll: (selected: boolean, selectedRows: any, changeRows: IntefaceItem[]) => {
       const keys = changeRows?.map((item: any) => item.id)
       if (selected) {
         setCheckedLists([...checkedLists, ...keys])
@@ -84,24 +69,65 @@ export default function UserAddDialog(props: DialogProps) {
       }
     }
   }
-  const getButtons = async () => {
-    const { data } = await getButtonsOpts()
-    const lists = data?.map((item: { value: any; id: any; label: any; name: any }) => {
-      item.value = item.id
+  const getMenuDetails = async () => {
+    const { data } = await getMenuItem(id)
+    const btns = data?.buttons?.map((item: any) => {
       item.label = item?.name
+      item.value = item?.id
       return item
     })
-    setButtons(lists ?? [])
+    setButtons(btns ?? [])
+    setLists(data?.intefaces ?? [])
   }
-  const onChange = (list: number[]) => {
+  const getRoleButtons = () => {
+    const btns = buttons?.map((item: any) => {
+      return item?.id
+    })?.filter(Boolean)
+    const crossBtns = cross(roleButtons ?? [], btns)
+    const diffBtns = diff(roleButtons ?? [], crossBtns)
+    setRemaindButtons(diffBtns ?? [])
+    setCheckedButtons(crossBtns ?? [])
+  }
+  const getRoleIntefaces = () => {
+    const intefaces = lists
+      ?.map((item: any) => {
+        return item?.id
+      })
+      ?.filter(Boolean)
+    const crossIntefaces = cross(roleIntefaces ?? [], intefaces)
+    const diffIntefaces = diff(roleIntefaces ?? [], crossIntefaces)
+    setRemaindIntefaces(diffIntefaces ?? [])
+    setCheckedLists(crossIntefaces ?? [])
+  }
+  const onChangeButtons = (list: number[]) => {
     setCheckedButtons(list)
   }
+  useEffect( () => {
+    getMenuDetails()
+  }, [open])
   useEffect(() => {
-    getButtons()
-  }, [])
+    getRoleButtons()
+  }, [buttons])
+  useEffect(() => {
+    getRoleIntefaces()
+  }, [lists])
   return (
-    <Modal title="添加权限" width={900} centered forceRender maskClosable={false} destroyOnClose={true} styles={{ body: { height: '500px', overflow: 'auto' } }} open={open} onOk={submit} onCancel={close}>
-      <Tabular dataSource={lists} total={total} pageNo={queryData.pageNo} pageSize={queryData.pageSize} columns={columns} data={queryData} rowSelection={{ type: 'checkbox', ...rowSelection }} preserveSelectedRowKeys={true} searchOptions={searchOptions} handleSearch={handleSearch} left={<CheckboxGroup options={buttons} value={checkedButtons} onChange={onChange} />}></Tabular>
+    <Modal title="添加权限" width={700} centered forceRender maskClosable={false} destroyOnClose={true} styles={{ body: { maxHeight: '400px', overflow: 'auto' } }} open={open} onOk={submit} onCancel={close}>
+      <CheckboxGroup options={buttons} value={checkedButtons} onChange={onChangeButtons} />
+      <Table
+        rowSelection={{ ...rowSelection }}
+        // onRow={(record) => {
+        //   return {
+        //     onClick: (event) => {
+        //       console.log("行点击", record)
+        //     },
+        //   }
+        // }}
+        rowKey="id"
+        dataSource={lists}
+        columns={columns}
+        pagination={false}
+      />
     </Modal>
   )
 }

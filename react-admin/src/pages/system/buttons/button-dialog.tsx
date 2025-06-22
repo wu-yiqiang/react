@@ -62,7 +62,7 @@ export default function UserAddDialog(props: DialogProps) {
               </Col>
               <Col span={24}>
                 <Form.Item label="权限标识" name="code" rules={requiredRules}>
-                  <InputNumber style={{ width: '100%' }} />
+                  <Input style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
             </Row>

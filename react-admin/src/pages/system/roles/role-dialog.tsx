@@ -16,6 +16,7 @@ export default function UserAddDialog(props: DialogProps) {
   const [title, setTitle] = useState('新增')
   const [treeData, setTreeData] = useState([])
   const [visible, setVisible] = useState(false)
+  const [menuId, setMenuId] = useState(0)
   const [checkedKeys, setCheckedKeys] = useState<React.Key[]>([])
   const [form] = Form.useForm<RoleItem>()
   const close = () => {
@@ -26,6 +27,7 @@ export default function UserAddDialog(props: DialogProps) {
     const value = await form.validateFields()
     if (value) {
       const values = form.getFieldsValue()
+      console.log('体积爱', values)
       const datas = { ...values }
       if (!editStatus) await postRoleItem(datas)
       if (editStatus) await putRoleItem(datas)
@@ -40,7 +42,7 @@ export default function UserAddDialog(props: DialogProps) {
   const init = async () => {
     const { data } = await getMenuTreeLists()
     setTreeData(data?.map((item: any) => {
-      if (item.id == 1) item.disabled = true
+      if (item.id == 1) item.disableCheckbox = true
       return item
     }))
     if (isEmpty(id)) {
@@ -51,6 +53,9 @@ export default function UserAddDialog(props: DialogProps) {
     if (id) {
       setEditStatus(true)
       const data = await fetchData(id)
+      data.menus = data?.menus?.map((item: any) => item.id) ?? []
+      data.buttons = data?.buttons?.map((item: any) => item.id) ?? []
+      data.intefaces = data?.intefaces?.map((item: any) => item.id) ?? []
       await setTitle('编辑')
       form.setFieldsValue(data)
     }
@@ -63,17 +68,16 @@ export default function UserAddDialog(props: DialogProps) {
     setCheckedKeys(checkedKeysValue?.checked)
     form.setFieldValue('menus', checkedKeysValue?.checked ?? [])
   }
-
-  const onSelect: TreeProps['onSelect'] = (selectedKeysValue, info) => {
-    console.log('onSelect', info)
-  }
   const handleSelect = (value: any) => {
+    setMenuId(value[0])
     setVisible(true)
   }
   const handleClose2 = () => {
     setVisible(false)
   }
-  const handleOk2 = () => {
+  const handleOk2 = ({ buttons, intefaces }) => {
+    form.setFieldValue('buttons', buttons)
+    form.setFieldValue('intefaces', intefaces)
     setVisible(false)
   }
 
@@ -97,7 +101,7 @@ export default function UserAddDialog(props: DialogProps) {
   ]
   return (
     <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
-      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">
+      <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="horizontal">
         <Row gutter={[16, 16]}>
           <Col span={24}>
             <Form.Item label="角色名称" name="name" rules={requiredRules}>
@@ -131,12 +135,16 @@ export default function UserAddDialog(props: DialogProps) {
               <TextArea placeholder="remark" autoSize={{ minRows: 2, maxRows: 4 }} />
             </Form.Item>
           </Col>
+          <Form.Item hidden name="buttons">
+          </Form.Item>
+          <Form.Item hidden  name="intefaces">
+          </Form.Item>
           <Form.Item hidden label="ID" name="id">
             <Input hidden />
           </Form.Item>
         </Row>
       </Form>
-      <PermissionDialog open={visible} handleClose={handleClose2} handleOk={handleOk2} id={null} />
+      {visible && menuId ? <PermissionDialog open={visible} handleClose={handleClose2} handleOk={handleOk2} id={menuId} roleButtons={form.getFieldValue('buttons')} roleIntefaces={form.getFieldValue('intefaces')} /> : null}
     </Modal>
   )
 }

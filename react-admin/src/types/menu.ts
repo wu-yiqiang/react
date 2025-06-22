@@ -22,8 +22,7 @@ export class Menu implements MenuItem {
   menu_type: number | null
   code: string
   constructor() {
-    this.id = null,
-    this.uuid = ''
+    ;(this.id = null), (this.uuid = '')
     this.name = ''
     this.parent_id = null
     this.path = ''
