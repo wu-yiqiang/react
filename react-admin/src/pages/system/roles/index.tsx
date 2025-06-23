@@ -7,7 +7,10 @@ import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import { RoleSearch, RoleItem } from "@/types/role";
+import Authority from '@/components/Authority'
+import { useTranslation } from 'react-i18next'
 export default function UserManager() {
+  const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [roleId, setRoleId] = useState<number | null>(null)
@@ -117,17 +120,14 @@ export default function UserManager() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Button type="primary" onClick={handleNew}>
-            新增
-          </Button>
+          <Authority permission="system:role:create">
+            <Button type="primary" onClick={handleNew}>
+              {t('Add')}
+            </Button>
+          </Authority>
         }
       ></Tabular>
-      {dialogOpen ? <RoleAddDialog
-        open={dialogOpen}
-        handleClose={handleClose}
-        handleOk={handleOk}
-        id={roleId}
-      /> : null }
+      {dialogOpen ? <RoleAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={roleId} /> : null}
     </>
-  );
+  )
 }

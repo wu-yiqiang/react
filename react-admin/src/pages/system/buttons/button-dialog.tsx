@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { postButtonItem, updateButtonItem, getButtonItem } from '@/api/system'
 import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
-import { User } from '@/types/user'
+import { Btn } from '@/types/button'
 import { DialogProps } from '@/types/common'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
@@ -30,7 +30,7 @@ export default function UserAddDialog(props: DialogProps) {
     if (!id) {
       await setTitle('新增')
       setEditStatus(false)
-      form.setFieldsValue(new User())
+      form.setFieldsValue(new Btn())
     }
     if (id) {
       await setTitle('编辑')

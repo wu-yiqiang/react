@@ -7,7 +7,7 @@ export default function SelfService() {
   const onFinishFailed = () => {}
   return (
     <div className="SelfService">
-      <Title level={5}>信息修改</Title>
+      <Title level={5}>个人信息</Title>
       <div className="contents">
         <Form labelCol={{ style: { width: 100 } }} style={{ maxWidth: 400 }} initialValues={{ remember: true }} onFinish={onFinish} onFinishFailed={onFinishFailed} autoComplete="off">
           <Form.Item label="联系电话" name="username">

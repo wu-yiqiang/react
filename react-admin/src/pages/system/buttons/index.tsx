@@ -7,7 +7,6 @@ import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import { useTranslation } from 'react-i18next'
-import { ResponseTypes } from '@/types/common'
 export default function ButtonManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()

@@ -143,12 +143,16 @@ export default function UserManager() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Authority>
-            <Export url="/user/download" method="get" />
-            <Button type="primary" onClick={handleNew}>
-              {t('Add')}
-            </Button>
-          </Authority>
+          <>
+            <Authority permission="system:user:export">
+              <Export url="/user/download" method="get" />
+            </Authority>
+            <Authority permission="system:user:create">
+              <Button type="primary" onClick={handleNew}>
+                {t('Add')}
+              </Button>
+            </Authority>
+          </>
         }
       ></Tabular>
       {dialogOpen ? <UserAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}

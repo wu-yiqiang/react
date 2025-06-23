@@ -9,10 +9,12 @@ import { emailRequiredRules, requiredRules } from "@/validator/index";
 import type { TreeDataNode, TreeProps } from 'antd'
 import { DialogProps } from "@/types/common";
 import DictsRadioGroup from '@/components/DictsRadioGroup';
+import { useTranslation } from 'react-i18next'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props;
+  const { t } = useTranslation()
   const [editStatus, setEditStatus] = useState(false);
-  const [title, setTitle] = useState("新增");
+  const [title, setTitle] = useState(t('Add'));
   const [form] = Form.useForm<RoleItem>();
   const close = () => {
     form.resetFields();

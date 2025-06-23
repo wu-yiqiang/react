@@ -1,3 +1,4 @@
+import { BtnField, BtnItem } from './button';
 import {MenuItem} from './menu'
 export interface Pagenation {
     pageSize: number;
@@ -54,6 +55,7 @@ interface UserInfo {
   token: string
   menus: Array<MenuItem>
   roles: Array<object>
+  buttons: Array<BtnItem>
 }
 
 interface SystemSetting {
