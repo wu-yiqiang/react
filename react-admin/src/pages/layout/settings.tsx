@@ -4,8 +4,10 @@ import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import { DialogProps, SystemStore } from '@/types/common'
 import useSystemStore from '@/store/index'
+import { useTranslation } from 'react-i18next'
 const  SettingDialog = (props: any) => {
   const { open, handleClose } = props
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
   const { systemSetting, setSystemSetting } = useSystemStore() as SystemStore
@@ -31,7 +33,7 @@ const  SettingDialog = (props: any) => {
     init()
   }, [])
   return (
-    <Modal title="系统设置" width={400} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={handleClose}>
+    <Modal title={t('systemSetting')} width={500} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={handleClose}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
           <Form
@@ -39,19 +41,19 @@ const  SettingDialog = (props: any) => {
             form={form}
             labelAlign="right"
             labelCol={{
-              style: { width: 80 }
+              style: { width: 170 }
             }}
             layout="inline"
           >
             <Row gutter={[12, 12]}>
               <Col span={24}>
-                <Form.Item label="锁屏时间" name="lockTime" rules={requiredRules}>
-                  <InputNumber placeholder="分钟" min={1} style={{ width: '100%' }} />
+                <Form.Item label={t('lockScreenTime')} name="lockTime" rules={requiredRules}>
+                  <InputNumber placeholder={t('minute')} min={1} style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="锁屏密码" name="lockPassword" rules={requiredRules}>
-                  <Input.Password placeholder="密码" />
+                <Form.Item label={t('lockScreenPassword')} name="lockPassword" rules={requiredRules}>
+                  <Input.Password placeholder={t('lockScreenTime')} />
                 </Form.Item>
               </Col>
             </Row>

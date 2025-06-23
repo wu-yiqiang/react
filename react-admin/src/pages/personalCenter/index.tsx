@@ -5,13 +5,15 @@ import UpdateAvatarDialog from './update-avatar-dialog'
 import SelfService from './self-service'
 import PersonalDetails from './personnal-detail'
 import avatar from '@/assets/images/user.jpg'
+import { useTranslation } from 'react-i18next'
 import { useState } from 'react'
 import './index.scss'
 export default function PersonalCenter() {
   const { userInfo } = useSystemStore() as SystemStore
   const [visible, setVisible] = useState(false)
-  const [active, setActive] = useState('详细信息')
-  const [tabs, setTabs] = useState([{title: '详细信息'}, {title: '自助服务'}])
+  const { t } = useTranslation()
+  const [active, setActive] = useState(t('profile'))
+  const [tabs, setTabs] = useState([{ title: t('profile') }, { title: t('selfService') }])
   const handleOk = () => {
     handleOpenStatus(true)
   }
@@ -31,28 +33,28 @@ export default function PersonalCenter() {
         <div className="image">
           <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
           <div className="tips" onClick={() => handleOpenStatus(true)}>
-            修改
+            {t('revise')}
           </div>
         </div>
         <div className="Info">
           <Row gutter={[16, 16]}>
             <Col span={12}>
-              <div>姓名：张三</div>
+              <div>{t('name')}：张三</div>
             </Col>
             <Col span={12}>
-              <div>工号：6786549</div>
+              <div>{t('jobNumber')}：6786549</div>
             </Col>
             <Col span={12}>
-              <div>部门：开发一部</div>
+              <div>{t('department')}：开发一部</div>
             </Col>
             <Col span={12}>
-              <div>岗位：研发工程师</div>
+              <div>{t('job')}：研发工程师</div>
             </Col>
             <Col span={12}>
-              <div>邮箱：zhang_san@outlook.com</div>
+              <div>{t('email')}：zhang_san@outlook.com</div>
             </Col>
             <Col span={12}>
-              <div>电话：15117987823</div>
+              <div>{t('phone')}：15117987823</div>
             </Col>
           </Row>
         </div>
@@ -66,9 +68,9 @@ export default function PersonalCenter() {
           )
         })}
       </div>
-      {active == '详细信息' ? <PersonalDetails /> : null}
-      {active == '自助服务' ? <SelfService /> : null}
-      {visible ? <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} />: null}
+      {active == t('profile') ? <PersonalDetails /> : null}
+      {active == t('selfService') ? <SelfService /> : null}
+      {visible ? <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} /> : null}
     </div>
   )
 }

@@ -8,6 +8,8 @@ import { logout } from '@/api/public';
 import Toast from '@/components/Toast';
 import useSystemStore from '@/store';
 import { SystemStore } from '@/types/common';
+import { useTranslation } from 'react-i18next'
+
 export default function Head() {
   return (
     <span className="Header">
@@ -25,15 +27,12 @@ export default function Head() {
 }
 
 function Search() {
+  const { t } = useTranslation()
   return (
     <div className="search-expand-container">
-      <Input
-        prefix={<SearchOutlined />}
-        className="search-expanding-input"
-        placeholder="Search..."
-      />
+      <Input prefix={<SearchOutlined />} className="search-expanding-input"  placeholder={t('search')} />
     </div>
-  );
+  )
 }
 const Lock = () => {
   const handleLock = () => {
@@ -72,24 +71,25 @@ function Translate() {
 }
 
 function Theme() {
+  const { t } = useTranslation()
   const handleTheme = (value: string) => {
     eventMitt.emit("SYSTEM:THEME", value);
     // EventMitt("changeTheme", value);
   };
-  const items: MenuProps["items"] = [
+  const items: MenuProps['items'] = [
     {
-      key: "light",
-      label: <a onClick={() => handleTheme("light")}>浅色模式</a>,
+      key: 'light',
+      label: <a onClick={() => handleTheme('light')}>{t('lightMode')}</a>
     },
     {
-      key: "dark",
-      label: <a onClick={() => handleTheme("dark")}>暗黑模式</a>,
+      key: 'dark',
+      label: <a onClick={() => handleTheme('dark')}>{t('darkMode')}</a>
     },
     {
-      key: "system",
-      label: <a onClick={() => handleTheme("system")}>跟随系统</a>,
-    },
-  ];
+      key: 'system',
+      label: <a onClick={() => handleTheme('system')}>{t('systemMode')}</a>
+    }
+  ]
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <BgColorsOutlined className="headeIcon" />
@@ -117,6 +117,7 @@ function Setting() {
  }
 
 function User() {
+  const { t } = useTranslation()
   const { userInfo } = useSystemStore() as SystemStore
   const handleLogout = async () => {
     // await logout()
@@ -124,12 +125,12 @@ function User() {
     eventMitt.emit('ROUTER:LOGOUT')
     Toast.success('操作成功')
   };
-  const items: MenuProps["items"] = [
+  const items: MenuProps['items'] = [
     {
-      key: "layout",
-      label: <a onClick={handleLogout}>退出登录</a>,
-    },
-  ];
+      key: 'layout',
+      label: <a onClick={handleLogout}>{t('logout')}</a>
+    }
+  ]
   return (
     <Dropdown menu={{ items }} placement="bottom" arrow>
       <Avatar src={userInfo?.avatar} size={36} style={{ objectPosition: 'top' }} icon={<UserOutlined />} />
