@@ -72,8 +72,8 @@ export default function UserAddDialog(props: DialogProps) {
         Toast.error('未获取到用户数据')
         return
       }
-      const buttons = data?.buttons?.map((item) => item?.id)
-      const intefaces = data?.intefaces?.map((item) => item?.id)
+      const buttons = data?.buttons?.map((item: any) => item?.id)
+      const intefaces = data?.intefaces?.map((item: any) => item?.id)
       data.buttons = buttons
       data.intefaces = intefaces
       form.setFieldsValue(data)

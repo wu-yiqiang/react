@@ -74,7 +74,8 @@ export default function UserAddDialog(props: DialogProps) {
   const handleClose2 = () => {
     setVisible(false)
   }
-  const handleOk2 = ({ buttons, intefaces }) => {
+  const handleOk2 = (value: any) => {
+    const {buttons, intefaces} = value
     form.setFieldValue('buttons', buttons)
     form.setFieldValue('intefaces', intefaces)
     setVisible(false)

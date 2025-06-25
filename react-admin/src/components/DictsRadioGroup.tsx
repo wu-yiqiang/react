@@ -13,8 +13,8 @@ export default function DictsSelector(props: any) {
   const init = async () => {
     const { data } = await getDictionaryItemByType(type)
     const datas = data?.map((item: DictionaryItem) => {
-      item.value = item.code
-      return item
+      const iter = {...item, value: item?.code}
+      return iter
     }) ?? []
     setDictionarys(datas)
   }

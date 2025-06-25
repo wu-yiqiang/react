@@ -50,6 +50,7 @@ export interface DialogProps {
 }
 
 interface UserInfo {
+  id: number | null;
   username: string
   avatar: string
   token: string

@@ -13,7 +13,7 @@ export default function UpdateAvatarDialog(props: any) {
   const [img, setImg] = useState('')
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
-  const [file, setFile] = useState()
+  const [file, setFile] = useState<any>()
   const [crop, setCrop] = useState<Crop>()
 
   const close = () => {
@@ -25,13 +25,33 @@ export default function UpdateAvatarDialog(props: any) {
     if (file) {
       setLoading(true)
       const { data } = await upload(file)
-      await updateUserAvatar({ id: userInfo?.id, avatar: data })
+      await updateUserAvatar({
+        id: userInfo?.id, avatar: data,
+        uuid: '',
+        username: '',
+        email: '',
+        gender: '',
+        company: '',
+        phone_number: '',
+        status: null,
+        roles: []
+      })
       useSystemStore.setState(() => ({
         userInfo: { ...userInfo, avatar: data }
       }))
       setLoading(false)
     } else {
-      await updateUserAvatar({ id: userInfo?.id, avatar: img })
+      await updateUserAvatar({
+        id: userInfo?.id, avatar: img,
+        uuid: '',
+        username: '',
+        email: '',
+        gender: '',
+        company: '',
+        phone_number: '',
+        status: null,
+        roles: []
+      })
       useSystemStore.setState(() => ({
         userInfo: { ...userInfo, avatar: img }
       }))
@@ -43,7 +63,7 @@ export default function UpdateAvatarDialog(props: any) {
 
   const handleComplete = async (cro: any) => {
     if (imageRef.current && cro.width && cro.height) {
-      const croppedImageBlob = await getCroppedImage(imageRef.current, crop)
+      const croppedImageBlob = await getCroppedImage(imageRef.current, crop) as any
       setFile(new File([croppedImageBlob], 'avatar.png', { type: 'image/jpeg' }))
     }
   }
@@ -53,7 +73,7 @@ export default function UpdateAvatarDialog(props: any) {
     const scaleY = image.naturalHeight / image.height
     canvas.width = cro.width
     canvas.height = cro.height
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext('2d') as any
     ctx.drawImage(image, cro.x * scaleX, cro.y * scaleY, cro.width * scaleX, cro.height * scaleY, 0, 0, cro.width, cro.height)
 
     return new Promise((resolve) => {

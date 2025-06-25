@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 
 export default function TableCell(props: any) {
   const { type, value } = props
-  const [dictionarys, setDictionarys] = useState([])
+  const [dictionarys, setDictionarys] = useState<Array<DictionaryItem>>([])
   const init = async () => {
       const { data } = await getDictionaryItemByType(type)
       setDictionarys(data ?? [])

@@ -20,7 +20,8 @@ export default function PdfDocumentPreview(props: any) {
     console.log('11', scale)
     setScale(Number((scale + 0.2).toFixed(2)))
   }
-  function onDocumentLoadSuccess({ numPages }) {
+  function onDocumentLoadSuccess(value: any) {
+    const { numPages } = value
     setTotalPages(numPages)
   }
   const handleNextPage = () => { 
@@ -30,9 +31,8 @@ export default function PdfDocumentPreview(props: any) {
     setPageNumber(pageNumber - 1)
   }
   const onChangePage = (value: number | null) => {
-    console.log('sds', value)
     if (!number) return
-    setPageNumber(value)
+    setPageNumber(value as number)
   }
   useEffect(() => {
     console.log("sdsd", scale)
