@@ -10,5 +10,5 @@ export const upload = async (data: any): Promise<any> => {
 }
 export const download = async (url: string, method: string = 'Get'): Promise<any> =>
   await requestes.Get(url, {
-    headers: { 'Content-Type': 'blob' }
+    headers: { 'Content-Type': 'blob' },
   })

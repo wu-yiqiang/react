@@ -223,68 +223,68 @@ export const allRouters: Array<RouterItem> = [
     element: <Doeuments />
   },
   {
-    path: '/settings',
+    path: '/systems',
     label: '系统设置',
     icon: <SettingOutlined />,
-    key: 'settings',
+    key: 'systems',
     parentkey: '',
     element: null
   },
 
   {
-    path: '/settings/users',
+    path: '/systems/users',
     label: '用户管理',
     icon: <UserOutlined />,
     key: 'users',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Users />
   },
   {
-    path: '/settings/roles',
+    path: '/systems/roles',
     label: '角色管理',
     icon: <TeamOutlined />,
     key: 'roles',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Roles />
   },
   {
-    path: '/settings/menus',
+    path: '/systems/menus',
     label: '菜单管理',
     icon: <MenuOutlined />,
     key: 'menus',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Menus />
   },
   {
-    path: '/settings/buttons',
+    path: '/systems/buttons',
     label: '按钮管理',
     icon: <MenuUnfoldOutlined />,
     key: 'buttons',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Buttons />
   },
   {
-    path: '/settings/inteface',
+    path: '/systems/inteface',
     label: '接口管理',
     icon: <SafetyOutlined />,
     key: 'intefaces',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Intefaces />
   },
   {
-    path: '/settings/dictionarys',
+    path: '/systems/dictionarys',
     label: '字典管理',
     icon: <SafetyOutlined />,
     key: 'dictionarys',
-    parentkey: 'settings',
+    parentkey: 'systems',
     element: <Dictionarys />
   },
   {
-    path: '/settings/intelligent',
+    path: '/systems/intelligent',
     label: '智能应答',
     icon: <SafetyOutlined />,
-    key: 'intelligent',
-    parentkey: 'settings',
+    key: 'intelligents',
+    parentkey: 'systems',
     element: <Intelligent />
   }
 ]

@@ -112,11 +112,11 @@ export default function UserAddDialog(props: DialogProps) {
               <Input />
             </Form.Item>
           </Col>
-          <Col span={24}>
+          {/* <Col span={24}>
             <Form.Item label="状态" name="status">
               <DictsRadioGroup type="status" onSelect={(value: number) => form.setFieldValue('status', value)} />
             </Form.Item>
-          </Col>
+          </Col> */}
           <Col span={24}>
             <Form.Item label="菜单权限" name="menus" rules={requiredRules}>
               <Card>{treeData?.length ? <Tree checkable onCheck={onCheck} autoExpandParent={true} defaultExpandAll checkStrictly={true} checkedKeys={form.getFieldValue('menus')} onSelect={handleSelect} fieldNames={{ title: 'name', key: 'id' }} treeData={treeData} /> : null}</Card>

@@ -7,7 +7,7 @@ export default function Export(props: any) {
   const handleDownload = async () => {
     setLoading(true)
     let filename = ''
-    const res = await download(props?.url, method)
+    await download(props?.url, method)
       .finally(() => {
         setLoading(false)
       })

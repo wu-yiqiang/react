@@ -43,11 +43,6 @@ export default function UserManager() {
       key: "code",
     },
     {
-      title: "状态",
-      dataIndex: "code",
-      key: "code",
-    },
-    {
       title: "描述",
       dataIndex: "remark",
       key: "remark",

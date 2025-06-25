@@ -1,6 +1,6 @@
 {
-  "login": "LogIn",
-  "logout": "LogOut",
+  "login": "Login",
+  "logout": "Logout",
   "home": "Home",
   "systemDashboard": "System board",
   "userManagement": "User Management",
