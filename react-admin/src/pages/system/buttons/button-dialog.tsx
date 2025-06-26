@@ -50,7 +50,7 @@ export default function UserAddDialog(props: DialogProps) {
     init()
   }, [id])
   return (
-    <Modal title={title} width={600} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+    <Modal title={title} width={500} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
           <Form id="form" form={form} labelAlign="left" labelCol={{ style: { width: 80 } }} layout="horizontal">
