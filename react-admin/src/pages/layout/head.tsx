@@ -120,7 +120,7 @@ function User() {
   const { t } = useTranslation()
   const { userInfo } = useSystemStore() as SystemStore
   const handleLogout = async () => {
-    // await logout()
+    await logout()
     eventMitt.emit('STORE:USER', {})
     eventMitt.emit('ROUTER:LOGOUT')
     Toast.success('操作成功')
