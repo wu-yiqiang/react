@@ -71,14 +71,14 @@ export default function Tabular(props: any) {
     init()
   }, [])
   return (
-    <>
+    <div style={{backgroundColor: '#fff', padding: '10px', borderRadius: '4px'}}>
       <SearchForm columns={searchOptions} labelWidth="60px" data={data} cRef={SearchFormRef} defaultFoldNum={defaultFoldNum} defaultFoldState={defaultFoldState} handleSearch={handleForm} />
       <section className="opeartions">
         <div className="opts-left">{props?.left}</div>
         <div className="opts-right">{props?.right}</div>
       </section>
-      <Table columns={columnLists} rowSelection={rowSelection} scroll={{ y: 550 }} rowKey="id" dataSource={dataSource} pagination={false} />
+      <Table columns={columnLists} rowSelection={rowSelection} scroll={{ y: 520 }} rowKey="id" dataSource={dataSource} pagination={false} />
       {total > 0 ? <Pagination style={{ marginTop: 10 }} showSizeChanger current={pageNo} pageSize={pageSize} total={total} onChange={handlePager} align="end" showTotal={showTotal} /> : null}
-    </>
+    </div>
   )
 }
