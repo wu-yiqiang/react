@@ -230,7 +230,6 @@ export const allRouters: Array<RouterItem> = [
     parentkey: '',
     element: null
   },
-
   {
     path: '/systems/users',
     label: '用户管理',
@@ -301,15 +300,10 @@ const routerConfig: RouteObject[] = [
 
 export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
 
-eventMitt.on('ROUTER:LOGOUT', () => {
-  // await logout()
+eventMitt.on('ROUTER:LOGOUT', async () => {
   routes.navigate('/login')
 })
 
-// eventMitt.on("ROUTER:HOME", () => {
-//   // routes.navigate("/");
-//   routes.navigate('/personal')
-// });
 eventMitt.on('ROUTER:BACK', () => {
   routes.navigate(-1)
 })
