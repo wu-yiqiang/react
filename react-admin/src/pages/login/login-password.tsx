@@ -5,12 +5,16 @@ import { login } from '@/api/public'
 import eventMitt from '@/utils/eventMitt'
 import Toast from '@/components/Toast'
 import { useState } from 'react'
+import {AES_ECB_ENCRYPT} from '@/utils/encrypt'
+import { cloneDeep } from 'lodash-es'
 function LoginPassword() {
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
   const onFinish = async (value: any) => {
     setLoading(true)
-    const { data } = await login(value).finally(() => {
+    const params = cloneDeep(value)
+    params.password = AES_ECB_ENCRYPT(params.password)
+    const { data } = await login(params).finally(() => {
       setLoading(false)
     })
     if (data?.token) {
