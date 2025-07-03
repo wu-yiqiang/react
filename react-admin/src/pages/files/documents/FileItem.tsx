@@ -4,7 +4,7 @@ import PdfDocumentPreview from "./PdfDocumentPreview";
 import VideoPreview from "./VideoPreview";
 import { Button, Upload, Input, Checkbox } from 'antd'
 export default function FileItem(props: any) {
-  const {url} = props
+  const {fileItem} = props
   let [visible, setVisible] = useState<boolean>(false)
   const handleStatue = (open: SetStateAction<boolean>) => {
     setVisible(open)
@@ -12,12 +12,8 @@ export default function FileItem(props: any) {
   const handleOpen = () => {
     handleStatue(true)
   }
-  const isVideo = useMemo(() => (url.includes('.mp4')), [url])
-  const isPdf = useMemo(() => (url.includes('.pdf')), [url])
-  const name = useMemo(() => {
-    const parts = url.split('/')
-    return parts[parts.length - 1]
-  }, [url])
+  const isVideo = useMemo(() => fileItem?.fileName.includes('.mp4'), [fileItem])
+  const isPdf = useMemo(() => fileItem?.fileName.includes('.pdf'), [fileItem])
   const handleClose = () => {
     handleStatue(false)
   }
@@ -26,10 +22,10 @@ export default function FileItem(props: any) {
       <div className="PdfDocument" onClick={handleOpen}>
         {isPdf ? <SvgIcon name="pdf" size="70px" /> : null}
         {isVideo ? <SvgIcon name="video" size="70px" /> : null}
-        <div className="filename">{name}</div>
+        <div className="filename">{fileItem?.fileName}</div>
       </div>
-      {isPdf && visible ? <PdfDocumentPreview visible={visible} url={url} handleClose={handleClose} /> : null}
-      {isVideo && visible ? <VideoPreview visible={visible} url={url} handleClose={handleClose} /> : null}
+      {isPdf && visible ? <PdfDocumentPreview visible={visible} url={fileItem?.url} handleClose={handleClose} /> : null}
+      {isVideo && visible ? <VideoPreview visible={visible} url={fileItem?.url} handleClose={handleClose} /> : null}
     </>
   )
 }

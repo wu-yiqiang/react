@@ -12,11 +12,10 @@
   
     .Document {
       display: grid;
-      flex: 1;
       grid-template-columns: repeat(auto-fit, 120px);
-      grid-template-rows: repeat(3, 120px);
       flex-wrap: wrap;
       overflow: auto;
+      row-gap: 10px;
       .PdfDocument {
         display: flex;
         flex-direction: column;
