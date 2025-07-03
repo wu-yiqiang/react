@@ -1,28 +1,38 @@
-.topbar {
+
+.Files {
   display: flex;
-  column-gap: 10px;
-  margin-bottom: 10px;
-}
-
-.Document {
-  display: flex;
-  gap: 14px;
-
-  .PdfDocument {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 10px;
-    cursor: pointer;
-
-    .filename {
-      width: 100px;
-      overflow: hidden;
-      text-align: center;
-      // text-overflow: ellipsis;
-      flex-wrap: nowrap;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  .topbar {
+      display: flex;
+      column-gap: 10px;
+      margin-bottom: 10px;
     }
-  }
+  
+    .Document {
+      display: grid;
+      flex: 1;
+      grid-template-columns: repeat(auto-fit, 120px);
+      grid-template-rows: repeat(3, 120px);
+      flex-wrap: wrap;
+      overflow: auto;
+      .PdfDocument {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+        cursor: pointer;
+        flex-wrap: wrap;
+  
+        .filename {
+          width: 100px;
+          overflow: hidden;
+          text-align: center;
+          // text-overflow: ellipsis;
+          flex-wrap: nowrap;
+        }
+      } }
 }
 
 .PdfDocumentPreview {

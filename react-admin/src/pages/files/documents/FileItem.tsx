@@ -2,7 +2,7 @@ import SvgIcon from "@/components/SvgIcon/SvgIcon";
 import { SetStateAction, useMemo, useState } from "react";
 import PdfDocumentPreview from "./PdfDocumentPreview";
 import VideoPreview from "./VideoPreview";
-
+import { Button, Upload, Input, Checkbox } from 'antd'
 export default function FileItem(props: any) {
   const {url} = props
   let [visible, setVisible] = useState<boolean>(false)
