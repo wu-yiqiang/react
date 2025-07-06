@@ -30,7 +30,7 @@ const Departments = React.lazy(() => import('@/pages/basicData/departments/index
 const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
 
 // File
-const Doeuments = React.lazy(() => import('@/pages/files/documents/index'))
+const Files = React.lazy(() => import('@/pages/share/files/index'))
 
 //
 const Invoices = React.lazy(() => import('@/pages/invoices/index'))
@@ -207,20 +207,20 @@ export const allRouters: Array<RouterItem> = [
     element: <Departments />
   },
   {
-    path: '/files',
-    label: '文件管理',
+    path: '/shares',
+    label: '共享中心',
     icon: <SettingOutlined />,
-    key: 'files',
+    key: 'shares',
     parentkey: '',
     element: null
   },
   {
-    path: '/files/documents',
-    label: '文档管理',
+    path: '/shares/file',
+    label: '文件共享',
     icon: <UserOutlined />,
-    key: 'documents',
-    parentkey: 'files',
-    element: <Doeuments />
+    key: 'files',
+    parentkey: 'shares',
+    element: <Files />
   },
   {
     path: '/systems',

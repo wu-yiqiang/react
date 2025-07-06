@@ -1,22 +1,16 @@
 import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber } from 'antd'
 import { useEffect, useState } from 'react'
-import { postDictionaryItem, updateDictionaryItem, getDictionaryItem } from '@/api/system'
 import Toast from '@/components/Toast'
-import {  requiredRules } from '@/validator/index'
-import { Dictionary } from '@/types/dictionary'
+import { requiredRules } from '@/validator/index'
+import { File, FileItem } from '@/types/file'
 import { DialogProps } from '@/types/common'
-export default function DictionaryAddDialog(props: DialogProps) {
+import { createFold } from '@/api/share'
+export default function FoldAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [loading, setLoading] = useState(false)
-  const [menuOpts, setMenuOpts] = useState<Option[]>([])
   const [form] = Form.useForm()
-  interface Option {
-    id: string
-    name: string
-    children?: Option[]
-  }
   const close = () => {
     form.resetFields()
     handleClose()
@@ -24,18 +18,18 @@ export default function DictionaryAddDialog(props: DialogProps) {
   const submit = async () => {
     const value = await form.validateFields()
     if (value) {
-      const values = form.getFieldsValue()
-      if (!editStatus) await postDictionaryItem(values)
-      if (editStatus) await updateDictionaryItem(values)
+      const values = form.getFieldsValue() as FileItem
+      if (!editStatus) await createFold(values)
+      // if (editStatus) await updateDictionaryItem(values)
       Toast.success('操作成功')
-      handleOk(values)
+      handleOk(value)
     }
   }
   const init = async () => {
     if (!id) {
       await setTitle('新增')
       setEditStatus(false)
-      form.setFieldsValue(new Dictionary())
+      form.setFieldsValue(new File())
     }
     if (id) {
       await setTitle('编辑')
@@ -56,28 +50,25 @@ export default function DictionaryAddDialog(props: DialogProps) {
     init()
   }, [id])
   return (
-    <Modal title={title} width={500} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+    <Modal title={title} width={360} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
         {loading ? null : (
-          <Form
-            id="form"
-            form={form}
-            labelAlign="right"
-            labelCol={{
-              style: { width: 80 }
-            }}
-            layout="inline"
-          >
-            <Row gutter={[12, 12]}>
-              <Col span={24}>
-                <Form.Item name="fileName" rules={requiredRules}>
-                  <Input placeholder="新建文件夹" />
-                </Form.Item>
-              </Col>
-              <Form.Item hidden label="ID" name="id">
-                <Input hidden />
-              </Form.Item>
-            </Row>
+          <Form id="form" form={form} layout="horizontal">
+            <Form.Item name="fileName" rules={requiredRules}>
+              <Input placeholder="新建文件夹" />
+            </Form.Item>
+            <Form.Item hidden label="ID" name="id">
+              <Input hidden />
+            </Form.Item>
+            <Form.Item hidden label="isFold" name="isFold">
+              <Input hidden />
+            </Form.Item>
+            <Form.Item hidden label="fileSize" name="fileSize">
+              <Input hidden />
+            </Form.Item>
+            <Form.Item hidden label="parentId" name="parentId">
+              <Input hidden />
+            </Form.Item>
           </Form>
         )}
       </Spin>

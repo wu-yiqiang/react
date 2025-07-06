@@ -4,24 +4,40 @@ import PdfDocumentPreview from "./PdfDocumentPreview";
 import VideoPreview from "./VideoPreview";
 import { Button, Upload, Input, Checkbox } from 'antd'
 export default function FileItem(props: any) {
-  const {fileItem} = props
+  const { fileItem, handleSelect, handleUnSelect, handleSelectPath } = props
   let [visible, setVisible] = useState<boolean>(false)
   const handleStatue = (open: SetStateAction<boolean>) => {
     setVisible(open)
   }
   const handleOpen = () => {
-    handleStatue(true)
+    if (isFold) {
+      handleSelectPath(fileItem)
+    } else {
+      handleStatue(true)
+    }
   }
   const isVideo = useMemo(() => fileItem?.fileName.includes('.mp4'), [fileItem])
   const isPdf = useMemo(() => fileItem?.fileName.includes('.pdf'), [fileItem])
+  const isFold = useMemo(() => fileItem?.isFold, [fileItem])
   const handleClose = () => {
     handleStatue(false)
   }
+  const handleChange = (value: any) => {
+    const checked = value?.target?.checked
+    if (checked) handleSelect(fileItem?.id)
+    if (!checked) handleUnSelect(fileItem?.id)
+  }
   return (
     <>
-      <div className="PdfDocument" onClick={handleOpen}>
-        {isPdf ? <SvgIcon name="pdf" size="70px" /> : null}
-        {isVideo ? <SvgIcon name="video" size="70px" /> : null}
+      <div className="PdfDocument">
+        <div className="file-checkbox">
+          <Checkbox onChange={handleChange} />
+          <div onClick={handleOpen}>
+            {isPdf ? <SvgIcon name="pdf" size="70px" /> : null}
+            {isVideo ? <SvgIcon name="video" size="70px" /> : null}
+            {isFold ? <SvgIcon name="fold" size="70px" /> : null}
+          </div>
+        </div>
         <div className="filename">{fileItem?.fileName}</div>
       </div>
       {isPdf && visible ? <PdfDocumentPreview visible={visible} url={fileItem?.url} handleClose={handleClose} /> : null}

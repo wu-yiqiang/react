@@ -4,6 +4,7 @@ export interface FileField {
   fileName: string
   fileSize: string
   isFold: boolean
+  parentId: number | null
 }
 export interface FileSearch extends Search, Pagenation {}
 export interface FileItem extends CommonTime, CommonUuid, CommonId, FileField {}
@@ -15,11 +16,13 @@ export class File implements FileItem {
   fileName: string
   fileSize: string
   isFold: boolean
+  parentId: number | null
   constructor() {
     ;(this.id = null), (this.uuid = '')
     this.url = ''
     this.fileName = '新建文件夹'
     this.fileSize = ''
     this.isFold = true
+    this.parentId = null
   }
 }
