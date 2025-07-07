@@ -17,7 +17,7 @@
   .paths {
     font-size: 16px;
     font-weight: 400;
-    color: rgb(67, 84, 238);
+    color: #484bf5;
     display: flex;
     align-items: center;
     margin: 10px 0;
@@ -25,6 +25,7 @@
       cursor: pointer;
       &::before {
         content: '>';
+        color: grey;
         margin: 0 6px;
       }
       &:first-child::before {
