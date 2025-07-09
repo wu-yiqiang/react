@@ -15,7 +15,7 @@ export default function DocumentManager() {
   const [moveVisible, setMoveVisible] = useState(false)
   const [currentPath, setCurrentPath] = useState([
     {
-      fileName: 'net_disk',
+      file_name: 'net_disk',
       id: null
     }
   ])
@@ -45,6 +45,7 @@ export default function DocumentManager() {
   const getCurrentPathFiles = async () => {
     const { data } = await getFiles(currentPath[currentPath?.length -1]?.id)
     setFiles(data ?? [])
+    setSelectedLists([])
   }
   const handleSelectPath = (value: FileItem) => {
     setCurrentPath([...currentPath, value])
@@ -60,6 +61,7 @@ export default function DocumentManager() {
     getCurrentPathFiles()
   }
   const handleMoveSubmit = () => { 
+    getCurrentPathFiles()
     handleMoveClose()
   }
   const handleMoveClose = () => {
@@ -128,18 +130,18 @@ export default function DocumentManager() {
         {currentPath?.map((item, index) => {
           return (
             <span className="path" key={index} onClick={() => handlePathChange(index)}>
-              {item?.fileName}
+              {item['file_name']}
             </span>
           )
         })}
       </div>
       <div className="Document">
         {files?.map((item, index) => {
-          return <FileIter fileItem={item} key={index} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
+          return <FileIter fileItem={item} key={item?.id} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
         })}
       </div>
       {visible ? <CreareFold open={visible} handleClose={handleClose} handleOk={handleSubmit} /> : null}
-      {moveVisible ? <MoveDialog open={moveVisible} handleClose={handleMoveClose} handleOk={handleMoveSubmit} /> : null}
+      {moveVisible ? <MoveDialog open={moveVisible} handleClose={handleMoveClose} handleOk={handleMoveSubmit} ids={selectedLists} /> : null}
     </div>
   )
 }

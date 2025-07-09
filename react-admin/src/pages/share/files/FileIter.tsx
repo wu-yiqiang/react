@@ -16,9 +16,9 @@ export default function FileItem(props: any) {
       handleStatue(true)
     }
   }
-  const isVideo = useMemo(() => fileItem?.fileName.includes('.mp4'), [fileItem])
-  const isPdf = useMemo(() => fileItem?.fileName.includes('.pdf'), [fileItem])
-  const isFold = useMemo(() => fileItem?.isFold, [fileItem])
+  const isVideo = useMemo(() => fileItem?.file_name.includes('.mp4'), [fileItem])
+  const isPdf = useMemo(() => fileItem?.file_name.includes('.pdf'), [fileItem])
+  const isFold = useMemo(() => fileItem?.is_fold, [fileItem])
   const handleClose = () => {
     handleStatue(false)
   }
@@ -38,7 +38,7 @@ export default function FileItem(props: any) {
             {isFold ? <SvgIcon name="fold" size="70px" /> : null}
           </div>
         </div>
-        <div className="filename">{fileItem?.fileName}</div>
+        <div className="filename">{fileItem?.file_name}</div>
       </div>
       {isPdf && visible ? <PdfDocumentPreview visible={visible} url={fileItem?.url} handleClose={handleClose} /> : null}
       {isVideo && visible ? <VideoPreview visible={visible} url={fileItem?.url} handleClose={handleClose} /> : null}
