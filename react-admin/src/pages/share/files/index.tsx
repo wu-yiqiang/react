@@ -140,7 +140,7 @@ export default function DocumentManager() {
           return <FileIter fileItem={item} key={item?.id} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
         })}
       </div>
-      {visible ? <CreareFold open={visible} handleClose={handleClose} handleOk={handleSubmit} /> : null}
+      {visible ? <CreareFold open={visible} current_id={currentPath[currentPath?.length - 1]?.id} handleClose={handleClose} handleOk={handleSubmit} /> : null}
       {moveVisible ? <MoveDialog open={moveVisible} handleClose={handleMoveClose} handleOk={handleMoveSubmit} ids={selectedLists} /> : null}
     </div>
   )

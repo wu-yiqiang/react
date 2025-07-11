@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react'
 import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
 import { File, FileItem } from '@/types/file'
-import { DialogProps } from '@/types/common'
 import { createFold } from '@/api/share'
-export default function FoldAddDialog(props: DialogProps) {
-  const { open, id, handleClose, handleOk } = props
+export default function FoldAddDialog(props: any) {
+  const { open, id, handleClose, handleOk, current_id } = props
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [loading, setLoading] = useState(false)
@@ -30,6 +29,8 @@ export default function FoldAddDialog(props: DialogProps) {
       await setTitle('新增')
       setEditStatus(false)
       form.setFieldsValue(new File())
+      console.log('ssss', current_id)
+      form.setFieldValue('parent_id', current_id)
     }
     if (id) {
       await setTitle('编辑')
@@ -54,19 +55,19 @@ export default function FoldAddDialog(props: DialogProps) {
       <Spin spinning={loading} size="large">
         {loading ? null : (
           <Form id="form" form={form} layout="horizontal">
-            <Form.Item name="fileName" rules={requiredRules}>
+            <Form.Item name="file_name" rules={requiredRules}>
               <Input placeholder="新建文件夹" />
             </Form.Item>
             <Form.Item hidden label="ID" name="id">
               <Input hidden />
             </Form.Item>
-            <Form.Item hidden label="isFold" name="isFold">
+            <Form.Item hidden label="isFold" name="is_fold">
               <Input hidden />
             </Form.Item>
-            <Form.Item hidden label="fileSize" name="fileSize">
+            <Form.Item hidden label="fileSize" name="file_size">
               <Input hidden />
             </Form.Item>
-            <Form.Item hidden label="parentId" name="parentId">
+            <Form.Item hidden label="parentId" name="parent_id">
               <Input hidden />
             </Form.Item>
           </Form>
