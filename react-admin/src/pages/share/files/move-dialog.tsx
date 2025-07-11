@@ -4,21 +4,22 @@ import Toast from '@/components/Toast'
 import { File, FileItem } from '@/types/file'
 import { DialogProps } from '@/types/common'
 import { createFold, getDirTree, updateFileItem } from '@/api/share'
-import { CarryOutOutlined } from '@ant-design/icons'
+import { CarryOutOutlined, FolderOpenOutlined } from '@ant-design/icons'
+import DirectoryTree from 'antd/es/tree/DirectoryTree'
 export default function MoveDialog(props: any) {
   const { open, ids, handleClose, handleOk } = props
   const [selectedKeys, setSelectedKeys] = useState<any>([])
   const [loading, setLoading] = useState(false)
-  const [treeData, setTreeData] = useState([])
+  const [treeData, setTreeData] = useState<any>([])
   const [form] = Form.useForm()
   const close = () => {
     handleClose()
   }
   const submit = async () => {
-    console.log('sss', selectedKeys)
+    const keys = selectedKeys[0]  == 'null' ? null : selectedKeys[0]
     const params = {
       ids: ids,
-      parent_id: selectedKeys[0]
+      parent_id: keys
     }
     await updateFileItem(params)
     Toast.success('操作成功')
@@ -29,11 +30,15 @@ export default function MoveDialog(props: any) {
   }
   const init = async () => {
     const { data } = await getDirTree()
-    const datas = data?.map((item: any) => {
-      item.icon = <CarryOutOutlined />
-      return item
-    })
-    setTreeData(datas)
+    const root = [
+      {
+        file_name: 'net_disk',
+        id: 'null',
+        children: data ?? []
+      }
+    ]
+    console.log("sss", root)
+    setTreeData(root ?? [])
   }
   useEffect(() => {
     init()
@@ -41,7 +46,7 @@ export default function MoveDialog(props: any) {
   return (
     <Modal title="移动" width={500} centered forceRender maskClosable={false} destroyOnClose={true} open={open} styles={{ body: { maxHeight: '400px', overflow: 'auto' } }} onOk={submit} onCancel={close}>
       <Spin spinning={loading} size="large">
-        {loading ? null : <Tree showLine={true} fieldNames={{ title: 'file_name', key: 'id' }} treeData={treeData} onSelect={handleSelect} />}
+        {loading ? null : <DirectoryTree multiple showLine={true} fieldNames={{ title: 'file_name', key: 'id' }} treeData={treeData} onSelect={handleSelect} />}
       </Spin>
     </Modal>
   )
