@@ -5,7 +5,6 @@ export default function Authority(props: any) {
   const { permission, children } = props
   const { userInfo } = useSystemStore() as SystemStore
   const hasPermission = useMemo(() => {
-    console.log("sdsdsd", userInfo)
     const buttonPermissions = userInfo?.buttons?.map((item) => item?.code) ?? []
     if (buttonPermissions?.includes(permission)) return true
     return false

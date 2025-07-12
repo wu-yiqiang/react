@@ -1,40 +1,33 @@
 import SvgIcon from "@/components/SvgIcon/SvgIcon";
 import './index.scss'
 import FileIter from './FileIter'
+import FileUpload from "./FileUpload";
 import { Button, Upload, Input, Modal, Row, Col, Space, Breadcrumb, Flex } from 'antd'
 import { FolderAddOutlined, UploadOutlined, DeleteOutlined, SwapOutlined, SearchOutlined, MenuOutlined, SortAscendingOutlined, ProductOutlined } from '@ant-design/icons'
 import { useEffect, useMemo, useState } from "react";
-import CreareFold from './create-fold-dialog'
-import MoveDialog from './move-dialog'
+import MoveDialog from './MoveDialog'
 import { FileItem } from '@/types/file'
 import {deleteFiles, getFiles} from '@/api/share'
 import Toast from "@/components/Toast";
+import DeleteFile from "./DeleteFile";
+import CreateFold from './CreateFold'
+import MoveFile from "./MoveFile";
 export default function DocumentManager() {
-  const [visible, setVivible] = useState(false)
   const [menuMode, setMenuMode] = useState(true)
-  const [moveVisible, setMoveVisible] = useState(false)
   const [currentPath, setCurrentPath] = useState([
     {
       file_name: 'net_disk',
       id: null
     }
   ])
+  const current_id = useMemo(() => {
+    return currentPath[currentPath?.length - 1]?.id
+  }, [currentPath])
   const [selectedLists, setSelectedLists] = useState([])
   const [files, setFiles] = useState([])
-  const handleCreateFold = () => {
-    setVivible(true)
-  }
-  const handleClose = () => {
-    setVivible(false)
-  }
-  const handleSubmit = async (value: FileItem) => {
-    await getCurrentPathFiles()
-    handleClose()
-  }
   const handleSelect = (value: number) => {
     setSelectedLists([...selectedLists, value])
   }
-  const selected = useMemo(() => selectedLists?.length, [selectedLists])
   const handleUnSelect = (value: number) => {
     const data = selectedLists?.filter(i => i != value)
     setSelectedLists(data)
@@ -43,9 +36,9 @@ export default function DocumentManager() {
     setMenuMode(!menuMode)
   }
   const getCurrentPathFiles = async () => {
-    const { data } = await getFiles(currentPath[currentPath?.length -1]?.id)
-    setFiles(data ?? [])
     setSelectedLists([])
+    const { data } = await getFiles(current_id)
+    setFiles(data ?? [])
   }
   const handleSelectPath = (value: FileItem) => {
     setCurrentPath([...currentPath, value])
@@ -54,49 +47,6 @@ export default function DocumentManager() {
     const paths = currentPath.splice(0, value + 1)
     setCurrentPath(paths)
   }
-  const handleDelFile = async () => {
-    const { data } = await deleteFiles(selectedLists)
-    Toast.success('操作成功')
-    setSelectedLists([])
-    getCurrentPathFiles()
-  }
-  const handleMoveSubmit = () => { 
-    getCurrentPathFiles()
-    handleMoveClose()
-  }
-  const handleMoveClose = () => {
-    setMoveVisible(false)
-  }
-  const handleOpenMove = () => {
-    setMoveVisible(true)
-  }
-
-  const handleDelWarning = () => {
-    Modal.confirm({
-      title: '删除确认',
-      content: '确认删除勾选的数据吗？',
-      centered: true,
-      footer: (
-        <Flex gap="middle" align="end" vertical>
-          <Space align="start">
-            <Button color="orange" variant="outlined" onClick={() => Modal.destroyAll()}>
-              取消
-            </Button>
-            <Button
-              type="primary"
-              danger
-              onClick={() => {
-                Modal.destroyAll()
-                handleDelFile()
-              }}
-            >
-              确定
-            </Button>
-          </Space>
-        </Flex>
-      )
-    })
-  }
   useEffect(() => {
     getCurrentPathFiles()
   }, [currentPath])
@@ -104,20 +54,10 @@ export default function DocumentManager() {
   return (
     <div className="Files">
       <div className="topbar">
-        <Upload>
-          <Button icon={<UploadOutlined />} type="primary">
-            上传
-          </Button>
-        </Upload>
-        <Button icon={<FolderAddOutlined />} onClick={handleCreateFold}>
-          新建文件夹
-        </Button>
-        <Button icon={<DeleteOutlined />} type="primary" danger disabled={!selected} onClick={handleDelWarning}>
-          删除
-        </Button>
-        <Button icon={<SwapOutlined />} type="primary" ghost disabled={!selected} onClick={handleOpenMove}>
-          移动
-        </Button>
+        <FileUpload current_id={current_id} handleOk={getCurrentPathFiles} />
+        <CreateFold current_id={current_id} handleOk={getCurrentPathFiles} />
+        <DeleteFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
+        <MoveFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
         <div className="search">
           <Space>
             <Input placeholder="请输入" style={{ width: 200 }} prefix={<SearchOutlined />} />
@@ -140,8 +80,6 @@ export default function DocumentManager() {
           return <FileIter fileItem={item} key={item?.id} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
         })}
       </div>
-      {visible ? <CreareFold open={visible} current_id={currentPath[currentPath?.length - 1]?.id} handleClose={handleClose} handleOk={handleSubmit} /> : null}
-      {moveVisible ? <MoveDialog open={moveVisible} handleClose={handleMoveClose} handleOk={handleMoveSubmit} ids={selectedLists} /> : null}
     </div>
   )
 }

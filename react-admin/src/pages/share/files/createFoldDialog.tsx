@@ -56,7 +56,7 @@ export default function FoldAddDialog(props: any) {
         {loading ? null : (
           <Form id="form" form={form} layout="horizontal">
             <Form.Item name="file_name" rules={requiredRules}>
-              <Input placeholder="新建文件夹" />
+              <Input placeholder="新建文件夹" maxLength={30} />
             </Form.Item>
             <Form.Item hidden label="ID" name="id">
               <Input hidden />
