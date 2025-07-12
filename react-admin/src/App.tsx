@@ -119,6 +119,12 @@ function App() {
     document.addEventListener('click', () => {
       startTime = new Date().getTime()
     })
+    window.addEventListener('keydown', (event: Event) => {
+      if (event.key == 'Escape') {
+        event?.stopPropagation()
+        event?.preventDefault()
+      }
+    })
   }
   useEffect(() => {
     init()

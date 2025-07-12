@@ -43,7 +43,7 @@ export default function PdfDocumentPreview(props: any) {
   const handleDownload = () => {}
   if (!visible) return null
   return (
-    <Dialog open={visible}>
+    <Dialog open={visible} handleClose={handleClose}>
       <div className="PdfDocumentPreview">
         <div className="topbar">
           <div className="bottombar">

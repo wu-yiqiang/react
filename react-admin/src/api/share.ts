@@ -10,3 +10,5 @@ export const getDirTree = async (): Promise<any> => await requestes.Get('net_dis
 
 export const updateFileItem = async (data: object): Promise<any> => await requestes.Post('net_disk/batch_update', data)
 
+export const uploadFile = async (data: object): Promise<any> => await requestes.Post('net_disk/upload', data)
+

@@ -6,8 +6,9 @@ import avatar from '@/assets/images/user.jpg'
 import './index.scss'
 import dayjs from 'dayjs'
 // import eventMitt from '@/utils/eventMitt'
-import { ChangeEvent, ReactEventHandler, useState } from 'react'
+import { ChangeEvent, ReactEventHandler, useMemo, useState } from 'react'
 import { TimeInterval } from '@/utils'
+import { throttle } from 'lodash-es'
 export default function ScreenLock() {
   const { systemSetting, setSystemSetting, userInfo } = useSystemStore() as SystemStore
   const [currentDayTime, setCurrentDayTime] = useState(dayjs().format('DD/MM/YYYY HH:mm'))
@@ -35,7 +36,14 @@ export default function ScreenLock() {
             <img src={userInfo?.avatar ?? ''} onError={handleLoadError} />
           </div>
           <div className="name">{userInfo?.username}</div>
-          <Input.Password placeholder="密码" onChange={handleUnlock} />
+          <Input.Password
+            placeholder="密码"
+            onKeyDown={(e) => {
+              console.log("sssssssss")
+              e?.stopPropagation()
+            }}
+            onChange={(e) => handleUnlock(e)}
+          />
         </div>
       </div>
     </Dialog>

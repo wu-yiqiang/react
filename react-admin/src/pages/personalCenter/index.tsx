@@ -60,9 +60,9 @@ export default function PersonalCenter() {
         </div>
       </div>
       <div className="left-pannel">
-        {tabs?.map((tab) => {
+        {tabs?.map((tab, index) => {
           return (
-            <div className={active == tab?.title ? 'pannel-item active-pannel-item' : 'pannel-item'} onClick={() => handleActive(tab?.title)}>
+            <div className={active == tab?.title ? 'pannel-item active-pannel-item' : 'pannel-item'} onClick={() => handleActive(tab?.title)} key={index}>
               {tab?.title}
             </div>
           )

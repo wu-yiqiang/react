@@ -14,6 +14,8 @@ import CreateFold from './CreateFold'
 import MoveFile from "./MoveFile";
 export default function DocumentManager() {
   const [menuMode, setMenuMode] = useState(true)
+  const [selectedLists, setSelectedLists] = useState([])
+  const [files, setFiles] = useState([])
   const [currentPath, setCurrentPath] = useState([
     {
       file_name: 'net_disk',
@@ -23,8 +25,7 @@ export default function DocumentManager() {
   const current_id = useMemo(() => {
     return currentPath[currentPath?.length - 1]?.id
   }, [currentPath])
-  const [selectedLists, setSelectedLists] = useState([])
-  const [files, setFiles] = useState([])
+
   const handleSelect = (value: number) => {
     setSelectedLists([...selectedLists, value])
   }
@@ -77,7 +78,7 @@ export default function DocumentManager() {
       </div>
       <div className="Document">
         {files?.map((item, index) => {
-          return <FileIter fileItem={item} key={item?.id} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
+          return <FileIter fileItem={item} key={index} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
         })}
       </div>
     </div>
