@@ -12,6 +12,7 @@ import Toast from "@/components/Toast";
 import DeleteFile from "./DeleteFile";
 import CreateFold from './CreateFold'
 import MoveFile from "./MoveFile";
+import Authority from "@/components/Authority";
 export default function DocumentManager() {
   const [menuMode, setMenuMode] = useState(true)
   const [selectedLists, setSelectedLists] = useState([])
@@ -55,10 +56,19 @@ export default function DocumentManager() {
   return (
     <div className="Files">
       <div className="topbar">
-        <FileUpload current_id={current_id} handleOk={getCurrentPathFiles} />
-        <CreateFold current_id={current_id} handleOk={getCurrentPathFiles} />
-        <DeleteFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
-        <MoveFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
+        <Authority permission="share:file:upload">
+          <FileUpload current_id={current_id} handleOk={getCurrentPathFiles} />
+        </Authority>
+        <Authority permission="share:fold:create">
+          <CreateFold current_id={current_id} handleOk={getCurrentPathFiles} />
+        </Authority>
+        <Authority permission="share:file:delete">
+          <DeleteFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
+        </Authority>
+        <Authority permission="share:file:move">
+          <MoveFile selectedLists={selectedLists} handleOk={getCurrentPathFiles} />
+        </Authority>
+
         <div className="search">
           <Space>
             <Input placeholder="请输入" style={{ width: 200 }} prefix={<SearchOutlined />} />
@@ -76,7 +86,7 @@ export default function DocumentManager() {
           )
         })}
       </div>
-      <div className="Document">
+      <div className="Files">
         {files?.map((item, index) => {
           return <FileIter fileItem={item} key={index} handleSelect={handleSelect} handleUnSelect={handleUnSelect} handleSelectPath={(value: FileItem) => handleSelectPath(value)} selectedLists={selectedLists} />
         })}

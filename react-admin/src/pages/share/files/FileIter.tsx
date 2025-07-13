@@ -4,7 +4,7 @@ import PdfDocumentPreview from "./PdfDocumentPreview";
 import VideoPreview from "./VideoPreview";
 import { Button, Upload, Image, Checkbox } from 'antd'
 import { fileExtension, supportFiles } from './data'
-
+import './index.scss'
 export default function FileItem(props: any) {
   const { fileItem, handleSelect, handleUnSelect, handleSelectPath } = props
   const [visible, setVisible] = useState<boolean>(false)
@@ -40,7 +40,7 @@ export default function FileItem(props: any) {
   }
     return (
       <>
-        <div className="PdfDocument">
+        <div className="FileType">
           <div className="file-checkbox">
             <Checkbox onChange={handleChange} />
             <div onClick={handleOpen}>
@@ -53,9 +53,8 @@ export default function FileItem(props: any) {
         {isVideo && visible ? <VideoPreview visible={visible} url={url} handleClose={handleClose} /> : null}
         {isImage && visible ? (
           <Image
-            style={{ display: 'none'}}
             preview={{
-              visible: true,
+              visible: visible,
               src: url,
               onVisibleChange: (value) => {
                 setVisible(value)
