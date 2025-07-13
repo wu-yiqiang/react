@@ -1,11 +1,9 @@
 import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber, Tree } from 'antd'
 import { useEffect, useState } from 'react'
 import Toast from '@/components/Toast'
-import { File, FileItem } from '@/types/file'
-import { DialogProps } from '@/types/common'
 import { createFold, getDirTree, updateFileItem } from '@/api/share'
-import { CarryOutOutlined, FolderOpenOutlined } from '@ant-design/icons'
 import DirectoryTree from 'antd/es/tree/DirectoryTree'
+import { Key } from 'antd/es/table/interface'
 export default function MoveDialog(props: any) {
   const { open, ids, handleClose, handleOk } = props
   const [selectedKeys, setSelectedKeys] = useState<any>([])
@@ -25,8 +23,8 @@ export default function MoveDialog(props: any) {
     Toast.success('操作成功')
     handleOk()
   }
-  const handleSelect = (selectedKeys: number) => {
-    setSelectedKeys(selectedKeys)
+  const handleSelect = (selectedKeys: Key[]) => {
+    setSelectedKeys(selectedKeys) 
   }
   const init = async () => {
     const { data } = await getDirTree()

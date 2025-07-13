@@ -1,6 +1,6 @@
 import requestes from '@/network/request'
 import { FileItem } from '@/types/file'
-export const getFiles = async (id: number): Promise<any> => await requestes.Post('net_disk/current_files', { id: id })
+export const getFiles = async (id: number | null): Promise<any> => await requestes.Post('net_disk/current_files', { id: id })
 
 export const createFold = async (data: FileItem): Promise<any> => await requestes.Post('net_disk/create_fold', data)
 

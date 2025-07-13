@@ -4,11 +4,13 @@ export default function Dialog(props: any) {
   const { open, children, handleClose } = props
   const dialog = useRef(null)
   const init = () => {
-    // @ts-ignore
     if (open && dialog?.current) {
+      // @ts-ignore
       dialog?.current?.showModal()
+      // @ts-ignore
       dialog?.current?.addEventListener('keydown', (event: Event) => {
-        if (event.key == 'Escape') {
+        // @ts-ignore
+        if (event?.key == 'Escape') {
           handleClose && handleClose()
         }
       })

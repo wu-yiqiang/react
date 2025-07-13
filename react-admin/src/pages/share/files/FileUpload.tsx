@@ -14,7 +14,7 @@ export default function FileUpload(props: any) {
     Toast.success('上传成功')
     handleOk()
   }
-  const beforeUpload = (file: File) => {
+  const beforeUpload = (file: File): Promise<any> => {
     return new Promise((resolve, reject) => {
       const suffix = fileExtension(file?.name)
       if (!supportFilesArray.includes(suffix)) {

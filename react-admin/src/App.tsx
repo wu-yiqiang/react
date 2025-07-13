@@ -120,6 +120,7 @@ function App() {
       startTime = new Date().getTime()
     })
     window.addEventListener('keydown', (event: Event) => {
+      // @ts-ignore
       if (event.key == 'Escape') {
         event?.stopPropagation()
         event?.preventDefault()

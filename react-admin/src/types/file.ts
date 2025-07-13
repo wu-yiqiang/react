@@ -2,8 +2,8 @@ import { CommonTime, CommonUuid, CommonId, Search, Pagenation } from "@/types/co
 export interface FileField {
   url: string
   file_name: string
-  file_size: string
-  is_fold: boolean
+  file_size?: string
+  is_fold?: boolean
   parent_id: number | null
 }
 export interface FileSearch extends Search, Pagenation {}
@@ -14,8 +14,8 @@ export class File implements FileItem {
   uuid: string
   url: string
   file_name: string
-  file_size: string
-  is_fold: boolean
+  file_size?: string
+  is_fold?: boolean
   parent_id: number | null
   constructor() {
     ;(this.id = null), (this.uuid = '')

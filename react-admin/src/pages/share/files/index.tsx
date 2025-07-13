@@ -15,12 +15,16 @@ import MoveFile from "./MoveFile";
 import Authority from "@/components/Authority";
 export default function DocumentManager() {
   const [menuMode, setMenuMode] = useState(true)
-  const [selectedLists, setSelectedLists] = useState([])
+  const [selectedLists, setSelectedLists] = useState<any>([])
   const [files, setFiles] = useState([])
   const [currentPath, setCurrentPath] = useState([
     {
+      url: '',
       file_name: 'net_disk',
-      id: null
+      file_size: 0,
+      id: null,
+      is_fold: true,
+      parent_id: null,
     }
   ])
   const current_id = useMemo(() => {
@@ -31,7 +35,7 @@ export default function DocumentManager() {
     setSelectedLists([...selectedLists, value])
   }
   const handleUnSelect = (value: number) => {
-    const data = selectedLists?.filter(i => i != value)
+    const data = selectedLists?.filter((i: number) => i != value)
     setSelectedLists(data)
   }
   const handleModeChange = () => {
@@ -42,10 +46,10 @@ export default function DocumentManager() {
     const { data } = await getFiles(current_id)
     setFiles(data ?? [])
   }
-  const handleSelectPath = (value: FileItem) => {
+  const handleSelectPath = (value: any) => {
     setCurrentPath([...currentPath, value])
   }
-  const handlePathChange = (value: Number) => {
+  const handlePathChange = (value: number) => {
     const paths = currentPath.splice(0, value + 1)
     setCurrentPath(paths)
   }
