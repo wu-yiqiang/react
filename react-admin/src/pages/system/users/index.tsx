@@ -101,6 +101,7 @@ export default function UserManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
+    // delete values.pageNo
     const { data, pageSize, pageNo, total } = await getUsersLists(values)
     setLists(data)
     const datas = {
