@@ -24,7 +24,9 @@ const Alova = createAlova({
         eventMitt.emit('ROUTER:LOGOUT')
       }
       if (status == 404) Toast.error('请求地址不存在')
-      if (status == 500) Toast.error('服务端出现错误')
+      if (status == 500) {
+        Toast.error('服务端出现错误')
+      }
       if (status == 502) Toast.error('网关错误')
       if (method.config.headers['Content-Type'] == 'blob') {
         return response
