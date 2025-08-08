@@ -61,7 +61,7 @@ const genItems = () => {
    }
    return (
      <>
-       <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items} selectedKeys={[selectMenu]} onOpenChange={onOpenChange} openKeys={openMenu} />
+       <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items.map(item => ({ ...item, children: item.children || [] }))} selectedKeys={[selectMenu]} onOpenChange={onOpenChange} openKeys={openMenu} />
      </>
    )
  }
