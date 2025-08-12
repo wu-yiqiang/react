@@ -9,7 +9,7 @@ import Toast from '@/components/Toast'
 import useSystemStore from '@/store'
 import { SystemStore } from '@/types/common'
 import { useTranslation } from 'react-i18next'
-import { sseService } from '@/network/sse'
+import SSEService from "@/network/sse";
 
 export default function Head() {
   return (
@@ -102,15 +102,24 @@ function Notion() {
   const [count, setCount] = useState(0)
   useEffect(() => {
     const params = {
-      url: 'http://127.0.0.1:7788/sse',
-      onmessage: ({ data }: any) => {
-        const datas = JSON.parse(data)
-        datas ? setCount(datas) : setCount(0)
+      url: "http://127.0.0.1:7788/sse",
+      token: "",
+      retryCount: 100,
+      onMessage: ({ data }: any) => {
+        const datas = JSON.parse(data);
+        datas ? setCount(datas) : setCount(0);
       },
-      onopen: () => {},
-      finallyHandler: () => {}
-    }
-    sseService.connect(params)
+      onOpen: () => {
+        console.log("ssss");
+      },
+      onError: (event: Event) => {
+        console.log("ssss", event);
+      },
+      onClose: () => {},
+      finallyHandler: () => {},
+    };
+    const sseService = new SSEService(params);
+    sseService.connect()
   }, [])
   return (
     <Badge count={count} offset={[-3, 0]}>

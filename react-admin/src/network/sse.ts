@@ -1,43 +1,59 @@
-export interface SSEChatParams {
-  url: string
-  onmessage: (event: MessageEvent) => void
-  onopen: () => void
+export interface SSEParams {
+  url: string,
+  token: string,
+  retryCount: number, // 数值为0的时候表示无限重试
+  onMessage: (event: MessageEvent) => void
+  onOpen: () => void
+  onError: (event: Event) => void
+  onClose: () => void
   finallyHandler: () => void
 }
 
 class SSEService {
   private eventSource: EventSource | null = null
+  private params: SSEParams
+  private retryConnectCount: number = 0
+  private retryCount: number = 0
   private finallyHandler: (() => void) | undefined
-
-  connect(sseChatParams: SSEChatParams) {
-    this.finallyHandler = sseChatParams.finallyHandler
-    this.eventSource = new EventSource(sseChatParams.url)
-
-    if (sseChatParams.onopen != null) {
-      this.eventSource.onopen = sseChatParams.onopen
+  constructor(sseParams: SSEParams) {
+    this.finallyHandler = sseParams.finallyHandler
+    this.retryCount = sseParams.retryCount ?? 0
+    this.params = sseParams
+  }
+  connect() {
+    this.eventSource = new EventSource(this.params.url)
+    if (this.params.onOpen != null) {
+      this.eventSource.onopen = this.params.onOpen
     } else {
       this.eventSource.onopen = () => {
         console.log('SSE 连接已开启')
       }
     }
-    if (sseChatParams.onmessage != null) {
-      this.eventSource.onmessage = sseChatParams.onmessage
+    if (this.params.onMessage != null) {
+      this.eventSource.onmessage = this.params.onMessage
     } else {
       this.eventSource.onmessage = (event) => {
         console.log('收到消息：', JSON.parse(event?.data))
       }
     }
 
-    this.eventSource.onerror = (error) => {
+    this.eventSource.onerror = (event) => {
       if (this.eventSource?.readyState === EventSource.CLOSED) {
-        console.log('SSE 连接已关闭')
+        this.params.onClose()
       } else {
-        console.error('SSE 错误：', error)
+        this.params.onError(event)
+        if (this.retryCount) {
+          this.retryConnectCount++
+          if (this.retryConnectCount === this.retryCount) {
+            console.log("关闭了，不重试了")
+            this.disconnect()
+          }
+        }
+
       }
-      sseChatParams.finallyHandler()
+      this.params.finallyHandler()
     }
   }
-
   disconnect() {
     if (this.eventSource) {
       this.eventSource.close()
@@ -48,4 +64,4 @@ class SSEService {
   }
 }
 
-export const sseService = new SSEService()
+export default SSEService;
