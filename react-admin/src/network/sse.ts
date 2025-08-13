@@ -14,8 +14,7 @@ export interface SSEParams {
 class SSEService {
   private eventSource: EventSource | null = null
   private params: SSEParams
-  private retryConnectCount: number = 0
-  private retryCount: number = 0
+  private retryCount: number = Infinity
   private finallyHandler: (() => void) | undefined
   constructor(sseParams: SSEParams) {
     this.finallyHandler = sseParams.finallyHandler
@@ -44,14 +43,13 @@ class SSEService {
         this.params.onClose()
       } else {
         this.params.onError(event)
-        if (this.retryCount) {
-          this.retryConnectCount++
-          if (this.retryConnectCount === this.retryCount) {
+        if (this.retryCount !== Infinity) {
+          this.retryCount--
+          if (!this.retryCount) {
             console.log("关闭了，不重试了")
             this.disconnect()
           }
         }
-
       }
       this.params.finallyHandler()
     }
