@@ -102,22 +102,23 @@ function Notion() {
   const [count, setCount] = useState(0)
   useEffect(() => {
     const params = {
-      url: "http://127.0.0.1:7788/sse",
-      token: "",
+      url: import.meta.env.VITE_API_BASE_URL + '/sse',
+      token: '',
       retryCount: 100,
       onMessage: ({ data }: any) => {
-        const datas = JSON.parse(data);
-        datas ? setCount(datas) : setCount(0);
+        console.log('接受', data)
+        const datas = JSON.parse(data)
+        datas ? setCount(datas) : setCount(0)
       },
       onOpen: () => {
-        console.log("ssss");
+        console.log('开始')
       },
       onError: (event: Event) => {
-        console.log("ssss", event);
+        console.log('错误', event)
       },
       onClose: () => {},
-      finallyHandler: () => {},
-    };
+      finallyHandler: () => {}
+    }
     const sseService = new SSEService(params);
     sseService.connect()
   }, [])
