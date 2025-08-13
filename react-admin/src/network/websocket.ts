@@ -7,6 +7,11 @@ const SOCKET_STATUS = {
     CLOSED: "closed",
 };
 
+interface BASEINFO {
+    url: string
+    token?: string | null
+}
+
 type TYPESOCKET_STATUS = typeof SOCKET_STATUS
 type SOCKET_STATUS_TYPE = TYPESOCKET_STATUS[keyof TYPESOCKET_STATUS]
 export interface Options {
@@ -27,6 +32,7 @@ export interface Options {
 
 export class WSocket {
     private url: string // 连接地址
+    private token: string | null // token
     private socket: WebSocket | null // socket实例
     private heartbeatInterval: number // 心跳间隔时间
     private reconnectDelay: number // 重连等待时间
@@ -50,8 +56,9 @@ export class WSocket {
     private onStatusChange: (status: SOCKET_STATUS_TYPE) => void // 任意状态变更时的回调（如 connected, disconnected, reconnecting, closed, connecting）
     private onConnecting: () => void // 启动连接前的回调（包括首次连接 & 重连）
 
-    constructor(url: string, options: Options) {
-        this.url = url;
+    constructor(baseInfo: BASEINFO, options: Options) {
+        this.url = baseInfo?.url;
+        this.token = baseInfo?.token ?? null
         this.socket = null;
         this.heartbeatInterval = options?.heartbeatInterval || 10000;
         this.reconnectDelay = options.reconnectDelay || 5000;
@@ -98,7 +105,7 @@ export class WSocket {
         this.manualClose = false; // 每次新建连接都重置
         this.onStatusChange(SOCKET_STATUS.CONNECTING); // 新增：状态回调
         this.onConnecting(); // 页面可用来显示 loading
-        this.socket = new WebSocket(this.url);
+        this.socket = this.token ? new WebSocket(this.url, this.token) : new WebSocket(this.url);
 
         // 连接成功
         this.socket.onopen = () => {
