@@ -27,6 +27,7 @@
     "dayjs": "^1.11.13",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",
+    "event-source-polyfill": "^1.0.31",
     "i18next": "^24.2.3",
     "lodash-es": "^4.17.21",
     "qs": "^6.11.2",

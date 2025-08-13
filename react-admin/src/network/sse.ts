@@ -1,6 +1,8 @@
+import { EventSourcePolyfill } from 'event-source-polyfill'
+
 export interface SSEParams {
   url: string,
-  token: string,
+  config: object,
   retryCount: number, // 数值为0的时候表示无限重试
   onMessage: (event: MessageEvent) => void
   onOpen: () => void
@@ -21,7 +23,7 @@ class SSEService {
     this.params = sseParams
   }
   connect() {
-    this.eventSource = new EventSource(this.params.url)
+    this.eventSource = new EventSourcePolyfill(this.params.url, this.params.config)
     if (this.params.onOpen != null) {
       this.eventSource.onopen = this.params.onOpen
     } else {
