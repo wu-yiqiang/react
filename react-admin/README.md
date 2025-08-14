@@ -53,7 +53,10 @@ antd Components // https://ant-design.antgroup.com/components/overview-cn/
 4.通过压缩代码减少打包体积，通过代码混淆提升代码安全性
 5.通过优化，项目启动时间从850ms优化到510ms左右
 6.自动化国际翻译，减少人工翻译成本
-
+7.使用轮询和SSE方式完成站内信功能
+8.通过jekens，实现自动化打包
+9.后期通过monorepo代码组织形式，实现组件，公共方法共享，以及更好的实现微服务。
+10.
 
 54 -> 55 ->
 HTTP2 87~97
