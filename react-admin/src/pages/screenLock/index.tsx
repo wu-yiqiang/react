@@ -39,7 +39,6 @@ export default function ScreenLock() {
           <Input.Password
             placeholder="密码"
             onKeyDown={(e) => {
-              console.log("sssssssss")
               e?.stopPropagation()
             }}
             onChange={(e) => handleUnlock(e)}

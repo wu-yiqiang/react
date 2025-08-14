@@ -29,7 +29,6 @@ export default function FoldAddDialog(props: any) {
       await setTitle('新增')
       setEditStatus(false)
       form.setFieldsValue(new File())
-      console.log('ssss', current_id)
       form.setFieldValue('parent_id', current_id)
     }
     if (id) {

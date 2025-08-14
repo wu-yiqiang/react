@@ -51,3 +51,45 @@
     }
   }
 }
+.Notices {
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  row-gap: 4px;
+
+  .notice {
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgb(247, 247, 247);
+    display: grid;
+    row-gap: 4px;
+    .topbox {
+      display: flex;
+      justify-content: space-between;
+      .title {
+        font-size: 14px;
+        flex: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #030303;
+        white-space: nowrap;
+      }
+
+      .date {
+        font-size: 14px;
+        color: #2c2c2c;
+      }
+    }
+
+    .contents {
+      padding: 0 4px;
+      max-height: 70px;
+      font-size: 12px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #2c2c2c;
+    }
+  }
+}
