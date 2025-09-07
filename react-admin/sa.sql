@@ -26,3 +26,92 @@ select distinct * from SC a inner join
 where SId not in 
 (select distinct SId from SC where SC.CId = '01')) b
 on b.Sid =a.SId;
+
+-- 查询平均成绩大于等于60分的同学的学生编号，姓名和平均成绩
+select a.Sid, a.Sname, b.avg_score from Student a inner join 
+(select sid,avg(score) as avg_score
+from SC
+group by Sid
+HAVING  avg(score) > 60) b on a.Sid = b.Sid;
+
+-- 查询在sc表存在成绩的学生信息
+select * from Student a inner join
+(select DISTINCT SC.Sid from SC) b ON a.Sid = b.Sid;
+
+-- 查询所有同学的学生编号，学生姓名，选课总数，所有课程总成绩(没成绩显示为null)
+select a.Sid, a.Sname, b.counts, b.scores from Student a left join 
+
+(select Sid, count(Sid) as counts,sum(score) as scores from SC group by Sid) b
+
+on a.Sid = b.Sid;
+
+--查询李姓老师的数量
+select count(*) from Teacher where Tname like '李%';
+
+-- 查询学过张三老师授课的同学信息
+select e.Sid, e.Sname, e.Sage, e.Ssex from Student e right join
+(select C.Sid from SC c right join
+(select a.Cid from Course a right join 
+(select Tid from Teacher where Tname = '张三') b
+on a.Tid = b.Tid) d
+on c.Cid = d.Cid) f
+on e.Sid = f.Sid;
+
+-- 查询和'01'号同学学习的课程完全相同的其它同学的信息
+select * from SC c right join
+(select a.Cid from SC a right join 
+(select Sid from Student where Sid = '01') b
+on a.Sid = b.Sid) d
+on c.Cid = d.Cid;
+
+-- 查询没有学过"张三"老师任意一门课程的学生信息
+
+-- 查询两门课及以上不及格课程的同学的学号，姓名以及平均成绩
+
+-- 检索"01"课程分数小于60，按分数降序排列的学生信息
+select a.Sid, a.Sname, a.Sage, a.Ssex, b.score from Student a right join
+(select Sid, score from SC where Cid = '01' and score < 60 order by score desc) b
+on a.Sid = b.Sid;
+
+-- 按平均成绩从高到低显示所有学生的所有课程的成绩以及平均成绩
+
+select s.Sid, s.Sname, s.Sage, s.Ssex, f.score_avg from Student s left join
+(select a.Sid, a.Cid, a.score, b.score_avg from SC a right join
+(select Sid,AVG(score) as score_avg from SC group by Sid order by score_avg desc ) b
+on a.Sid = b.Sid) f
+on s.Sid = f.Sid order by f.score_avg desc 
+;
+
+-- 查询各科成绩最高分、最低分和平均分：以如下形式显示：课程 ID，课程 name，最高分，最低分，平均分，及格率，中等率，优良率，优秀率 及格为>=60，中等为：70-80，优良为：80-90，优秀为：>=90 要求输出课程号和选修人数，查询结果按人数降序排列，若人数相同，按课程号升序排列.
+
+
+-- 按各科成绩进行排序，并显示排名， score 重复时保留名次空缺使用mysql的变量。
+-- 按各科成绩进行排序，并显示排名， Score 重复时合并名次
+-- 查询学生的总成绩，并进行排名，总分重复时保留名次空缺
+-- 统计各科成绩各分数段人数：课程编号，课程名称，[100-85) ，[85-70)，[70-60)，[60-0]及所占百分比
+
+-- 查询各科成绩前三名的记录
+
+
+-- 查询每门课程被选修的学生数
+select Cid,COUNT(Cid) from SC group by Cid;
+
+-- 查询出只选修两门课程的学生学号和姓名
+select a.Sid, a.Sname from Student a right join 
+(select Sid from SC group by Sid having Count(Sid) = 2) b
+on a.Sid = b.Sid;
+
+-- 查询男生女生人数
+select count(Ssex) from Student group by Ssex;
+
+-- 查询名字中含有「风」字的学生信息
+select * from Student where Sname like '%风%';
+
+-- 查询同名同性学生名单，并统计同名人数
+select t1.Sname, t1.Ssex from Student t1 inner join 
+(select * from Student) t2 on  t1.Sid != t2.Sid and t1.Sname = t2.Sname;
+
+-- 查询 1990 年出生的学生名单
+select * from Student where year(Sage) = 1990;
+
+-- 
