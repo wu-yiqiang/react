@@ -119,22 +119,22 @@ export default function UserAddDialog(props: DialogProps) {
 
   const dataPermissionLists: TreeDataNode[] = [
     {
-      title: "安东集团",
-      key: "anton",
+      title: 'TL集团',
+      key: 'anton',
       children: [
         {
-          title: "迪拜分公司",
-          key: "dubai",
+          title: '北京公司',
+          key: 'dubai',
           children: [
-            { title: "运维部门", key: "maintenance" },
-            { title: "开发部门", key: "develop" },
-            { title: "财务部门", key: "finance" },
-            { title: "后勤部门", key: "logistics" },
-          ],
-        },
-      ],
-    },
-  ];
+            { title: '运维部门', key: 'maintenance' },
+            { title: '开发部门', key: 'develop' },
+            { title: '财务部门', key: 'finance' },
+            { title: '后勤部门', key: 'logistics' }
+          ]
+        }
+      ]
+    }
+  ]
   return (
     <Modal title={title} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
       <Form id="form" style={{ maxHeight: '500px', overflowY: 'scroll', overflowX: 'hidden' }} form={form} labelCol={{ span: '4' }} layout="inline">

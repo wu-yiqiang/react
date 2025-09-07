@@ -12,7 +12,7 @@ function App() {
   const { systemSetting,userInfo, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
     token: {
-      colorPrimary: '#FF7A00',
+      // colorPrimary: '#FF7A00',
       borderRadius: 4,
       borderRadiusLG: 4,
       colorTextBase: '#ffffff',
@@ -26,12 +26,12 @@ function App() {
         headerColor: '#fff'
       },
       Button: {
-        colorPrimary: '#FF7A00',
+        // colorPrimary: '#FF7A00',
         primaryShadow: '0 0 0 #000',
         defaultBorderColor: '#f9f9f9'
       },
       Input: {
-        colorPrimary: '#FF7A00',
+        // colorPrimary: '#FF7A00',
         colorBorder: '#f9f9f9'
       },
       Select: {
@@ -51,7 +51,7 @@ function App() {
   }
   const lightTheme = {
     token: {
-      colorPrimary: '#FF7A00',
+      // colorPrimary: '#FF7A00',
       borderRadius: 4,
       colorTextBase: '#131211',
       colorBgBase: '#fff'
@@ -64,12 +64,12 @@ function App() {
         headerColor: '#131211'
       },
       Button: {
-        colorPrimary: '#FF7A00',
+        // colorPrimary: '#FF7A00',
         primaryShadow: '0 0 0 #fff',
         defaultBorderColor: '#d9d9d9'
       },
       Input: {
-        colorPrimary: '#FF7A00',
+        // colorPrimary: '#FF7A00',
         colorBorder: '#d9d9d9'
       },
       Select: {

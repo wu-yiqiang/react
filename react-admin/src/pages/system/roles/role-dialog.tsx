@@ -83,11 +83,11 @@ export default function UserAddDialog(props: DialogProps) {
 
   const dataPermissionLists: TreeDataNode[] = [
     {
-      title: '安东集团',
+      title: 'TL集团',
       key: 'anton',
       children: [
         {
-          title: '迪拜分公司',
+          title: '北京公司',
           key: 'dubai',
           children: [
             { title: '运维部门', key: 'maintenance' },
