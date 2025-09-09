@@ -114,4 +114,37 @@ select t1.Sname, t1.Ssex from Student t1 inner join
 -- 查询 1990 年出生的学生名单
 select * from Student where year(Sage) = 1990;
 
--- 
+-- 查询每门课程的平均成绩，结果按平均成绩降序排列，平均成绩相同时，按课程编号升序排列
+
+select Cid, AVG(score) as avage_score from SC group by Cid order by avage_score  desc,  Cid ASC ;
+
+-- 查询平均成绩大于等于 85 的所有学生的学号、姓名和平均成绩
+select *  from Student a right join
+(select Sid, AVG(score) as avage_score from SC group by Sid having avage_score >= 85) b
+on a.Sid = b.Sid;
+
+-- 查询课程名称为「数学」，且分数低于 60 的学生姓名和分数
+select t3.Sname, t4.score from Student t3 right join
+(select t1.* from SC t1 right join
+(select Cid from Course where Cname = '数学') t2
+on t1.Cid = t2.Cid where t1.score < 60) t4
+on t3.Sid = t4.Sid;
+
+--  查询所有学生的课程及分数情况（存在学生没成绩，没选课的情况）
+select * from Student t1 left join
+(select * from SC ) t2 on t1.Sid = t2.Sid;
+
+-- 查询任何一门课程成绩在 70 分以上的姓名、课程名称和分数
+select t3.Sname, t4.Cname, t4.score from Student t3 left join
+(select t2.Sid, t1.Cname, t2.score from Course t1 left join
+(select * from SC where score > 70) t2
+on t1.Cid = t2.Cid) t4 
+on t3.Sid = t4.Sid where score > 70;
+
+
+-- 查询不及格的课程
+SELECT distinct cid
+FROM SC
+WHERE score<60;
+
+
