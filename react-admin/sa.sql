@@ -148,3 +148,19 @@ FROM SC
 WHERE score<60;
 
 
+-- 查询课程编号为 01 且课程成绩在 80 分以上的学生的学号和姓名
+select t1.Sname, t1.Sid from Student t1 right join
+(select * from SC where Cid = '01' and score >= 80) t2 on
+t1.Sid = t2.Sid;
+
+-- 求每门课程的学生人数
+select Cid, COUNT(Cid) from SC group by Cid;
+
+-- 成绩不重复，查询选修「张三」老师所授课程的学生中，成绩最高的学生信息及其成绩
+select t5.*, t6.score from Student t5 right join
+(select t3.Sid, t3.score from SC t3 right join(
+select t1.Cid from Course t1 right join
+(select Tid from Teacher where Tname = '张三') t2
+on t1.Tid = t2.Tid) t4 on t3.Cid = t4.Cid order by score desc limit 1) t6 
+on t5.Sid = t6.Sid
+;
