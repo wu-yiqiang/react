@@ -164,3 +164,21 @@ select t1.Cid from Course t1 right join
 on t1.Tid = t2.Tid) t4 on t3.Cid = t4.Cid order by score desc limit 1) t6 
 on t5.Sid = t6.Sid
 ;
+
+-- 成绩有重复的情况下，查询选修「张三」老师所授课程的学生中，成绩最高的学生信息及其成绩
+
+
+-- 查询不同课程成绩相同的学生的学生编号、课程编号、学生成绩
+-- 统计每门课程的学生选修人数（超过5人的课程才统计）
+select count(Cid) from SC group by Cid;
+
+-- 查询每门功成绩最好的前两名
+
+-- 检索至少选修两门课程的学生学号
+select Sid from SC group by Sid having count(Sid)  >= 2;
+-- 查询选修了全部课程的学生信息
+
+-- 查询各学生的年龄，只按年份来算
+select sid, sname, year(NOW())‐year(Sage) as sage from student;
+
+-- 
