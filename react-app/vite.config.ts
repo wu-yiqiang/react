@@ -58,6 +58,7 @@ export default ({ mode }) => {
     server: {
       hmr: true,
       host: '0.0.0.0',
+      https: true,
       port: 8090,
       proxy: {
         // '/test': { // 测试地址
