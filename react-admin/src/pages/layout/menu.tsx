@@ -40,7 +40,6 @@ const genItems = () => {
       items.push(item)
     }
   })
-  console.log("路由:KEY", items)
 }
 
  const Menus = () => {

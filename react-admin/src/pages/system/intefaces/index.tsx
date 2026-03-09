@@ -8,6 +8,7 @@ import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import { useTranslation } from 'react-i18next'
 import TableCell from '@/components/TableCell.tsx'
+import Authority from '@/components/Authority.tsx'
 export default function IntefaceManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -102,9 +103,11 @@ export default function IntefaceManager() {
         handleSearch={handleSearch}
         right={
           <>
-            <Button type="primary" onClick={handleNew}>
-              {t('Add')}
-            </Button>
+            <Authority permission="system:connector:create">
+              <Button type="primary" onClick={handleNew}>
+                {t('Add')}
+              </Button>
+            </Authority>
           </>
         }
       ></Tabular>

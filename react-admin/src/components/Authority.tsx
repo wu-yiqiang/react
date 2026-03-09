@@ -5,7 +5,8 @@ export default function Authority(props: any) {
   const { permission, children } = props
   const { userInfo } = useSystemStore() as SystemStore
   const hasPermission = useMemo(() => {
-    const buttonPermissions = userInfo?.buttons?.map((item) => item?.code) ?? []
+    const buttons = userInfo?.roles.reduce((acc, val) => acc.concat(val.buttons?.map((item) => item.code)), []) ?? []
+    const buttonPermissions = buttons ?? []
     if (buttonPermissions?.includes(permission)) return true
     return false
   }, [permission])

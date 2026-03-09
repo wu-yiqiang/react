@@ -7,6 +7,7 @@ import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
 import { useTranslation } from 'react-i18next'
+import Authority from '@/components/Authority'
 export default function ButtonManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
@@ -96,9 +97,11 @@ export default function ButtonManager() {
         handleSearch={handleSearch}
         right={
           <>
-            <Button type="primary" onClick={handleNew}>
-              {t('Add')}
-            </Button>
+            <Authority permission="system:button:create">
+              <Button type="primary" onClick={handleNew}>
+                {t('Add')}
+              </Button>
+            </Authority>
           </>
         }
       ></Tabular>

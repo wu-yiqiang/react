@@ -6,7 +6,11 @@ import DictionaryAddDialog from './dictionary-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import Authority from '@/components/Authority';
+import { useTranslation } from 'react-i18next'
+
 export default function Dictionarys() {
+  const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [menuId, setMenuId] = useState<number | null>(null)
@@ -98,9 +102,11 @@ export default function Dictionarys() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Button type="primary" onClick={handleNew}>
-            新增
-          </Button>
+          <Authority permission="system:dictionary:create">
+            <Button type="primary" onClick={handleNew}>
+              {t('Add')}
+            </Button>
+          </Authority>
         }
       ></Tabular>
       {dialogOpen ? <DictionaryAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={menuId} /> : null}
