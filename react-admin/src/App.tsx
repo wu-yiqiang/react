@@ -126,6 +126,8 @@ function App() {
         event?.preventDefault()
       }
     })
+    if (!userInfo.token)  eventMitt.emit('ROUTER:LOGOUT')
+
   }
   useEffect(() => {
     init()

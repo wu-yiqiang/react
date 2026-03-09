@@ -13,7 +13,7 @@ export default function PersonalCenter() {
   const [visible, setVisible] = useState(false)
   const { t } = useTranslation()
   const [active, setActive] = useState(t('profile'))
-  const [tabs, setTabs] = useState([{ title: t('profile') }, { title: t('selfService') }])
+  const [tabs, setTabs] = useState([{ title: t('profile') }, { title: t('infoUpdate') }])
   const handleOk = () => {
     handleOpenStatus(true)
   }
@@ -69,7 +69,7 @@ export default function PersonalCenter() {
         })}
       </div>
       {active == t('profile') ? <PersonalDetails /> : null}
-      {active == t('selfService') ? <SelfService /> : null}
+      {active == t('infoUpdate') ? <SelfService /> : null}
       {visible ? <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} /> : null}
     </div>
   )

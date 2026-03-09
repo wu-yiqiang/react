@@ -1,7 +1,7 @@
 .Login {
   width: 100vw;
   height: 100vh;
-  background-image: url('@/assets/images/background.webp');
+  background-image: url('@/assets/images/background.jpg');
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -13,26 +13,30 @@
       width: 187px;
     }
   }
-  .bottom-box {
-    padding: 0 10% 0 14%;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                .bottom-box {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex: 1;
-    .left-box {
+    flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .left-box {
+        display: flex;
+          align-items: center;
       .first-title {
-        font-size: 120px;
+        font-size: 80px;
         font-weight: 700;
-        color: rgba(255, 122, 0, 1);
+        color: rgb(31, 107, 221);
       }
       .second-title {
-        font-size: 34px;
+        font-size: 28px;
         font-weight: 500;
         color: #fff;
       }
     }
     .right-box {
+                display: grid;
+                  place-content: center;
       .card {
+          width: fit-content;
           border-radius: 4px;
           padding: 30px;
           background-color: #fff;
@@ -89,6 +93,7 @@
         .submit {
           display: flex;
           justify-content: space-between;
+          column-gap: 50px;
         }
     }
   }

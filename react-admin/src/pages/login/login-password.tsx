@@ -13,13 +13,14 @@ function LoginPassword() {
   const onFinish = async (value: any) => {
     setLoading(true)
     const params = cloneDeep(value)
-    params.password = AES_ECB_ENCRYPT(params.password)
+    // params.password = AES_ECB_ENCRYPT(params.password)
     const { data } = await login(params).finally(() => {
       setLoading(false)
     })
     if (data?.token) {
-      // console.log('login data', data)
-      eventMitt.emit('STORE:USER', data)
+      const datas = data
+      datas.menus = data?.roles.reduce((acc, val) => acc.concat(val.menus), []);
+      eventMitt.emit('STORE:USER', datas)
       eventMitt.emit('ROUTER:KEY', 'personal')
       window.location.reload()
       Toast.success('登录成功')
@@ -31,7 +32,7 @@ function LoginPassword() {
   }
   return (
     <div className="LoginPassword">
-      <Form name="basic" initialValues={{ email: 'Administrator@outlook.com', password: '1234@Abcd' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
+      <Form name="basic" initialValues={{ email: 'sutter.wu@itforce-tech.com', password: '1234@Abcd' }} onFinish={onFinish} onFinishFailed={onFinishFailed} form={form} autoComplete="off">
         <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
           <Input placeholder="Email" prefix={<UserOutlined />} />
         </Form.Item>
@@ -40,6 +41,9 @@ function LoginPassword() {
         </Form.Item>
         <Form.Item>
           <div className="submit">
+            <Button loading={loading} block htmlType="submit">
+              注册
+            </Button>
             <Button type="primary" loading={loading} block htmlType="submit">
               登录
             </Button>
@@ -47,7 +51,7 @@ function LoginPassword() {
         </Form.Item>
       </Form>
 
-      <Divider>Or</Divider>
+      {/* <Divider>Or</Divider> */}
     </div>
   )
 }

@@ -67,7 +67,7 @@ export default defineConfig(({ command, mode }) => {
       port: 8090,
       proxy: {
         '/prod-api': {
-          target: `http://192.168.1.222:8000/`,
+          target: `http://192.168.1.222:9527/`,
           changeOrigin: true,
           ws: false,
           rewrite: (path) => path.replace(/^\/prod-api/, '')

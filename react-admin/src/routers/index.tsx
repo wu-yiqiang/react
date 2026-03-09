@@ -227,6 +227,7 @@ export const allRouters: Array<RouterItem> = [
   }
 ]
 
+
 const routerConfig: RouteObject[] = [
   {
     path: '/',

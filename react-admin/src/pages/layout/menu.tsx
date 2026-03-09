@@ -16,7 +16,6 @@ interface MenuItem {
 let items: Array<MenuItem> = []
 const genItems = () => {
   const menus = (useSystemStore.getState() as SystemStore)?.userInfo?.menus
-  // 清空
   items = []
   let res: Array<MenuItem> = []
   res = allRouters
@@ -32,22 +31,23 @@ const genItems = () => {
       }
       return template
     })
-
   res.forEach((item) => {
     const parent = res.find((node) => node.key === item.parentkey)
     if (parent) {
-      parent.children = parent.children || []
+      parent.children = parent?.children || []
       parent.children.push(item)
     } else {
       items.push(item)
     }
   })
+  console.log("路由:KEY", items)
 }
 
  const Menus = () => {
    genItems()
    const onClick: MenuProps['onClick'] = (e) => {
      eventMitt.emit('ROUTER:KEY', e?.key)
+     console.log("ROUTER:KEY", e.key)
      // eventMitt.emit('ROUTER:OPENMENU', [])
    }
    const [selectMenu, setSelectMenu] = useMemo(() => (useSystemStore.getState() as SystemStore)?.selectMenu || (useSystemStore.getState() as SystemStore)?.userInfo?.menus?.[0]?.code, [(useSystemStore() as SystemStore)?.selectMenu, (useSystemStore() as SystemStore)?.userInfo?.menus])
@@ -61,7 +61,7 @@ const genItems = () => {
    }
    return (
      <>
-       <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items.map(item => ({ ...item, children: item.children || [] }))} selectedKeys={[selectMenu]} onOpenChange={onOpenChange} openKeys={openMenu} />
+       <Menu style={{ height: document.body.clientHeight }} onSelect={onClick} mode="inline" items={items?.map(item => ({ ...item, children: item?.children }))} selectedKeys={[selectMenu]} onOpenChange={onOpenChange} openKeys={openMenu} />
      </>
    )
  }

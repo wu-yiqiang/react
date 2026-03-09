@@ -6,7 +6,7 @@ import { STORENAME } from '@/common/enum.ts'
 const useSystemStore = create(
   persist(
     (set) => ({
-      userInfo: { username: '', token: '', menus: [], roles: [] },
+      userInfo: { name: '', token: '', menus: [], roles: [] },
       systemSetting: {
         lockTime: 10,
         locked: false,

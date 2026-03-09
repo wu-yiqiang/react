@@ -29,9 +29,9 @@ function Login() {
         </div>
         <div className="right-box">
           <div className="card">
-            <div className="title">Login In</div>
+            <div className="title">登陆</div>
             <div className="content-box">{loginType == 1 ? <LoginPassword /> : <LoginFace />}</div>
-            {loginType == 1 ? (
+            {/* {loginType == 1 ? (
               <Button type="primary" block onClick={() => handleLoginType(2)}>
                 人脸识别登陆
               </Button>
@@ -39,11 +39,11 @@ function Login() {
               <Button type="primary" block onClick={() => handleLoginType(1)}>
                 密码登陆
               </Button>
-            )}
+            )} */}
             <div className="opts-box">
               <div className="content">
-                <span className="item-left">Register User</span>
-                <span className="opts-devide">|</span>
+                {/* <span className="item-left">Register User</span>
+                <span className="opts-devide">|</span> */}
                 <span className="item-right">Forget Password</span>
               </div>
             </div>
