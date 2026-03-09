@@ -6,13 +6,12 @@ export interface BtnField {
 export interface BtnSearch extends Search, Pagenation {}
 export interface BtnItem extends CommonTime, CommonUuid, CommonId, BtnField {}
 
-export class Btn implements BtnItem {
+export class Button implements BtnItem {
   id: number | null
-  uuid: string
   name: string
   code: string
   constructor() {
-    ;(this.id = null), (this.uuid = '')
+    (this.id = null),
     this.name = ''
     this.code = ''
   }

@@ -30,7 +30,7 @@ export default function UserAddDialog(props: DialogProps) {
     if (!id) {
       await setTitle('新增')
       setEditStatus(false)
-      form.setFieldsValue(new Btn())
+      form.setFieldsValue(new Button())
     }
     if (id) {
       await setTitle('编辑')
