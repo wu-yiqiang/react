@@ -24,8 +24,8 @@ function Login() {
       </div>
       <div className="bottom-box">
         <div className="left-box">
-          <div className="first-title">EAMS</div>
-          <div className="second-title">Equipment Acquisition Management System</div>
+          <div className="first-title">吉星</div>
+          <div className="second-title">后台管理系统</div>
         </div>
         <div className="right-box">
           <div className="card">

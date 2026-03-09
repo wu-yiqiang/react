@@ -32,17 +32,12 @@ const Intelligent = React.lazy(() => import('@/pages/intelligent/index'))
 // File
 const Files = React.lazy(() => import('@/pages/share/files/index'))
 
-//
-const Invoices = React.lazy(() => import('@/pages/invoices/index'))
+
+// 
 const Dashboard = React.lazy(() => import('@/pages/dashboard/index'))
 const Statistics = React.lazy(() => import('@/pages/statistics/index'))
-const Maintains = React.lazy(() => import('@/pages/maintains/index'))
 const Schedules = React.lazy(() => import('@/pages/schedules/index'))
 const DaySchedule = React.lazy(() => import('@/pages/schedules/index'))
-const RoomsBook = React.lazy(() => import('@/pages/rooms/rooms-book/index'))
-const RoomsType = React.lazy(() => import('@/pages/rooms/rooms-type/index'))
-const RoomsStay = React.lazy(() => import('@/pages/rooms/rooms-stay/index'))
-const RoomsInfo = React.lazy(() => import('@/pages/rooms/rooms-info/index'))
 
 
 import { logout } from '@/api/public'
@@ -93,62 +88,6 @@ export const allRouters: Array<RouterItem> = [
     key: 'statistics',
     parentkey: '',
     element: <Statistics />
-  },
-  {
-    path: '/invoices',
-    label: '申请单据',
-    icon: <PrinterOutlined />,
-    key: 'invoices',
-    parentkey: '',
-    element: <Invoices />
-  },
-  {
-    path: '/maintains',
-    label: '维修管理',
-    icon: <ToolOutlined />,
-    key: 'maintains',
-    parentkey: '',
-    element: <Maintains />
-  },
-  {
-    path: '/rooms',
-    label: '房间管理',
-    icon: <ContactsOutlined />,
-    key: 'rooms',
-    parentkey: '',
-    element: null
-  },
-  {
-    path: '/rooms-book',
-    label: '订房管理',
-    icon: <ContactsOutlined />,
-    key: 'rooms-book',
-    parentkey: 'rooms',
-    element: <RoomsBook />
-  },
-  {
-    path: '/rooms-type',
-    label: '房间类型',
-    icon: <ContactsOutlined />,
-    key: 'rooms-type',
-    parentkey: 'rooms',
-    element: <RoomsType />
-  },
-  {
-    path: '/rooms-info',
-    label: '房间信息',
-    icon: <ContactsOutlined />,
-    key: 'rooms-info',
-    parentkey: 'rooms',
-    element: <RoomsInfo />
-  },
-  {
-    path: '/rooms-stay',
-    label: '入住管理',
-    icon: <ContactsOutlined />,
-    key: 'rooms-stay',
-    parentkey: 'rooms',
-    element: <RoomsStay />
   },
   {
     path: '/schedules',

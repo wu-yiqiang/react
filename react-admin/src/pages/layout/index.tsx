@@ -29,7 +29,7 @@ const App: React.FC = () => {
           {collapsed ?  <span
               style={{ fontSize: "20px", fontWeight: 700, color: "#868686" }}
             >
-              EAMS
+              吉星
             </span> :  <img src={ logo } style={{width: '50px'}} />}
         </div>
         <Menus />

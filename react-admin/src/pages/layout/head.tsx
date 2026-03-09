@@ -100,32 +100,34 @@ function Theme() {
 
 function Notices() {
   const [notices, setNotices] = useState([
-    { title: '接上级系统通知111111sssssdsdsdaadsdsdsd', content: '中午十点半集团领导莅临检查，请大家做好准备，工位卫生请各位及时打扫,请务必在领导检查前完成打扫,谢谢合作！SSESENDINTERVALSSESENDINTERVALSSESENDINTERVALSSESENDINTERVALSSESENDINTERVALSSESENDINTERVALSSESENDINTERVALSSESENDINTERVAL', date: '2025-11-24' },
-    { title: 'sdsdsd2', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd3', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd4', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd5', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd6', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd7', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd8', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd9', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd10', content: 'sdsdsd', date: '2025-11-24' },
-    { title: 'sdsdsd11', content: 'sdsdsd', date: '2025-11-24' }
+    // { title: '需求评审会议', content: '请于12点前参加需求评审会议', date: '2025-11-24' },
+    // { title: 'sdsdsd2', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd3', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd4', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd5', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd6', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd7', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd8', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd9', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd10', content: 'sdsdsd', date: '2025-11-24' },
+    // { title: 'sdsdsd11', content: 'sdsdsd', date: '2025-11-24' }
   ])
   return (
-    <div className="Notices">
-      {notices?.map((notice, index) => {
-        return (
-          <div key={index} className="notice">
-            <div className="topbox">
-              <div className="title">{notice?.title}</div>
-              <div className="date">{notice?.date}</div>
+    <>
+      {notices?.length ? <div className="Notices">
+        {notices?.map((notice, index) => {
+          return (
+            <div key={index} className="notice">
+              <div className="topbox">
+                <div className="title">{notice?.title}</div>
+                <div className="date">{notice?.date}</div>
+              </div>
+              <div className="contents">{notice?.content}</div>
             </div>
-            <div className="contents">{notice?.content}</div>
-          </div>
-        )
-      })}
-    </div>
+          )
+        })}
+      </div> : null}
+    </>
   )
 }
 
@@ -146,14 +148,14 @@ function Notion() {
       onError: (event: Event) => {
         console.log('错误', event)
       },
-      onClose: () => {},
-      finallyHandler: () => {}
+      onClose: () => { },
+      finallyHandler: () => { }
     }
     const sseService = new SSEService(params);
     sseService.connect()
   }, [])
   return (
-    <Popover destroy-on-hidden={true} fresh={true} content={Notices} placement="bottom" trigger="click">
+    <Popover destroy-on-hidden={true} fresh={true} content={count ? Notices : null} placement="bottom" trigger="click">
       <Badge count={count} offset={[-3, 0]}>
         <BellOutlined className="headeIcon" />
       </Badge>
@@ -166,11 +168,11 @@ function Setting() {
   return (
     <>
       <SettingOutlined className="headeIcon" onClick={() => setOpen(true)} />
-      {open ? <SettingDialog open={ open }  handleClose={() => setOpen(false)}/>
-: null }
+      {open ? <SettingDialog open={open} handleClose={() => setOpen(false)} />
+        : null}
     </>
   )
- }
+}
 
 function User() {
   const { t } = useTranslation()

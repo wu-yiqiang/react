@@ -2,11 +2,11 @@ import Tabular from '@/components/Tabular.tsx'
 import { getMaintainLists } from '@/api/maintain'
 import { useState } from 'react'
 import { MaintainSearch, MaintainItem } from '@/types/maintain'
-import MaintainDialog from './maintain-add-dialog'
+// import MaintainDialog from './maintain-add-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-export default function MaintainsManager() {
+export default function Products() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userId, setUserId] = useState(0)
@@ -23,7 +23,6 @@ export default function MaintainsManager() {
   }
   const handleDelete = async (id: number | null) => {
     if (!id) return
-    // await deleteRoleItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
@@ -106,7 +105,6 @@ export default function MaintainsManager() {
           </Button>
         }
       ></Tabular>
-      {dialogOpen ? <MaintainDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
     </>
   )
 }
