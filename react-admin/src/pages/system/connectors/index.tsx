@@ -1,63 +1,64 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getDictionaryLists, deleteDictionaryItem } from '@/api/system'
-import { useState } from 'react'
-import { DictionarySearch, DictionaryItem } from "@/types/dictionary";
-import DictionaryAddDialog from './dictionary-dialog'
+import { getIntefacesPage, deleteIntefaceItem } from '@/api/system'
+import { useEffect, useState } from 'react'
+import { UserSearch, UserItem } from '@/types/user'
+import ConnectorDialog from './connector-dialog.tsx'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-import Authority from '@/components/Authority';
 import { useTranslation } from 'react-i18next'
-
-export default function Dictionarys() {
+import TableCell from '@/components/TableCell.tsx'
+import Authority from '@/components/Authority.tsx'
+export default function IntefaceManager() {
   const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [menuId, setMenuId] = useState<number | null>(null)
+  const [userId, setUserId] = useState<number | null>(null)
   const [total, setTotal] = useState(0)
-  const [queryData, setQueryData] = useState<DictionarySearch>({
+  const [queryData, setQueryData] = useState<UserSearch>({
     search: '',
     pageNo: 1,
     pageSize: 10
   })
   const handleEdit = (id: number | null) => {
     if (!id) return
-    setMenuId(id)
+    setUserId(id)
     setDialogOpen(true)
   }
   const handleDelete = async (id: number | null) => {
     if (!id) return
-    await deleteDictionaryItem(id)
+    await deleteIntefaceItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
   const columns = [
     {
-      title: '字典类型',
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name',
+      width: 150
+    },
+    {
+      title: '请求方式',
       dataIndex: 'type',
       key: 'type',
-      width: 140
-    },
-
-    {
-      title: '标识',
-      dataIndex: 'code',
-      key: 'code',
-      width: 120
+      width: 150,
+      render: (value: number) => {
+        return <TableCell value={value} type="intefaceType" />
+      }
     },
     {
-      title: '标签',
-      dataIndex: 'label',
-      key: 'label',
-      width: 60
+      title: '请求路径',
+      dataIndex: 'path',
+      key: 'path'
     },
     {
       title: '操作',
       dataIndex: 'opeartions',
       key: 'opeartions',
-      width: 100,
+      width: 150,
       align: 'center',
-      render: (value: number | string, record: DictionaryItem, index: number) => {
+      render: (value: number | string, record: UserItem, index: number) => {
         return (
           <Space key={index}>
             <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
@@ -67,9 +68,9 @@ export default function Dictionarys() {
       }
     }
   ]
-  const searchOptions = [{ name: 'search', label: '字典类型', type: 'input' }]
-  const handleSearch = async (values: DictionarySearch) => {
-    const { data, pageNo, pageSize, total } = await getDictionaryLists(values)
+  const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
+  const handleSearch = async (values: UserSearch) => {
+    const { data, total, pageSize, pageNo } = await getIntefacesPage(values)
     setLists(data)
     const datas = {
       pageSize: pageSize,
@@ -79,13 +80,12 @@ export default function Dictionarys() {
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
-    setMenuId(null)
+    setUserId(null)
     setDialogOpen(true)
   }
   const handleClose = () => {
     setDialogOpen(false)
   }
-
   const handleOk = async () => {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
@@ -102,14 +102,16 @@ export default function Dictionarys() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Authority permission="system:dictionary:create">
-            <Button type="primary" onClick={handleNew}>
-              {t('Add')}
-            </Button>
-          </Authority>
+          <>
+            <Authority permission="system:connector:create">
+              <Button type="primary" onClick={handleNew}>
+                {t('Add')}
+              </Button>
+            </Authority>
+          </>
         }
       ></Tabular>
-      {dialogOpen ? <DictionaryAddDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={menuId} /> : null}
+      {dialogOpen ? <ConnectorDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
     </>
   )
 }

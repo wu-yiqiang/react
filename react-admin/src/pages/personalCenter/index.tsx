@@ -6,14 +6,18 @@ import SelfService from './self-service'
 import PersonalDetails from './personnal-detail'
 import avatar from '@/assets/images/user.jpg'
 import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import './index.scss'
 export default function PersonalCenter() {
   const { userInfo } = useSystemStore() as SystemStore
   const [visible, setVisible] = useState(false)
   const { t } = useTranslation()
   const [active, setActive] = useState(t('profile'))
-  const [tabs, setTabs] = useState([{ title: t('profile') }, { title: t('infoUpdate') }])
+  const [tabs, setTabs] = useState([
+    { title: t('profile') },
+    { title: t('infoUpdate') }
+  ])
+  const userInfos = useMemo(() => userInfo, [userInfo])
   const handleOk = () => {
     handleOpenStatus(true)
   }
@@ -26,6 +30,7 @@ export default function PersonalCenter() {
   const handleActive = (value: string) => {
     setActive(value)
   }
+  console.log('userInfos', userInfos)
   return (
     <div className="PersonalCenter">
       <div className="topbar">
@@ -39,27 +44,27 @@ export default function PersonalCenter() {
         <div className="Info">
           <Row gutter={[16, 16]}>
             <Col span={12}>
-              <div>{t('name')}：张三</div>
+              <div>{t('name')}：{userInfos?.name}</div>
             </Col>
             <Col span={12}>
               <div>{t('jobNumber')}：6786549</div>
             </Col>
             <Col span={12}>
-              <div>{t('department')}：开发一部</div>
+              <div>{t('department')}：开发部</div>
             </Col>
             <Col span={12}>
-              <div>{t('job')}：研发工程师</div>
+              <div>{t('job')}：开发工程师</div>
             </Col>
             <Col span={12}>
               <div>{t('email')}：zhang_san@outlook.com</div>
             </Col>
             <Col span={12}>
-              <div>{t('phone')}：15117987823</div>
+              <div>{t('phone')}：151179876823</div>
             </Col>
           </Row>
         </div>
       </div>
-      <div className="left-pannel">
+      {/* <div className="left-pannel">
         {tabs?.map((tab, index) => {
           return (
             <div className={active == tab?.title ? 'pannel-item active-pannel-item' : 'pannel-item'} onClick={() => handleActive(tab?.title)} key={index}>
@@ -67,8 +72,8 @@ export default function PersonalCenter() {
             </div>
           )
         })}
-      </div>
-      {active == t('profile') ? <PersonalDetails /> : null}
+      </div> */}
+      {/* {active == t('profile') ? <PersonalDetails /> : null} */}
       {active == t('infoUpdate') ? <SelfService /> : null}
       {visible ? <UpdateAvatarDialog open={visible} handleClose={() => handleOpenStatus(false)} handleOk={handleOk} image={userInfo?.avatar} /> : null}
     </div>

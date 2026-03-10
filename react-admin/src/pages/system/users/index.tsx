@@ -45,8 +45,8 @@ export default function UserManager() {
   const columns = [
     {
       title: '用户名',
-      dataIndex: 'username',
-      key: 'username'
+      dataIndex: 'name',
+      key: 'name'
     },
     {
       title: '邮箱',
@@ -55,8 +55,8 @@ export default function UserManager() {
     },
     {
       title: '号码',
-      dataIndex: 'phone_number',
-      key: 'phoneNumber'
+      dataIndex: 'mobile',
+      key: 'mobile'
     },
     {
       title: '状态',
@@ -64,7 +64,6 @@ export default function UserManager() {
       key: 'status',
       render: (value: string | number) => {
         return <TableCell value={value} type="status" />
-        
       }
     },
     {
@@ -75,10 +74,10 @@ export default function UserManager() {
         return (
           <>
             {value
-              .map((item) => {
+              ?.map((item) => {
                 return item?.name
               })
-              .filter(Boolean)
+              ?.filter(Boolean)
               ?.join(',')}
           </>
         )
@@ -101,13 +100,13 @@ export default function UserManager() {
   ]
   const searchOptions = [{ name: 'search', label: t('Search'), type: 'input' }]
   const handleSearch = async (values: UserSearch) => {
-    const { data, pageSize, pageNo, total } = await getUsersLists(values)
-    setLists(data)
+    const { data } = await getUsersLists(values)
+    setLists(data?.data)
     const datas = {
-      pageSize: pageSize,
-      pageNo: pageNo
+      pageSize: data?.pageSize,
+      pageNo: data?.pageNo
     }
-    setTotal(total)
+    setTotal(data?.total)
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {

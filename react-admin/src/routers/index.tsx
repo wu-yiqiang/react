@@ -21,8 +21,8 @@ const Users = React.lazy(() => import('@/pages/system/users/index'))
 const Roles = React.lazy(() => import('@/pages/system/roles/index'))
 const Menus = React.lazy(() => import('@/pages/system/menus/index'))
 const Buttons = React.lazy(() => import('@/pages/system/buttons/index'))
-const Intefaces = React.lazy(() => import('@/pages/system/intefaces/index'))
-const Dictionarys = React.lazy(() => import('@/pages/system/dictionarys/index'))
+const Connectors = React.lazy(() => import('@/pages/system/connectors/index'))
+const Mappings = React.lazy(() => import('@/pages/system/mappings/index'))
 // Datas
 const Companys = React.lazy(() => import('@/pages/basicData/companys/index'))
 const Positions = React.lazy(() => import('@/pages/basicData/positions/index'))
@@ -202,20 +202,20 @@ export const allRouters: Array<RouterItem> = [
     element: <Buttons />
   },
   {
-    path: '/systems/inteface',
+    path: '/systems/connectors',
     label: '接口管理',
     icon: <SafetyOutlined />,
-    key: 'intefaces',
+    key: 'connectors',
     parentkey: 'systems',
-    element: <Intefaces />
+    element: <Connectors />
   },
   {
-    path: '/systems/dictionarys',
+    path: '/systems/mappings',
     label: '字典管理',
     icon: <SafetyOutlined />,
-    key: 'dictionarys',
+    key: 'mappings',
     parentkey: 'systems',
-    element: <Dictionarys />
+    element: <Mappings />
   },
   {
     path: '/systems/intelligent',
