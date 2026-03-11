@@ -16,6 +16,11 @@ const Layout = React.lazy(() => import('@/pages/layout/index'))
 const Login = React.lazy(() => import('@/pages/login/index'))
 // Personal Center
 const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
+// 商品管理
+const CommodityLists = React.lazy(() => import('@/pages/commodities/commodityLists'))
+// 订单管理
+const OrderLists = React.lazy(() => import('@/pages/orders/orderLists'))
+
 // System
 const Users = React.lazy(() => import('@/pages/system/users/index'))
 const Roles = React.lazy(() => import('@/pages/system/roles/index'))
@@ -88,6 +93,38 @@ export const allRouters: Array<RouterItem> = [
     key: 'statistics',
     parentkey: '',
     element: <Statistics />
+  },
+  {
+    path: '/commodities',
+    label: '商品管理',
+    icon: <PieChartOutlined />,
+    key: 'commodities',
+    parentkey: '',
+    element: null
+  },
+  {
+    path: '/commodities/lists',
+    label: '商品列表',
+    icon: <PieChartOutlined />,
+    key: 'commodityLists',
+    parentkey: 'commodities',
+    element: <CommodityLists />
+  },
+  {
+    path: '/orders',
+    label: '订单管理',
+    icon: <PieChartOutlined />,
+    key: 'orders',
+    parentkey: '',
+    element: null
+  },
+  {
+    path: '/orders/lists',
+    label: '订单列表',
+    icon: <PieChartOutlined />,
+    key: 'orderLists',
+    parentkey: 'orders',
+    element: <OrderLists />
   },
   {
     path: '/schedules',

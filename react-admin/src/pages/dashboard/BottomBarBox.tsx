@@ -40,7 +40,7 @@ const BottomBarBox: React.FC = () => {
       },
       yAxis: {
         type: 'category',
-        data: ['放炮员', '安全员', '瓦检员', '采集司机', '电钳工', '二级主提司机', '主提司机', '电工'],
+        data: ['施工员', '安全员', '瓦检员', '采集司机', '电钳工', '二级主提司机', '主提司机', '电工'],
         inverse: true,
         axisLine: {
           show: false

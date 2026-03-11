@@ -5,7 +5,7 @@ export const logout = async (): Promise<any> => await requestes.Post('/user/logo
 export const upload = async (data: any): Promise<any> => {
   const formData = new FormData()
   formData.append('file', data)
-  return await requestes.Post('/upload', formData)
+  return await requestes.Post('/general/upload', formData)
 }
 export const download = async (url: string, method: string = 'Get'): Promise<any> =>
   await requestes.Get(url, {

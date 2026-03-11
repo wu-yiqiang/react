@@ -2,11 +2,11 @@ import Tabular from '@/components/Tabular.tsx'
 import { getMaintainLists } from '@/api/maintain'
 import { useState } from 'react'
 import { MaintainSearch, MaintainItem } from '@/types/maintain'
-// import MaintainDialog from './maintain-add-dialog'
+import CommodityDialog from './commodity-dialog'
 import { Button, Space } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
-export default function Products() {
+export default function CommodityLists() {
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
   const [userId, setUserId] = useState(0)
@@ -28,27 +28,37 @@ export default function Products() {
   }
   const columns = [
     {
-      title: '设备名',
+      title: '商品编号',
       dataIndex: 'device_name',
       key: 'device_name'
     },
     {
-      title: '申请人',
+      title: '商品图片',
       dataIndex: 'applyer',
       key: 'applyer'
     },
     {
-      title: '主题',
+      title: '商品名称',
       dataIndex: 'subject',
       key: 'subject'
     },
     {
-      title: '详情',
+      title: '商品价格',
       dataIndex: 'remark',
       key: 'remark'
     },
     {
-      title: '维修人',
+      title: '商品库存',
+      dataIndex: 'maintainer',
+      key: 'maintainer'
+    },
+    {
+      title: '商品销量',
+      dataIndex: 'maintainer',
+      key: 'maintainer'
+    },
+    {
+      title: '商品状态',
       dataIndex: 'maintainer',
       key: 'maintainer'
     },
@@ -68,14 +78,14 @@ export default function Products() {
   ]
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: MaintainSearch) => {
-    const { data } = await getMaintainLists(values)
-    setLists(data.lists)
-    const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
-    }
-    setTotal(data?.total)
-    setQueryData({ ...queryData, ...datas })
+    // const { data } = await getMaintainLists(values)
+    // setLists(data.lists)
+    // const datas = {
+    //   pageSize: data.pageSize,
+    //   pageNo: data.pageNo
+    // }
+    // setTotal(data?.total)
+    // setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
     setDialogOpen(true)
@@ -105,6 +115,7 @@ export default function Products() {
           </Button>
         }
       ></Tabular>
+      {dialogOpen ? <CommodityDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
     </>
   )
 }
