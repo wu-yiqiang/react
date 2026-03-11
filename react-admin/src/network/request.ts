@@ -33,7 +33,13 @@ const Alova = createAlova({
       }
       const data = (await response.json())
       if (data.code == 200) return Promise.resolve(data)
-      if (data.code != 200) Toast.error(data?.msg)
+      if (data.code != 200) {
+        Toast.error(data?.msg)
+        if (data.code === 1010002) {
+          eventMitt.emit('STORE:USER', '')
+          eventMitt.emit('ROUTER:LOGOUT')
+        }
+      }
       return Promise.reject()
     },
     onError: (err: Error) => {

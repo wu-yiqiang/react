@@ -44,18 +44,18 @@ export default function UserManager() {
     },
     {
       title: "描述",
-      dataIndex: "remark",
-      key: "remark",
+      dataIndex: "description",
+      key: "description",
     },
     {
       title: "更新时间",
-      dataIndex: "update_time",
-      key: "update_time",
+      dataIndex: "updated_at",
+      key: "updated_at",
     },
     {
       title: "创建时间",
-      dataIndex: "create_time",
-      key: "create_time",
+      dataIndex: "created_at",
+      key: "created_at",
     },
     {
       title: "操作",
@@ -82,14 +82,14 @@ export default function UserManager() {
   ];
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: RoleSearch) => {
-    const { data, total, pageSize, pageNo } = await getRolesLists(values)
-    setLists(data ?? []);
+    const { data } = await getRolesLists(values)
+    setLists(data?.data)
     const datas = {
-      pageSize: pageSize,
-      pageNo: pageNo,
-    };
-    setTotal(total);
-    setQueryData({ ...queryData, ...datas });
+      pageSize: data?.pageSize,
+      pageNo: data?.pageNo
+    }
+    setTotal(data?.total)
+    setQueryData({ ...queryData, ...datas })
   };
   const handleNew = () => {
     setRoleId(null)

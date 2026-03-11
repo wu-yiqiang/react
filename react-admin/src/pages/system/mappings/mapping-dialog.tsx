@@ -1,10 +1,11 @@
-import { Form, Input, Modal, Cascader, TreeSelect, Row, Col, Spin, Radio, InputNumber } from 'antd'
+import { Form, Input, Modal, Row, Col, Spin, InputNumber } from 'antd'
 import { useEffect, useState } from 'react'
 import { postDictionaryItem, updateDictionaryItem, getDictionaryItem } from '@/api/system'
 import Toast from '@/components/Toast'
 import {  requiredRules } from '@/validator/index'
 import { Dictionary } from '@/types/dictionary'
 import { DialogProps } from '@/types/common'
+const { TextArea } = Input;
 export default function DictionaryAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)
@@ -70,18 +71,23 @@ export default function DictionaryAddDialog(props: DialogProps) {
           >
             <Row gutter={[12, 12]}>
               <Col span={24}>
-                <Form.Item label="字典类型" name="type" rules={requiredRules}>
+                <Form.Item label="字典类型" name="code" rules={requiredRules}>
                   <Input placeholder="字典类型" />
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="字典标识" name="code" rules={requiredRules}>
+                <Form.Item label="字典标识" name="value" rules={requiredRules}>
                   <InputNumber placeholder="字典标识" style={{ width: '100%' }} />
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="字典标签" name="label" rules={requiredRules}>
+                <Form.Item label="字典标签" name="name" rules={requiredRules}>
                   <Input placeholder="字典标签" />
+                </Form.Item>
+              </Col>
+              <Col span={24}>
+                <Form.Item label="字典描述" name="description">
+                  <TextArea placeholder="字典描述" rows={3} />
                 </Form.Item>
               </Col>
               <Form.Item hidden label="ID" name="id">

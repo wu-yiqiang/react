@@ -33,22 +33,21 @@ export default function Dictionarys() {
   }
   const columns = [
     {
-      title: '字典类型',
-      dataIndex: 'type',
-      key: 'type',
-      width: 140
-    },
-
-    {
-      title: '标识',
+      title: '字典码',
       dataIndex: 'code',
       key: 'code',
+      width: 140
+    },
+    {
+      title: '字典值',
+      dataIndex: 'value',
+      key: 'value',
       width: 120
     },
     {
-      title: '标签',
-      dataIndex: 'label',
-      key: 'label',
+      title: '字典名',
+      dataIndex: 'name',
+      key: 'name',
       width: 60
     },
     {
@@ -67,15 +66,15 @@ export default function Dictionarys() {
       }
     }
   ]
-  const searchOptions = [{ name: 'search', label: '字典类型', type: 'input' }]
+  const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: DictionarySearch) => {
     const { data, pageNo, pageSize, total } = await getDictionaryLists(values)
-    setLists(data)
+    setLists(data?.data)
     const datas = {
-      pageSize: pageSize,
-      pageNo: pageNo
+      pageSize: data?.pageSize,
+      pageNo: data?.pageNo
     }
-    setTotal(total)
+    setTotal(data?.total)
     setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {

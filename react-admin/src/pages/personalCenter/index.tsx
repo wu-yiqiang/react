@@ -56,10 +56,10 @@ export default function PersonalCenter() {
               <div>{t('job')}：开发工程师</div>
             </Col>
             <Col span={12}>
-              <div>{t('email')}：zhang_san@outlook.com</div>
+              <div>{t('email')}：{userInfos?.email}</div>
             </Col>
             <Col span={12}>
-              <div>{t('phone')}：151179876823</div>
+              <div>{t('phone')}: {userInfos?.mobile}</div>
             </Col>
           </Row>
         </div>
