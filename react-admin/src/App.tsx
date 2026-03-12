@@ -8,6 +8,7 @@ import ScreenLock from './pages/screenLock'
 import dayjs from 'dayjs'
 import { Suspense, useEffect } from "react";
 import { routes } from '@/routers/index.tsx'
+import zhCN from 'antd/locale/zh_CN';
 function App() {
   const { systemSetting,userInfo, setSystemSetting } = useSystemStore() as SystemStore
   const darkTheme = {
@@ -133,7 +134,7 @@ function App() {
     init()
   })
   return (
-    <ConfigProvider theme={themeConfig}>
+    <ConfigProvider theme={themeConfig} locale={zhCN}>
       <Suspense fallback={<Spin percent="auto" fullscreen size="large" />}>
         {/* <SomeComponent /> */}
         <RouterProvider router={routes} />

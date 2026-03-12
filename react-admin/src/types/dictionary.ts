@@ -1,8 +1,8 @@
 import { CommonTime, CommonUuid, CommonId, Search, Pagenation } from "@/types/common";
 export interface DictionaryField {
-  type: string
+  value: string
   code: number | null
-  label: string
+  name: string
 }
 export interface DictionarySearch extends Search, Pagenation {}
 export interface DictionaryItem extends CommonTime, CommonUuid, CommonId, DictionaryField {}
@@ -10,14 +10,14 @@ export interface DictionaryItem extends CommonTime, CommonUuid, CommonId, Dictio
 export class Dictionary implements DictionaryItem {
   id: number | null
   uuid: string
-  type: string
+  value: string
   code: number | null
-  label: string
+  name: string
   constructor() {
     this.id = null,
     this.uuid = ''
-    this.type = ''
+    this.value = ''
     this.code = null
-    this.label = ''
+    this.name = ''
   }
 }

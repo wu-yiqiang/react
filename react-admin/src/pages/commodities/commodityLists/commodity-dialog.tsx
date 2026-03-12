@@ -1,20 +1,22 @@
-import { Form, Input, Modal, Upload, Select, Row, Col, Spin, Image, Avatar, UploadFile } from 'antd'
-import { useEffect, useState } from 'react'
-import { postUser, updateUserDetail, getUserDetail, getRoleOptions } from '@/api/system'
+import { Form, Input, Modal, Upload, Row, Col, Spin, InputNumber } from 'antd'
+import { useEffect, useMemo, useState } from 'react'
+import { postUser, updateUserDetail } from '@/api/system'
 import { upload } from '@/api/public'
 import Toast from '@/components/Toast'
 import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons'
-import { emailRequiredRules, requiredRules } from '@/validator/index'
-import { User } from '@/types/user'
+import { requiredRules } from '@/validator/index'
 import { DialogProps } from '@/types/common'
-import DictsSelector from '@/components/DictsSelector'
-import ImgCrop from 'antd-img-crop'
+import Img from '@/components/Img'
+import { cloneDeep } from 'lodash-es'
+import { formattedAmountCent, formattedAmountCNY } from '@/utils'
+import { getCommodityItem, postCommodityItem, updateCommodityItem } from '@/api/commodity'
+import { Commodity } from '@/types/commodity'
 export default function CommodityDialog(props: DialogProps) {
     const { open, id, handleClose, handleOk } = props
     const [editStatus, setEditStatus] = useState(false)
     const [title, setTitle] = useState('新增')
     const [loading, setLoading] = useState(false)
-    const [roles, setRoles] = useState([])
+    const [previewOpen, setPreviewOpen] = useState(false)
     const [form] = Form.useForm()
     const close = () => {
         form.resetFields()
@@ -24,33 +26,35 @@ export default function CommodityDialog(props: DialogProps) {
         const value = await form.validateFields()
         if (value) {
             const values = form.getFieldsValue()
-            if (!editStatus) await postUser(values)
-            if (editStatus) await updateUserDetail(values)
+            const reqParams = cloneDeep(values)
+            reqParams.price = formattedAmountCent(reqParams?.price)
+            if (!editStatus) await postCommodityItem(reqParams)
+            if (editStatus) await updateCommodityItem(reqParams)
             Toast.success('操作成功')
             handleOk(values)
         }
     }
     const init = async () => {
-        // await getRoles()
-        // if (!id) {
-        //     await setTitle('新增')
-        //     setEditStatus(false)
-        //     form.setFieldsValue(new User())
-        // }
-        // if (id) {
-        //     await setTitle('编辑')
-        //     setEditStatus(true)
-        //     setLoading(true)
-        //     const response = await getUserDetail(id)?.finally(() => {
-        //         setLoading(false)
-        //     })
-        //     const data = response?.data
-        //     if (!data) {
-        //         Toast.error('未获取到用户数据')
-        //         return
-        //     }
-        //     form.setFieldsValue(data)
-        // }
+        if (!id) {
+            await setTitle('新增')
+            setEditStatus(false)
+            form.setFieldsValue(new Commodity())
+        }
+        if (id) {
+            await setTitle('编辑')
+            setEditStatus(true)
+            setLoading(true)
+            const response = await getCommodityItem(id)?.finally(() => {
+                setLoading(false)
+            })
+            const data = response?.data
+            if (!data) {
+                Toast.error('未获取到用户数据')
+                return
+            }
+            data.price = formattedAmountCNY(data?.price)
+            form.setFieldsValue(data)
+        }
     }
     useEffect(() => {
         init()
@@ -62,60 +66,68 @@ export default function CommodityDialog(props: DialogProps) {
         const { data } = await upload(file).finally(() => {
             setLoading(false)
         })
-        form.setFieldValue('avatar', data)
+        form.setFieldValue('fileName', data)
     }
     const beforeUpload = (file: File) => {
         const fileType = file?.type
         if (fileType !== 'image/jpeg' && fileType !== 'image/png') {
-            Toast.error('请上传 JPEG 或 PNG 格式的图片')
-            return false
+            Toast.error('请上传 JPEG 、JPG或PNG格式的图片')
+            return Upload.LIST_IGNORE;
         }
         return true
     }
+    const handlePreview = () => {
+        setPreviewOpen(true)
+    }
+    const avatar = useMemo(() => {
+        return form?.getFieldValue('fileName')
+    }, [form?.getFieldValue('fileName')])
     const uploadButton = (
         <button style={{ border: 0, background: 'none' }} type="button">
             {loading ? <LoadingOutlined /> : <PlusOutlined />}
         </button>
     )
     return (
-        <Modal title={title} width={600} centered forceRender maskClosable={false} destroyOnClose={true} open={open} onOk={submit} onCancel={close}>
+        <Modal title={title} width={560} centered forceRender maskClosable={false} destroyOnHidden={true} open={open} onOk={submit} onCancel={close}>
             <Spin spinning={loading} size="large">
                 {loading ? null : (
                     <Form id="form" form={form} labelAlign="left" labelCol={{ style: { width: 100 } }} layout="horizontal">
                         <Row>
                             <Col span={12}>
-                                <Form.Item label="商品图片" name="avatar" rules={requiredRules}>
-                                    <Upload name="avatar" listType="picture-card" accept=".jpg,.jpeg,.png" showUploadList={false} beforeUpload={(file: File) => beforeUpload(file)} maxCount={1} customRequest={handleUpload}>
-                                        {form?.getFieldValue('avatar') ? <Image preview={false} style={{ width: '100px', height: '100px', objectFit: 'cover', objectPosition: 'top', borderRadius: '2px' }} src={form?.getFieldValue('avatar')} /> : uploadButton}
+                                <Form.Item label="商品图片" name="fileName" rules={requiredRules}>
+                                    <Upload name="fileName" listType="picture-card" accept=".jpg,.jpeg,.png"
+                                        showUploadList={false} onPreview={handlePreview}
+                                        beforeUpload={(file: File) => beforeUpload(file)} maxCount={1} customRequest={handleUpload}>
+                                        {avatar ? <Img fileName={avatar} previewOpen={previewOpen} /> : uploadButton}
                                     </Upload>
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <Form.Item label="商品名称" name="username" rules={requiredRules}>
+                                <Form.Item label="商品名称" name="name" rules={requiredRules}>
                                     <Input />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <Form.Item label="商品编号" name="email" rules={emailRequiredRules}>
+                                <Form.Item label="商品编号" name="code" rules={requiredRules}>
                                     <Input />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <Form.Item label="商品价格" name="phone_number" rules={requiredRules}>
-                                    <Input />
+                                <Form.Item label="商品价格" name="price" rules={requiredRules}>
+                                    <InputNumber suffix="￥(RMB)" precision={2} style={{ width: '100%' }} />
                                 </Form.Item>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={24}>
-                                <Form.Item label="商品库存" name="status" rules={requiredRules}>
-                                    <DictsSelector type="status" onChange={(value: number) => form.setFieldValue('status', value)} />
+                                <Form.Item label="商品库存" name="inventory" rules={requiredRules}>
+                                    <InputNumber mode="spinner" min={0} style={{ width: '100%' }} precision={0} defaultValue={0} />
                                 </Form.Item>
                             </Col>
                         </Row>

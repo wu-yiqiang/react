@@ -21,7 +21,7 @@
     "@venturan/vite-plugin-upload-deploy": "^1.0.6",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
     "alova": "^3.2.11",
-    "antd": "^5.26.7",
+    "antd": "^6.3.2",
     "antd-img-crop": "^4.25.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",

@@ -63,7 +63,7 @@ export default function UserManager() {
       dataIndex: 'status',
       key: 'status',
       render: (value: string | number) => {
-        return <TableCell value={value} type="status" />
+        return <TableCell value={value} type="Status" />
       }
     },
     {

@@ -11,7 +11,7 @@ const useSystemStore = create(
         lockTime: 10,
         locked: false,
         lockPassword: '123456',
-        language: 'en-US',
+        language: 'zh-CN',
         theme: 'system'
       },
       selectMenu: [],

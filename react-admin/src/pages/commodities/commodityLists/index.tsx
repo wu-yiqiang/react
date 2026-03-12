@@ -1,99 +1,139 @@
 import Tabular from '@/components/Tabular.tsx'
-import { getMaintainLists } from '@/api/maintain'
 import { useState } from 'react'
-import { MaintainSearch, MaintainItem } from '@/types/maintain'
 import CommodityDialog from './commodity-dialog'
 import { Button, Space } from 'antd'
-import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
+import { EditOutlined, DeleteOutlined, ArrowUpOutlined } from '@ant-design/icons'
 import Toast from '@/components/Toast'
+import { deleteCommodityItem, getCommodityPages, putCommodityUp } from '@/api/commodity'
+import { CommodityItem, CommoditySearch } from '@/types/commodity'
+import Img from '@/components/Img'
+import { formattedAmountCNY } from '@/utils'
+import Authority from '@/components/Authority'
+import { useTranslation } from 'react-i18next'
+import TableCell from '@/components/TableCell'
+enum CommodityStatus {
+  NotAvailable = 0,
+  Available = 1,
+  Removed = 2,
+  SaleOut = 3
+}
 export default function CommodityLists() {
+  const { t } = useTranslation()
   const [lists, setLists] = useState()
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [userId, setUserId] = useState(0)
+  const [commodityId, setCommodityId] = useState(0)
   const [total, setTotal] = useState(0)
-  const [queryData, setQueryData] = useState<MaintainSearch>({
+  const [queryData, setQueryData] = useState<CommoditySearch>({
     search: '',
     pageNo: 1,
     pageSize: 10
   })
   const handleEdit = (id: number | null) => {
     if (!id) return
-    setUserId(id)
+    setCommodityId(id)
     setDialogOpen(true)
   }
   const handleDelete = async (id: number | null) => {
     if (!id) return
+    await deleteCommodityItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
   }
   const columns = [
     {
       title: '商品编号',
-      dataIndex: 'device_name',
-      key: 'device_name'
+      dataIndex: 'code',
+      key: 'code'
     },
     {
-      title: '商品图片',
-      dataIndex: 'applyer',
-      key: 'applyer'
+      title: "商品图片",
+      dataIndex: "fileName",
+      key: "fileName",
+      render: (value: number | string, record: CommodityItem, index: number) => {
+        return (
+          <Img fileName={record?.fileName} />
+        );
+      },
     },
     {
       title: '商品名称',
-      dataIndex: 'subject',
-      key: 'subject'
+      dataIndex: 'name',
+      key: 'name'
     },
     {
-      title: '商品价格',
-      dataIndex: 'remark',
-      key: 'remark'
+      title: "商品价格",
+      dataIndex: "price",
+      key: "price",
+      render: (value: number | string, record: CommodityItem, index: number) => {
+        return (
+          <div> {formattedAmountCNY(record?.price)}</div>
+        );
+      },
     },
     {
       title: '商品库存',
-      dataIndex: 'maintainer',
-      key: 'maintainer'
+      dataIndex: 'inventory',
+      key: 'inventory'
     },
     {
       title: '商品销量',
-      dataIndex: 'maintainer',
-      key: 'maintainer'
+      dataIndex: 'sales',
+      key: 'sales'
     },
     {
       title: '商品状态',
-      dataIndex: 'maintainer',
-      key: 'maintainer'
+      dataIndex: 'status',
+      key: 'status',
+      render: (value: string | number) => {
+        return <TableCell value={value} type="CommodityStatus" />
+      }
     },
     {
       title: '操作',
       dataIndex: 'opeartions',
       key: 'opeartions',
-      render: (value: number | string, record: MaintainItem, index: number) => {
+      render: (value: number | string, record: CommodityItem, index: number) => {
         return (
           <Space key={index}>
-            <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
-            <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+            <Authority permission="commodities:commodity:delete">
+              {record.status === CommodityStatus.NotAvailable ? <Button icon={<ArrowUpOutlined />} onClick={() => handleUp(record?.id)} />
+                : null}
+            </Authority>
+            <Authority permission="commodities:commodity:edit">
+              <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
+            </Authority>
+            <Authority permission="commodities:commodity:delete">
+              <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+            </Authority>
           </Space>
         )
       }
     }
   ]
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
-  const handleSearch = async (values: MaintainSearch) => {
-    // const { data } = await getMaintainLists(values)
-    // setLists(data.lists)
-    // const datas = {
-    //   pageSize: data.pageSize,
-    //   pageNo: data.pageNo
-    // }
-    // setTotal(data?.total)
-    // setQueryData({ ...queryData, ...datas })
+  const handleSearch = async (values: CommoditySearch) => {
+    const { data } = await getCommodityPages(values)
+    setLists(data?.data)
+    const datas = {
+      pageSize: data.pageSize,
+      pageNo: data.pageNo
+    }
+    setTotal(data?.total)
+    setQueryData({ ...queryData, ...datas })
   }
   const handleNew = () => {
+    setCommodityId(0)
     setDialogOpen(true)
   }
   const handleClose = () => {
     setDialogOpen(false)
   }
-
+  const handleUp = async (id: number) => {
+    if (!id) return
+    await putCommodityUp(id)
+    Toast.success('上架成功')
+    await handleSearch({ ...queryData, pageNo: 1 })
+  }
   const handleOk = async () => {
     setDialogOpen(false)
     await handleSearch({ ...queryData, pageNo: 1 })
@@ -110,12 +150,14 @@ export default function CommodityLists() {
         searchOptions={searchOptions}
         handleSearch={handleSearch}
         right={
-          <Button type="primary" onClick={handleNew}>
-            新增
-          </Button>
+          <Authority permission="commodities:commodity:create">
+            <Button type="primary" onClick={handleNew}>
+              {t('Add')}
+            </Button>
+          </Authority>
         }
       ></Tabular>
-      {dialogOpen ? <CommodityDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={userId} /> : null}
+      {dialogOpen ? <CommodityDialog open={dialogOpen} handleClose={handleClose} handleOk={handleOk} id={commodityId} /> : null}
     </>
   )
 }
