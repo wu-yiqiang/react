@@ -51,14 +51,14 @@ export default defineConfig(({ command, mode }) => {
         filename: 'visualizer.html',
         open: false
       }),
-      autoUpload({
-        host: envConfig.VITE_HOST,
-        port: envConfig.VITE_PORT,
-        username: envConfig.VITE_USERNAME,
-        password: envConfig.VITE_PASSPWORD,
-        localPath: envConfig.VITE_LOCAL_PATH,
-        remotePath: envConfig.VITE_REMOTE_PATH
-      })
+      // autoUpload({
+      //   host: envConfig.VITE_HOST,
+      //   port: envConfig.VITE_PORT,
+      //   username: envConfig.VITE_USERNAME,
+      //   password: envConfig.VITE_PASSPWORD,
+      //   localPath: envConfig.VITE_LOCAL_PATH,
+      //   remotePath: envConfig.VITE_REMOTE_PATH
+      // })
     ],
     server: {
       host: '0.0.0.0',
