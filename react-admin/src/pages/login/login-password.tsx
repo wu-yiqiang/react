@@ -19,7 +19,7 @@ function LoginPassword() {
     })
     if (data?.token) {
       const datas = data
-      datas.menus = data?.roles.reduce((acc, val) => acc.concat(val.menus), []);
+      datas.menus = data?.roles.reduce((acc: any, val: any) => acc.concat(val.menus), []);
       eventMitt.emit('STORE:USER', datas)
       eventMitt.emit('ROUTER:KEY', 'personal')
       window.location.reload()

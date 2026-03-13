@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { postButtonItem, updateButtonItem, getButtonItem } from '@/api/system'
 import Toast from '@/components/Toast'
 import { requiredRules } from '@/validator/index'
-import { Btn } from '@/types/button'
 import { DialogProps } from '@/types/common'
+import { Button } from '@/types/button'
 export default function UserAddDialog(props: DialogProps) {
   const { open, id, handleClose, handleOk } = props
   const [editStatus, setEditStatus] = useState(false)

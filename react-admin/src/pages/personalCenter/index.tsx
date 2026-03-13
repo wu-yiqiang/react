@@ -17,7 +17,7 @@ export default function PersonalCenter() {
     { title: t('profile') },
     { title: t('infoUpdate') }
   ])
-  const userInfos = useMemo(() => userInfo, [userInfo])
+  const userInfos = useMemo<any>(() => userInfo, [userInfo])
   const handleOk = () => {
     handleOpenStatus(true)
   }

@@ -4,7 +4,7 @@ export interface BtnField {
   code: string
 }
 export interface BtnSearch extends Search, Pagenation {}
-export interface BtnItem extends CommonTime, CommonUuid, CommonId, BtnField {}
+export interface BtnItem extends CommonTime, CommonId, BtnField {}
 
 export class Button implements BtnItem {
   id: number | null

@@ -4,16 +4,16 @@ import React, { useState } from "react";
 // https://gitee.com/wfeng0/mpoe#https://gitee.com/link?target=https%3A%2F%2Fblog.csdn.net%2Fweixin_47746452%2Farticle%2Fdetails%2F132402713%3Fspm%3D1001.2014.3001.5501
 // https://blog.csdn.net/weixin_47746452/article/details/132402713?spm=1001.2014.3001.5501
 // https://juejin.cn/post/7273432426772070457
-const ContextMenu = ({ children, items }) => {
+const ContextMenu = ({ children, items }: { children: any, items: any }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  const handleClick = (event) => {
+  const handleClick = (event: any) => {
     event.preventDefault();
     setShowMenu(false);
   };
 
-  const handleContextMenu = (event) => {
+  const handleContextMenu = (event: any) => {
     event.preventDefault();
     setShowMenu(true);
     setPosition({ x: event.clientX, y: event.clientY });
@@ -33,7 +33,7 @@ const ContextMenu = ({ children, items }) => {
             margin: 0,
           }}
         >
-          {items.map((item, index) => (
+          {items.map((item: any, index: number) => (
             <li key={index} onClick={() => item.action()}>
               {item.name}
             </li>

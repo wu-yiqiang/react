@@ -49,7 +49,7 @@ export default function CommodityDialog(props: DialogProps) {
             })
             const data = response?.data
             if (!data) {
-                Toast.error('未获取到用户数据')
+                Toast.error('未获取到数据')
                 return
             }
             data.price = formattedAmountCNY(data?.price)

@@ -11,6 +11,7 @@ import { formattedAmountCNY } from '@/utils'
 import Authority from '@/components/Authority'
 import { useTranslation } from 'react-i18next'
 import TableCell from '@/components/TableCell'
+import { CommonId } from '@/types/common'
 enum CommodityStatus {
   NotAvailable = 0,
   Available = 1,
@@ -34,7 +35,6 @@ export default function CommodityLists() {
     setDialogOpen(true)
   }
   const handleDelete = async (id: number | null) => {
-    if (!id) return
     await deleteCommodityItem(id)
     Toast.success('操作成功')
     await handleSearch({ ...queryData, pageNo: 1 })
@@ -128,8 +128,7 @@ export default function CommodityLists() {
   const handleClose = () => {
     setDialogOpen(false)
   }
-  const handleUp = async (id: number) => {
-    if (!id) return
+  const handleUp = async (id: number | null) => {
     await putCommodityUp(id)
     Toast.success('上架成功')
     await handleSearch({ ...queryData, pageNo: 1 })

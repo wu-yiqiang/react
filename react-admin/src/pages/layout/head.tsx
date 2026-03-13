@@ -97,9 +97,13 @@ function Theme() {
     </Dropdown>
   )
 }
-
+interface NoticeType {
+  title: string
+  date: string
+  content: string
+}
 function Notices() {
-  const [notices, setNotices] = useState([
+  const [notices, setNotices] = useState<NoticeType[]>([
     // { title: '需求评审会议', content: '请于12点前参加需求评审会议', date: '2025-11-24' },
     // { title: 'sdsdsd2', content: 'sdsdsd', date: '2025-11-24' },
     // { title: 'sdsdsd3', content: 'sdsdsd', date: '2025-11-24' },
