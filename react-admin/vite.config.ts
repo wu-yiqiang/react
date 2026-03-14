@@ -17,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
   const envConfig = loadEnv(mode, envDir)
   return {
     envDir: envDir,
-    base: './',
+    base: '/',
     resolve: {
       alias: {
         '@': pathResolve('src/')
@@ -86,14 +86,15 @@ export default defineConfig(({ command, mode }) => {
       chunkSizeWarningLimit: 500,
       sourcemap: false,
       outDir: 'dist',
-      rollupOptions: {
+      rolldownOptions: {
         output: {
           format: 'esm',
-          manualChunks: {
-            echarts: ['echarts'],
-            vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'alova', 'zustand'],
-            antd: ['antd']
-          },
+          // 先注释掉，现在使用的是vite8,vite8不支持这样配置
+          // manualChunks: {
+          //   echarts: ['echarts'],
+          //   vendor: ['react', 'react-dom', 'react-router-dom', 'lodash-es', 'dayjs', 'alova', 'zustand'],
+          //   antd: ['antd']
+          // },
           entryFileNames: 'js/[name]-[hash].js',
           chunkFileNames: 'js/[name]-[hash].js',
           assetFileNames: (assetInfo) => {
