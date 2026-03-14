@@ -164,5 +164,5 @@ export const getDictionaryItem = async (id: number): Promise<any> => {
 }
 
 export const getDictionaryItemByType = async (type: string): Promise<any> => {
-  return await requestes.Post(`/mapping/types`, {code: type})
+  return await requestes.Post(`/mapping/types`, { mappingType: type })
 }

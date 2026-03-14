@@ -7,11 +7,10 @@ export default function TableCell(props: any) {
   const [dictionarys, setDictionarys] = useState<Array<DictionaryItem>>([])
   const init = async () => {
     const { data } = await getDictionaryItemByType(type)
-    console.log('sdsd', data)
       setDictionarys(data ?? [])
     }
     useEffect(() => {
       init()
     }, [type])
-  return <>{dictionarys?.length ? dictionarys?.find((item: DictionaryItem) => item.value === value)?.name : null}</>
+  return <>{dictionarys?.length ? dictionarys?.find((item: DictionaryItem) => item.mappingValue === value)?.name : null}</>
 }

@@ -113,7 +113,7 @@ export default function CommodityDialog(props: DialogProps) {
                         <Row>
                             <Col span={24}>
                                 <Form.Item label="商品编号" name="code" rules={requiredRules}>
-                                    <Input />
+                                    <Input disabled={editStatus} />
                                 </Form.Item>
                             </Col>
                         </Row>

@@ -26,7 +26,7 @@ export const getCommodityItem = async (id: number): Promise<any> => {
     return await requestes.Get(`/commodity/details/${id}`)
 }
 
-export const putCommodityUp = async (id: number | null): Promise<any> => {
-    if (!id) return
-    return await requestes.Post(`/commodity/up/${id}`)
+export const putCommodityUp = async (data: any): Promise<any> => {
+    if (!data?.id) return
+    return await requestes.Post(`/commodity/up`, data)
 }

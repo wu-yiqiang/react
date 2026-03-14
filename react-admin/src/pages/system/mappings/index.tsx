@@ -33,15 +33,15 @@ export default function Dictionarys() {
   }
   const columns = [
     {
-      title: '字典码',
-      dataIndex: 'code',
-      key: 'code',
+      title: '字典类型',
+      dataIndex: 'mappingType',
+      key: 'mappingType',
       width: 140
     },
     {
       title: '字典值',
-      dataIndex: 'value',
-      key: 'value',
+      dataIndex: 'mappingValue',
+      key: 'mappingValue',
       width: 120
     },
     {

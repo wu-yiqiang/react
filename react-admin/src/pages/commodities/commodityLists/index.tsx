@@ -61,7 +61,7 @@ export default function CommodityLists() {
       key: 'name'
     },
     {
-      title: "商品价格",
+      title: "商品价格(元)",
       dataIndex: "price",
       key: "price",
       render: (value: number | string, record: CommodityItem, index: number) => {
@@ -103,7 +103,8 @@ export default function CommodityLists() {
               <Button icon={<EditOutlined />} onClick={() => handleEdit(record?.id)} />
             </Authority>
             <Authority permission="commodities:commodity:delete">
-              <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />
+              {record.status === CommodityStatus.Available ?
+                null : <Button icon={<DeleteOutlined />} type="primary" danger ghost onClick={() => handleDelete(record?.id)} />}
             </Authority>
           </Space>
         )
@@ -118,8 +119,9 @@ export default function CommodityLists() {
       pageSize: data.pageSize,
       pageNo: data.pageNo
     }
-    setTotal(data?.total)
     setQueryData({ ...queryData, ...datas })
+    setTotal(data?.total)
+    console.log("queryDataquerataqueryData", queryData)
   }
   const handleNew = () => {
     setCommodityId(0)
@@ -129,9 +131,13 @@ export default function CommodityLists() {
     setDialogOpen(false)
   }
   const handleUp = async (id: number | null) => {
-    await putCommodityUp(id)
+    const reqParams = {
+      id: id,
+      status: CommodityStatus.Available
+    }
+    await putCommodityUp(reqParams)
     Toast.success('上架成功')
-    await handleSearch({ ...queryData, pageNo: 1 })
+    await handleSearch({ ...queryData })
   }
   const handleOk = async () => {
     setDialogOpen(false)
@@ -139,6 +145,7 @@ export default function CommodityLists() {
   }
   return (
     <>
+      {queryData.pageNo}
       <Tabular
         dataSource={lists}
         total={total}
