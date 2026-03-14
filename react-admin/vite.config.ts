@@ -17,7 +17,7 @@ export default defineConfig(({ command, mode }) => {
   const envConfig = loadEnv(mode, envDir)
   return {
     envDir: envDir,
-    base: '/',
+    base: '/jxms/',
     resolve: {
       alias: {
         '@': pathResolve('src/')

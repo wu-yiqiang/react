@@ -275,7 +275,9 @@ const routerConfig: RouteObject[] = [
   }
 ]
 
-export const routes = createBrowserRouter([...whiteLists, ...routerConfig]);
+export const routes = createBrowserRouter([...whiteLists, ...routerConfig], {
+  basename: '/jxms'
+})
 
 eventMitt.on('ROUTER:LOGOUT', async () => {
   routes.navigate('/login')
