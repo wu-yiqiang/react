@@ -1,10 +1,11 @@
 import { Select } from "antd"
 import { useEffect, useState } from "react"
 import { ListTypes, listTypesRequest } from "./data"
+import { ShopItem } from "@/types/shop"
 
 export default function Selector(props: any) {
     const { type, value } = props
-    const [options, setOptions] = useState([])
+    const [options, setOptions] = useState<ShopItem | any>([])
     const init = async () => {
         let lists = []
         if (type === ListTypes.shops) {
@@ -18,7 +19,7 @@ export default function Selector(props: any) {
     }, [type])
     return <>
         {
-            options?.find((item: any) => item.id === value)?.name
+            options?.find((item: ShopItem) => item.id === value)?.name
         }
     </>
 }
