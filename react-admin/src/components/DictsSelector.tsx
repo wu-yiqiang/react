@@ -15,5 +15,5 @@ export default function DictsSelector(props: any) {
     useEffect(() => {
       init()
     }, [type])
-  return <Select value={value} options={dictionarys} fieldNames={{ label: 'label', value: 'code' }} onSelect={handleSelect}></Select>
+  return <Select value={value} options={dictionarys} fieldNames={{ label: 'name', value: 'mappingValue' }} onSelect={handleSelect}></Select>
 }

@@ -18,6 +18,7 @@ const Login = React.lazy(() => import('@/pages/login/index'))
 const PersonalCenter = React.lazy(() => import('@/pages/personalCenter/index'))
 // 商品管理
 const CommodityLists = React.lazy(() => import('@/pages/commodities/commodityLists'))
+const Shops = React.lazy(() => import('@/pages/commodities/shops'))
 // 订单管理
 const OrderLists = React.lazy(() => import('@/pages/orders/orderLists'))
 
@@ -101,6 +102,14 @@ export const allRouters: Array<RouterItem> = [
     key: 'commodities',
     parentkey: '',
     element: null
+  },
+  {
+    path: '/commodities/shops',
+    label: '店铺列表',
+    icon: <PieChartOutlined />,
+    key: 'shops',
+    parentkey: 'commodities',
+    element: <Shops />
   },
   {
     path: '/commodities/lists',

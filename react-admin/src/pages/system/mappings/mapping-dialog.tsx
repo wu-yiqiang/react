@@ -11,7 +11,6 @@ export default function DictionaryAddDialog(props: DialogProps) {
   const [editStatus, setEditStatus] = useState(false)
   const [title, setTitle] = useState('新增')
   const [loading, setLoading] = useState(false)
-  const [menuOpts, setMenuOpts] = useState<Option[]>([])
   const [form] = Form.useForm()
   interface Option {
     id: string
@@ -71,12 +70,12 @@ export default function DictionaryAddDialog(props: DialogProps) {
           >
             <Row gutter={[12, 12]}>
               <Col span={24}>
-                <Form.Item label="字典类型" name="code" rules={requiredRules}>
-                  <Input placeholder="字典类型" />
+                <Form.Item label="字典类型" name="mappingType" rules={requiredRules}>
+                  <Input placeholder="字典类型" disabled={editStatus} />
                 </Form.Item>
               </Col>
               <Col span={24}>
-                <Form.Item label="字典标识" name="value" rules={requiredRules}>
+                <Form.Item label="字典标识" name="mappingValue" rules={requiredRules}>
                   <InputNumber placeholder="字典标识" style={{ width: '100%' }} />
                 </Form.Item>
               </Col>

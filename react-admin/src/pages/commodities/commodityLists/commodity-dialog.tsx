@@ -1,21 +1,21 @@
-import { Form, Input, Modal, Upload, Row, Col, Spin, InputNumber } from 'antd'
+import { Form, Input, Modal, Upload, Row, Col, Spin, InputNumber, Select } from 'antd'
 import { useEffect, useMemo, useState } from 'react'
-import { postUser, updateUserDetail } from '@/api/system'
 import { upload } from '@/api/public'
 import Toast from '@/components/Toast'
-import { PlusOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons'
+import { PlusOutlined, LoadingOutlined } from '@ant-design/icons'
 import { requiredRules } from '@/validator/index'
 import { DialogProps } from '@/types/common'
 import Img from '@/components/Img'
 import { cloneDeep } from 'lodash-es'
 import { formattedAmountCent, formattedAmountCNY } from '@/utils'
-import { getCommodityItem, postCommodityItem, updateCommodityItem } from '@/api/commodity'
+import { getCommodityItem, getShopLists, postCommodityItem, updateCommodityItem } from '@/api/commodity'
 import { Commodity } from '@/types/commodity'
 export default function CommodityDialog(props: DialogProps) {
     const { open, id, handleClose, handleOk } = props
     const [editStatus, setEditStatus] = useState(false)
     const [title, setTitle] = useState('新增')
     const [loading, setLoading] = useState(false)
+    const [shops, setShops] = useState([])
     const [previewOpen, setPreviewOpen] = useState(false)
     const [form] = Form.useForm()
     const close = () => {
@@ -28,9 +28,15 @@ export default function CommodityDialog(props: DialogProps) {
             const values = form.getFieldsValue()
             const reqParams = cloneDeep(values)
             reqParams.price = formattedAmountCent(reqParams?.price)
-            if (!editStatus) await postCommodityItem(reqParams)
-            if (editStatus) await updateCommodityItem(reqParams)
-            Toast.success('操作成功')
+            if (!editStatus) {
+                await postCommodityItem(reqParams)
+                Toast.success('商品添加成功')
+
+            }
+            if (editStatus) {
+                await updateCommodityItem(reqParams)
+                Toast.success('商品编辑成功')
+            }
             handleOk(values)
         }
     }
@@ -58,6 +64,7 @@ export default function CommodityDialog(props: DialogProps) {
     }
     useEffect(() => {
         init()
+        getShops()
     }, [id])
     const handleUpload = async (info: object) => {
         // @ts-ignore
@@ -78,6 +85,10 @@ export default function CommodityDialog(props: DialogProps) {
     }
     const handlePreview = () => {
         setPreviewOpen(true)
+    }
+    const getShops = async () => {
+        const data = await getShopLists()
+        setShops(data?.data ?? [])
     }
     const avatar = useMemo(() => {
         return form?.getFieldValue('fileName')
@@ -100,6 +111,13 @@ export default function CommodityDialog(props: DialogProps) {
                                         beforeUpload={(file: File) => beforeUpload(file)} maxCount={1} customRequest={handleUpload}>
                                         {avatar ? <Img fileName={avatar} previewOpen={previewOpen} /> : uploadButton}
                                     </Upload>
+                                </Form.Item>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col span={24}>
+                                <Form.Item label="店铺名称" name="shopId" rules={requiredRules}>
+                                    <Select options={shops} fieldNames={{ label: 'name', value: 'id' }}></Select>
                                 </Form.Item>
                             </Col>
                         </Row>
@@ -131,13 +149,6 @@ export default function CommodityDialog(props: DialogProps) {
                                 </Form.Item>
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Col span={24}>
-                                <Form.Item label="角色" name="roles" rules={requiredRules}>
-                                    <Select mode="multiple" options={roles} fieldNames={{ label: 'name', value: 'id' }}></Select>
-                                </Form.Item>
-                            </Col>
-                        </Row> */}
                         <Row>
                             <Form.Item hidden label="ID" name="id">
                                 <Input hidden />

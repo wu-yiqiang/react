@@ -2,6 +2,7 @@ import { CommonTime, CommonUuid, CommonId, Search, Pagenation } from "@/types/co
 export interface CommodityField {
     name: string
     code: string
+    shopId: number | null
     price: number
     sales: number
     inventory: number
@@ -17,6 +18,7 @@ export class Commodity implements CommodityItem {
     id: number | null;
     name: string;
     code: string;
+    shopId: number | null
     price: number;
     sales: number;
     inventory: number;
@@ -26,6 +28,7 @@ export class Commodity implements CommodityItem {
     constructor() {
         this.name = "";
         this.code = "";
+        this.shopId = null;
         this.price = 0;
         this.sales = 0;
         this.inventory = 0;

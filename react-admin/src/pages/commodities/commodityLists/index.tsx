@@ -12,6 +12,8 @@ import Authority from '@/components/Authority'
 import { useTranslation } from 'react-i18next'
 import TableCell from '@/components/TableCell'
 import { CommonId } from '@/types/common'
+import { ListTypes } from '@/components/Selector/data'
+import Selector from '@/components/Selector'
 enum CommodityStatus {
   NotAvailable = 0,
   Available = 1,
@@ -29,17 +31,17 @@ export default function CommodityLists() {
     pageNo: 1,
     pageSize: 10
   })
-  const handleEdit = (id: number | null) => {
-    if (!id) return
-    setCommodityId(id)
-    setDialogOpen(true)
-  }
-  const handleDelete = async (id: number | null) => {
-    await deleteCommodityItem(id)
-    Toast.success('操作成功')
-    await handleSearch({ ...queryData, pageNo: 1 })
-  }
   const columns = [
+    {
+      title: '店铺名称',
+      dataIndex: 'shopId',
+      key: 'shopId',
+      render: (value: number | string, record: CommodityItem, index: number) => {
+        return (
+          <Selector type={ListTypes.shops} value={record?.shopId} />
+        );
+      },
+    },
     {
       title: '商品编号',
       dataIndex: 'code',
@@ -111,17 +113,27 @@ export default function CommodityLists() {
       }
     }
   ]
+  const handleEdit = (id: number | null) => {
+    if (!id) return
+    setCommodityId(id)
+    setDialogOpen(true)
+  }
+  const handleDelete = async (id: number | null) => {
+    await deleteCommodityItem(id)
+    Toast.success('商品删除成功')
+    await handleSearch({ ...queryData, pageNo: 1 })
+  }
+
   const searchOptions = [{ name: 'search', label: '搜索', type: 'input' }]
   const handleSearch = async (values: CommoditySearch) => {
     const { data } = await getCommodityPages(values)
     setLists(data?.data)
     const datas = {
-      pageSize: data.pageSize,
-      pageNo: data.pageNo
+      pageSize: data?.pageSize,
+      pageNo: data?.pageNo
     }
     setQueryData({ ...queryData, ...datas })
     setTotal(data?.total)
-    console.log("queryDataquerataqueryData", queryData)
   }
   const handleNew = () => {
     setCommodityId(0)
@@ -137,6 +149,7 @@ export default function CommodityLists() {
     }
     await putCommodityUp(reqParams)
     Toast.success('上架成功')
+    console.log('上架', queryData)
     await handleSearch({ ...queryData })
   }
   const handleOk = async () => {
@@ -145,7 +158,7 @@ export default function CommodityLists() {
   }
   return (
     <>
-      {queryData.pageNo}
+      {/* {queryData?.pageNo} */}
       <Tabular
         dataSource={lists}
         total={total}
